@@ -10,9 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
-import os
 from pathlib import Path
-import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,7 +28,8 @@ DEBUG = False
 AUTH_USER_MODEL = 'base.User'
 
 ALLOWED_HOSTS = [
-    '192.168.42.32'
+    '192.168.42.32',
+    'jerit.herokuapp.com',
 ]
 
 
@@ -141,5 +140,3 @@ STATIC_ROOT = BASE_DIR / 'assets'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-django_heroku.settings(locals())
