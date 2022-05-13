@@ -1,0 +1,21 @@
+{% extends 'main.html' %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'css/base/gallery.css' %}" />
+<section class="container">
+  <div>
+    <h1 class="text-center fw-light">Gallery</h1>
+    <hr />
+  </div>
+  <div class="row text-center text-lg-start">
+    {% for link in pictures %}
+      <div class="col-md-6 col-12 d-block mb-4 h-100">
+          <img
+            class="img-fluid img-thumbnail"
+            src="{% static link %}"
+            alt="Jerit Baiju"
+          />
+      </div>
+    {% endfor %}  
+    
+  </div>
+</section>
+{% endblock content %}

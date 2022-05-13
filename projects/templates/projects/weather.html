@@ -1,0 +1,51 @@
+{% extends 'main.html' %} {% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/projects/weather.css' %}">
+<div class="container">
+    <div style="padding-top: 5em;" class="heading text-center ">
+        <h1 class="text-white head">Weather App</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-6 text-center pt-5">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div>
+                    <div class="input">
+                        <input autocomplete='off' class="my-inp input-group" type="text" name="city" id=""
+                            placeholder="Enter the city" />
+                    </div>
+                    <div class="submit pt-4 pb-4">
+                        <input type="submit" value="Submit"
+                            class="btn-lg btn-dark my-but" />
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        {% if request.method == 'POST' %}
+        <div class="col-md-6 text-white">
+            <div class="main">
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        <div class="p-3">
+                            <h4>{{loc}}</h4>
+                            <h4>{{day}}</h4>
+                            <h4>{{sts}}</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <div class="p-2">
+                            <img src="{{src}}" alt="weather_image" srcset="" />
+                        </div>
+                        <div class="p-3">
+                            <h2>{{tmp}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}

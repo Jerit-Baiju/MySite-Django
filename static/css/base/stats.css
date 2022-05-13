@@ -1,0 +1,28 @@
+*{
+    text-transform: capitalize;
+}
+.my-bg{
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.384);
+    border-radius: 10px;
+}
+.grey {
+    background-color: rgba(128, 128, 128, 0.199);
+    padding: .5em;
+    border-top: 2px solid rgba(128, 128, 128, 0.39);
+    border-bottom: 2px solid rgba(128, 128, 128, 0.39);
+}
+.white {
+    background-color: white;
+    padding: .5em;
+}
+.my-heading {
+    padding-left: 1em;
+    padding-top: 1rem;
+    padding-bottom: .5rem;
+}
+.padding{
+    padding-left: 2em ;
+    padding-right: 2em;
+    padding-bottom: 2em;
+}

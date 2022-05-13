@@ -1,0 +1,27 @@
+{% extends 'main.html' %} {% block content %} {% load static %}
+<div>
+  <div class="heading">
+    <h1 class="text-center">Sadance</h1>
+  </div>
+
+  <div class="row" style="padding-top: 4cm">
+    <div class="col-md-4">
+      <div class="text-center">
+        <h2>Status</h2>
+        <h3 id="tot"></h3>
+        <h3 id="pre"></h3>
+        <h3 id="abs"></h3>
+        <h3 id="per"></h3>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="text-center">
+        <button onclick="present()" class="btn btn-secondary">Present</button>
+        <button onclick="absent()" class="btn btn-secondary">Absent</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{% static 'js/sadance.js' %}"></script>
+{% endblock content %}

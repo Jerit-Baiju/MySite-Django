@@ -1,0 +1,31 @@
+{% extends 'main.html' %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'css/base/login.css' %}" />
+<div class="main-div">
+  <div class="container-div">
+    <form action="" method="post">
+      {% csrf_token %}
+      <div class="form" id="login">
+        <h1 class="form__title">Welcome Back</h1>
+        <div class="padding"></div>
+        <div class="form__input-group">
+          <input type="text" name="username" required class="form__input" autofocus placeholder="Username"
+            id="usernameInput" />
+        </div>
+        <div class="form__input-group">
+          <input type="password" required name="password" class="form__input" autofocus placeholder="Password"
+            id="passwordInput" />
+          <input type="hidden" name="next" value="{{request.GET.next}}">
+          <div class="padding"></div>
+          <a href="#">
+            <button type='submit' class="form__button" id="loginButton">log In</button>
+          </a>
+        </div>
+      </div>
+    </form>
+    <div>
+      <p>Not yet Signed Up ?</p>
+      <a href="{% url 'register-page' %}"><button class="form__button" id="loginButton">Sign Up</button></a>
+    </div>
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,22 @@
+{% extends 'main.html' %} {% block content %}
+{% load static %}
+<section class="container">
+    <div class="heading">
+        <h1 class="text-center fw-light">About Me</h1>
+       <hr> 
+    </div>
+    <div class="intro">
+        <h2 class="fw-light">Intro</h2>
+        <h5 class="fw-light">{% include 'src/intro.html' %}</h5>        
+    </div>
+    <hr>
+    <div class="Some History">
+        <h2 class="fw-light">Some History</h2>
+        <ul>
+            {% for item in history %}
+                <li><h5 class="fw-light">{{item}}</h5></li>
+            {% endfor %}
+        </ul>      
+    </div>
+</section>
+{% endblock content %}

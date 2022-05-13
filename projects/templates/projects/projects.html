@@ -1,0 +1,26 @@
+{% extends 'main.html' %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'css/projects/projects.css' %}">
+<section>
+  <div class="container">
+    <h1 class="text-center fw-light">Projects</h1>
+    <hr />
+    <div class="row">
+      {% for project in projects %}
+      <div class="col-14 col-md-4" style="padding-top: 1em">
+        <div class="card my-card">
+          <div class="card-body">
+            <h5 class="card-title fw-light">{{project.name}}</h5>
+            <p class="card-text fw-light">
+              {{project.info}}
+            </p>
+            <a href="{{project.src}}" class="fw-light link my-button">
+              {{project.btn}}
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock content %}

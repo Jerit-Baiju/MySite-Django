@@ -1,0 +1,95 @@
+{% extends 'main.html' %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'css/base/index.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comforter&display=swap" rel="stylesheet">
+<div class="container">
+
+<section id="homeSection">
+  <div class="row align-items-center">
+    <div class="col-md-6">
+      {% comment %} <img src="{% static 'images/dp.png' %}" alt="Jerit Baiju" style="width: 100%" /> {% endcomment %}
+      <p class="text-center" style="font-size: 20em; font-family: 'Comforter', cursive;">JB</p>
+    </div>
+
+    <div class="col-md-6">
+      <h1 class="fw-light" style="padding-top: 1rem">Jerit Baiju</h1>
+      <h5 class="fw-light" style="padding-left: 25px">
+        {% for bio in bio %}
+          {{bio}} <br />
+        {% endfor %}
+      </h5>
+      <div>
+        <div class="row" style="text-align: center">
+          <div class="col-md-4 col-4 p-4">
+            <a href="/gallery" class="my-btn">Gallery</a>
+          </div>
+          <div class="col-md-4 col-4 p-4">
+            <a href="/projects" class="my-btn">Projects</a>
+          </div>
+          <div class="col-md-4 col-4 p-4">
+            <a href="/stats" class="my-btn">Statics</a>
+          </div>
+        </div>
+      </div>
+      <div class="quoteDiv align-items-center" style="padding-top: 2rem">
+        <div class="quote">
+          <h5 class="text-end p-1">
+            "{{quote.quote}}"
+          </h5>
+          <div class="row">
+            <div class="col-6 col-md-6"></div>
+            <div class="col-6 col-md-6" style="padding-top: 1rem">
+              <h6>
+                <figcaption class="blockquote-footer text-end p-1">
+                  {{quote.author}}
+                </figcaption>
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr />
+</section>
+
+<section id="aboutMe" class="p-1">
+  <div class="p-3">
+    <h2 class="fw-light text-center text-uppercase">About Me</h2>
+    <h5 class="fw-light">{% include 'src/intro.html' %} Read more about me <a class="link-dark" href="/about">Here</a>.</h5>
+  </div>
+  <hr />
+</section>
+
+<section id="serviceSection" class="p-1">
+  <div class="p-3">
+    <h2 class="text-center fw-light text-uppercase">Services</h2>
+    <div class="services">
+      <h5 class="text-capitalize fw-light">
+        > Free Lancing <br />> web app Development <br />> Application Development
+      </h5>
+    </div>
+  </div>
+  <hr />
+</section>
+
+<section id="educationSection" class="p-1">
+  <div class="p-3">
+    <h2 class="text-center fw-light text-uppercase">Education</h2>
+    <div class="education">
+      <h5 class="text-capitalize fw-light">
+        > KG-7 <br />
+        <h5 class="fw-light"><a class="link-dark" href="{% url 'vijayamatha' %}">Vijayamatha Public School</a></h5>
+      </h5>
+      <h5 class="text-capitalize fw-light">
+        > 8-10 <br />
+        <h5 class="fw-light">MAM Bethany Public School</h5>
+      </h5>
+    </div>
+  </div>
+  <hr />
+</section>
+{% include 'footer.html' %} {% endblock content %}
+
+</div>
