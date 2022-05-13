@@ -29,7 +29,6 @@ def projects(request):
             'src': '/projects/sadance', 'btn': 'See'},
         {'name': 'Num Game', 'info': 'A number guessing game',
             'src': '/projects/num_game', 'btn': 'Play'},
-        {'name': 'Instagram', 'info':'NOTE : This project is only for educational purpose and not meant for harming anyone.','src':'https://insta-give-away.herokuapp.com','btn':'Test'}
     ]
     random.shuffle(projects)
     context = {
