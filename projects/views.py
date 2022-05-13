@@ -3,11 +3,10 @@ from datetime import datetime
 
 import pytz
 import requests
-from base.views import log, push
+from base.views import log
 from bs4 import BeautifulSoup
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
-from .models import Instagram
 
 # Create your views here.
 
