@@ -31,6 +31,7 @@ AUTH_USER_MODEL = 'base.User'
 ALLOWED_HOSTS = [
     '192.168.42.32',
     'jerit.herokuapp.com',
+    '192.168.43.21'
 ]
 
 
