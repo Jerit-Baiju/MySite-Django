@@ -12,7 +12,7 @@ from .models import User, AdminLog, AdminSecret
 
 
 try:
-    pb_key, created = AdminSecret.objects.get_or_create(name='pushbullet')
+    pb_key, _ = AdminSecret.objects.get_or_create(name='pushbullet')
 except:
     None
 
@@ -30,7 +30,7 @@ def log(request, data):
     date = datetime.now(pytz.timezone("Asia/Kolkata")).date()
     time = datetime.now(pytz.timezone("Asia/Kolkata")).strftime("%H:%M")
     agent = request.META['HTTP_USER_AGENT']
-    admin_log, created = AdminLog.objects.get_or_create(name='api_log')
+    admin_log, _ = AdminLog.objects.get_or_create(name='api_log')
 
     if request.user.is_authenticated:
         user = request.user
