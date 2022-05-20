@@ -11,10 +11,6 @@ function set(text) {
     old + "You: " + inp + "\n" + "Clara: " + text + "\n";
   document.getElementById("input").value = "";
 }
-function random(string) {
-  op = Math.floor(Math.random() * string.length);
-  return string[op];
-}
 function send() {
   main = document.getElementById("input").value;
   main = main.toLowerCase();
