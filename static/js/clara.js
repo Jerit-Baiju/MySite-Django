@@ -16,6 +16,8 @@ function send() {
   main = main.toLowerCase();
   op = await fetch('https://elio-bot.herokuapp.com/api/'+user+'/'+main)
   alert(op)
+  op = await op.json()
+  alert(op)
   set(op);
   scroll_down();
 }
