@@ -14,7 +14,7 @@ function set(text) {
 function send() {
   main = document.getElementById("input").value;
   main = main.toLowerCase();
-  op = fetch('https://elio-bot.herokuapp.com/api/'+user+'/'+main)
+  op = await fetch('https://elio-bot.herokuapp.com/api/'+user+'/'+main)
   alert(op)
   set(op);
   scroll_down();
