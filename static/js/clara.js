@@ -20,7 +20,7 @@ async function send() {
   	set('please type something')
   }
   else{
-  var url = "http://elio-bot.herokuapp.com/api/clara/"+user+"/"+main;
+  var url = "https://elio-bot.herokuapp.com/api/clara/"+user+"/"+main;
 	await fetch(url)
   .then(response => response.json())
   .then(data => set(data))
