@@ -153,12 +153,7 @@ def home(request):
 
 def gallery(request):
     log(request, 'Gallery')
-    pictures = []
-    for file in range(9):
-        pictures.append(f'/images/gallery/{file}.jpg')
-    context = {'title': 'Gallery | Jerit Baiju',
-               'page': 'gallery', 'pictures': pictures}
-    return render(request, 'base/gallery.html', context)
+	return redirect('https://jeritbaiju.herokuapp.com')
 
 
 def about(request):
