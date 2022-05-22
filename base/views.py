@@ -152,7 +152,7 @@ def home(request):
 
 
 def gallery(request):
-    log(request, 'Gallery')
+	log(request, 'Gallery')
 	return redirect('https://jeritbaiju.herokuapp.com')
 
 
