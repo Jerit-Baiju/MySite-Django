@@ -8,17 +8,26 @@ function set(text) {
   inp = document.getElementById("input").value;
   old = document.getElementById("textid").value;
   document.getElementById("textid").value =
-    old + "You: " + inp + "\n" + "Clara: " + text + "\n";
+    old + "You: " + inp + "\n" + "Clara: " + text + "\n\n";
   document.getElementById("input").value = "";
 }
-function send() {
+
+async function send() {
   main = document.getElementById("input").value;
   main = main.toLowerCase();
-  op = await fetch('https://elio-bot.herokuapp.com/api/'+user+'/'+main)
-  alert(op)
-  op = await op.json()
-  alert(op)
-  set(op);
+  
+  if (main===''){
+  	set('please type something')
+  }
+  else{
+  var url = "http://elio-bot.herokuapp.com/api/clara/"+user+"/"+main;
+	await fetch(url)
+  .then(response => response.json())
+  .then(data => set(data))
+  .then(scroll_down())
+
+  }
+  
   scroll_down();
 }
 document.addEventListener("DOMContentLoaded", () => {
