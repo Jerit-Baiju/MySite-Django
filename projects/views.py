@@ -14,20 +14,21 @@ from django.shortcuts import redirect, render
 def projects(request):
     log(request, 'Projects')
     projects = [
-        {'name': 'Weather App', 'info': 'A project to get weather from all places (WEB)',
+        {'name': 'Weather App', 'info': 'A project to get weather from all places, working by scrapping data from GOOGLE WEATHER.',
             'src': '/projects/weather', 'btn': 'Go'},
-        {'name': 'PyFlit', 'info': 'Tool for adding components and pages in flask',
+        {'name': 'PyFlit', 'info': 'Tool for adding components and pages in FLASK. Can be used to send PYTHON variables to JAVASCRIPT.',
             'src': 'https://pypi.org/project/pyflit/', 'btn': 'Pypi'},
-        {'name': 'Abettor', 'info': 'Chat app made with python with lot of functions (CLI)',
-            'src': 'https://github.com/Jerit-Baiju/Abettor', 'btn': 'GitHub'},
-        {'name': 'Clara', 'info': 'A Chatbot named Clara. (WEB)',
+        {'name': 'Clara', 'info': 'CHAT-BOT made with ELIO-BOT-API.',
             'src': '/projects/clara', 'btn': 'Chat'},
-        {'name': 'MySite', 'info': 'Django web app (WebSite)',
-            'src': 'https://github.com/Jerit-Baiju/MySite-Django', 'btn': 'GitHub'},
-        {'name': 'Sadance', 'info': 'Attendance register (WEB)',
-            'src': '/projects/sadance', 'btn': 'See'},
+        {'name': 'MySite', 'info': 'DYNAMIC WEBSITE made with DJANGO framework, FEATURES - Admin Panel, User Management, User-Score Handling, LOGS, etc.. ',
+            'src': 'https://github.com/jerit-baiju/mysite-django', 'btn': 'GitHub'},
         {'name': 'Num Game', 'info': 'A number guessing game',
             'src': '/projects/num_game', 'btn': 'Play'},
+        {'name': 'Elio Bot API', 'info': 'This API provides you free commands, wikipedia support, user detection',
+            'src': 'https://github.com/jerit-baiju/chat_bot_api', 'btn': 'GitHub'},
+        {'name': 'GitHub Activity Generator', 'info': 'Python script for creating commits',
+            'src': 'https://github.com/jerit-baiju/activity_generator', 'btn': 'GitHub'}
+
     ]
     random.shuffle(projects)
     context = {
@@ -48,12 +49,6 @@ def clara(request):
         'time': datetime.now(pytz.timezone("Asia/Kolkata")).strftime("%H:%M")
     }
     return render(request, 'projects/clara.html', context)
-
-
-@login_required(login_url='login-page')
-def sadance(request):
-    log(request, 'Sadance')
-    return render(request, 'projects/sadance.html', {'title': 'Sadance | Jerit Baiju'})
 
 
 @login_required(login_url='login-page')
