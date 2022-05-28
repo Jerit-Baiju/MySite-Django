@@ -18,15 +18,15 @@ def projects(request):
             'src': '/projects/weather', 'btn': 'Go'},
         {'name': 'PyFlit', 'info': 'Tool for adding components and pages in FLASK. Can be used to send PYTHON variables to JAVASCRIPT.',
             'src': 'https://pypi.org/project/pyflit/', 'btn': 'Pypi'},
-        {'name': 'Clara', 'info': 'CHAT-BOT made with ELIO-BOT-API.',
+        {'name': 'Clara', 'info': 'CHAT-BOT made with ELIO-BOT-API. Simple STATIC Project.',
             'src': '/projects/clara', 'btn': 'Chat'},
         {'name': 'MySite', 'info': 'DYNAMIC WEBSITE made with DJANGO framework, FEATURES - Admin Panel, User Management, User-Score Handling, LOGS, etc.. ',
             'src': 'https://github.com/jerit-baiju/mysite-django', 'btn': 'GitHub'},
-        {'name': 'Num Game', 'info': 'A number guessing game',
+        {'name': 'Number Game', 'info': 'We should assume the number that is picked from 0-100 randomly by computer with TEN chances.',
             'src': '/projects/num_game', 'btn': 'Play'},
-        {'name': 'Elio Bot API', 'info': 'This API provides you free commands, wikipedia support, user detection',
+        {'name': 'Elio Bot API', 'info': 'This API provides you free commands, wikipedia support, user detection.',
             'src': 'https://github.com/jerit-baiju/chat_bot_api', 'btn': 'GitHub'},
-        {'name': 'GitHub Activity Generator', 'info': 'Python script for creating commits',
+        {'name': 'GitHub Activity Generator', 'info': 'Python script for creating commits, can specify number of commits, code consistency, and many more.',
             'src': 'https://github.com/jerit-baiju/activity_generator', 'btn': 'GitHub'}
 
     ]
