@@ -20,11 +20,13 @@ from django.views.generic.base import RedirectView
 from base.models import AdminSecret
 
 try:
-    api, create = AdminSecret.objects.get_or_create(name='api')
-    if api == None or api == '':
-        api = 'api'
+	api, create = AdminSecret.objects.get_or_create(name='api')
+	if api.secret == None or api.secret == '':
+		api = 'api'
+	else:
+		api = api.secret
 except:
-    api = 'api'
+	api = 'api'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
