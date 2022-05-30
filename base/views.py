@@ -16,6 +16,7 @@ try:
 except:
     None
 
+update = datetime.now(pytz.timezone("Asia/Kolkata")).date()
 
 def push(text):
     try:
@@ -195,7 +196,7 @@ def stats(request):
             'value': 'Jinja, BS4, Random, PushBullet', 'class': 'grey'},
         {'key': 'DataBase', 'value': 'SQLITE3', 'class': 'white'},
         {'key': 'Hosted on', 'value': 'Heroku', 'class': 'grey'},
-        {'key': 'last updated at', 'value': jerit.last_login.date, 'class': 'white'}
+        {'key': 'last updated at', 'value': update, 'class': 'white'}
     ]
     if user.is_authenticated == True:
         about_user = [
