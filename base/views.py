@@ -69,7 +69,7 @@ def registerPage(request):
             first_name = name.split()[0].capitalize()
             last_name = name.split()[1].capitalize()
         if " " in username:
-            messages.error(request, 'Username must not cantain space')
+            messages.error(request, 'Username must not contain space')
             return render(request, 'base/register.html', {'title': 'Register | Jerit Baiju'})
         elif password == confirm:
             if User.objects.filter(username=username).exists():
@@ -164,7 +164,7 @@ def about(request):
         "2018 - I was 12. Joined for the activity PHOTOSHOP AND ANIMATION with Adobe Flash-Macromedia. Started to search every files and locations on computer in my school. Unexpectedly opened an HTML file and I thought it was programming, I asked to my teacher (Reshmi miss) about it and she taught me some basics of HTML.",
         "2019 - I created my own website using HTML only. Heard about programming languages(C++, Python, JavaScript).",
         "2020 - Made my own chatbot using VISUAL BASIC. I upgraded my computer windows 7 to windows 10 alone. Started to learn python, made simple command line applications. I made GUI apps for windows using Tkinter.",
-        "2021 - Switched to Linux. Learned Flask, CSS, JavaScript. I published my website on pythonanywhere (currently not available). Learned GIT, REACT and some DS. Made many projects like ChatBot named Clara (WEB), Weather app (CLI)",
+        "2021 - Switched to Linux. Learned Flask, CSS, JavaScript. I published my website on PythonAnywhere (currently not available). Learned GIT, REACT and some DS. Made many projects like ChatBot named Clara (WEB), Weather app (CLI)",
         "2022 - Learned Django and hosted my website on HEROKU. Made a Package called PYFLIT for FLASK users, and created projects Weather App (WEB), NUM GAME etc. Currently working on Django + React."
     ]
     context = {
