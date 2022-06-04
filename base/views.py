@@ -1,22 +1,21 @@
-from datetime import datetime
 import random
-from django.http import HttpResponse
+from datetime import datetime
 
 import pytz
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
-
+from main.settings import update
 from pushbullet import Pushbullet
-from .models import User, AdminLog, AdminSecret
 
+from .models import AdminLog, AdminSecret, User
 
 try:
     pb_key, _ = AdminSecret.objects.get_or_create(name='pushbullet')
 except:
     None
 
-update = datetime.now(pytz.timezone("Asia/Kolkata")).date()
 
 def push(text):
     try:
@@ -138,7 +137,7 @@ def home(request):
         push(f'Visited - Unknown User')
     log(request, 'Home')
     quotes = [
-        {'quote': 'Just turn your Passion into your Profession.', 'author': 'Jerit Baiju'}, {'quote': 'The computer was born to solve problems that did not exist before.', 'author': 'Bill Gates'}, {'quote': "People don't care about what you say, they care about what you build.", 'author': 'Mark Zuckerberg'}, {'quote':"First, solve the problem. Then, write the code." , 'author': 'John Johnson'}, {'quote': 'A computer is like a mischievous genie. It will give you exactly what you ask for, but not always what  you want.', 'author': 'Joe Sondow'}, {'quote':'A good programmer looks both ways before crossing a onw-way street.','author':'Unknown'},{'quote':'A person who never made a mistake never tried anything new.','author':'Albert Einstein'}]
+        {'quote': 'Just turn your Passion into your Profession.', 'author': 'Jerit Baiju'}, {'quote': 'The computer was born to solve problems that did not exist before.', 'author': 'Bill Gates'}, {'quote': "People don't care about what you say, they care about what you build.", 'author': 'Mark Zuckerberg'}, {'quote': "First, solve the problem. Then, write the code.", 'author': 'John Johnson'}, {'quote': 'A computer is like a mischievous genie. It will give you exactly what you ask for, but not always what  you want.', 'author': 'Joe Sondow'}, {'quote': 'A good programmer looks both ways before crossing a onw-way street.', 'author': 'Unknown'}, {'quote': 'A person who never made a mistake never tried anything new.', 'author': 'Albert Einstein'}]
     context = {
         'title': 'Jerit Baiju',
         'bio': ['> Junior Pythoneer.',
@@ -153,8 +152,8 @@ def home(request):
 
 
 def gallery(request):
-	log(request, 'Gallery')
-	return redirect('https://jeritbaiju.herokuapp.com')
+    log(request, 'Gallery')
+    return redirect('https://jeritbaiju.herokuapp.com')
 
 
 def about(request):
@@ -172,7 +171,7 @@ def about(request):
         'title': 'About Me',
         'history': history,
         'intro': intro
-    } 
+    }
     return render(request, 'base/about.html', context)
 
 
