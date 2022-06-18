@@ -24,9 +24,9 @@ def log(request):
     return render(request, 'api/main.html', context)
 
 
-# def clr_admin_log(request):
-#     log = AdminLog.objects.get(name='api_log')
-#     log.log = ''
-#     log.save()
-#     push('API LOG CLEARED')
-#     return HttpResponse('Cleared')
+def clr_admin_log(request):
+    log = AdminLog.objects.get(name='api_log')
+    log.log = ''
+    log.save()
+    push('API LOG CLEARED')
+    return HttpResponse('Cleared')
