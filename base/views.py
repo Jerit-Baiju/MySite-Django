@@ -2,11 +2,11 @@ import random
 from datetime import datetime
 
 import pytz
+import requests
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from main.settings import update
 from pushbullet import Pushbullet
 
 from .models import AdminLog, AdminSecret, User
@@ -189,7 +189,10 @@ def about(request):
 def stats(request):
     log(request, 'Stats')
     user = request.user
-    jerit = User.objects.get(username='jerit')
+    update_url = 'https://api.github.com/repos/jerit-baiju/mysite-django'
+    updated_at = requests.get(update_url).json()['updated_at']
+    date = datetime.strptime(updated_at, r"%Y-%m-%dT%H:%S:%fZ")
+    update = date.strftime(r"%d %b %Y")
     about_me = [
         {'key': 'age', 'value': '16', 'class': 'grey'},
         {'key': 'current city', 'value': 'kerala, India', 'class': 'white'},
