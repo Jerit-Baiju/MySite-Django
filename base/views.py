@@ -251,7 +251,7 @@ def github(request):
 
 def instagram(request):
     log(request, 'Instagram')
-    return redirect('https://www.instagram.com/d__doc_46')
+    return redirect('https://www.instagram.com/jerit_baiju')
 
 
 def whatsapp(request):
