@@ -12,13 +12,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import django_heroku
-from datetime import datetime
-import pytz
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-update = datetime.now(pytz.timezone("Asia/Kolkata")).date()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -27,7 +23,7 @@ update = datetime.now(pytz.timezone("Asia/Kolkata")).date()
 SECRET_KEY = 'django-insecure-v=u61c8^!-tk6@9^oqp6rdf&9sn#ou7(fwn%cd!jlr_rl^na_s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 AUTH_USER_MODEL = 'base.User'
 

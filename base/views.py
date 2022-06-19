@@ -2,11 +2,11 @@ import random
 from datetime import datetime
 
 import pytz
+import requests
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from main.settings import update
 from pushbullet import Pushbullet
 
 from .models import AdminLog, AdminSecret, User
@@ -189,7 +189,10 @@ def about(request):
 def stats(request):
     log(request, 'Stats')
     user = request.user
-    jerit = User.objects.get(username='jerit')
+    update_url = 'https://api.github.com/repos/jerit-baiju/mysite-django'
+    updated_at = requests.get(update_url).json()['pushed_at']
+    date = datetime.strptime(updated_at, r"%Y-%m-%dT%H:%S:%fZ")
+    update = date.strftime(r"%d %b %Y")
     about_me = [
         {'key': 'age', 'value': '16', 'class': 'grey'},
         {'key': 'current city', 'value': 'kerala, India', 'class': 'white'},
@@ -256,7 +259,8 @@ def instagram(request):
 
 def whatsapp(request):
     log(request, 'Whatsapp')
-    return redirect('http://wa.me/+918592060520?text=Hi%20Jerit%20%F0%9F%91%8B%F0%9F%8F%BB')
+    return redirect(r'http://wa.me/+918592060520?text=*Hi Jerit*')
+    # %F0%9F%91%8B%F0%9F%8F%BB
 
 
 def vijayamatha(request):
