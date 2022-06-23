@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from base.models import AdminLog
 from base.views import push
 from django.shortcuts import render
@@ -9,22 +8,33 @@ from django.contrib.auth import authenticate
 def latest_log(request):
     username = request.GET.get('user')
     password = request.GET.get('pass')
-    user = authenticate(request, username=username, password=password)
+    if username == 'jerit':
+        user = authenticate(request, username=username, password=password)
+    else:
+        user = None
     if user is not None:
         context = {
-            'title':'Latest Log',
+            'title': 'Latest Log',
             'dark': True,
             'content': AdminLog.objects.get(name='api_log').latest_log
         }
-        return render(request, 'api/main.html',context)
+        return render(request, 'api/main.html', context)
     else:
-        return HttpResponse('UNKNOWN USER')
+        context = {
+            'title': 'Latest Log',
+            'dark': True,
+            'content': 'Auth Failed'
+        }
+        return render(request, 'api/main.html', context)
 
 
 def log(request):
     username = request.GET.get('user')
     password = request.GET.get('pass')
-    user = authenticate(request, username=username, password=password)
+    if username in ['jerit', 'appuaa']:
+        user = authenticate(request, username=username, password=password)
+    else:
+        user = None
     if user is not None:
         context = {
             'title': 'Jerit Baiju | Logs',
@@ -34,18 +44,36 @@ def log(request):
         }
         return render(request, 'api/main.html', context)
     else:
-        return HttpResponse('UNKNOWN USER')
+        context = {
+            'title': 'Latest Log',
+            'dark': True,
+            'content': 'Auth Failed'
+        }
+        return render(request, 'api/main.html', context)
 
 
 def clr_admin_log(request):
     username = request.GET.get('user')
     password = request.GET.get('pass')
-    user = authenticate(request, username=username, password=password)
+    if username == 'jerit':
+        user = authenticate(request, username=username, password=password)
+    else:
+        user = None
     if user is not None:
         log = AdminLog.objects.get(name='api_log')
         log.log = ''
         log.save()
         push('API LOG CLEARED')
-        return HttpResponse('Cleared')
+        context = {
+            'title': 'Latest Log',
+            'dark': True,
+            'content': 'Cleared'
+        }
+        return render(request, 'api/main.html', context)
     else:
-        return HttpResponse('UNKNOWN USER')
+        context = {
+            'title': 'Latest Log',
+            'dark': True,
+            'content': 'Auth Failed'
+        }
+        return render(request, 'api/main.html', context)
