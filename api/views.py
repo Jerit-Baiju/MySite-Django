@@ -1,5 +1,6 @@
 from base.models import AdminLog
 from base.views import push
+from base.views import log as add_log
 from django.shortcuts import render
 from django.contrib.auth import authenticate
 # Create your views here.
@@ -18,6 +19,8 @@ def latest_log(request):
             'dark': True,
             'content': AdminLog.objects.get(name='api_log').latest_log
         }
+        if username != 'jerit':
+            add_log(request, 'Accessed Latest Log')
         return render(request, 'api/main.html', context)
     else:
         context = {
@@ -42,6 +45,8 @@ def log(request):
             'content': str(AdminLog.objects.get(name='api_log').log).split('\n'),
             'type': 'list'
         }
+        if username != 'jerit':
+            add_log(request, 'Accessed Logs')
         return render(request, 'api/main.html', context)
     else:
         context = {
