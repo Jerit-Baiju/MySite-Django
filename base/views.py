@@ -149,7 +149,11 @@ def home(request):
         {'quote': 'A good programmer looks both ways before crossing a onw-way street.',
          'author': 'Unknown'},
         {'quote': 'A person who never made a mistake never tried anything new.',
-         'author': 'Albert Einstein'}
+         'author': 'Albert Einstein'},
+        {'quote': 'First be Rich, then be a Philosopher', 'author': ''},
+         {'quote':'You will not get a second chance to make the first impression.', 'author':''},
+        {'quote': 'When you look good, you will feel good. When you feel good, you will do good.', 'author': ''},
+
     ]
     context = {
         'title': 'Jerit Baiju',
