@@ -83,7 +83,7 @@
         {% for edu in education %}
         <h5 class="fw-light">>
           {% if edu.link %}
-          <a class="link-dark" href="{{edu.link}}">{{edu.name}}</a>
+          <a class="link-dark" href="{{edu.url}}">{{edu.name}}</a>
           {% else %}
           {{edu.name}}
           {% endif %}
