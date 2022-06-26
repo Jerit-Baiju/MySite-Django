@@ -151,19 +151,34 @@ def home(request):
         {'quote': 'A person who never made a mistake never tried anything new.',
          'author': 'Albert Einstein'},
         {'quote': 'First be Rich, then be a Philosopher', 'author': ''},
-         {'quote':'You will not get a second chance to make the first impression.', 'author':''},
+        {'quote': 'You will not get a second chance to make the first impression.', 'author': ''},
         {'quote': 'When you look good, you will feel good. When you feel good, you will do good.', 'author': ''},
 
     ]
     context = {
         'title': 'Jerit Baiju',
-        'bio': ['> Junior Pythoneer.',
-                '> Captivating from life.',
-                '> Words cannot express my Passion.',
-                '> Currently saying Yes to New Adventures.',
-                '> Learner @ Web Development'],
+        'bio': ['Junior Pythoneer.',
+                'Captivating from life.',
+                'Words cannot express my Passion.',
+                'Currently saying Yes to New Adventures.',
+                'Learner @ Web Development'],
+        'quote': random.choice(quotes),
         'intro': intro,
-        'quote': random.choice(quotes)
+        'skills': [
+            'Git', 'Python', 'Heroku', 'Django', 'Flask', 'Jupyter', 'Project Management', 'Google Search Console',
+        ],
+        'education': [
+            {
+                'name': 'Vijayamatha Public School',
+                'link': True,
+                'url': '/vijayamatha'
+            },
+            {
+                'name': 'MAM Bethany Public School',
+                'link': False,
+            }
+        ]
+
     }
     return render(request, 'base/index.html', context)
 

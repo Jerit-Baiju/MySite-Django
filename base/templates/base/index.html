@@ -16,7 +16,7 @@
       <h1 class="fw-light" style="padding-top: 1rem">Jerit Baiju</h1>
       <h5 class="fw-light" style="padding-left: 25px">
         {% for bio in bio %}
-          {{bio}} <br />
+          > {{bio}} <br />
         {% endfor %}
       </h5>
       <div>
@@ -64,10 +64,12 @@
 
 <section id="serviceSection" class="p-1">
   <div class="p-3">
-    <h2 class="text-center fw-light text-uppercase">Services</h2>
+    <h2 class="text-center fw-light text-uppercase">Skills</h2>
     <div class="services">
       <h5 class="text-capitalize fw-light">
-        > Free Lancing <br />> web app Development <br />> Application Development
+        {% for skill in skills %}
+        > {{skill}} <br />
+        {% endfor %}
       </h5>
     </div>
   </div>
@@ -78,14 +80,15 @@
   <div class="p-3">
     <h2 class="text-center fw-light text-uppercase">Education</h2>
     <div class="education">
-      <h5 class="text-capitalize fw-light">
-        > KG-7 <br />
-        <h5 class="fw-light"><a class="link-dark" href="{% url 'vijayamatha' %}">Vijayamatha Public School</a></h5>
+      {% for edu in education %}
+      <h5 class="fw-light">> 
+        {% if edu.link %}
+        <a class="link-dark" href="{{edu.link}}">{{edu.name}}</a>
+        {% else %}
+        {{edu.name}}
+        {% endif %}
       </h5>
-      <h5 class="text-capitalize fw-light">
-        > 8-10 <br />
-        <h5 class="fw-light">MAM Bethany Public School</h5>
-      </h5>
+      {% endfor %}
     </div>
   </div>
   <hr />
