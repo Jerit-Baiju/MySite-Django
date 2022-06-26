@@ -157,11 +157,11 @@ def home(request):
     ]
     context = {
         'title': 'Jerit Baiju',
-        'bio': ['Junior Pythoneer.',
-                'Captivating from life.',
-                'Words cannot express my Passion.',
-                'Currently saying Yes to New Adventures.',
-                'Learner @ Web Development'],
+        'bio': ['Self-Taught.',
+                'Improving Work Ethic.',
+                'Passion is my genesis.',
+                'Developing new skills everyday.',
+                'Struggling for financial freedom.'],
         'quote': random.choice(quotes),
         'intro': intro,
         'skills': [
