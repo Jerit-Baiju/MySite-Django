@@ -113,7 +113,8 @@ def weather(request):
                            'sts': status_op, 'day': day, 'src': src, 'dark': True}
             except:
                 context = {'tmp': '', 'loc': 'No Location Found, Try entering your nearest place or city',
-                           'sts': '', 'day': '', 'src': '', 'title': 'Weather App', 'dark': True}
+                'sts': '', 'day': '', 'src': '', 'title': 'Weather App', 'dark': True
+                }
             return context
         city = request.POST['city']
         log(request, f'weather - {city}')
