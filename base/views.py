@@ -49,9 +49,8 @@ def log(request, data):
             admin_log.save()
 
 
-intro = '''Hi, I'm Jerit. I am passionate about Coding and building things. I am
-particularly interested in projects that touch Artificial Intelligence,
-Web Development, Chatbot, Django. If you think I can be helpful to you or would
+intro = '''Hi, I'm Jerit. I like building things. I am
+particularly interested in Django Framework. If you think I can be helpful to you or would
 like to meet me, please feel free to'''
 
 
