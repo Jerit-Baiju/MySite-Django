@@ -46,8 +46,6 @@ def clara(request):
     context = {
         'title': 'Clara | Jerit Baiju',
         'name': request.user.first_name,
-        'date': str(datetime.now(pytz.timezone("Asia/Kolkata")).date()),
-        'time': datetime.now(pytz.timezone("Asia/Kolkata")).strftime("%H:%M")
     }
     return render(request, 'projects/clara.html', context)
 
