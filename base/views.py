@@ -248,9 +248,9 @@ def stats(request):
             {'key': 'note', 'value': 'please login to see all the details', 'class': 'white'}
         ]
     stats = [
-        {'name': 'some stats about me', 'contents': about_me},
-        {'name': 'some stats about this website', 'contents': about_web},
-        {'name': 'some stats about you', 'contents': about_user}
+        {'name': 'about me', 'contents': about_me},
+        {'name': 'about this website', 'contents': about_web},
+        {'name': 'about you', 'contents': about_user}
     ]
     context = {
         'title': 'Stats | Jerit Baiju',
