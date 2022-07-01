@@ -7,6 +7,7 @@ from base.views import log
 from bs4 import BeautifulSoup
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
+from django.contrib import messages
 
 # Create your views here.
 
@@ -51,7 +52,6 @@ def clara(request):
     return render(request, 'projects/clara.html', context)
 
 
-@login_required(login_url='login-page')
 def num_Game(request):
     if request.user.score == None:
         score = 0
@@ -79,17 +79,20 @@ def num_Game(request):
 
 @login_required(login_url='login-page')
 def num_Game_add(request):
-    if request.user.score == None:
-        score = 0
+    if request.user.is_authenticated:
+        if request.user.score == None:
+            score = 0
+        else:
+            score = request.user.score
+        request.user.score = score + 5
+        request.user.save()
+        log(request, 'scored')
+        return redirect('num-game')
     else:
-        score = request.user.score
-    request.user.score = score + 5
-    request.user.save()
-    log(request, 'scored')
-    return redirect('/projects/num_game')
+        messages.error(request,'Please login to add your score.')
+        return redirect('num-game')
 
 
-@login_required(login_url='login-page')
 def weather(request):
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36"
