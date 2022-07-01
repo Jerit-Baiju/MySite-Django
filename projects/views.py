@@ -1,7 +1,4 @@
 import random
-from datetime import datetime
-
-import pytz
 import requests
 from base.views import log
 from bs4 import BeautifulSoup
@@ -87,7 +84,7 @@ def num_Game_add(request):
         log(request, 'scored')
         return redirect('num-game')
     else:
-        messages.error(request,'Please login to add your score.')
+        messages.error(request, 'Please login to add your score.')
         return redirect('num-game')
 
 
