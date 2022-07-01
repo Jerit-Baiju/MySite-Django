@@ -250,7 +250,7 @@ def stats(request):
         ]
     stats = [
         {'name': 'about me', 'contents': about_me},
-        {'name': 'about this website', 'contents': about_web},
+        {'name': 'this website', 'contents': about_web},
         {'name': 'about you', 'contents': about_user}
     ]
     context = {
