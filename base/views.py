@@ -27,7 +27,7 @@ def push(text):
 
 
 def log(request, data):
-    if request.user != 'jerit':
+    if request.user.username != 'jerit':
         date = datetime.now(pytz.timezone("Asia/Kolkata")).date()
         time = datetime.now(pytz.timezone("Asia/Kolkata")).strftime("%H:%M")
         agent = request.META['HTTP_USER_AGENT']
