@@ -46,7 +46,7 @@ def clara(request):
     }
     return render(request, 'projects/clara.html', context)
 
-
+@login_required(login_url='login-page')
 def num_Game(request):
     if request.user.score == None:
         score = 0
