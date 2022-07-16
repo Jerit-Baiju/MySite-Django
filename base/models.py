@@ -6,10 +6,11 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     name = models.CharField(max_length=200, null=True)
     username = models.CharField(unique=True, max_length=200, null=True)
+    email = models.EmailField(max_length=200)
     log = models.TextField(null=True, blank=True)
     score = models.IntegerField(null=True, blank=True)
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = []
+    
 
 
 class AdminLog(models.Model):
