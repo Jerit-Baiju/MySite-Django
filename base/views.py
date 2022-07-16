@@ -55,6 +55,8 @@ like to meet me, please feel free to'''
 
 
 def registerPage(request):
+    if request.user.is_authenticated:
+        return redirect('home')
     if request.method == 'POST':
         name = request.POST['name'].lstrip().rstrip()
         username = str(request.POST['username']).lower().lstrip().rstrip()
@@ -82,6 +84,7 @@ def registerPage(request):
                 user = User.objects.create(
                     username=username, password=password, email=mail, name=name, first_name=first_name, last_name=last_name)
                 user.save()
+                log(request, f"Registered - {name}")
                 login(request, user)
                 push(f'Registered - {name}')
                 try:
@@ -109,6 +112,7 @@ def loginPage(request):
             return render(request, 'base/login.html', {'title': 'Login | Jerit Baiju'})
         user = authenticate(request, username=username, password=password)
         if user is not None:
+            log(request,f"Login - {user.name}")
             login(request, user)
             push(f'Login - {user.name}')
             try:
@@ -280,7 +284,7 @@ def instagram(request):
 
 
 def whatsapp(request):
-    log(request, 'Whatsapp')
+    log(request, 'WhatsApp')
     return redirect(r'http://wa.me/+918592060520?text=*Hi Jerit*')
     # %F0%9F%91%8B%F0%9F%8F%BB
 
