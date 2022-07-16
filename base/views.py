@@ -62,25 +62,24 @@ def registerPage(request):
         password = request.POST['password1']
         confirm = request.POST['password2']
         name_split = name.split(' ')
-        print(len(name_split))
         if len(name_split) <= 1:
-            messages.error(request, 'Please enter your full name')
+            messages.error(request, 'Please enter your full name.')
             return render(request, 'base/register.html', {'title': 'Register | Jerit Baiju'})
         else:
             first_name = name.split()[0].capitalize()
             last_name = name.split()[1].capitalize()
         if " " in username:
-            messages.error(request, 'Username must not contain space')
+            messages.error(request, 'Username must not contain space.')
             return render(request, 'base/register.html', {'title': 'Register | Jerit Baiju'})
         elif password == confirm:
             if User.objects.filter(username=username).exists():
                 messages.error(request, 'Username already exists.')
                 return render(request, 'base/register.html', {'title': 'Register | Jerit Baiju'})
             elif User.objects.filter(email=mail).exists():
-                messages.error(request, 'Email already exists')
+                messages.error(request, 'Email already exists.')
                 return render(request, 'base/register.html', {'title': 'Register | Jerit Baiju'})
             else:
-                user = User.objects.create_user(
+                user = User.objects.create(
                     username=username, password=password, email=mail, name=name, first_name=first_name, last_name=last_name)
                 user.save()
                 login(request, user)
@@ -91,7 +90,7 @@ def registerPage(request):
                 except:
                     return redirect('home')
         else:
-            messages.error(request, 'Passwords does not match')
+            messages.error(request, 'Passwords does not match.')
             return render(request, 'base/register.html', {'title': 'Register | Jerit Baiju'})
     else:
         return render(request, 'base/register.html', {'title': 'Register | Jerit Baiju'})
