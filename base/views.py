@@ -56,13 +56,14 @@ like to meet me, please feel free to'''
 
 def registerPage(request):
     if request.method == 'POST':
-        name = request.POST['name']
+        name = request.POST['name'].lstrip().rstrip()
         username = str(request.POST['username']).lower().lstrip().rstrip()
         mail = request.POST['mail']
         password = request.POST['password1']
         confirm = request.POST['password2']
-        name_split = name.split()
-        if len(name_split) < 1:
+        name_split = name.split(' ')
+        print(len(name_split))
+        if len(name_split) <= 1:
             messages.error(request, 'Please enter your full name')
             return render(request, 'base/register.html', {'title': 'Register | Jerit Baiju'})
         else:
