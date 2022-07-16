@@ -4,9 +4,6 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<meta name="google-site-verification" content="YpzdBW9sXja6aTK-eZDKTzMAReDqSvOO03XjlLynnWY" />
-
-
 <url>
   <loc>http://jerit.herokuapp.com/</loc>
   <lastmod>2022-04-12T10:04:31+00:00</lastmod>
