@@ -24,5 +24,5 @@ urlpatterns = [
     path('projects/', include('projects.urls')),
     path(f'api/', include('api.urls')),
     path('favicon.ico', RedirectView.as_view(
-        url=staticfiles_storage.url('favicon.ico')))
+        url=staticfiles_storage.url('favicon.png')))
 ]
