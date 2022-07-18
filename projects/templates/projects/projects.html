@@ -1,4 +1,5 @@
-{% extends 'main.html' %} {% block content %} {% load static %}
+{% extends 'main.html' %} {% block content %} {% load static %} {% load cache %}
+{% cache 86400 index %}
 <link rel="stylesheet" href="{% static 'css/projects/projects.css' %}">
 <section>
   <div class="container">
@@ -23,4 +24,5 @@
     </div>
   </div>
 </section>
+{% endcache %}
 {% endblock content %}

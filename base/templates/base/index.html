@@ -1,4 +1,5 @@
-{% extends 'main.html' %} {% block content %} {% load static %}
+{% extends 'main.html' %} {% block content %} {% load static %} {% load cache %}
+{% cache 86400 index %}
 
 <link rel="stylesheet" href="{% static 'css/base/index.css' %}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -97,4 +98,5 @@
   </section>
 </div>
 {% include 'footer.html' %}
+{% endcache %}
 {% endblock content %}

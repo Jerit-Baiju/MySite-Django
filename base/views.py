@@ -5,10 +5,9 @@ import pytz
 import requests
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.core.cache import cache
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from django.views.decorators.cache import cache_page
-from django.core.cache import cache
 from pushbullet import Pushbullet
 
 from .models import AdminLog, AdminSecret, User
@@ -139,7 +138,7 @@ def logoutPage(request):
     cache.clear()
     return redirect('home')
 
-@cache_page(24*60*60)
+
 def home(request):
     if request.user.is_authenticated:
         if request.user.username != 'jerit':
@@ -193,13 +192,12 @@ def home(request):
     }
     return render(request, 'base/index.html', context)
 
-@cache_page(7*24*60*60)
+
 def gallery(request):
     log(request, 'Gallery')
     return redirect('https://jeritbaiju.herokuapp.com')
 
 
-@cache_page(24*60*60)
 def about(request):
     log(request, 'About')
     history = [
@@ -218,7 +216,7 @@ def about(request):
     }
     return render(request, 'base/about.html', context)
 
-@cache_page(24*60*60)
+
 def stats(request):
     log(request, 'Stats')
     user = request.user
@@ -281,26 +279,22 @@ def robots(request):
     return HttpResponse(open('robots.txt').read(), content_type='text/plain')
 
 
-@cache_page(7*24*60*60)
 def github(request):
     log(request, 'GitHub')
     return redirect('https://github.com/Jerit-Baiju')
 
 
-@cache_page(7*24*60*60)
 def instagram(request):
     log(request, 'Instagram')
     return redirect('https://www.instagram.com/jerit_baiju')
 
 
-@cache_page(7*24*60*60)
 def whatsapp(request):
     log(request, 'WhatsApp')
     return redirect(r'http://wa.me/+918592060520?text=*Hi Jerit*')
     # %F0%9F%91%8B%F0%9F%8F%BB
 
 
-@cache_page(7*24*60*60)
 def vijayamatha(request):
     log(request, 'Vijayamatha')
     return redirect('https://vijayamathaschool.in')

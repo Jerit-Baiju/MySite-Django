@@ -1,4 +1,5 @@
-{% extends 'main.html' %} {% block content %} {% load static %}
+{% extends 'main.html' %} {% block content %} {% load static %} {% load cache %}
+{% cache 86400 stats %}
 <link rel="stylesheet" href="{% static 'css/base/stats.css' %}" />
 <section id="stats" class="container">
     <h1 class="text-center fw-light text-uppercase">Stats</h1>
@@ -26,4 +27,5 @@
       {% endfor %}
     </div>
 </section>
+{% endcache %}
 {% endblock content %}
