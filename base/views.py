@@ -7,6 +7,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
+from django.views.decorators.cache import cache_page
+from django.core.cache import cache
 from pushbullet import Pushbullet
 
 from .models import AdminLog, AdminSecret, User
@@ -89,8 +91,10 @@ def registerPage(request):
                 push(f'Registered - {name}')
                 try:
                     url = request.POST.get('next')
+                    cache.clear()
                     return redirect(url)
                 except:
+                    cache.clear()
                     return redirect('home')
         else:
             messages.error(request, 'Passwords does not match.')
@@ -112,13 +116,15 @@ def loginPage(request):
             return render(request, 'base/login.html', {'title': 'Login | Jerit Baiju'})
         user = authenticate(request, username=username, password=password)
         if user is not None:
-            log(request,f"Login - {user.name}")
+            log(request, f"Login - {user.name}")
             login(request, user)
             push(f'Login - {user.name}')
             try:
                 url = request.POST.get('next')
+                cache.clear()
                 return redirect(url)
             except:
+                cache.clear()
                 return redirect('home')
         else:
             messages.error(request, 'Username OR password does not exit')
@@ -130,9 +136,10 @@ def logoutPage(request):
     push(f"Logout - {request.user.name}")
     log(request, 'Logout')
     logout(request)
+    cache.clear()
     return redirect('home')
 
-
+@cache_page(24*60*60)
 def home(request):
     if request.user.is_authenticated:
         if request.user.username != 'jerit':
@@ -151,7 +158,7 @@ def home(request):
             'author': 'John Johnson'},
         {'quote': 'A computer is like a mischievous genie. It will give you exactly what you   ask for, but not always what  you want.', 'author': 'Joe Sondow'},
         {'quote': 'A good programmer looks both ways before crossing a onw-way street.',
-         'author': 'Unknown'},
+         'author': ''},
         {'quote': 'A person who never made a mistake never tried anything new.',
          'author': 'Albert Einstein'},
         {'quote': 'First be Rich, then be a Philosopher', 'author': ''},
@@ -186,12 +193,13 @@ def home(request):
     }
     return render(request, 'base/index.html', context)
 
-
+@cache_page(7*24*60*60)
 def gallery(request):
     log(request, 'Gallery')
     return redirect('https://jeritbaiju.herokuapp.com')
 
 
+@cache_page(24*60*60)
 def about(request):
     log(request, 'About')
     history = [
@@ -210,7 +218,7 @@ def about(request):
     }
     return render(request, 'base/about.html', context)
 
-
+@cache_page(24*60*60)
 def stats(request):
     log(request, 'Stats')
     user = request.user
@@ -273,22 +281,26 @@ def robots(request):
     return HttpResponse(open('robots.txt').read(), content_type='text/plain')
 
 
+@cache_page(7*24*60*60)
 def github(request):
     log(request, 'GitHub')
     return redirect('https://github.com/Jerit-Baiju')
 
 
+@cache_page(7*24*60*60)
 def instagram(request):
     log(request, 'Instagram')
     return redirect('https://www.instagram.com/jerit_baiju')
 
 
+@cache_page(7*24*60*60)
 def whatsapp(request):
     log(request, 'WhatsApp')
     return redirect(r'http://wa.me/+918592060520?text=*Hi Jerit*')
     # %F0%9F%91%8B%F0%9F%8F%BB
 
 
+@cache_page(7*24*60*60)
 def vijayamatha(request):
     log(request, 'Vijayamatha')
     return redirect('https://vijayamathaschool.in')

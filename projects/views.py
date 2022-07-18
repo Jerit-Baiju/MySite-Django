@@ -1,14 +1,16 @@
 import random
+
 import requests
 from base.views import log
 from bs4 import BeautifulSoup
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
-from django.contrib import messages
+from django.views.decorators.cache import cache_page
 
 # Create your views here.
 
-
+@cache_page(24*60*60)
 def projects(request):
     log(request, 'Projects')
     projects = [
