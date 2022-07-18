@@ -1,5 +1,5 @@
-{% extends 'main.html' %} {% block content %} {% load static %} {% load cache %}
-{% cache 300 index %}
+{% extends 'main.html' %} {% block content %} {% load static %}
+
 <link rel="stylesheet" href="{% static 'css/base/index.css' %}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,7 +32,7 @@
             </div>
           </div>
         </div>
-        {% endcache %}
+
         <div class="quoteDiv align-items-center" style="padding-top: 2rem">
           <div class="quote">
             <h5 class="text-end p-1">
@@ -55,7 +55,6 @@
     <hr />
   </section>
   
-  {% cache 300 index-2 %}
   <section id="aboutMe" class="p-1">
     <div class="p-3">
       <h2 class="fw-light text-center text-uppercase">About Me</h2>
@@ -98,5 +97,4 @@
   </section>
 </div>
 {% include 'footer.html' %}
-{% endcache %}
 {% endblock content %}

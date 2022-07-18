@@ -1,5 +1,6 @@
-{% extends 'main.html' %} {% block content %} {% load static %}
+{% extends 'main.html' %} {% block content %} {% load static %} 
 <link rel="stylesheet" href="{% static 'css/projects/num_game.css' %}" />
+
 <section class="container text-center">
   <div style="padding-top: 5em" class="heading">
     <h1 class="text-white head">Guess The Number</h1>
@@ -41,5 +42,4 @@
 </section>
 
 <script src="{% static 'js/num_game.js' %}"></script>
-
 {% endblock content %}

@@ -1,6 +1,4 @@
-{% extends 'main.html' %} {% block content %} {% load cache %}
-{% load static %}
-{% cache 300 about-me%}
+{% extends 'main.html' %} {% block content %}
 <section class="container">
     <div class="heading">
         <h1 class="text-center fw-light">About Me</h1>
@@ -20,5 +18,4 @@
         </ul>      
     </div>
 </section>
-{% endcache %}
 {% endblock content %}
