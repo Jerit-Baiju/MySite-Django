@@ -1,5 +1,5 @@
 {% extends 'main.html' %} {% block content %}
-{% load static %}
+{% load static %} {% load cache %} {% cache 300 weather %}
 <link rel="stylesheet" href="{% static 'css/projects/weather.css' %}">
 <div class="container">
     <div style="padding-top: 5em;" class="heading text-center ">
@@ -47,5 +47,5 @@
         {% endif %}
     </div>
 </div>
-
+{% endcache %}
 {% endblock content %}
