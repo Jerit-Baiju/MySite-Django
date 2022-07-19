@@ -30,7 +30,7 @@ def push(text):
 def log(request, data):
     if request.user.username != 'jerit':
         date = datetime.now(pytz.timezone("Asia/Kolkata")).date()
-        time = datetime.now(pytz.timezone("Asia/Kolkata")).strftime("%H:%M")
+        time = datetime.now(pytz.timezone("Asia/Kolkata")).strftime("%I:%M %p")
         agent = request.META['HTTP_USER_AGENT']
         admin_log, _ = AdminLog.objects.get_or_create(name='api_log')
 
