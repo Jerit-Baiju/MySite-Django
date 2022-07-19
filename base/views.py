@@ -228,7 +228,7 @@ def stats(request):
     about_me = [
         {'key': 'age', 'value': '16', 'class': 'grey'},
         {'key': 'current city', 'value': 'kerala, India', 'class': 'white'},
-        {'key': 'birthday', 'value': '10 February 2006', 'class': 'grey'},
+        {'key': 'D.O.B', 'value': 'February 10, 2006', 'class': 'grey'},
         {'key': 'started coding on', 'value': '2018', 'class': 'white'},
         {'key': 'currently learning',
             'value': 'web development - python', 'class': 'grey'},
