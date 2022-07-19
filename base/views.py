@@ -224,7 +224,7 @@ def stats(request):
     updated_at = requests.get(update_url).json()['pushed_at']
     date = datetime.strptime(updated_at, r"%Y-%m-%dT%H:%S:%fZ")
     update = date.astimezone(pytz.timezone(
-        "Asia/Kolkata")).strftime(r"%d %b %Y")
+        "Asia/Kolkata")).strftime(r"%B %d, %Y")
     about_me = [
         {'key': 'age', 'value': '16', 'class': 'grey'},
         {'key': 'current city', 'value': 'kerala, India', 'class': 'white'},
