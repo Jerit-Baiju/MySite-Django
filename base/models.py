@@ -12,7 +12,7 @@ class User(AbstractUser):
     USERNAME_FIELD = 'username'
 
     def __str__(self):
-        return self.name
+        return f"{self.name} - {self.username}"
 
 
 class AdminLog(models.Model):
