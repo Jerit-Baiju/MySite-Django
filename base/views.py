@@ -225,6 +225,10 @@ def stats(request):
     date = datetime.strptime(updated_at, r"%Y-%m-%dT%H:%S:%fZ")
     update = date.astimezone(pytz.timezone(
         "Asia/Kolkata")).strftime(r"%B %d, %Y")
+    github_url = "https://api.github.com/users/jerit-baiju"
+    github = requests.get(github_url).json()
+    star_url = "https://api.github.com/repos/Jerit-Baiju/MySite-Django/stargazers"
+    stars = len(requests.get(star_url).json())
     about_me = [
         {'key': 'age', 'value': '16', 'class': 'grey'},
         {'key': 'current city', 'value': 'kerala, India', 'class': 'white'},
@@ -241,7 +245,8 @@ def stats(request):
             'value': 'Jinja, BS4, Random, PushBullet', 'class': 'grey'},
         {'key': 'DataBase', 'value': 'SQLITE3', 'class': 'white'},
         {'key': 'Hosted on', 'value': 'Heroku', 'class': 'grey'},
-        {'key': 'last updated at', 'value': update, 'class': 'white'}
+        {'key': 'last updated at', 'value': update, 'class': 'white'},
+        {'key': 'Stars this repository has on github', 'value': stars, 'class': 'grey'}
     ]
     if user.is_authenticated == True:
         about_user = [
@@ -254,17 +259,22 @@ def stats(request):
         ]
     else:
         about_user = [
-            {'key': 'authenticated', 'value': 'not', 'class': 'grey'},
-            {'key': 'note', 'value': 'please login to see all the details', 'class': 'white'}
+            {'key': 'message', 'value': 'please login to see all the details', 'class': 'grey'},
         ]
     stats = [
         {'name': 'about me', 'contents': about_me},
         {'name': 'this website', 'contents': about_web},
         {'name': 'about you', 'contents': about_user}
     ]
+    GitHub = [
+    		{'key': 'repositories', 'value': github['public_repos'], 'class': 'grey'},
+    		{'key': 'followers', 'value': github['followers'], 'class': 'white'},
+    		{'key': 'following', 'value': github['following'], 'class': 'grey'},
+    ]
     context = {
         'title': 'Stats | Jerit Baiju',
         'stats': stats,
+        'GitHub': GitHub
     }
     return render(request, 'base/stats.html', context)
 

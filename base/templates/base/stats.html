@@ -1,5 +1,5 @@
-{% extends 'main.html' %} {% block content %} {% load static %} {% load cache %}
-{% cache 86400 stats %}
+{% extends 'main.html' %} {% block content %} {% load static %} {% load cache %} {% cache 86400 stats %}
+
 <link rel="stylesheet" href="{% static 'css/base/stats.css' %}" />
 <section id="stats" class="container">
     <h1 class="text-center fw-light text-uppercase">Stats</h1>
@@ -25,6 +25,37 @@
       </div>
       <div class="space" style="min-height: 1em"></div>
       {% endfor %}
+
+      <div class="my-bg">
+        <h3 class="fw-light text-uppercase my-heading">GitHub</h3>
+        <div class="padding">
+        
+        
+        {% for content in GitHub %}
+          <div class="{{content.class}}">
+            <div class="row">
+              <div class="col-6 col-md-6 col-lg-6 fw-light">
+                {{content.key}}
+              </div>
+              <div class="col-6 col-md-6 col-lg-6 fw-light text-break">
+                {{content.value}}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        
+        
+          <div class="white fw-light">
+              Contributions
+          </div>
+
+          <div class="grey">
+            <img  src="https://ghchart.rshah.org/000000/jerit-baiju" style="pointer-events: none;" class="w-100" alt="">
+          </div>
+
+        </div>
+      </div>
+
     </div>
 </section>
 {% endcache %}
