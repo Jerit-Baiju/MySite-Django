@@ -1,4 +1,3 @@
-{% load cache %}
 <nav
   class="navbar fixed-top navbar-expand-lg {% if dark == True %}navbar-dark bg-dark {% else %} navbar-light bg-light{% endif %}">
   <div class="container">
@@ -18,13 +17,11 @@
         <li class="nav-item">
           <a class="nav-link" href="/admin">Admin</a>
         </li>
-        {% cache 1 login request.user.username %}
         {% if request.user.is_authenticated %} {% else %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'login-page' %}">Login</a>
         </li>
         {% endif %}
-        {% endcache %}
       </ul>
     </div>
   </div>
