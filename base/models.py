@@ -10,7 +10,9 @@ class User(AbstractUser):
     log = models.TextField(null=True, blank=True)
     score = models.IntegerField(null=True, blank=True)
     USERNAME_FIELD = 'username'
-    
+
+    def __str__(self):
+        return self.name
 
 
 class AdminLog(models.Model):
