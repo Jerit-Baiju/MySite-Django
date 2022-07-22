@@ -1,5 +1,5 @@
 import random
-from datetime import datetime
+from datetime import datetime,date
 
 import pytz
 import requests
@@ -222,17 +222,21 @@ def stats(request):
     user = request.user
     update_url = 'https://api.github.com/repos/jerit-baiju/mysite-django'
     updated_at = requests.get(update_url).json()['pushed_at']
-    date = datetime.strptime(updated_at, r"%Y-%m-%dT%H:%S:%fZ")
-    update = date.astimezone(pytz.timezone(
+    update_date = datetime.strptime(updated_at, r"%Y-%m-%dT%H:%S:%fZ")
+    update = update_date.astimezone(pytz.timezone(
         "Asia/Kolkata")).strftime(r"%B %d, %Y")
     github_url = "https://api.github.com/users/jerit-baiju"
     github = requests.get(github_url).json()
     star_url = "https://api.github.com/repos/Jerit-Baiju/MySite-Django/stargazers"
     stars = len(requests.get(star_url).json())
+    today = date.today()
+    birthday = datetime.strptime("February 10, 2006",r"%B %d, %Y")
+    age = today.year - birthday.year
+    birthday = birthday.strftime(r"%B %d, %Y")
     about_me = [
-        {'key': 'age', 'value': '16', 'class': 'grey'},
+        {'key': 'age', 'value': age, 'class': 'grey'},
         {'key': 'current city', 'value': 'kerala, India', 'class': 'white'},
-        {'key': 'D.O.B', 'value': 'February 10, 2006', 'class': 'grey'},
+        {'key': 'D.O.B', 'value': birthday, 'class': 'grey'},
         {'key': 'started coding on', 'value': '2018', 'class': 'white'},
         {'key': 'currently learning',
             'value': 'web development - python', 'class': 'grey'},
