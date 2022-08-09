@@ -2,6 +2,7 @@ from base.models import AdminLog
 from base.views import push
 from django.shortcuts import render
 from django.contrib.auth import authenticate
+from .models import DataStore, Data
 # Create your views here.
 
 
@@ -77,3 +78,17 @@ def clr_admin_log(request):
             'content': 'Access Denied'
         }
         return render(request, 'api/main.html', context)
+
+def add_data(request,Store):
+    username = request.GET.get('user')
+    password = request.GET.get('pass')
+    value = request.GET.get('value')
+    data = request.GET.get('data')
+    if username == 'jerit':
+        user = authenticate(request, username=username, password=password)
+    else:
+        user = None
+    if user is not None:
+        data_model = Data.objects.create(value=value,data=data)
+        store_model = DataStore.objects.get_or_create(name=Store,data=data_model)
+
