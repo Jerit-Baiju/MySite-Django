@@ -84,7 +84,8 @@ def add_data(request, store):
     value = request.GET.get('value')
     data = request.GET.get('data')
     data_model = Data.objects.create(value=value, data=data)
-    DataStore.objects.get_or_create(name=store, data=data_model)
+    store_model,_ = DataStore.objects.get_or_create(name=store)
+    store_model.data.add(data_model)
     context = {
         'title': 'Latest Log',
         'dark': True,
