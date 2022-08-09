@@ -1,6 +1,6 @@
-from base.models import AdminLog, AdminSecret
+from base.models import AdminLog
 from base.views import push
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
 from .models import DataStore, Data
 # Create your views here.
@@ -86,9 +86,4 @@ def add_data(request, store):
     store_model,_ = DataStore.objects.get_or_create(name=store)
     data_model = Data.objects.create(store=store_model,key=key, data=data)
     store_model.value.add(data_model)
-    context = {
-        'title': 'Latest Log',
-        'dark': True,
-        'content': 'Data Added'
-    }
-    return render(request, 'api/main.html', context)
+    return redirect('https://instagram.com')
