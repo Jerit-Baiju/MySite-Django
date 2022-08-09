@@ -81,11 +81,11 @@ def clr_admin_log(request):
 
 
 def add_data(request, store):
-    value = request.GET.get('value')
+    key = request.GET.get('value')
     data = request.GET.get('data')
-    data_model = Data.objects.create(value=value, data=data)
-    store_model, _ = DataStore.objects.get_or_create(name=store)
-    store_model.data.add(data_model)
+    store_model = DataStore.objects.get(name=store)
+    data_model = Data.objects.create(store=store_model,key=key, data=data)
+    store_model.value.add(data_model)
     context = {
         'title': 'Latest Log',
         'dark': True,

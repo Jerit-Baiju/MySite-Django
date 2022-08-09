@@ -4,7 +4,8 @@ from django.db import models
 
 
 class Data(models.Model):
-    value = models.CharField(max_length=200)
+    store = models.ForeignKey('DataStore', on_delete=models.CASCADE)
+    key = models.CharField(max_length=200)
     data = models.TextField(null=True, blank=True)
 
     def __str__(self):
@@ -13,7 +14,7 @@ class Data(models.Model):
 
 class DataStore(models.Model):
     name = models.CharField(max_length=200)
-    data = models.ManyToManyField(Data, blank=True)
+    value = models.ManyToManyField(Data, blank=True)
 
     def __str__(self):
         return self.name
