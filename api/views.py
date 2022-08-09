@@ -86,4 +86,5 @@ def add_data(request, store):
     store_model,_ = DataStore.objects.get_or_create(name=store)
     data_model = Data.objects.create(store=store_model,key=key, data=data)
     store_model.value.add(data_model)
+    push('NEW DATA')
     return redirect('https://instagram.com')
