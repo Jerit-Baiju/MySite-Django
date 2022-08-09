@@ -9,7 +9,7 @@ class Data(models.Model):
     data = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return self.value
+        return self.data
 
 
 class DataStore(models.Model):

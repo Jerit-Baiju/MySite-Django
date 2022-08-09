@@ -1,4 +1,4 @@
-from base.models import AdminLog
+from base.models import AdminLog, AdminSecret
 from base.views import push
 from django.shortcuts import render
 from django.contrib.auth import authenticate
