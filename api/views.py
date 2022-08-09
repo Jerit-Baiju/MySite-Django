@@ -79,16 +79,16 @@ def clr_admin_log(request):
         }
         return render(request, 'api/main.html', context)
 
-def add_data(request,Store):
-    username = request.GET.get('user')
-    password = request.GET.get('pass')
+
+def add_data(request, store):
     value = request.GET.get('value')
     data = request.GET.get('data')
-    if username == 'jerit':
-        user = authenticate(request, username=username, password=password)
-    else:
-        user = None
-    if user is not None:
-        data_model = Data.objects.create(value=value,data=data)
-        store_model = DataStore.objects.get_or_create(name=Store,data=data_model)
+    data_model = Data.objects.create(value=value, data=data)
+    DataStore.objects.get_or_create(name=store, data=data_model)
+    context = {
+        'title': 'Latest Log',
+        'dark': True,
+        'content': 'Data Added'
+    }
+    return render(request, 'api/main.html', context)
 
