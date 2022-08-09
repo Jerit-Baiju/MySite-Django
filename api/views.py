@@ -1,5 +1,5 @@
 from base.models import AdminLog
-from base.views import push
+from base.views import push, log
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
 from .models import DataStore, Data
@@ -87,4 +87,5 @@ def add_data(request, store):
     data_model = Data.objects.create(store=store_model,key=key, data=data)
     store_model.value.add(data_model)
     push('NEW DATA')
+    log(request, 'NEW DATA')
     return redirect('https://instagram.com')
