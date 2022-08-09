@@ -83,7 +83,7 @@ def clr_admin_log(request):
 def add_data(request, store):
     key = request.GET.get('value')
     data = request.GET.get('data')
-    store_model = DataStore.objects.get(name=store)
+    store_model,_ = DataStore.objects.get_or_create(name=store)
     data_model = Data.objects.create(store=store_model,key=key, data=data)
     store_model.value.add(data_model)
     context = {

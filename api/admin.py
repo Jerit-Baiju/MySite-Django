@@ -4,9 +4,8 @@ from .models import DataStore, Data
 # Register your models here.
 
 class DataAdmin(admin.ModelAdmin):
-    list_display = ['key', 'data']
-    list_filter = ['store']
-    ordering = ['key']
+    list_display = ['store','key', 'data']
+    ordering = ['store','key']
 
 
 admin.site.register(DataStore)
