@@ -1,8 +1,7 @@
 from base.models import AdminLog
-from base.views import push, log
-from django.shortcuts import render, redirect
+from base.views import push
+from django.shortcuts import render
 from django.contrib.auth import authenticate
-from .models import DataStore, Data
 # Create your views here.
 
 
