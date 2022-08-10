@@ -2,6 +2,7 @@ from base.models import AdminLog
 from base.views import push
 from django.shortcuts import render
 from django.contrib.auth import authenticate
+
 # Create your views here.
 
 
