@@ -176,7 +176,7 @@ def home(request):
         'quote': random.choice(quotes),
         'intro': intro,
         'skills': [
-            'Git', 'Python', 'Heroku', 'Django', 'Flask', 'Jupyter', 'Project Management', 'Google Search Console',
+            'Git', 'Python', 'Heroku', 'Django', 'Project Management', 'Google Search Console',
         ],
         'education': [
             {
