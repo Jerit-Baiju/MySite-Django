@@ -1,5 +1,5 @@
 import random
-from datetime import datetime,date
+from datetime import datetime, date
 
 import pytz
 import requests
@@ -29,7 +29,8 @@ def push(text):
 
 def log(request, data):
     if request.user.username != 'jerit':
-        date = datetime.now(pytz.timezone("Asia/Kolkata")).date().strftime(r"%b %d, %Y")
+        date = datetime.now(pytz.timezone("Asia/Kolkata")
+                            ).date().strftime(r"%b %d, %Y")
         time = datetime.now(pytz.timezone("Asia/Kolkata")).strftime("%I:%M %p")
         agent = request.META['HTTP_USER_AGENT']
         admin_log, _ = AdminLog.objects.get_or_create(name='api_log')
@@ -230,7 +231,7 @@ def stats(request):
     star_url = "https://api.github.com/repos/Jerit-Baiju/MySite-Django/stargazers"
     stars = len(requests.get(star_url).json())
     today = date.today()
-    birthday = datetime.strptime("February 10, 2006",r"%B %d, %Y")
+    birthday = datetime.strptime("February 10, 2006", r"%B %d, %Y")
     age = today.year - birthday.year
     birthday = birthday.strftime(r"%B %d, %Y")
     about_me = [
@@ -250,7 +251,8 @@ def stats(request):
         {'key': 'DataBase', 'value': 'SQLITE3', 'class': 'white'},
         {'key': 'Hosted on', 'value': 'Heroku', 'class': 'grey'},
         {'key': 'last updated at', 'value': update, 'class': 'white'},
-        {'key': 'Stars this repository has on github', 'value': stars, 'class': 'grey'}
+        {'key': 'Stars this repository has on github',
+            'value': stars, 'class': 'grey'}
     ]
     if user.is_authenticated == True:
         about_user = [
@@ -263,7 +265,8 @@ def stats(request):
         ]
     else:
         about_user = [
-            {'key': 'message', 'value': 'please login to see all the details', 'class': 'grey'},
+            {'key': 'message', 'value': 'please login to see all the details',
+                'class': 'grey'},
         ]
     stats = [
         {'name': 'about me', 'contents': about_me},
@@ -271,9 +274,12 @@ def stats(request):
         {'name': 'about you', 'contents': about_user}
     ]
     GitHub = [
-    		{'key': 'repositories', 'value': github['public_repos'], 'class': 'grey'},
-    		{'key': 'followers', 'value': github['followers'], 'class': 'white'},
-    		{'key': 'following', 'value': github['following'], 'class': 'grey'},
+        {'key': 'repositories',
+            'value': github['public_repos'], 'class': 'grey'},
+        {'key': 'followers',
+         'value': github['followers'], 'class': 'white'},
+        {'key': 'following',
+         'value': github['following'], 'class': 'grey'},
     ]
     context = {
         'title': 'Stats | Jerit Baiju',
