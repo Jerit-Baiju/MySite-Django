@@ -204,7 +204,7 @@ def about(request):
         "2016 - I was 10 years old studying in 4th class, my parents bought me a laptop. I was so excited about it. I learned to control the cursor and to type easily with MS-PAINT, NOTEPAD.",
         "2017 - Started to play the MS mini games like CHESS, MINESWEEPER etc. And learned MS-LOGO, created many objects and played with them.",
         "2018 - I was 12. Joined for the activity PHOTOSHOP AND ANIMATION with Adobe Flash-Macromedia. Started to search every files and locations on computer in my school. Unexpectedly opened an HTML file and I thought it was programming, I asked to my teacher (Reshmi miss) about it and she taught me some basics of HTML.",
-        "2019 - I created my own website using HTML only. Heard about programming languages(C++, Python, JavaScript).",
+        "2019 - I created my own website using HTML only. Heard about programming languages (C++, Python, JavaScript).",
         "2020 - Made my own chatbot using VISUAL BASIC. I upgraded my computer from windows 7 to windows 10 by myself. Started to learn python, made simple command line applications. I made GUI apps for windows using Tkinter.",
         "2021 - Switched to Linux. Learned Flask, CSS, JavaScript. I published my website on PythonAnywhere (currently not available). Learned more about GIT, REACT and some DS. Made many projects like ChatBot named Clara (WEB), Weather app (CLI) etc.",
         "2022 - Learned Django and hosted my website on HEROKU. Made a Package called PYFLIT for FLASK users, and created projects like Weather App (WEB), NUM GAME etc. Currently working on Django + React."
