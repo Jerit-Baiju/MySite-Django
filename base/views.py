@@ -262,7 +262,7 @@ def stats(request):
         {'key': 'Stars this repository has on github',
             'value': stars, 'class': 'grey'}
     ]
-    if user.is_authenticated == True:
+    if user.is_authenticated:
         about_user = [
             {'key': 'name', 'value': user.name, 'class': 'grey'},
             {'key': 'username', 'value': user.username, 'class': 'white'},
