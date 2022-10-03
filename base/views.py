@@ -187,6 +187,15 @@ def home(request):
             {
                 'name': 'MAM Bethany Public School',
                 'link': False,
+                'url': ''
+            },
+            {
+                'name': 'CPM GHSS Peermade',
+                'link': True,
+                'url': ''
+            },
+            {
+                'name': 'GHSS Amaravathy, Kumily'
             }
         ]
 
