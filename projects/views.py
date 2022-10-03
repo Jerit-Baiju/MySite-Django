@@ -23,7 +23,7 @@ def projects(request):
             'src': 'https://github.com/jerit-baiju/mysite-django', 'btn': 'GitHub'},
         {'name': 'Number Game', 'info': 'You should assume the number that is picked from 0-100 randomly by computer with TEN chances.',
             'src': '/projects/num_game', 'btn': 'Play'},
-        {'name': 'Elio Bot API', 'info': 'This API provides you free commands, wikipedia support, user detection.',
+        {'name': 'Chat Bot API', 'info': 'This API provides you free commands, wikipedia support, user detection.',
             'src': 'https://github.com/jerit-baiju/chat_bot_api', 'btn': 'GitHub'},
         {'name': 'GitHub Activity Generator', 'info': 'Python script for creating commits, can specify number of commits, code consistency, and many more.',
             'src': 'https://github.com/jerit-baiju/activity_generator', 'btn': 'GitHub'}
