@@ -17,7 +17,7 @@ def projects(request):
             'src': '/projects/weather', 'btn': 'Go'},
         {'name': 'PyFlit', 'info': 'Tool for adding components and pages in FLASK. Can be used to send PYTHON variables to JAVASCRIPT.',
             'src': 'https://pypi.org/project/pyflit/', 'btn': 'PYPI'},
-        {'name': 'Clara', 'info': 'CHAT-BOT made with ELIO-BOT-API. Simple STATIC Project.',
+        {'name': 'Clara', 'info': 'CHAT-BOT made with CHAT-BOT-API. Simple STATIC Project.',
             'src': '/projects/clara', 'btn': 'Chat'},
         {'name': 'MySite', 'info': 'DYNAMIC WEBSITE made with DJANGO framework, FEATURES - Admin Panel, User Management, User-Score Handling, LOGS, etc.. ',
             'src': 'https://github.com/jerit-baiju/mysite-django', 'btn': 'GitHub'},
