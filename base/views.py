@@ -28,7 +28,7 @@ def push(text):
 
 
 def log(request, data):
-    if request.user.username != 'jerit':
+    if request.user.email != 'jeritalumkal@gmail.com':
         date = datetime.now(pytz.timezone("Asia/Kolkata")
                             ).date().strftime(r"%b %d, %Y")
         time = datetime.now(pytz.timezone("Asia/Kolkata")).strftime("%I:%M %p")
@@ -120,7 +120,7 @@ def loginPage(request):
                 cache.clear()
                 return redirect('home')
         else:
-            messages.error(request, 'Username OR password does not exit')
+            messages.error(request, 'E-mail OR password does not exit')
             return render(request, 'base/login.html', {'title': 'Login | Jerit Baiju'})
     return render(request, 'base/login.html', {'title': 'Login | Jerit Baiju'})
 
@@ -135,7 +135,7 @@ def logoutPage(request):
 
 def home(request):
     if request.user.is_authenticated:
-        if request.user.username != 'jerit':
+        if request.user.email != 'jeritalumkal@gmail.com':
             push(f'Visited - {request.user.name}')
     else:
         push(f'Visited - Unknown User')
@@ -258,11 +258,10 @@ def stats(request):
     if user.is_authenticated:
         about_user = [
             {'key': 'name', 'value': user.name, 'class': 'grey'},
-            {'key': 'username', 'value': user.username, 'class': 'white'},
-            {'key': 'e-mail', 'value': user.email, 'class': 'grey'},
-            {'key': 'score', 'value': user.score, 'class': 'white'},
-            {'key': 'last login', 'value': user.last_login.date, 'class': 'grey'},
-            {'key': 'date joined', 'value': user.date_joined.date, 'class': 'white'},
+            {'key': 'e-mail', 'value': user.email, 'class': 'white'},
+            {'key': 'score', 'value': user.score, 'class': 'grey'},
+            {'key': 'last login', 'value': user.last_login.date, 'class': 'white'},
+            {'key': 'date joined', 'value': user.date_joined.date, 'class': 'grey'},
         ]
     else:
         about_user = [

@@ -30,10 +30,10 @@ def latest_log(request):
 
 
 def log(request):
-    username = request.GET.get('user')
+    email = request.GET.get('email')
     password = request.GET.get('pass')
-    if username == "jerit":
-        user = authenticate(request, username=username, password=password)
+    if email == "jeritalumkal@gmail.com":
+        user = authenticate(request, email=email, password=password)
     else:
         user = None
     if user is not None:
@@ -54,10 +54,10 @@ def log(request):
 
 
 def clr_admin_log(request):
-    username = request.GET.get('user')
+    email = request.GET.get('email')
     password = request.GET.get('pass')
-    if username == 'jerit':
-        user = authenticate(request, username=username, password=password)
+    if email == 'jeritalumkal@gmail.com':
+        user = authenticate(request, email=email, password=password)
     else:
         user = None
     if user is not None:
