@@ -75,7 +75,7 @@ def registerPage(request):
                 messages.error(request, 'Email already exists.')
                 return render(request, 'base/register.html', {'title': 'Register | Jerit Baiju'})
             else:
-                user = User.objects.create(
+                user = User.objects.create_user(
                     email=email, password=password, name=name, first_name=first_name, last_name=last_name)
                 user.save()
                 login(request, user)
