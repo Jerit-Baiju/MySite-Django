@@ -106,11 +106,11 @@ def loginPage(request):
         except:
             messages.error(request, 'User does not exist')
             return render(request, 'base/login.html', {'title': 'Login | Jerit Baiju'})
-        try:
-            user = User.objects.get(email=email, password=password)
-        except:
-            user = None
-        # user = authenticate(request, email=email, password=password)
+        # try:
+        #     user = User.objects.get(email=email, password=password)
+        # except:
+        #     user = None
+        user = authenticate(request, email=email, password=password)
         if user is not None:
             log(request, f"Login - {user.name}")
             login(request, user)
