@@ -36,9 +36,11 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
 class User(AbstractUser):
-    name = models.CharField(max_length=200, null=True)
     username = None
-    email = models.EmailField(max_length=200, unique=True)
+    email = models.EmailField(unique=True)
+    name = models.CharField(max_length=200, null=True)
+    first_name = models.CharField(max_length=20)
+    last_name = models.CharField(max_length=20)
     log = models.TextField(null=True, blank=True)
     score = models.IntegerField(null=True, blank=True)
     objects = UserManager()

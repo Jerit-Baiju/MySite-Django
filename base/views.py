@@ -61,7 +61,6 @@ def registerPage(request):
         return redirect('home')
     if request.method == 'POST':
         name = request.POST['name'].lstrip().rstrip()
-        # username = str(request.POST['username']).lower().lstrip().rstrip()
         email = request.POST['mail']
         password = request.POST['password1']
         confirm = request.POST['password2']
