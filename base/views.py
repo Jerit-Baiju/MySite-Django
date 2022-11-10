@@ -72,9 +72,6 @@ def registerPage(request):
         else:
             first_name = name.split()[0].capitalize()
             last_name = name.split()[1].capitalize()
-        # if " " in username:
-        #     messages.error(request, 'Username must not contain space.')
-        #     return render(request, 'base/register.html', {'title': 'Register | Jerit Baiju'})
         if password == confirm:
             if User.objects.filter(email=email).exists():
                 messages.error(request, 'Email already exists.')
@@ -103,14 +100,14 @@ def loginPage(request):
     if request.user.is_authenticated:
         return redirect('home')
     if request.method == 'POST':
-        username = request.POST.get('username').lower()
+        email = request.POST.get('email').lower()
         password = request.POST.get('password')
         try:
-            user = User.objects.get(username=username)
+            user = User.objects.get(email=email)
         except:
             messages.error(request, 'User does not exist')
             return render(request, 'base/login.html', {'title': 'Login | Jerit Baiju'})
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(request, email=email, password=password)
         if user is not None:
             log(request, f"Login - {user.name}")
             login(request, user)
