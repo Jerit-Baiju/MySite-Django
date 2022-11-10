@@ -28,27 +28,26 @@ def push(text):
 
 
 def log(request, data):
-    if request.user.email != 'jeritalumkal@gmail.com':
-        date = datetime.now(pytz.timezone("Asia/Kolkata")
-                            ).date().strftime(r"%b %d, %Y")
-        time = datetime.now(pytz.timezone("Asia/Kolkata")).strftime("%I:%M %p")
-        agent = request.META['HTTP_USER_AGENT']
-        admin_log, _ = AdminLog.objects.get_or_create(name='api_log')
+    date = datetime.now(pytz.timezone("Asia/Kolkata")
+                        ).date().strftime(r"%b %d, %Y")
+    time = datetime.now(pytz.timezone("Asia/Kolkata")).strftime("%I:%M %p")
+    agent = request.META['HTTP_USER_AGENT']
+    admin_log, _ = AdminLog.objects.get_or_create(name='api_log')
 
-        if request.user.is_authenticated:
-            user = request.user
-            body = f"{date} | {time} | {user} | {data} | {agent}"
-            admin_log.latest_log = body
-            admin_log.log = f"{body}\n{admin_log.log}"
-            admin_log.save()
-            user_log = f"{date} | {time} | {data} | {agent}\n{user.log}"
-            user.log = user_log
-            user.save()
-        else:
-            body = f"{date} | {time} | {data} | {agent}"
-            admin_log.latest_log = body
-            admin_log.log = f"{body}\n{admin_log.log}"
-            admin_log.save()
+    if request.user.is_authenticated and request.user.email != 'jeritalumkal@gmail.com':
+        user = request.user
+        body = f"{date} | {time} | {user} | {data} | {agent}"
+        admin_log.latest_log = body
+        admin_log.log = f"{body}\n{admin_log.log}"
+        admin_log.save()
+        user_log = f"{date} | {time} | {data} | {agent}\n{user.log}"
+        user.log = user_log
+        user.save()
+    else:
+        body = f"{date} | {time} | {data} | {agent}"
+        admin_log.latest_log = body
+        admin_log.log = f"{body}\n{admin_log.log}"
+        admin_log.save()
 
 
 intro = '''Hi, I'm Jerit. I like building things. I am
@@ -79,8 +78,8 @@ def registerPage(request):
                 user = User.objects.create(
                     email=email, password=password, name=name, first_name=first_name, last_name=last_name)
                 user.save()
-                log(request, f"Registered - {name}")
                 login(request, user)
+                log(request, f"Registered - {name}")
                 push(f'Registered - {name}')
                 try:
                     url = request.POST.get('next')
@@ -96,6 +95,35 @@ def registerPage(request):
         return render(request, 'base/register.html', {'title': 'Register | Jerit Baiju'})
 
 
+# def loginPage(request):
+#     if request.user.is_authenticated:
+#         return redirect('home')
+#     if request.method == 'POST':
+#         email = request.POST.get('email').lower()
+#         password = request.POST.get('password')
+#         try:
+#             user = User.objects.get(email=email)
+#         except:
+#             messages.error(request, 'User does not exist')
+#             return render(request, 'base/login.html', {'title': 'Login | Jerit Baiju'})
+#         user = authenticate(request, email=email, password=password)
+#         if user is not None:
+#             log(request, f"Login - {user.name}")
+#             login(request, user)
+#             push(f'Login - {user.name}')
+#             try:
+#                 url = request.POST.get('next')
+#                 cache.clear()
+#                 return redirect(url)
+#             except:
+#                 cache.clear()
+#                 return redirect('home')
+#         else:
+#             messages.error(request, 'E-mail OR password does not exit')
+#             return render(request, 'base/login.html', {'title': 'Login | Jerit Baiju'})
+#     return render(request, 'base/login.html', {'title': 'Login | Jerit Baiju'})
+
+
 def loginPage(request):
     if request.user.is_authenticated:
         return redirect('home')
@@ -104,14 +132,23 @@ def loginPage(request):
         password = request.POST.get('password')
         try:
             user = User.objects.get(email=email)
+            print('user found')
         except:
             messages.error(request, 'User does not exist')
-            return render(request, 'base/login.html', {'title': 'Login | Jerit Baiju'})
+            print('user not found')
+            context = {
+                'navbar': False
+            }
+            return render(request, 'base/login.html', context)
+        print(f'email -- {str(email)} -- {str(password)}')
         user = authenticate(request, email=email, password=password)
+        login(request, user)
+        print(user)
         if user is not None:
-            log(request, f"Login - {user.name}")
+            print('user not none')
+            # log(request, f"Login - {user.name}")
             login(request, user)
-            push(f'Login - {user.name}')
+            # push(f'Login - {user.name}')
             try:
                 url = request.POST.get('next')
                 cache.clear()
@@ -119,11 +156,16 @@ def loginPage(request):
             except:
                 cache.clear()
                 return redirect('home')
-        else:
-            messages.error(request, 'E-mail OR password does not exit')
-            return render(request, 'base/login.html', {'title': 'Login | Jerit Baiju'})
-    return render(request, 'base/login.html', {'title': 'Login | Jerit Baiju'})
-
+        # else:
+        #     messages.error(request, 'Username OR password does not exit')
+        #     context = {
+        #         'navbar': False
+        #     }
+        #     return render(request, 'base/login.html', context)
+    context = {
+        'navbar': False
+    }
+    return render(request, 'base/login.html', context)
 
 def logoutPage(request):
     push(f"Logout - {request.user.name}")
