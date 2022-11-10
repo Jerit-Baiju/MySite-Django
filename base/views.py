@@ -61,8 +61,8 @@ def registerPage(request):
         return redirect('home')
     if request.method == 'POST':
         name = request.POST['name'].lstrip().rstrip()
-        username = str(request.POST['username']).lower().lstrip().rstrip()
-        mail = request.POST['mail']
+        # username = str(request.POST['username']).lower().lstrip().rstrip()
+        email = request.POST['mail']
         password = request.POST['password1']
         confirm = request.POST['password2']
         name_split = name.split(' ')
@@ -72,19 +72,15 @@ def registerPage(request):
         else:
             first_name = name.split()[0].capitalize()
             last_name = name.split()[1].capitalize()
-        if " " in username:
-            messages.error(request, 'Username must not contain space.')
-            return render(request, 'base/register.html', {'title': 'Register | Jerit Baiju'})
-        elif password == confirm:
-            if User.objects.filter(username=username).exists():
-                messages.error(request, 'Username already exists.')
-                return render(request, 'base/register.html', {'title': 'Register | Jerit Baiju'})
-            elif User.objects.filter(email=mail).exists():
+        # if " " in username:
+        #     messages.error(request, 'Username must not contain space.')
+        #     return render(request, 'base/register.html', {'title': 'Register | Jerit Baiju'})
+        if password == confirm:
+            if User.objects.filter(email=email).exists():
                 messages.error(request, 'Email already exists.')
                 return render(request, 'base/register.html', {'title': 'Register | Jerit Baiju'})
             else:
-                user = User.objects.create(
-                    username=username, password=password, email=mail, name=name, first_name=first_name, last_name=last_name)
+                user = User.objects.create(email=email, password=password, name=name, first_name=first_name, last_name=last_name)
                 user.save()
                 log(request, f"Registered - {name}")
                 login(request, user)
