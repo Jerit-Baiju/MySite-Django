@@ -95,35 +95,6 @@ def registerPage(request):
         return render(request, 'base/register.html', {'title': 'Register | Jerit Baiju'})
 
 
-# def loginPage(request):
-#     if request.user.is_authenticated:
-#         return redirect('home')
-#     if request.method == 'POST':
-#         email = request.POST.get('email').lower()
-#         password = request.POST.get('password')
-#         try:
-#             user = User.objects.get(email=email)
-#         except:
-#             messages.error(request, 'User does not exist')
-#             return render(request, 'base/login.html', {'title': 'Login | Jerit Baiju'})
-#         user = authenticate(request, email=email, password=password)
-#         if user is not None:
-#             log(request, f"Login - {user.name}")
-#             login(request, user)
-#             push(f'Login - {user.name}')
-#             try:
-#                 url = request.POST.get('next')
-#                 cache.clear()
-#                 return redirect(url)
-#             except:
-#                 cache.clear()
-#                 return redirect('home')
-#         else:
-#             messages.error(request, 'E-mail OR password does not exit')
-#             return render(request, 'base/login.html', {'title': 'Login | Jerit Baiju'})
-#     return render(request, 'base/login.html', {'title': 'Login | Jerit Baiju'})
-
-
 def loginPage(request):
     if request.user.is_authenticated:
         return redirect('home')
@@ -132,23 +103,18 @@ def loginPage(request):
         password = request.POST.get('password')
         try:
             user = User.objects.get(email=email)
-            print('user found')
         except:
             messages.error(request, 'User does not exist')
-            print('user not found')
-            context = {
-                'navbar': False
-            }
-            return render(request, 'base/login.html', context)
-        print(f'email -- {str(email)} -- {str(password)}')
-        user = authenticate(request, email=email, password=password)
-        login(request, user)
-        print(user)
+            return render(request, 'base/login.html', {'title': 'Login | Jerit Baiju'})
+        try:
+            user = User.objects.get(email=email, password=password)
+        except:
+            user = None
+        # user = authenticate(request, email=email, password=password)
         if user is not None:
-            print('user not none')
-            # log(request, f"Login - {user.name}")
+            log(request, f"Login - {user.name}")
             login(request, user)
-            # push(f'Login - {user.name}')
+            push(f'Login - {user.name}')
             try:
                 url = request.POST.get('next')
                 cache.clear()
@@ -156,16 +122,11 @@ def loginPage(request):
             except:
                 cache.clear()
                 return redirect('home')
-        # else:
-        #     messages.error(request, 'Username OR password does not exit')
-        #     context = {
-        #         'navbar': False
-        #     }
-        #     return render(request, 'base/login.html', context)
-    context = {
-        'navbar': False
-    }
-    return render(request, 'base/login.html', context)
+        else:
+            messages.error(request, 'E-mail OR password does not exit')
+            return render(request, 'base/login.html', {'title': 'Login | Jerit Baiju'})
+    return render(request, 'base/login.html', {'title': 'Login | Jerit Baiju'})
+
 
 def logoutPage(request):
     push(f"Logout - {request.user.name}")
