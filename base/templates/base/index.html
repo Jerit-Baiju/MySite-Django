@@ -39,6 +39,7 @@
             <h5 class="text-end p-1">
               "{{quote.quote}}"
             </h5>
+            {% if quote.author  != '' %}
             <div class="row">
               <div class="col-6 col-md-6"></div>
               <div class="col-6 col-md-6" style="padding-top: 1rem">
@@ -49,6 +50,7 @@
                 </h6>
               </div>
             </div>
+            {% endif %}
           </div>
         </div>
       </div>
