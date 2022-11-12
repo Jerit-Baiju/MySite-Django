@@ -310,7 +310,6 @@ def instagram(request):
 def whatsapp(request):
     log(request, 'WhatsApp')
     return redirect(r'http://wa.me/+918592060520?text=*Hi Jerit*')
-    # %F0%9F%91%8B%F0%9F%8F%BB
 
 
 def vijayamatha(request):
