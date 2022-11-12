@@ -236,12 +236,10 @@ def stats(request):
     birthday = birthday.strftime(r"%B %d, %Y")
     about_me = [
         {'key': 'age', 'value': age, 'class': 'grey'},
-        {'key': 'current city', 'value': 'kerala, India', 'class': 'white'},
+        {'key': 'location', 'value': 'kerala, India', 'class': 'white'},
         {'key': 'D.O.B', 'value': birthday, 'class': 'grey'},
-        {'key': 'started coding on', 'value': '2018', 'class': 'white'},
         {'key': 'currently learning',
-            'value': 'web development - python', 'class': 'grey'},
-        {'key': 'OS', 'value': 'Ubuntu', 'class': 'white'},
+            'value': 'web development - python', 'class': 'whit'},
     ]
     about_web = [
         {'key': 'languages', 'value': 'python, JS, HTML, CSS', 'class': 'grey'},
