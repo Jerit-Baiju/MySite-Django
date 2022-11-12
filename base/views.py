@@ -149,7 +149,7 @@ def home(request):
         {'quote': "First, solve the problem. Then, write the code.",
             'author': 'John Johnson'},
         {'quote': 'A computer is like a mischievous genie. It will give you exactly what you   ask for, but not always what  you want.', 'author': 'Joe Sondow'},
-        {'quote': 'A good programmer looks both ways before crossing a onw-way street.',
+        {'quote': 'A good programmer looks both ways before crossing a one-way street.',
          'author': ''},
         {'quote': 'A person who never made a mistake never tried anything new.',
          'author': 'Albert Einstein'},
