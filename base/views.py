@@ -283,7 +283,8 @@ def stats(request):
     context = {
         'title': 'Stats | Jerit Baiju',
         'stats': stats,
-        'GitHub': GitHub
+        'GitHub': GitHub,
+        'page': 'stats'
     }
     return render(request, 'base/stats.html', context)
 
