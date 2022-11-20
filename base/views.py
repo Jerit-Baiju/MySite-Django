@@ -48,6 +48,8 @@ def log(request, data):
         admin_log.latest_log = body
         admin_log.log = f"{body}\n{admin_log.log}"
         admin_log.save()
+    else:
+        None
 
 
 intro = '''Hi, I'm Jerit. I like building things. I am
