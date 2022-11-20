@@ -43,13 +43,11 @@ def log(request, data):
         user_log = f"{date} | {time} | {data} | {agent}\n{user.log}"
         user.log = user_log
         user.save()
-    elif request.user.email != 'jeritalumkal@gmail.com':
+    else:
         body = f"{date} | {time} | {data} | {agent}"
         admin_log.latest_log = body
         admin_log.log = f"{body}\n{admin_log.log}"
         admin_log.save()
-    else:
-        None
 
 
 intro = '''Hi, I'm Jerit. I like building things. I am
