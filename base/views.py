@@ -33,8 +33,9 @@ def log(request, data):
     time = datetime.now(pytz.timezone("Asia/Kolkata")).strftime("%I:%M %p")
     agent = request.META['HTTP_USER_AGENT']
     admin_log, _ = AdminLog.objects.get_or_create(name='api_log')
-
-    if request.user.is_authenticated and not request.user.is_superuser:
+    if request.user.is_authenticated and request.user.is_superuser:
+        None
+    elif request.user.is_authenticated:
         user = request.user
         body = f"{date} | {time} | {user} | {data} | {agent}"
         admin_log.latest_log = body
