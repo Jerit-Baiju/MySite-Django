@@ -134,9 +134,8 @@ def logoutPage(request):
 
 
 def home(request):
-    if request.user.is_authenticated:
-        if request.user.email != 'jeritalumkal@gmail.com':
-            push(f'Visited - {request.user.name}')
+    if request.user.is_authenticated and not request.user.is_superuser:
+        push(f'Visited - {request.user.name}')
     else:
         push(f'Visited - Unknown User')
     log(request, 'Home')
