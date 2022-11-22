@@ -34,7 +34,7 @@ def log(request, data):
     agent = request.META['HTTP_USER_AGENT']
     admin_log, _ = AdminLog.objects.get_or_create(name='api_log')
 
-    if request.user.is_authenticated and request.user.email != 'jeritalumkal@gmail.com':
+    if request.user.is_authenticated and not request.user.is_superuser:
         user = request.user
         body = f"{date} | {time} | {user} | {data} | {agent}"
         admin_log.latest_log = body
