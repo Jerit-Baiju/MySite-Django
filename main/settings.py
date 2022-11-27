@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'base.apps.BaseConfig',
     'projects.apps.ProjectsConfig',
     'api.apps.ApiConfig',
+
+    'rest_framework'
 ]
 
 
