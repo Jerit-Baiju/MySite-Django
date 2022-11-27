@@ -1,5 +1,5 @@
 from base.models import AdminLog
-from base.views import push
+from base.views import push, log
 from django.shortcuts import render
 from django.contrib.auth import authenticate
 from django.http import JsonResponse
@@ -31,7 +31,7 @@ def latest_log(request):
         return render(request, 'api/main.html', context)
 
 
-def log(request):
+def logs(request):
     email = request.GET.get('email')
     password = request.GET.get('pass')
     if email == "jeritalumkal@gmail.com":
@@ -88,20 +88,18 @@ def weather(request, city):
     }
     try:
         url = f"https://www.google.com/search?q=weather+in+{city}"
-        page = requests.get(url, headers=headers)
+        page = requests.get(url,headers=headers)
         soup = BeautifulSoup(page.content, 'html.parser')
         temperature = soup.find('span', attrs={'id': 'wob_ttm'}).text
         status = soup.find('span', attrs={'id': 'wob_dc'}).text
         location = soup.find('div', attrs={'id': 'wob_loc'}).text
         temperature_op = (f"{temperature} °F \n")
         status_op = (f"Status - {status} \n")
-        src = soup.find('img', attrs={'id': 'wob_tci'}).get('src')
+        image_url = soup.find('img', attrs={'id': 'wob_tci'}).get('src')
         day = soup.find('div', attrs={'id': 'wob_dts'}).text
-        context = {'tmp': temperature_op, 'loc': location,
-                    'sts': status_op, 'day': day, 'src': src, 'dark': True}
+        context = {'temp': temperature_op, 'location': location,
+                    'status': status_op, 'day': day, 'image_url': image_url}
     except:
-        context = {'tmp': '', 'loc': 'No Location Found, Try entering your nearest place or city',
-                    'sts': '', 'day': '', 'src': '', 'title': 'Weather App', 'dark': True
-                    }
+        context = "No Location Found, Try entering your nearest place or city'"
     log(request, f'weather - {city}')
-    return context
+    return JsonResponse(context)
