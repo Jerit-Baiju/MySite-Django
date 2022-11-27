@@ -2,6 +2,7 @@ from base.models import AdminLog
 from base.views import push
 from django.shortcuts import render
 from django.contrib.auth import authenticate
+from django.http import JsonResponse
 import requests
 from bs4 import BeautifulSoup
 # Create your views here.
@@ -85,27 +86,22 @@ def weather(request, city):
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36"
     }
-    if request.method == 'POST':
-        def get_weather(city):
-            try:
-                url = f"https://www.google.com/search?q=weather+in+{city}"
-                page = requests.get(url, headers=headers)
-                soup = BeautifulSoup(page.content, 'html.parser')
-                temperature = soup.find('span', attrs={'id': 'wob_ttm'}).text
-                status = soup.find('span', attrs={'id': 'wob_dc'}).text
-                location = soup.find('div', attrs={'id': 'wob_loc'}).text
-                temperature_op = (f"{temperature} °F \n")
-                status_op = (f"Status - {status} \n")
-                src = soup.find('img', attrs={'id': 'wob_tci'}).get('src')
-                day = soup.find('div', attrs={'id': 'wob_dts'}).text
-                context = {'tmp': temperature_op, 'loc': location,
-                           'sts': status_op, 'day': day, 'src': src, 'dark': True}
-            except:
-                context = {'tmp': '', 'loc': 'No Location Found, Try entering your nearest place or city',
-                           'sts': '', 'day': '', 'src': '', 'title': 'Weather App', 'dark': True
-                           }
-            return context
-        city = request.POST['city']
-        log(request, f'weather - {city}')
-        return render(request, 'projects/weather.html', get_weather(city))
-    log(request, 'weather')
+    try:
+        url = f"https://www.google.com/search?q=weather+in+{city}"
+        page = requests.get(url, headers=headers)
+        soup = BeautifulSoup(page.content, 'html.parser')
+        temperature = soup.find('span', attrs={'id': 'wob_ttm'}).text
+        status = soup.find('span', attrs={'id': 'wob_dc'}).text
+        location = soup.find('div', attrs={'id': 'wob_loc'}).text
+        temperature_op = (f"{temperature} °F \n")
+        status_op = (f"Status - {status} \n")
+        src = soup.find('img', attrs={'id': 'wob_tci'}).get('src')
+        day = soup.find('div', attrs={'id': 'wob_dts'}).text
+        context = {'tmp': temperature_op, 'loc': location,
+                    'sts': status_op, 'day': day, 'src': src, 'dark': True}
+    except:
+        context = {'tmp': '', 'loc': 'No Location Found, Try entering your nearest place or city',
+                    'sts': '', 'day': '', 'src': '', 'title': 'Weather App', 'dark': True
+                    }
+    log(request, f'weather - {city}')
+    return context
