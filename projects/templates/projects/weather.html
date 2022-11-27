@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{% static 'css/projects/weather.css' %}">
 <div class="container">
     <div style="padding-top: 5em;" class="heading text-center ">
-        <h1 class="text-white head">Weather App</h1>
+        <h1 id="header" class="text-white head">Weather App</h1>
     </div>
     <div class="row">
         <div class="col-md-6 text-center pt-5">
@@ -11,19 +11,17 @@
                 {% csrf_token %}
                 <div>
                     <div class="input">
-                        <input autocomplete='off' class="my-inp input-group" type="text" name="city" id=""
-                            placeholder="Enter the city" />
+                        <input id="city_name" autocomplete='off' class="my-inp input-group" type="text" name="city" placeholder="Enter the city" />
                     </div>
                     <div class="submit pt-4 pb-4">
-                        <input type="submit" value="Submit"
+                        <input id="submit_btn" type="button" value="Submit"
                             class="btn-lg btn-dark my-but" />
                     </div>
                 </div>
             </form>
 
         </div>
-        {% if request.method == 'POST' %}
-        <div class="col-md-6 text-white">
+        <div  id="bar" class="col-md-6 text-white">
             <div class="main">
                 <div class="row">
                     <div class="col-md-6 text-center">
@@ -34,8 +32,8 @@
                         </div>
                     </div>
                     <div class="col-md-6 text-center">
-                        <div class="p-2">
-                            <img src="{{src}}" alt="weather_image" srcset="" />
+                        <div id="image_holder" class="p-2">
+                            {% comment %} <img src="{{src}}" alt="weather_image" srcset="" /> {% endcomment %}
                         </div>
                         <div class="p-3">
                             <h2>{{tmp}}</h2>
@@ -44,7 +42,9 @@
                 </div>
             </div>
         </div>
-        {% endif %}
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.35/dist/sweetalert2.all.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+<script src="{% static 'js/weather.js' %}"></script>
 {% endblock content %}
