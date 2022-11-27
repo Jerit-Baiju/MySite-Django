@@ -88,7 +88,7 @@ def weather(request, city):
     }
     try:
         url = f"https://www.google.com/search?q=weather+in+{city}"
-        page = requests.get(url,headers=headers)
+        page = requests.get(url, headers=headers)
         soup = BeautifulSoup(page.content, 'html.parser')
         temperature = soup.find('span', attrs={'id': 'wob_ttm'}).text
         status = soup.find('span', attrs={'id': 'wob_dc'}).text
@@ -97,9 +97,10 @@ def weather(request, city):
         status_op = (f"Status - {status} \n")
         image_url = soup.find('img', attrs={'id': 'wob_tci'}).get('src')
         day = soup.find('div', attrs={'id': 'wob_dts'}).text
-        context = {'temp': temperature_op, 'location': location,
-                    'status': status_op, 'day': day, 'image_url': image_url}
+        context = {'success': True, 'temp': temperature_op, 'location': location,
+                   'status': status_op, 'day': day, 'image_url': image_url}
     except:
-        context = "No Location Found, Try entering your nearest place or city'"
+        context = {'success': False,
+                   'op': 'No Location Found, Try entering your nearest place or city'}
     log(request, f'weather - {city}')
     return JsonResponse(context)
