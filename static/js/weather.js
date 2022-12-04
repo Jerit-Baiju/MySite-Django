@@ -1,5 +1,5 @@
 async function getData(city){
-    url = 'http://192.168.43.21:5000/api/weather/' + city
+    var url = 'http://192.168.43.21:5000/api/weather/' + city
   	const response = await fetch(url);
   	var data = await response.json();
   	var location = "<h4>"+ data["location"] +"</h4>"
@@ -17,12 +17,18 @@ async function getData(city){
   	$("#temperature").append(temperature)
 	$("#image_holder").append(image)
 }
+function get(){
+	$("#bar").hide()
+	city = document.getElementById("city_name").value
+	$("#city_name").val('')
+	getData(city)
+}
 $(document).ready(function () {
     $("#submit_btn").click(function () {
-		$("#bar").hide()
-        city = document.getElementById("city_name").value
-        $("#city_name").val('')
-        getData(city)
+		get()
     })
+	$("#city_name").change(function (){
+		get()
+	})
     $("#bar").hide()
 })
