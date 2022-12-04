@@ -20,7 +20,7 @@
         <div class="col-sm-12">
           <div class="form-group">
             <div class="input-group">
-              <input class="form-control" onchange="send()" type="text" id="input" name="question"
+              <input class="form-control" type="text" id="input" name="question"
                 placeholder="Type Here !" autocomplete="off" autofocus />
             </div>
           </div>
@@ -28,10 +28,11 @@
       </div>
       <br />
       <div style="display: flex; justify-content: center; align-items: center">
-        <input type="button" class="btn btn-primary btn-block confirm-button" value="Send" style="width: 8rem" />
+        <input id="send_btn" type="button" class="btn btn-primary btn-block confirm-button" value="Send" style="width: 8rem" />
       </div>
     </div>
   </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 <script src="{% static 'js/clara.js' %}"></script>
 {% endblock content %}

@@ -30,10 +30,9 @@ async function send() {
   
   scroll_down();
 }
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelector("#input").addEventListener("keydown", function (e) {
-    if (e.code === "Enter") {
-      send();
-    }
-  });
-});
+$("#input").change(function(){
+  send()
+})
+$("#send_btn").click(function () {
+  send()
+})

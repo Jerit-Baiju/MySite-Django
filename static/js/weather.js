@@ -20,8 +20,11 @@ async function getData(city){
 function get(){
 	$("#bar").hide()
 	city = document.getElementById("city_name").value
-	$("#city_name").val('')
-	getData(city)
+	if (city != ''){
+		$("#city_name").val('')
+		getData(city)
+	}
+	
 }
 $(document).ready(function () {
     $("#submit_btn").click(function () {
