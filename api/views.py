@@ -97,9 +97,9 @@ def weather(request, city):
         temperature_op = (f"{temperature} °F \n")
         status_op = (f"Status - {status} \n")
         image_url = soup.find('img', attrs={'id': 'wob_tci'}).get('src')
-        day = soup.find('div', attrs={'id': 'wob_dts'}).text
+        time = soup.find('div', attrs={'id': 'wob_dts'}).text
         context = {'success': True, 'temp': temperature_op, 'location': location,
-                   'status': status_op, 'day': day, 'image_url': image_url}
+                   'status': status_op, 'time': time, 'image_url': image_url}
     except:
         context = {'success': False,
                    'op': 'No Location Found, Try entering your nearest place or city'}
