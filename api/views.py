@@ -83,7 +83,6 @@ def clr_admin_log(request):
 
 
 def weather(request, city):
-    print(city)
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36"
     }
