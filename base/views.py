@@ -234,6 +234,10 @@ def stats(request):
     birthday = datetime.strptime("February 10, 2006", r"%B %d, %Y")
     age = today.year - birthday.year
     birthday = birthday.strftime(r"%B %d, %Y")
+    if user.score == None:
+        score = 0
+    else:
+        score = user.score
     about_me = [
         {'key': 'age', 'value': age, 'class': 'grey'},
         {'key': 'location', 'value': 'kerala, India', 'class': 'white'},
@@ -256,7 +260,7 @@ def stats(request):
         about_user = [
             {'key': 'name', 'value': user.name, 'class': 'grey'},
             {'key': 'e-mail', 'value': user.email, 'class': 'white'},
-            {'key': 'score', 'value': user.score, 'class': 'grey'},
+            {'key': 'score', 'value': score, 'class': 'grey'},
             {'key': 'last login', 'value': user.last_login.date, 'class': 'white'},
             {'key': 'date joined', 'value': user.date_joined.date, 'class': 'grey'},
         ]
