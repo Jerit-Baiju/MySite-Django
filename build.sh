@@ -1,5 +1,5 @@
 # build.sh
-echo "user build start -j"
+echo "BUILD START"
 pip install -r requirements.txt
 python manage.py collectstatic
-echo "user build end -j"
+echo "BUILD END"
