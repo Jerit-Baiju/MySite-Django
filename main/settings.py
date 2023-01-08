@@ -29,7 +29,8 @@ AUTH_USER_MODEL = 'base.User'
 ALLOWED_HOSTS = [
     '192.168.42.32',
     'jeritbaiju.pythonanywhere.com',
-    '192.168.43.21'
+    '192.168.43.21',
+    'jerit.vercel.app'
 ]
 
 # Application definition
@@ -88,10 +89,10 @@ WSGI_APPLICATION = 'main.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
 }
 
 
