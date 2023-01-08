@@ -99,6 +99,7 @@ if os.environ['env'] == 'dev':
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
+    
 else:
     DATABASES = {
         'default': {
