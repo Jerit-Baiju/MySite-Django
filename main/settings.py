@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'main.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-if os.environ['environ'] == 'dev':
+if os.environ['venv'] == 'dev':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
