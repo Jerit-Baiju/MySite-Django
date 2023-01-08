@@ -23,7 +23,7 @@
         },
         {
             "src": "/static/(.*)",
-            "dest": "main/wsgi.py"
+            "dest": "static/$1"
         }
     ]
 }
