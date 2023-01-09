@@ -30,7 +30,7 @@ DEBUG = True
 
 AUTH_USER_MODEL = 'base.User'
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['jerit.ml']
 
 # Application definition
 
