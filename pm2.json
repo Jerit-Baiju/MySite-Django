@@ -1,0 +1,11 @@
+{
+    "apps": [
+        {
+            "name": "main",
+            "args": "runserver",
+            "script": "manage.py",
+            "exec_mode": "fork",
+            "exec_interpreter": "python3"
+        }
+    ]
+}
