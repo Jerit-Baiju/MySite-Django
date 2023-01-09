@@ -35,7 +35,8 @@ ALLOWED_HOSTS = [
     'jeritbaiju.pythonanywhere.com',
     '192.168.43.21',
     '.vercel.app',
-    'jerit.ml'
+    'jerit.ml',
+    'www.jerit.ml'
 ]
 
 # Application definition
