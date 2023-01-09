@@ -32,6 +32,8 @@ AUTH_USER_MODEL = 'base.User'
 
 ALLOWED_HOSTS = ['jerit.ml']
 
+CSRF_TRUSTED_OROGINS = ['https://jerit.ml']
+
 # Application definition
 
 INSTALLED_APPS = [
