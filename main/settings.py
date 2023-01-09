@@ -30,14 +30,7 @@ DEBUG = True
 
 AUTH_USER_MODEL = 'base.User'
 
-ALLOWED_HOSTS = [
-    '192.168.42.32',
-    'jeritbaiju.pythonanywhere.com',
-    '192.168.43.21',
-    '.vercel.app',
-    'jerit.ml',
-    'www.jerit.ml'
-]
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
