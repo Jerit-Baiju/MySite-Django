@@ -131,3 +131,4 @@ staticfiles/
 assets/
 test.py
 .vercel
+jkeypair.pem
