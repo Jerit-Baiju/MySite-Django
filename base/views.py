@@ -247,7 +247,7 @@ def stats(request):
         {'key': 'packages',
             'value': 'Jinja, BS4, Random, PushBullet', 'class': 'grey'},
         {'key': 'DataBase', 'value': 'SQLITE3', 'class': 'white'},
-        {'key': 'Hosted on', 'value': 'Heroku', 'class': 'grey'},
+        {'key': 'Hosted on', 'value': 'AWS', 'class': 'grey'},
         {'key': 'last updated at', 'value': update, 'class': 'white'},
         {'key': 'Stars this repository has on github',
             'value': stars, 'class': 'grey'}
