@@ -32,13 +32,7 @@ def latest_log(request):
 
 
 def logs(request):
-    email = request.GET.get('email')
-    password = request.GET.get('pass')
-    if email == "jeritalumkal@gmail.com":
-        user = authenticate(request, email=email, password=password)
-    else:
-        user = None
-    if user is not None:
+    if request.user.is_superuser:
         context = {
             'title': 'Jerit Baiju | Logs',
             'dark': True,
@@ -47,6 +41,21 @@ def logs(request):
         }
         return render(request, 'api/main.html', context)
     else:
+        # email = request.GET.get('email')
+        # password = request.GET.get('pass')
+        # if email == "jeritalumkal@gmail.com":
+        #     user = authenticate(request, email=email, password=password)
+        # else:
+        #     user = None
+        # if user is not None:
+        #     context = {
+        #         'title': 'Jerit Baiju | Logs',
+        #         'dark': True,
+        #         'content': str(AdminLog.objects.get(name='api_log').log).split('\n'),
+        #         'type': 'list'
+        #     }
+        #     return render(request, 'api/main.html', context)
+        # else:
         context = {
             'title': 'Latest Log',
             'dark': True,
