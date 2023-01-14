@@ -31,8 +31,6 @@ if os.environ['env'] == 'dev':
 else:
     DEBUG = False
 
-print(DEBUG)
-
 AUTH_USER_MODEL = 'base.User'
 
 ALLOWED_HOSTS = ['jerit.ml', '192.168.43.21']
