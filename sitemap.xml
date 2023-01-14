@@ -5,37 +5,37 @@
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
-  <loc>http://jerit.herokuapp.com/</loc>
+  <loc>https://jerit.ml/</loc>
   <lastmod>2022-04-12T10:04:31+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>http://jerit.herokuapp.com/projects/</loc>
+  <loc>https://jerit.ml/projects/</loc>
   <lastmod>2022-04-12T10:04:31+00:00</lastmod>
   <priority>0.90</priority>
 </url>
 <url>
-  <loc>http://jerit.herokuapp.com/gallery/</loc>
+  <loc>https://jerit.ml/gallery/</loc>
   <lastmod>2022-04-12T10:04:31+00:00</lastmod>
   <priority>0.90</priority>
 </url>
 <url>
-  <loc>http://jerit.herokuapp.com/stats/</loc>
+  <loc>https://jerit.ml/stats/</loc>
   <lastmod>2022-04-12T10:04:31+00:00</lastmod>
   <priority>0.80</priority>
 <url>
-  <loc>http://jerit.herokuapp.com/about/</loc>
+  <loc>https://jerit.ml/about/</loc>
   <lastmod>2022-04-12T10:04:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 </url>
 <url>
-  <loc>http://jerit.herokuapp.com/login/</loc>
+  <loc>https://jerit.ml/login/</loc>
   <lastmod>2022-04-12T10:04:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://jerit.herokuapp.com/register/</loc>
+  <loc>https://jerit.ml/register/</loc>
   <lastmod>2022-04-12T10:04:31+00:00</lastmod>
   <priority>0.64</priority>
 </url>

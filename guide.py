@@ -1,7 +1,7 @@
 import os
 while True:
     main = input('--> ')
-    if main == 'ssh' or main == 'server':
+    if main == 'ssh' or main == 'server' or main == 'jerit.ml':
         os.system(
             'ssh -i "server.pem" ubuntu@ec2-13-114-210-67.ap-northeast-1.compute.amazonaws.com')
     elif main == "run":

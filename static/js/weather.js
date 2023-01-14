@@ -1,5 +1,5 @@
 async function getData(city){
-    var url = 'https://jeritbaiju.pythonanywhere.com/api/weather/' + city
+    var url = 'https://jerit.ml/api/weather/' + city
   	const response = await fetch(url);
   	var data = await response.json();
   	var location = "<h4>"+ data["location"] +"</h4>"
