@@ -1,6 +1,5 @@
 {% extends 'main.html' %} {% block content %} {% load static %} {% load cache %}
 {% cache 86400 index %}
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Comforter&display=swap" rel="stylesheet">
@@ -61,7 +60,7 @@
     <div class="p-3">
       <h2 class="fw-light text-center text-uppercase">About Me</h2>
       <h5 class="fw-light">{% include 'src/intro.html' %} Read more about me <a class="link-dark"
-          href="/about">Here</a>.</h5>
+          href="/about">Here</a>.</h5><div id="install">Install App</div>
     </div>
     <hr />
   </section>
@@ -100,4 +99,5 @@
 </div>
 {% include 'footer.html' %}
 {% endcache %}
+<script src="{% static 'js/pwa-handler.js' %}"></script>
 {% endblock content %}

@@ -18,5 +18,7 @@ urlpatterns = [
     path('vijayamatha/', views.vijayamatha, name='vijayamatha'),
 
     path('sitemap.xml', views.sitemap, name='sitemap'),
-    path('robots.txt', views.robots, name='robots')
+    path('robots.txt', views.robots, name='robots'),
+    path('manifest.json', views.manifest, name='manifest'),
+    path('service-worker.js', views.serviceworker, name='serviceworker')
 ]

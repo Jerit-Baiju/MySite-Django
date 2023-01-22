@@ -288,14 +288,6 @@ def stats(request):
     return render(request, 'base/stats.html', context)
 
 
-def sitemap(request):
-    log(request, 'Sitemap')
-    return HttpResponse(open('sitemap.xml').read(), content_type='text/xml')
-
-
-def robots(request):
-    log(request, 'Robots')
-    return HttpResponse(open('robots.txt').read(), content_type='text/plain')
 
 
 def github(request):
@@ -316,3 +308,18 @@ def whatsapp(request):
 def vijayamatha(request):
     log(request, 'Vijayamatha')
     return redirect('https://vijayamathaschool.in')
+
+def sitemap(request):
+    log(request, 'Sitemap')
+    return HttpResponse(open('sitemap.xml').read(), content_type='text/xml')
+
+
+def robots(request):
+    log(request, 'Robots')
+    return HttpResponse(open('robots.txt').read(), content_type='text/plain')
+
+def manifest(request):
+    return HttpResponse(open('manifest.json').read(), content_type='text/json')
+
+def serviceworker(request):
+		return HttpResponse(open('service-worker.js').read(), content_type='text/plain')
