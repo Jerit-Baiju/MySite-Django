@@ -164,7 +164,7 @@ def home(request):
                 'Improving Work Ethic.',
                 'Passion is my genesis.',
                 'Developing new skills everyday.',
-                'Struggling for financial freedom.'],
+                'Yet programming.'],
         'quote': random.choice(quotes),
         'intro': intro,
         'skills': [
