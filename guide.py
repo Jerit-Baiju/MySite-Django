@@ -3,7 +3,7 @@ while True:
     main = input('--> ')
     if main == 'ssh' or main == 'server' or main == 'jerit.ml':
         os.system(
-            'ssh -i "server.pem" ubuntu@ec2-3-111-55-45.ap-south-1.compute.amazonaws.com')
+            'ssh -i "server.pem" ubuntu@ec2-3-111-58-41.ap-south-1.compute.amazonaws.com')
     elif main == "run":
         os.system('python manage.py runserver')
     elif main == 'x' or main == 'exit':
