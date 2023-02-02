@@ -101,7 +101,8 @@ def weather(request, city):
         soup = BeautifulSoup(page.content, 'html.parser')
         temperature = soup.find('span', attrs={'id': 'wob_ttm'}).text
         status = soup.find('span', attrs={'id': 'wob_dc'}).text
-        location = soup.find('div', attrs={'id': 'wob_loc'}).text
+        # location = soup.find('div', attrs={'id': 'wob_loc'}).text
+        location = city
         temperature_op = (f"{temperature} °F \n")
         status_op = (f"Status - {status} \n")
         image_url = soup.find('img', attrs={'id': 'wob_tci'}).get('src')
