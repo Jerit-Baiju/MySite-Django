@@ -1,8 +1,5 @@
 import random
-
-import requests
 from base.views import log
-from bs4 import BeautifulSoup
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
@@ -46,6 +43,7 @@ def clara(request):
         'name': request.user.first_name,
     }
     return render(request, 'projects/clara.html', context)
+
 
 @login_required(login_url='login-page')
 def num_Game(request):
