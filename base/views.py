@@ -232,7 +232,7 @@ def stats(request):
     stars = len(requests.get(star_url).json())
     today = date.today()
     birthday = datetime.strptime("February 10, 2006", r"%B %d, %Y")
-    age = today.year - birthday.year
+    age = today.year - birthday.year - ((today.month, today.day) < (birthday.month, birthday.day))
     birthday = birthday.strftime(r"%B %d, %Y")
     about_me = [
         {'key': 'age', 'value': age, 'class': 'grey'},
