@@ -52,7 +52,7 @@ def log(request, data):
 
 intro = '''Hi, I'm Jerit. I like building things. I am
 particularly interested in Django Framework. If you think I can be helpful to you or would
-like to meet me, please feel free to'''
+like to meet me, please feel free to '''
 
 
 def registerPage(request):
