@@ -111,5 +111,5 @@ def weather(request, city):
     except:
         context = {'success': False,
                    'op': 'No Location Found, Try entering your nearest place or city'}
-    log(request, f'weather - {city}')
+    log(request, f'Weather - {city}')
     return JsonResponse(context)
