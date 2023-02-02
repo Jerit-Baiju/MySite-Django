@@ -83,7 +83,7 @@ def num_Game_add(request):
         log(request, 'scored')
         return redirect('num-game')
     else:
-        messages.error(request, 'Please login to add your score.')
+        messages.error(request, 'An unknown error occurred.')
         return redirect('num-game')
 
 
