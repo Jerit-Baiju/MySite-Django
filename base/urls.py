@@ -1,6 +1,9 @@
 from django.urls import path
 from . import views
 
+# handler404 = views.custom404
+
+
 urlpatterns = [
     path('', views.home, name='home'),
 
@@ -20,5 +23,7 @@ urlpatterns = [
     path('sitemap.xml', views.sitemap, name='sitemap'),
     path('robots.txt', views.robots, name='robots'),
     path('manifest.json', views.manifest, name='manifest'),
-    path('service-worker.js', views.serviceworker, name='serviceworker')
+    path('service-worker.js', views.serviceworker, name='serviceworker'),
+    path('offline.html', views.offline_page, name='offline-page'),
+    path('t', views.custom_404, )
 ]

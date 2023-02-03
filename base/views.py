@@ -232,7 +232,8 @@ def stats(request):
     stars = len(requests.get(star_url).json())
     today = date.today()
     birthday = datetime.strptime("February 10, 2006", r"%B %d, %Y")
-    age = today.year - birthday.year - ((today.month, today.day) < (birthday.month, birthday.day))
+    age = today.year - birthday.year - \
+        ((today.month, today.day) < (birthday.month, birthday.day))
     birthday = birthday.strftime(r"%B %d, %Y")
     about_me = [
         {'key': 'age', 'value': age, 'class': 'grey'},
@@ -288,8 +289,6 @@ def stats(request):
     return render(request, 'base/stats.html', context)
 
 
-
-
 def github(request):
     log(request, 'GitHub')
     return redirect('https://github.com/Jerit-Baiju')
@@ -309,6 +308,11 @@ def vijayamatha(request):
     log(request, 'Vijayamatha')
     return redirect('https://vijayamathaschool.in')
 
+
+def custom_404(request, *args, **kwargs):
+    return render(request, '404.html', context={'hr': False}, status=404)
+
+
 def sitemap(request):
     log(request, 'Sitemap')
     return HttpResponse(open('sitemap.xml').read(), content_type='text/xml')
@@ -318,8 +322,14 @@ def robots(request):
     log(request, 'Robots')
     return HttpResponse(open('robots.txt').read(), content_type='text/plain')
 
+
 def manifest(request):
     return HttpResponse(open('manifest.json').read(), content_type='text/json')
 
+
 def serviceworker(request):
-		return HttpResponse(open('service-worker.js').read(), content_type='text/plain')
+    return HttpResponse(open('service-worker.js').read(), content_type='text/plain')
+
+
+def offline_page(request):
+    return render(request, 'offline.html', context={'hr': False})
