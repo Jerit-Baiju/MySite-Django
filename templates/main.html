@@ -37,7 +37,8 @@
   <div>
     {% if messages %} {% include 'messages.html' %} {% endif %}
     {% block content %}{% endblock content %}
-    <hr />
+    {% if hr != False %}<hr />{% endif %}
+    
   </div>
   {% cache 86400 bootjs %}
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
