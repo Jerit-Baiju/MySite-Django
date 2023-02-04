@@ -1,11 +1,21 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
 
 const CACHE = "jerit-baiju";
-const assets = [
-  "/"
-]
 
-const offlineFallbackPage = "offline.html";
+const assets = [
+    // pages
+    "/",
+    "/offline.html",
+    // icons
+    "/static/images/icons/404.png",
+    "/static/images/icons/offline.png",
+    // footer
+    "/static/images/footer/call.png",
+    "/static/images/footer/email.png",
+    "/static/images/footer/github.png",
+    "/static/images/footer/whatsapp.png",
+    "/static/images/footer/instagram.png",
+]
 
 self.addEventListener("message", (event) => {
   if (event.data && event.data.type === "SKIP_WAITING") {
@@ -13,10 +23,10 @@ self.addEventListener("message", (event) => {
   }
 });
 
-self.addEventListener('install', async (event) => {
+self.addEventListener('install',  (event) => {
   event.waitUntil(
     caches.open(CACHE)
-      .then((cache) => cache.add(offlineFallbackPage))
+      .then((cache) => cache.addAll(assets))
   );
 });
 
@@ -39,27 +49,9 @@ self.addEventListener('fetch', (event) => {
       } catch (error) {
 
         const cache = await caches.open(CACHE);
-        const cachedResp = await cache.match(offlineFallbackPage);
+        const cachedResp = await cache.match(assets);
         return cachedResp;
       }
     })());
   }
 });
-
-
-// old
-
-
-self.addEventListener("install", installEvent => {
-  installEvent.waitUntil(
-    caches.open(cache_name).then(cache => {
-      cache.addAll(assets)
-    })
-  )
-})
-
-self.addEventListener("fetch", fetchEvent => {
-  fetchEvent.respondWith(caches.match(fetchEvent.request).then(res => {
-    return res || fetch(fetchEvent.request)
-  }))
-})
