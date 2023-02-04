@@ -5,6 +5,7 @@ const CACHE = "jerit-baiju";
 const assets = [
     // pages
     "/",
+    "/stats",
     "/offline.html",
     // icons
     "/static/images/icons/404.png",
