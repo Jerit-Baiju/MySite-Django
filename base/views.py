@@ -328,7 +328,7 @@ def manifest(request):
 
 
 def serviceworker(request):
-    return HttpResponse(open('service-worker.js').read(), content_type='text/plain')
+    return HttpResponse(open('service-worker.js').read(), content_type='text/javascript')
 
 
 def offline_page(request):
