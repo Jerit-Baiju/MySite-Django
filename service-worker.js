@@ -16,6 +16,9 @@ const assets = [
     "/static/images/footer/github.png",
     "/static/images/footer/whatsapp.png",
     "/static/images/footer/instagram.png",
+    // cdns
+    "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css",
+    "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 ]
 
 self.addEventListener("message", (event) => {
