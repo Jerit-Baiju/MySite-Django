@@ -19,10 +19,6 @@ const assets = [
   // cdns
   "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css",
   "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js",
-  // fonts
-  "https://fonts.googleapis.com",
-  "https://fonts.gstatic.com",
-  "https://fonts.googleapis.com/css2?family=Comforter&display=swap"
 ]
 
 self.addEventListener("message", (event) => {
@@ -35,9 +31,7 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE)
       .then(function (cache){
-        cache.addAll(assets.map(function(assets){
-          return new Request(assets, {mode: "no-cors"})
-        }))
+        cache.addAll(assets)
       })
   );
 });
