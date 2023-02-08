@@ -25,5 +25,4 @@ urlpatterns = [
     path('manifest.json', views.manifest, name='manifest'),
     path('service-worker.js', views.serviceworker, name='serviceworker'),
     path('offline.html', views.offline_page, name='offline-page'),
-    path('t', views.custom_404, )
 ]
