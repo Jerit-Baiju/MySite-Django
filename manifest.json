@@ -1,17 +1,27 @@
 {
-    "name": "Jerit Baiju",
-    "short_name": "Jerit Baiju",
-    "icons": [
-      {
-        "src": "static/logo_512.png",
-        "sizes": "512x512",
-        "type": "image/png",
-      	"purpose": "any maskable"
-      }
-    ],
-    "start_url": "/",
-    "display": "standalone",
-    "background_color": "#f8f9fa",
-    "theme_color": "#f8f9fa",
-    "description" : "Jerit's Personal Website - Django Application."
-  }
+	"name": "Jerit Baiju",
+	"short_name": "Jerit Baiju",
+	"icons": [
+		{
+			"src": "static/logo_512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		},
+		{
+			"src": "static/logo_512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		},
+		{
+			"src": "static/maskable.png",
+			"sizes": "1080x1080",
+			"type": "image/png",
+			"purpose": "maskable"
+		}
+	],
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#f8f9fa",
+	"theme_color": "#f8f9fa",
+	"description": "Jerit's Personal Website - Django Application."
+}
