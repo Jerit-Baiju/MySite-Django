@@ -3,26 +3,26 @@ importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox
 const CACHE = "jerit-baiju";
 
 const assets = [
-    // pages
-    "/",
-    "/stats",
-    "/offline.html",
-    // icons
-    "/static/images/icons/404.png",
-    "/static/images/icons/offline.png",
-    // footer
-    "/static/images/footer/call.png",
-    "/static/images/footer/email.png",
-    "/static/images/footer/github.png",
-    "/static/images/footer/whatsapp.png",
-    "/static/images/footer/instagram.png",
-    // cdns
-    "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css",
-    "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js",
-    // fonts
-    //"https://fonts.googleapis.com",
-    //"https://fonts.gstatic.com",
-    //"https://fonts.googleapis.com/css2?family=Comforter&display=swap"
+  // pages
+  "/",
+  "/stats",
+  "/offline.html",
+  // icons
+  "/static/images/icons/404.png",
+  "/static/images/icons/offline.png",
+  // footer
+  "/static/images/footer/call.png",
+  "/static/images/footer/email.png",
+  "/static/images/footer/github.png",
+  "/static/images/footer/whatsapp.png",
+  "/static/images/footer/instagram.png",
+  // cdns
+  "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css",
+  "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js",
+  // fonts
+  "https://fonts.googleapis.com",
+  "https://fonts.gstatic.com",
+  "https://fonts.googleapis.com/css2?family=Comforter&display=swap"
 ]
 
 self.addEventListener("message", (event) => {
@@ -31,10 +31,14 @@ self.addEventListener("message", (event) => {
   }
 });
 
-self.addEventListener('install',  (event) => {
+self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE)
-      .then((cache) => cache.addAll(assets))
+      .then(function (cache){
+        cache.addAll(assets.map(function(assets){
+          return new Request(assets, {mode: "no-cors"})
+        }))
+      })
   );
 });
 
