@@ -1,10 +1,19 @@
-from base.models import AdminLog
-from base.views import push, log
-from django.shortcuts import render
-from django.contrib.auth import authenticate
-from django.http import JsonResponse
+import os
+from datetime import datetime
+
+import pytz
 import requests
 from bs4 import BeautifulSoup
+from django.contrib.auth import authenticate
+from django.core.cache import cache
+from django.http import JsonResponse
+from django.shortcuts import render
+from dotenv import load_dotenv
+
+from base.models import AdminLog
+from base.basic import log, push
+
+load_dotenv()
 # Create your views here.
 
 
@@ -114,3 +123,28 @@ def weather(request, city):
                    'op': 'No Location Found, Try entering your nearest place or city'}
     log(request, f'Weather - {city}')
     return JsonResponse(context)
+
+
+def github_api(request):
+    log(request, 'github-api-fetch')
+    auth=('jerit-baiju', os.environ['github_api'])
+    try:
+        update_url = 'https://api.github.com/repos/jerit-baiju/mysite-django'
+        github_url = "https://api.github.com/users/jerit-baiju"
+        star_url = "https://api.github.com/repos/Jerit-Baiju/MySite-Django/stargazers"
+        updated_at = requests.get(update_url, auth=auth).json()['pushed_at']
+        github = requests.get(github_url, auth=auth).json()
+        update_date = datetime.strptime(updated_at, r"%Y-%m-%dT%H:%S:%fZ")
+        update = update_date.astimezone(pytz.timezone("Asia/Kolkata")).strftime(r"%B %d, %Y")
+        stars = len(requests.get(star_url, auth=auth).json())
+        repositories = github['public_repos']
+        followers = github['followers']
+        following = github['following']
+        data = {'updated_at': update, 'stars': stars, 'repositories': repositories, 'followers': followers, 'following': following}
+        cache.set('github_data', data)
+        return data
+    except:
+        data = cache.get('github_data')
+        if data == None:
+            data = {'updated_at': 'update', 'stars': 'stars', 'repositories': 'repositories', 'followers': 'followers', 'following': 'following'}
+        return data

@@ -16,7 +16,7 @@
                     <div class="col-6 col-md-6 col-lg-6 fw-light">
                       {{content.key}}
                     </div>
-                    <div class="col-6 col-md-6 col-lg-6 fw-light text-break">
+                    <div id="{{content.key}}" class="col-6 col-md-6 col-lg-6 fw-light text-break">
                       {{content.value}}
                     </div>
                   </div>
@@ -58,4 +58,14 @@
 
     </div>
 </section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+<script>
+  const birth_date = moment(new Date("Feb 10 2006 20:20:00")); //02/10/2006
+  setInterval(() => {
+    const now = moment(new Date());
+    const diff = now.diff(birth_date);
+    const years = diff / (365.25 * 24 * 60 * 60 * 1000);
+    document.getElementById("age").innerHTML = years.toFixed(8)
+}, 100);
+</script>
 {% endblock content %}

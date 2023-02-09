@@ -1,5 +1,5 @@
 import random
-from base.views import log
+from base.basic import log
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
