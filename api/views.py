@@ -141,7 +141,7 @@ def github_api(request):
         followers = github['followers']
         following = github['following']
         data = {'updated_at': update, 'stars': stars, 'repositories': repositories, 'followers': followers, 'following': following}
-        cache.set('github_data', data)
+        cache.set('github_data', data, timeout=24*60*60)
         return data
     except:
         data = cache.get('github_data')
