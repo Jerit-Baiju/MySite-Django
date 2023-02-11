@@ -291,8 +291,9 @@ def offline_page(request):
 
 
 def install_pwa(request):
-    if request.POST.get('pwa') == True:
-        push(request, 'Installed APP')
-        return HttpResponse('OK')
+    if request.GET.get('pwa') == 'True':
+        push('Installed PWA')
+        log(request, 'Installed PWA')
+        return HttpResponse('ok')
     else:
         return custom_404(request)
