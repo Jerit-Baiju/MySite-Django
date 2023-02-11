@@ -30,10 +30,11 @@ self.addEventListener("message", (event) => {
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE)
-      .then(function (cache){
+      .then(function (cache) {
         cache.addAll(assets)
-        fetch('/install?pwa=True')
       })
+      .then(fetch('/install?pwa=True'))
+
   );
 });
 
