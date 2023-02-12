@@ -170,7 +170,8 @@ def about(request):
         "2019 - I created my own website using HTML only. Heard about programming languages (C++, Python, JavaScript).",
         "2020 - Made my own chatbot using VISUAL BASIC. I upgraded my computer from windows 7 to windows 10 by myself. Started to learn python, made simple command line applications. I made GUI apps for windows using Tkinter.",
         "2021 - Switched to Linux. Learned Flask, CSS, JavaScript. I published my website on PythonAnywhere (currently not available). Learned more about GIT, REACT and some DS. Made many projects like ChatBot named Clara (WEB), Weather app (CLI) etc.",
-        "2022 - Learned Django and hosted my website on HEROKU. Made a Package called PYFLIT for FLASK users, and created projects like Weather App (WEB), NUM GAME etc. Currently working on Django + React."
+        "2022 - Learned Django and hosted my website on HEROKU. Made a Package called PYFLIT for FLASK users, and created projects like Weather App (WEB), NUM GAME etc.",
+        "2023 - Started to learn ML & AI. Currently learning TensorFlow and Keras."
     ]
     context = {
         'title': 'About Me',
