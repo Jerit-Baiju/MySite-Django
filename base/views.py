@@ -13,7 +13,7 @@ from .basic import log, push
 from .models import User
 
 intro = '''Hi, I'm Jerit. I like building things. I am
-particularly interested in Django Framework. If you think I can be helpful to you or would
+particularly interested in Artificial Intelligence and Machine Learning. If you think I can be helpful to you or would
 like to meet me, please feel free to '''
 
 
