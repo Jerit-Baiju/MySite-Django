@@ -33,8 +33,6 @@ self.addEventListener('install', (event) => {
       .then(function (cache) {
         cache.addAll(assets)
       })
-      .then(fetch('/install?pwa=True'))
-
   );
 });
 

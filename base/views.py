@@ -288,12 +288,3 @@ def serviceworker(request):
 
 def offline_page(request):
     return render(request, 'offline.html', context={'hr': False})
-
-
-def install_pwa(request):
-    if request.GET.get('pwa') == 'True':
-        push('Installed PWA')
-        log(request, 'Installed PWA')
-        return HttpResponse('ok')
-    else:
-        return custom_404(request)

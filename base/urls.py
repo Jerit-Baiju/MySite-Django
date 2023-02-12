@@ -22,5 +22,4 @@ urlpatterns = [
     path('manifest.json', views.manifest, name='manifest'),
     path('service-worker.js', views.serviceworker, name='serviceworker'),
     path('offline.html', views.offline_page, name='offline-page'),
-    path('install', views.install_pwa, name='install-pwa')
 ]
