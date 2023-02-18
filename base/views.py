@@ -98,8 +98,6 @@ def home(request):
     if request.user.is_authenticated:
         if not request.user.is_superuser:
             push(f'Visited - {request.user.name}')
-    else:
-        push(f'Visited - Unknown User')
     log(request, 'Home')
     quotes = [
         {'quote': 'Just turn your Passion into your Profession.',
