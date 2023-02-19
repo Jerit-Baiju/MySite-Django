@@ -115,6 +115,7 @@ def yt_video(request):
             media_file.save()
             vid = YT_Video.objects.create(url=url, title=video.title, user=request.user)
             vid.save()
+            log(request, f'YT_Video - {video.title} - {video.filesize_mb} GB')
             return FileResponse(open(f'media/{request.user.email}.mp4', 'rb'), as_attachment=True, filename=f'{video.title}.mp4')
         else:
             messages.info(request, f'So sorry {request.user.first_name}, your requested file is bigger than 3 GB of file size.')
