@@ -1,9 +1,14 @@
 import random
-from base.basic import log
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.http import FileResponse
 from django.shortcuts import redirect, render
+from django.urls import reverse
+from pytube import YouTube
 
+from base.basic import log
+from base.models import YT_Video, Video
 # Create your views here.
 
 
@@ -23,7 +28,9 @@ def projects(request):
         {'name': 'Chat Bot API', 'info': 'This API provides you free commands, wikipedia support, user detection.',
             'src': 'https://github.com/jerit-baiju/chat_bot_api', 'btn': 'GitHub'},
         {'name': 'GitHub Activity Generator', 'info': 'Python script for creating commits, can specify number of commits, code consistency, and many more.',
-            'src': 'https://github.com/jerit-baiju/activity_generator', 'btn': 'GitHub'}
+            'src': 'https://github.com/jerit-baiju/activity_generator', 'btn': 'GitHub'},
+        {'name': 'YT video Downloader', 'info': 'You can download any youtube video with high resolution.',
+            'src': reverse('yt_video'), 'btn': 'Download'}
 
     ]
     random.shuffle(projects)
@@ -93,3 +100,19 @@ def weather(request):
         'dark': True
     }
     return render(request, 'projects/weather.html', context)
+
+@login_required(login_url='login-page')
+def yt_video(request):
+    if request.method == 'POST':
+        yt = YouTube(request.POST['yt_link'])
+        video = yt.streams.get_highest_resolution()
+        if video.filesize_gb <= 3:
+            vid = YT_Video.objects.create(file=open(video.download()), title=video.title, url=video.url)
+            request.user.video.save(vid)
+            return FileResponse(Video.objects.get(user=request.user), as_attachment=True, filename=f'{video.title}.mp4')
+        else:
+            messages.info(request, f'So sorry {request.user.first_name}, your requested file is bigger than 3 GB of file size.')
+            return render(request, 'projects/yt_video.html')
+
+    else:
+        return render(request, 'projects/yt_video.html')

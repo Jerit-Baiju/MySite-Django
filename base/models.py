@@ -35,20 +35,31 @@ class UserManager(BaseUserManager):
 
         return self._create_user(email, password, **extra_fields)
 
+
 class User(AbstractUser):
     username = None
     email = models.EmailField(unique=True)
-    name = models.CharField(max_length=200, null=True)
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     log = models.TextField(null=True, blank=True)
     score = models.IntegerField(null=True, blank=True)
     objects = UserManager()
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['first_name', 'last_name']
 
     def __str__(self):
-        return self.email
+        return f"{self.first_name} {self.last_name}"
+
+
+class Video(models.Model):
+    video_file = models.FileField(upload_to='videos')
+    yt = models.ForeignKey('YT_Video', on_delete=models.CASCADE)
+
+
+class YT_Video(models.Model):
+    url = models.URLField()
+    title = models.CharField(max_length=255)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
 
 class AdminLog(models.Model):

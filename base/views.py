@@ -38,7 +38,7 @@ def registerPage(request):
                 return render(request, 'base/register.html', {'title': 'Register | Jerit Baiju'})
             else:
                 user = User.objects.create_user(
-                    email=email, password=password, name=name, first_name=first_name, last_name=last_name)
+                    email=email, password=password, first_name=first_name, last_name=last_name)
                 user.save()
                 login(request, user)
                 log(request, f"Registered - {name}")
@@ -70,9 +70,9 @@ def loginPage(request):
             return render(request, 'base/login.html', {'title': 'Login | Jerit Baiju'})
         user = authenticate(request, email=email, password=password)
         if user is not None:
-            log(request, f"Login - {user.name}")
+            log(request, f"Login - {user}")
             login(request, user)
-            push(f'Login - {user.name}')
+            push(f'Login - {user}')
             try:
                 url = request.POST.get('next')
                 cache.clear()
@@ -87,7 +87,7 @@ def loginPage(request):
 
 
 def logoutPage(request):
-    push(f"Logout - {request.user.name}")
+    push(f"Logout - {request.user}")
     log(request, 'Logout')
     logout(request)
     cache.clear()
@@ -97,7 +97,7 @@ def logoutPage(request):
 def home(request):
     if request.user.is_authenticated:
         if not request.user.is_superuser:
-            push(f'Visited - {request.user.name}')
+            push(f'Visited - {request.user}')
     log(request, 'Home')
     quotes = [
         {'quote': 'Just turn your Passion into your Profession.',
@@ -213,7 +213,7 @@ def stats(request):
         else:
             score = user.score
         about_user = [
-            {'key': 'name', 'value': user.name, 'class': 'grey'},
+            {'key': 'name', 'value': user, 'class': 'grey'},
             {'key': 'e-mail', 'value': user.email, 'class': 'white'},
             {'key': 'score', 'value': score, 'class': 'grey'},
             {'key': 'last login', 'value': user.last_login.date, 'class': 'white'},
