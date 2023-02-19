@@ -8,7 +8,7 @@ from django.urls import reverse
 from pytube import YouTube
 
 from base.basic import log
-from base.models import YT_Video, Video
+
 # Create your views here.
 
 
@@ -107,9 +107,8 @@ def yt_video(request):
         yt = YouTube(request.POST['yt_link'])
         video = yt.streams.get_highest_resolution()
         if video.filesize_gb <= 3:
-            vid = YT_Video.objects.create(file=open(video.download()), title=video.title, url=video.url)
-            request.user.video.save(vid)
-            return FileResponse(Video.objects.get(user=request.user), as_attachment=True, filename=f'{video.title}.mp4')
+            video.download('media/', filename=f'{request.user.email}.mp4')
+            return FileResponse(open(f'media/{request.user.email}.mp4', 'rb'), as_attachment=True, filename=f'{video.title}.mp4')
         else:
             messages.info(request, f'So sorry {request.user.first_name}, your requested file is bigger than 3 GB of file size.')
             return render(request, 'projects/yt_video.html')
