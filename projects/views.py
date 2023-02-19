@@ -110,7 +110,6 @@ def yt_video(request):
         video = yt.streams.get_highest_resolution()
         if video.filesize_gb <= 3:
             path = video.download('media/', filename=f'{request.user.email}.mp4')
-            print(path)
             time_to_delete = datetime.datetime.now() + datetime.timedelta(minutes=30)
             media_file = MediaFile.objects.create(file_path=path, time_to_delete=time_to_delete)
             media_file.save()
