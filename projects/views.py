@@ -9,7 +9,7 @@ from pytube import YouTube
 
 from base.basic import log
 import datetime
-from base.models import MediaFile, YT_Video
+from base.models import MediaFile, Videos
 # Create your views here.
 
 

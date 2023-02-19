@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User, AdminLog, AdminSecret, YT_Video as Videos
+from .models import User, AdminLog, AdminSecret, Videos
 # Register your models here.
 
 
