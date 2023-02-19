@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User, AdminLog, AdminSecret, Videos
+from .models import User, AdminLog, AdminSecret, Video
 # Register your models here.
 
 
@@ -14,4 +14,4 @@ class Secret(admin.ModelAdmin):
 admin.site.register(User)
 admin.site.register(AdminLog, Log)
 admin.site.register(AdminSecret, Secret)
-admin.site.register(Videos)
+admin.site.register(Video)

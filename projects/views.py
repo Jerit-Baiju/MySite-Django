@@ -9,7 +9,7 @@ from pytube import YouTube
 
 from base.basic import log
 import datetime
-from base.models import MediaFile, Videos
+from base.models import MediaFile, Video
 # Create your views here.
 
 
@@ -113,7 +113,7 @@ def yt_video(request):
             time_to_delete = datetime.datetime.now() + datetime.timedelta(minutes=30)
             media_file = MediaFile.objects.create(file_path=path, time_to_delete=time_to_delete)
             media_file.save()
-            vid = YT_Video.objects.create(url=url, title=video.title, user=request.user)
+            vid = Video.objects.create(url=url, title=video.title, user=request.user)
             vid.save()
             log(request, f'YT_Video - {video.title} - {video.filesize_mb} GB')
             return FileResponse(open(f'media/{request.user.email}.mp4', 'rb'), as_attachment=True, filename=f'{video.title}.mp4')

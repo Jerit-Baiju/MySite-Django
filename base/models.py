@@ -55,7 +55,7 @@ class User(AbstractUser):
         return f"{self.first_name} {self.last_name}"
 
 
-class Videos(models.Model):
+class Video(models.Model):
     url = models.URLField()
     title = models.CharField(max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
