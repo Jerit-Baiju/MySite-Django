@@ -8,7 +8,8 @@ from django.urls import reverse
 from pytube import YouTube
 
 from base.basic import log
-
+import datetime
+from base.models import MediaFile, YT_Video
 # Create your views here.
 
 
@@ -104,10 +105,17 @@ def weather(request):
 @login_required(login_url='login-page')
 def yt_video(request):
     if request.method == 'POST':
-        yt = YouTube(request.POST['yt_link'])
+        url = request.POST['yt_link']
+        yt = YouTube(url)
         video = yt.streams.get_highest_resolution()
         if video.filesize_gb <= 3:
-            video.download('media/', filename=f'{request.user.email}.mp4')
+            path = video.download('media/', filename=f'{request.user.email}.mp4')
+            print(path)
+            time_to_delete = datetime.datetime.now() + datetime.timedelta(minutes=30)
+            media_file = MediaFile.objects.create(file_path=path, time_to_delete=time_to_delete)
+            media_file.save()
+            vid = YT_Video.objects.create(url=url, title=video.title, user=request.user)
+            vid.save()
             return FileResponse(open(f'media/{request.user.email}.mp4', 'rb'), as_attachment=True, filename=f'{video.title}.mp4')
         else:
             messages.info(request, f'So sorry {request.user.first_name}, your requested file is bigger than 3 GB of file size.')

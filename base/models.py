@@ -1,5 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
+import os
+import datetime
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 # Create your models here.
 
 
@@ -36,11 +40,6 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
 
-class YT_Video(models.Model):
-    url = models.URLField()
-    title = models.CharField(max_length=255)
-
-
 class User(AbstractUser):
     username = None
     email = models.EmailField(unique=True)
@@ -48,7 +47,6 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=20)
     log = models.TextField(null=True, blank=True)
     score = models.IntegerField(null=True, blank=True)
-    videos = models.ManyToManyField(YT_Video)
     objects = UserManager()
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
@@ -57,6 +55,28 @@ class User(AbstractUser):
         return f"{self.first_name} {self.last_name}"
 
 
+class YT_Video(models.Model):
+    url = models.URLField()
+    title = models.CharField(max_length=255)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+class MediaFile(models.Model):
+    file_path = models.CharField(max_length=255)
+    time_to_delete = models.DateTimeField()
+
+
+@receiver(post_save, sender=MediaFile)
+def schedule_media_file_deletion(sender, instance, created, **kwargs):
+    if created:
+        file_path = instance.file_path
+        time_to_delete = instance.time_to_delete
+        current_time = datetime.datetime.now()
+
+        if current_time > time_to_delete:
+            os.remove(file_path)
+        else:
+            pass
 
 
 class AdminLog(models.Model):
