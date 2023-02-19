@@ -60,6 +60,10 @@ class YT_Video(models.Model):
     title = models.CharField(max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"{self.user} - {self.title}" 
+    
+
 
 class MediaFile(models.Model):
     file_path = models.CharField(max_length=255)
