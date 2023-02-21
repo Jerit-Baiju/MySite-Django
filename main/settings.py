@@ -164,3 +164,10 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+WEBPUSH_SETTINGS = {
+    "VAPID_PUBLIC_KEY": os.environ['vapid_public_key'],
+    "VAPID_PRIVATE_KEY": os.environ['vapid_private_key'],
+    "VAPID_ADMIN_URL": 'jeritalumkal@gmail.com',
+}
