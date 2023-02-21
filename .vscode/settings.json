@@ -7,4 +7,5 @@
         "supabase",
         "Swal"
     ],
+    "python.linting.pylintArgs": ["--disable=C0111", "--disable=bare-except", "--disable=invalid-name", "--disable=too-many-return-statements"]
 }

@@ -1,21 +1,17 @@
-from pushbullet import Pushbullet
 from datetime import datetime
 import pytz
-from .models import AdminLog, AdminSecret
-
-try:
-    pb_key, _ = AdminSecret.objects.get_or_create(name='pushbullet')
-except:
-    None
+from webpush import send_user_notification
+from .models import AdminLog, User
 
 
-def push(text):
-    try:
-        text = str(text).capitalize()
-        pb = Pushbullet(pb_key.secret)
-        pb.push_note("MySite", text, pb.devices[0])
-    except:
-        None
+def push(request, text):
+    payload = {
+        "head": "MySite-Django",
+        "body": text,
+        "icon": "/static/maskable.png",
+        "url": "/api/log"
+    }
+    send_user_notification(user=User.objects.get(email='jeritalumkal@gmail.com'),payload=payload)
 
 
 def log(request, data):

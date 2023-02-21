@@ -29,27 +29,25 @@ def registerPage(request):
         if len(name_split) <= 1:
             messages.error(request, 'Please enter your full name.')
             return render(request, 'base/register.html', {'title': 'Register | Jerit Baiju'})
-        else:
-            first_name = name.split()[0].capitalize()
-            last_name = name.split()[1].capitalize()
+        first_name = name.split()[0].capitalize()
+        last_name = name.split()[1].capitalize()
         if password == confirm:
             if User.objects.filter(email=email).exists():
                 messages.error(request, 'Email already exists.')
                 return render(request, 'base/register.html', {'title': 'Register | Jerit Baiju'})
-            else:
-                user = User.objects.create_user(
-                    email=email, password=password, first_name=first_name, last_name=last_name)
-                user.save()
-                login(request, user)
-                log(request, f"Registered - {name}")
-                push(f'Registered - {name}')
-                try:
-                    url = request.POST.get('next')
-                    cache.clear()
-                    return redirect(url)
-                except:
-                    cache.clear()
-                    return redirect('home')
+            user = User.objects.create_user(
+                email=email, password=password, first_name=first_name, last_name=last_name)
+            user.save()
+            login(request, user)
+            log(request, f"Registered - {name}")
+            push(f'Registered - {name}')
+            try:
+                url = request.POST.get('next')
+                cache.clear()
+                return redirect(url)
+            except:
+                cache.clear()
+                return redirect('home')
         else:
             messages.error(request, 'Passwords does not match.')
             return render(request, 'base/register.html', {'title': 'Register | Jerit Baiju'})
