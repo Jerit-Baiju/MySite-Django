@@ -61,3 +61,14 @@ self.addEventListener('fetch', (event) => {
     })());
   }
 });
+
+self.addEventListener('push', function(event){
+  const data = event.data.json()
+  event.waitUntil(
+    self.ServiceWorkerRegistration.showNotification(data.head, {
+      body: body.data,
+      icon: data.icon,
+      data: {url: data.url}
+    })
+  )
+})
