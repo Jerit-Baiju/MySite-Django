@@ -4,7 +4,7 @@ from webpush import send_user_notification
 from .models import AdminLog, User
 
 
-def push(request, text):
+def push(text):
     payload = {
         "head": "MySite-Django",
         "body": text,
