@@ -11,6 +11,7 @@ from api.views import github_api
 
 from .basic import log, push
 from .models import User
+import os
 
 intro = '''Hi, I'm Jerit. I like building things. I am
 particularly interested in Artificial Intelligence and Machine Learning. If you think I can be helpful to you or would
