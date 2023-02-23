@@ -1,6 +1,6 @@
 {% extends 'main.html' %} {% block content %} {% load static %} {% load cache %}
 {% cache 86400 projects %}
-<link rel="stylesheet" href="{% static 'css/projects/projects.css' %}">
+<link rel="stylesheet" href="{% static 'css/projects/projects.css' %}" />
 <section>
   <div class="container">
     <h1 class="text-center fw-light">Projects</h1>
@@ -11,9 +11,7 @@
         <div class="card my-card">
           <div class="card-body">
             <h5 class="card-title fw-light">{{project.name}}</h5>
-            <p class="card-text fw-light">
-              {{project.info}}
-            </p>
+            <p class="card-text fw-light">{{project.info}}</p>
             <a href="{{project.src}}" class="fw-light link my-button">
               {{project.btn}}
             </a>
@@ -24,5 +22,4 @@
     </div>
   </div>
 </section>
-{% endcache %}
-{% endblock content %}
+{% endcache %} {% endblock content %}
