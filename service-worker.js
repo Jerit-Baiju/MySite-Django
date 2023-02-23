@@ -127,3 +127,30 @@ const subscribe = async (reg) => {
   const sub = await reg.pushManager.subscribe(options);
   sendSubData(sub)
 };
+
+
+const sendSubData = async (subscription) => {
+  const browser = navigator.userAgent.match(/(firefox|msie|chrome|safari|trident)/ig)[0].toLowerCase();
+  const data = {
+    status_type: 'subscribe',
+    subscription: subscription.toJSON(),
+    browser: browser,
+  };
+
+  const res = await fetch('/webpush/save_information', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'content-type': 'application/json'
+    },
+    credentials: "include"
+  });
+
+  handleResponse(res);
+};
+
+const handleResponse = (res) => {
+  console.log(res.status);
+};
+
+registerSw();
