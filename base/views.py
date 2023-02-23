@@ -1,8 +1,10 @@
+import os
 import random
 from datetime import date, datetime
 
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.core.cache import cache
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
@@ -10,10 +12,7 @@ from django.shortcuts import redirect, render
 from api.views import github_api
 
 from .basic import log, push
-from .models import User, Device
-import os
-from django.contrib.auth.decorators import login_required
-
+from .models import Device, User
 
 intro = '''Hi, I'm Jerit. I like building things. I am
 particularly interested in Artificial Intelligence and Machine Learning. If you think I can be helpful to you or would
@@ -100,7 +99,8 @@ def register_device(request):
     if request.user.is_superuser:
         device_token = request.GET.get('device_token')
         user = request.user
-        device = Device.objects.get_or_create(user=user, device_token=device_token)
+        device = Device.objects.get_or_create(
+            user=user, device_token=device_token)
         device.save()
         return HttpResponse("REGISTERED DEVICE")
 
