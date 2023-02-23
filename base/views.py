@@ -18,7 +18,7 @@ particularly interested in Artificial Intelligence and Machine Learning. If you 
 like to meet me, please feel free to '''
 
 
-def registerPage(request):
+def register_page(request):
     if request.user.is_authenticated:
         return redirect('home')
     if request.method == 'POST':
@@ -56,7 +56,7 @@ def registerPage(request):
         return render(request, 'base/register.html', {'title': 'Register | Jerit Baiju'})
 
 
-def loginPage(request):
+def login_page(request):
     if request.user.is_authenticated:
         return redirect('home')
     if request.method == 'POST':
@@ -85,7 +85,7 @@ def loginPage(request):
     return render(request, 'base/login.html', {'title': 'Login | Jerit Baiju'})
 
 
-def logoutPage(request):
+def logout_page(request):
     push(f"Logout - {request.user}")
     log(request, 'Logout')
     logout(request)
@@ -120,7 +120,7 @@ def home(request):
             'author': 'Mark Zuckerberg'},
         {'quote': "First, solve the problem. Then, write the code.",
             'author': 'John Johnson'},
-        {'quote': 'A computer is like a mischievous genie. It will give you exactly what you   ask for, but not always what  you want.', 'author': 'Joe Sondow'},
+        {'quote': 'A computer is like a mischievous genie. It will give you exactly what you ask for, but not always what you want.', 'author': 'Joe Sondow'},
         {'quote': 'A good programmer looks both ways before crossing a one-way street.',
          'author': ''},
         {'quote': 'A person who never made a mistake never tried anything new.',
@@ -220,7 +220,7 @@ def stats(request):
             'value': github_data['stars'], 'class': 'grey'}
     ]
     if user.is_authenticated:
-        if user.score == None:
+        if user.score is None:
             score = 0
         else:
             score = user.score
@@ -233,12 +233,12 @@ def stats(request):
         ]
     else:
         about_user = 'None'
-    stats = [
+    stats_data = [
         {'name': 'about me', 'contents': about_me},
         {'name': 'this website', 'contents': about_web},
         {'name': 'about you', 'contents': about_user}
     ]
-    GitHub = [
+    github_data = [
         {'key': 'repositories',
             'value': github_data['repositories'], 'class': 'grey'},
         {'key': 'followers',
@@ -248,8 +248,8 @@ def stats(request):
     ]
     context = {
         'title': 'Stats | Jerit Baiju',
-        'stats': stats,
-        'GitHub': GitHub,
+        'stats': stats_data,
+        'GitHub': github,
         'page': 'stats'
     }
     return render(request, 'base/stats.html', context)
