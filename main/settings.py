@@ -164,10 +164,3 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-PUSH_NOTIFICATION_SETTINGS = {
-    'FCM_API_KEY': os.environ['fcm_api_key'],
-    'GCM_API_KEY': os.environ['gcm_api_key'],
-    'APNS_CERTIFICATE': os.environ['apns_certificate'],
-}
