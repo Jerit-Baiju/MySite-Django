@@ -162,7 +162,6 @@ def home(request):
                 'link': False,
             }
         ],
-        'firebase': os.environ['firebase'],
 
     }
     return render(request, 'base/index.html', context)
