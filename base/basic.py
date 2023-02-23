@@ -1,7 +1,8 @@
 from datetime import datetime
 import pytz
-from webpush import send_user_notification
+from pyfcm import FCMNotification
 from .models import AdminLog, User
+
 
 
 def push(text):
