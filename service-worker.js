@@ -61,19 +61,17 @@ self.addEventListener('fetch', (event) => {
     })());
   }
 });
+const registerSw = async () => {
+  if ('serviceWorker' in navigator) {
+    const reg = await navigator.serviceWorker.register('sw.js');
+    initialiseState(reg)
 
-self.addEventListener('push', function (event) {
-  const data = event.data.json()
-  event.waitUntil(
-    self.ServiceWorkerRegistration.showNotification(data.head, {
-      body: body.data,
-      icon: data.icon,
-      data: { url: data.url }
-    })
-  )
-})
+  } else {
+    showNotAllowed("You can't send push notifications ☹️😢")
+  }
+};
 
-const initializeState = (reg) => {
+const initialiseState = (reg) => {
   if (!reg.showNotification) {
     showNotAllowed('Showing notifications isn\'t supported ☹️😢');
     return
@@ -94,7 +92,6 @@ const showNotAllowed = (message) => {
   button.innerHTML = `${message}`;
   button.setAttribute('disabled', 'true');
 };
-
 
 function urlB64ToUint8Array(base64String) {
   const padding = '='.repeat((4 - base64String.length % 4) % 4);
@@ -127,7 +124,6 @@ const subscribe = async (reg) => {
   const sub = await reg.pushManager.subscribe(options);
   sendSubData(sub)
 };
-
 
 const sendSubData = async (subscription) => {
   const browser = navigator.userAgent.match(/(firefox|msie|chrome|safari|trident)/ig)[0].toLowerCase();
