@@ -1,3 +1,4 @@
+import datetime
 import random
 
 from django.contrib import messages
@@ -8,14 +9,14 @@ from django.urls import reverse
 from pytube import YouTube
 
 from base.basic import log
-import datetime
 from base.models import MediaFile, Video
+
 # Create your views here.
 
 
 def projects(request):
     log(request, 'Projects')
-    projects = [
+    projects_data = [
         {'name': 'Weather App', 'info': 'A project to get weather from all places, working by scrapping data from GOOGLE WEATHER.',
             'src': '/projects/weather', 'btn': 'Go'},
         {'name': 'PyFlit', 'info': 'Tool for adding components and pages in FLASK. Can be used to send PYTHON variables to JAVASCRIPT.',
@@ -34,7 +35,7 @@ def projects(request):
             'src': reverse('yt_video'), 'btn': 'Download'}
 
     ]
-    random.shuffle(projects)
+    random.shuffle(projects_data)
     context = {
         'title': 'Projects | Jerit Baiju',
         'projects': projects,
@@ -54,8 +55,8 @@ def clara(request):
 
 
 @login_required(login_url='login-page')
-def num_Game(request):
-    if request.user.score == None:
+def num_game(request):
+    if request.user.score is None:
         score = 0
     else:
         score = request.user.score
@@ -68,21 +69,20 @@ def num_Game(request):
             'title': 'Number Game'
         }
         return render(request, 'projects/num_game.html', context)
-    else:
-        log(request, 'Num Game')
-        context = {
-            'score': score,
-            'title': 'Number Game',
-            'randint': random.randint(0, 100),
-            'dark': True
-        }
-        return render(request, 'projects/num_game.html', context)
+    log(request, 'Num Game')
+    context = {
+        'score': score,
+        'title': 'Number Game',
+        'randint': random.randint(0, 100),
+        'dark': True
+    }
+    return render(request, 'projects/num_game.html', context)
 
 
 @login_required(login_url='login-page')
-def num_Game_add(request):
+def num_game_add(request):
     if request.user.is_authenticated:
-        if request.user.score == None:
+        if request.user.score is None:
             score = 0
         else:
             score = request.user.score
@@ -106,8 +106,8 @@ def weather(request):
 def yt_video(request):
     if request.method == 'POST':
         url = request.POST['yt_link']
-        yt = YouTube(url)
-        video = yt.streams.get_highest_resolution()
+        youtube = YouTube(url)
+        video = youtube.streams.get_highest_resolution()
         if video.filesize_gb <= 3:
             path = video.download('media/', filename=f'{request.user.email}.mp4')
             time_to_delete = datetime.datetime.now() + datetime.timedelta(minutes=30)
