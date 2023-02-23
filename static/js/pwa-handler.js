@@ -1,18 +1,14 @@
-if (typeof navigator.serviceWorker !== 'undefined') {
-    navigator.serviceWorker.register('service-worker.js')
-  }
-
 const registerSw = async () => {
   if ('serviceWorker' in navigator) {
-    const reg = await navigator.serviceWorker.register('sw.js');
-    initialiseState(reg)
+    navigator.serviceWorker.register('service-worker.js')
+    initializeState(reg)
 
   } else {
     showNotAllowed("You can't send push notifications ☹️😢")
   }
 };
 
-const initialiseState = (reg) => {
+const initializeState = (reg) => {
   if (!reg.showNotification) {
     showNotAllowed('Showing notifications isn\'t supported ☹️😢');
     return
