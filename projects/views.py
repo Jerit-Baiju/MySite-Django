@@ -38,7 +38,7 @@ def projects(request):
     random.shuffle(projects_data)
     context = {
         'title': 'Projects | Jerit Baiju',
-        'projects': projects,
+        'projects': projects_data,
         'page': 'projects'
     }
     return render(request, 'projects/projects.html', context)
