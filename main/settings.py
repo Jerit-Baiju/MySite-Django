@@ -33,7 +33,7 @@ else:
 
 AUTH_USER_MODEL = 'base.User'
 
-ALLOWED_HOSTS = ['jerit.ml', '192.168.43.21', 'localhost']
+ALLOWED_HOSTS = ['jerit.ml', '192.168.43.21', 'localhost', '127.0.0.1']
 
 CSRF_TRUSTED_ORIGINS = ['https://jerit.ml']
 

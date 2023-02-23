@@ -92,3 +92,8 @@ class AdminLog(models.Model):
 class AdminSecret(models.Model):
     name = models.CharField(max_length=20, null=True)
     secret = models.CharField(max_length=100, null=True, blank=True)
+
+
+class Device(models.Model):
+    token = models.CharField(max_length=225, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)

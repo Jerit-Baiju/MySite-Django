@@ -12,6 +12,7 @@ from api.views import github_api
 from .basic import log, push
 from .models import User
 import os
+from django.contrib.auth.decorators import login_required
 
 
 intro = '''Hi, I'm Jerit. I like building things. I am
@@ -92,6 +93,16 @@ def logoutPage(request):
     logout(request)
     cache.clear()
     return redirect('home')
+
+
+@login_required
+def register_device(request):
+    if request.user.is_superuser:
+        device_token = request.GET.get('device_token')
+        user = request.user
+        device = Device.objects.get_or_create(user=user, device_token=device_token)
+        device.save()
+        return HttpResponse("REGISTERED DEVICE")
 
 
 def home(request):
