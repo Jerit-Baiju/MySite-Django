@@ -72,3 +72,25 @@ self.addEventListener('push', function(event){
     })
   )
 })
+
+const initializeState = (reg) => {
+  if (!reg.showNotification) {
+    showNotAllowed('Showing notifications isn\'t supported ☹️😢');
+    return
+  }
+  if (Notification.permission === 'denied') {
+    showNotAllowed('You prevented us from showing notifications ☹️🤔');
+    return
+  }
+  if (!'PushManager' in window) {
+    showNotAllowed("Push isn't allowed in your browser 🤔");
+    return
+  }
+  subscribe(reg);
+}
+
+const showNotAllowed = (message) => {
+  const button = document.querySelector('form>button');
+  button.innerHTML = `${message}`;
+  button.setAttribute('disabled', 'true');
+};
