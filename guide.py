@@ -1,14 +1,15 @@
 import os
+import sys
 while True:
     main = input('--> ')
-    if main == 'ssh' or main == 'server' or main == 'jerit.ml':
+    if main  in ['ssh', 'server', 'jerit.ml']:
         os.system(
             'ssh -i "server.pem" ubuntu@ec2-3-110-104-225.ap-south-1.compute.amazonaws.com')
     elif main == "run":
         os.system('clear')
         os.system('python manage.py runserver')
-    elif main == 'x' or main == 'exit':
-        exit()
+    elif main in ['exit', 'quit', 'x']:
+        sys.exit()
     elif main == 'clear' or main == 'clr':
         os.system('clear')
     elif main == 'push':
