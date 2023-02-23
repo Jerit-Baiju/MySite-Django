@@ -9,14 +9,17 @@ fcm = FCMNotification(api_key=fcm_api)
 
 
 def push(text):
-    data = {
-        'body': text,
-    }
-    super_user = User.objects.filter(is_superuser=True).first()
-    device = Device.objects.filter(user_id=super_user).first()
-    token = device.token
-    message = fcm.notify_single_device(registration_id=token, data=data)
-    return message
+    try:
+        data = {
+            'body': text,
+        }
+        super_user = User.objects.filter(is_superuser=True).first()
+        device = Device.objects.filter(user_id=super_user).first()
+        token = device.token
+        message = fcm.notify_single_device(registration_id=token, data=data)
+        return message
+    except:
+        None
 
 def log(request, data):
     date = datetime.now(pytz.timezone("Asia/Kolkata")

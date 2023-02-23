@@ -10,7 +10,7 @@ from django.shortcuts import redirect, render
 from api.views import github_api
 
 from .basic import log, push
-from .models import User
+from .models import User, Device
 import os
 from django.contrib.auth.decorators import login_required
 
