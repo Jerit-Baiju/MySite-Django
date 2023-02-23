@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
 
     # 'rest_framework'
-    'webpush'
+    'push_notifications'
 ]
 
 
@@ -166,8 +166,8 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-WEBPUSH_SETTINGS = {
-    "VAPID_PUBLIC_KEY": os.environ['vapid_public_key'],
-    "VAPID_PRIVATE_KEY": os.environ['vapid_private_key'],
-    "VAPID_ADMIN_URL": 'jeritalumkal@gmail.com',
+PUSH_NOTIFICATION_SETTINGS = {
+    'FCM_API_KEY': os.environ['fcm_api_key'],
+    'GCM_API_KEY': os.environ['gcm_api_key'],
+    'APNS_CERTIFICATE': os.environ['apns_certificate'],
 }
