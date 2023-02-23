@@ -13,7 +13,7 @@ from api.views import github_api
 from .basic import log, push
 from .models import Device, User
 
-intro = '''Hi, I'm Jerit. I like building things. I am
+INTRO = '''Hi, I'm Jerit. I like building things. I am
 particularly interested in Artificial Intelligence and Machine Learning. If you think I can be helpful to you or would
 like to meet me, please feel free to '''
 
@@ -138,7 +138,7 @@ def home(request):
                 'Developing new skills everyday.',
                 'Yet programming.'],
         'quote': random.choice(quotes),
-        'intro': intro,
+        'intro': INTRO,
         'skills': [
             'Git', 'Python', 'Heroku', 'Django', 'Project Management', 'Google Search Console',
         ],
@@ -186,7 +186,7 @@ def about(request):
     context = {
         'title': 'About Me',
         'history': history,
-        'intro': intro
+        'intro': INTRO
     }
     return render(request, 'base/about.html', context)
 
