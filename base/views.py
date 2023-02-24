@@ -1,3 +1,4 @@
+import os
 import random
 from datetime import date, datetime
 
@@ -161,7 +162,7 @@ def home(request):
                 'link': False,
             }
         ],
-
+        'firebase': os.environ.get('fcm_api_key'),
     }
     return render(request, 'base/index.html', context)
 

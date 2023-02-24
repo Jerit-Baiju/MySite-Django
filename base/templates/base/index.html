@@ -100,4 +100,27 @@
 {% include 'footer.html' %}
 {% endcache %}
 <script src="{% static 'js/pwa-handler.js' %}"></script>
+ <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "{{firebase}}",
+    authDomain: "mysite-django-76015.firebaseapp.com",
+    projectId: "mysite-django-76015",
+    storageBucket: "mysite-django-76015.appspot.com",
+    messagingSenderId: "173815274640",
+    appId: "1:173815274640:web:0739beca7c549ed4dbcc15",
+    measurementId: "G-WS2GE5QYQR"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 {% endblock content %}
