@@ -9,5 +9,6 @@
   ],
   "python.linting.pylintEnabled": true,
   "python.linting.pycodestyleEnabled": false,
-  "python.linting.enabled": true
+  "python.linting.enabled": true,
+  "python.linting.pylintPath": "{workspaceRoot}/env/python/lint",
 }
