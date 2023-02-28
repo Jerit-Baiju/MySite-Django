@@ -1,8 +1,10 @@
+import os
 from datetime import datetime
+
 import pytz
 from pyfcm import FCMNotification
-from .models import AdminLog, User, Device
-import os
+
+from .models import AdminLog, Device, User
 
 fcm_api = os.environ['fcm_api_key']
 fcm = FCMNotification(api_key=fcm_api)
@@ -20,6 +22,7 @@ def push(text):
         return message
     except:
         pass
+
 
 def log(request, data):
     date = datetime.now(pytz.timezone("Asia/Kolkata")
