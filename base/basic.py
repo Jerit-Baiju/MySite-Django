@@ -19,7 +19,7 @@ def push(text):
         message = fcm.notify_single_device(registration_id=token, data=data)
         return message
     except:
-        None
+        pass
 
 def log(request, data):
     date = datetime.now(pytz.timezone("Asia/Kolkata")
