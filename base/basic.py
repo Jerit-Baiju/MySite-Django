@@ -18,7 +18,7 @@ def push(text):
         super_user = User.objects.filter(is_superuser=True).first()
         device = Device.objects.filter(user_id=super_user).first()
         token = device.token
-        message = fcm.notify_single_device(registration_id=token, data=data)
+        message = fcm.notify_single_device(registration_id=token, message_body=data)
         return message
     except:
         pass

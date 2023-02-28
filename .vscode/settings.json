@@ -10,5 +10,5 @@
   "python.linting.pylintEnabled": true,
   "python.linting.pycodestyleEnabled": false,
   "python.linting.enabled": true,
-  "python.linting.pylintPath": "{workspaceRoot}/env/python/lint",
+  "python.linting.pylintPath": "/workspaces/MySite-Django/env/bin/pylint",
 }
