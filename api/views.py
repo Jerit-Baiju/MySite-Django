@@ -10,7 +10,7 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from dotenv import load_dotenv
 
-from base.basic import log, push
+from base import basic
 from base.models import AdminLog
 
 load_dotenv()
@@ -68,7 +68,7 @@ def clr_admin_log(request):
         api_log = AdminLog.objects.get(name='api_log')
         api_log.log = ''
         api_log.save()
-        push('API LOG CLEARED')
+        basic.push('API LOG CLEARED')
         context = {
             'title': 'Latest Log',
             'dark': True,
@@ -104,12 +104,12 @@ def weather(request, city):
     except:
         context = {'success': False,
                    'op': 'No Location Found, Try entering your nearest place or city'}
-    log(request, f'Weather - {city}')
+    basic.log(request, f'Weather - {city}')
     return JsonResponse(context)
 
 
 def github_api(request):
-    log(request, 'github-api-fetch')
+    basic.log(request, 'github-api-fetch')
     auth = ('jerit-baiju', os.environ['github_api'])
     try:
         update_url = 'https://api.github.com/repos/jerit-baiju/mysite-django'
