@@ -1,4 +1,4 @@
-{% extends 'main.html' %} {% block content %} {% load static %} {% load cache %} {% cache 86400 stats %}
+{% extends 'main.html' %} {% block content %} {% load static %} {% load cache %} {% cache 86400 stats request.user %}
 
 <link rel="stylesheet" href="{% static 'css/base/stats.css' %}" />
 <section id="stats" class="container">
