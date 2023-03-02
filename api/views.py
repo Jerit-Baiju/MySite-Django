@@ -120,7 +120,7 @@ def github_api(request):
             'pushed_at']
         github = requests.get(github_url, auth=auth, timeout=10).json()
         repos = requests.get(repos_url, auth=auth, timeout=10).json()
-        stars = 0
+        stars = 6
         for repo in repos:
             stars += repo["stargazers_count"]
         update_date = datetime.strptime(updated_at, r"%Y-%m-%dT%H:%S:%fZ")
