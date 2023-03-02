@@ -137,6 +137,6 @@ def github_api(request):
     except:
         data = cache.get('github_data')
         if data is None:
-            data = {'updated_at': 'update', 'stars': 'stars', 'repositories': 'repositories',
-                    'followers': 'followers', 'following': 'following'}
+            data = {'updated_at': 'update', 'stars_this': 'stars_this', 'repositories': 'repositories',
+                    'followers': 'followers', 'following': 'following', 'stars': 'stars'}
         return data
