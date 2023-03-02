@@ -115,18 +115,23 @@ def github_api(request):
         update_url = 'https://api.github.com/repos/jerit-baiju/mysite-django'
         github_url = "https://api.github.com/users/jerit-baiju"
         star_url = "https://api.github.com/repos/Jerit-Baiju/MySite-Django/stargazers"
+        repos_url = "https://api.github.com/users/jerit-baiju/repos"
         updated_at = requests.get(update_url, auth=auth, timeout=10).json()[
             'pushed_at']
         github = requests.get(github_url, auth=auth, timeout=10).json()
+        repos = requests.get(repos_url, auth=auth, timeout=10).json()
+        stars = 0
+        for repo in repos:
+            stars += repo["stargazers_count"]
         update_date = datetime.strptime(updated_at, r"%Y-%m-%dT%H:%S:%fZ")
         update = update_date.astimezone(pytz.timezone(
             "Asia/Kolkata")).strftime(r"%B %d, %Y")
-        stars = len(requests.get(star_url, auth=auth, timeout=10).json())
+        stars_this = len(requests.get(star_url, auth=auth, timeout=10).json())
         repositories = github['public_repos']
         followers = github['followers']
         following = github['following']
-        data = {'updated_at': update, 'stars': stars, 'repositories': repositories,
-                'followers': followers, 'following': following}
+        data = {'updated_at': update, 'stars_this': stars_this, 'repositories': repositories,
+                'followers': followers, 'following': following, 'stars': stars}
         cache.set('github_data', data, timeout=24*60*60)
         return data
     except:

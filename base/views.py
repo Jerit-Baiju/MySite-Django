@@ -218,7 +218,7 @@ def stats(request):
         {'key': 'last updated at',
             'value': github_data['updated_at'], 'class': 'white'},
         {'key': 'Stars this repository has on github',
-            'value': github_data['stars'], 'class': 'grey'}
+            'value': github_data['stars_this'], 'class': 'grey'}
     ]
     if user.is_authenticated:
         if user.score is None:
@@ -246,6 +246,7 @@ def stats(request):
             'value': github_data['followers'], 'class': 'white'},
         {'key': 'following',
             'value': github_data['following'], 'class': 'grey'},
+        {'key': 'stars', 'value': github_data['stars'], 'class': 'white'},
     ]
     context = {
         'title': 'Stats | Jerit Baiju',
