@@ -246,7 +246,7 @@ def stats(request):
             'value': github_data['followers'], 'class': 'white'},
         {'key': 'following',
             'value': github_data['following'], 'class': 'grey'},
-        {'key': 'stars', 'value': github_data['stars'], 'class': 'white'},
+        {'key': 'total stars earned', 'value': github_data['stars'], 'class': 'white'},
     ]
     context = {
         'title': 'Stats | Jerit Baiju',
