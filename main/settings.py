@@ -101,18 +101,18 @@ DATABASES = {
 
 
 # if DEBUG == True:
-#     CACHES = {
-#         'default': {
-#             'BACKEND': 'django.core.cache.backends.dummy.DummyCache'
-#         }
-#     }
-# else:
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.PyMemcacheCache',
-        'LOCATION': '127.0.0.1:11211',
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache'
     }
 }
+# else:
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.memcached.PyMemcacheCache',
+#         'LOCATION': '127.0.0.1:11211',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
