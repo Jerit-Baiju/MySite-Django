@@ -2,26 +2,13 @@ import os
 from datetime import datetime
 
 import pytz
-from pyfcm import FCMNotification
-
 from .models import AdminLog, Device, User
 
-fcm_api = os.environ['fcm_api_key']
-fcm = FCMNotification(api_key=fcm_api)
+
 
 
 def push(text):
-    try:
-        data = {
-            'body': text,
-        }
-        super_user = User.objects.filter(is_superuser=True).first()
-        device = Device.objects.filter(user_id=super_user).first()
-        token = device.token
-        message = fcm.notify_single_device(registration_id=token, message_body=data)
-        return message
-    except:
-        pass
+    pass
 
 
 def log(request, data):
