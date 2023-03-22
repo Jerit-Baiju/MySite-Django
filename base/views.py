@@ -14,9 +14,7 @@ from api.views import github_api
 from .basic import log, push
 from .models import Device, User
 
-INTRO = '''Hi, I'm Jerit. I like building things. I am
-particularly interested in Artificial Intelligence and Machine Learning. If you think I can be helpful to you or would
-like to meet me, please feel free to '''
+INTRO = '''Hello, my name is Jerit. I enjoy building things and have a keen interest in Artificial Intelligence and Machine Learning. If you believe that I could be of assistance to you or would like to connect with me, please don't hesitate to '''
 
 
 def register_page(request):
@@ -175,14 +173,14 @@ def gallery(request):
 def about(request):
     log(request, 'About')
     history = [
-        "2016 - I was 10 years old studying in 4th class, my parents bought me a laptop. I was so excited about it. I learned to control the cursor and to type easily with MS-PAINT, NOTEPAD.",
-        "2017 - Started to play the MS mini games like CHESS, MINESWEEPER etc. And learned MS-LOGO, created many objects and played with them.",
-        "2018 - I was 12. Joined for the activity PHOTOSHOP AND ANIMATION with Adobe Flash-Macromedia. Started to search every files and locations on computer in my school. Unexpectedly opened an HTML file and I thought it was programming, I asked to my teacher (Reshmi miss) about it and she taught me some basics of HTML.",
-        "2019 - I created my own website using HTML only. Heard about programming languages (C++, Python, JavaScript).",
-        "2020 - Made my own chatbot using VISUAL BASIC. I upgraded my computer from windows 7 to windows 10 by myself. Started to learn python, made simple command line applications. I made GUI apps for windows using Tkinter.",
-        "2021 - Switched to Linux. Learned Flask, CSS, JavaScript. I published my website on PythonAnywhere (currently not available). Learned more about GIT, REACT and some DS. Made many projects like ChatBot named Clara (WEB), Weather app (CLI) etc.",
-        "2022 - Learned Django and hosted my website on HEROKU. Made a Package called PYFLIT for FLASK users, and created projects like Weather App (WEB), NUM GAME etc.",
-        "2023 - Started to learn ML & AI. Currently learning TensorFlow and Keras."
+        "In 2016, when I was in 4th grade and 10 years old, my parents bought me a laptop. I was ecstatic about it! I quickly learned how to control the cursor and type with ease using MS-Paint and Notepad.",
+        "In 2017, I began playing Microsoft's mini-games like Chess, Minesweeper, and others, and learned MS-Logo. I created numerous objects and enjoyed experimenting with them.",
+        "In 2018, at the age of 12, I joined an activity on Photoshop and Animation using Adobe Flash-Macromedia. As I explored the computer in my school, I stumbled upon an HTML file and became intrigued. Curious about its purpose, I approached my teacher, Reshmi Miss, and asked about it. She kindly taught me some basics of HTML, sparking my interest in programming.",
+        "In 2019, I built my own website using HTML exclusively and subsequently discovered other programming languages such as C++, Python, and JavaScript.",
+        "In 2020, I created my own chatbot using Visual Basic and independently upgraded my computer from Windows 7 to Windows 10. I began learning Python and developed simple command-line applications, as well as GUI applications for Windows using Tkinter.",
+        "In 2021, I transitioned to Linux and expanded my skills by learning Flask, CSS, and JavaScript. I published my website on PythonAnywhere, which unfortunately is currently unavailable. Additionally, I delved deeper into GIT, REACT, and some Data Science topics. I completed numerous projects including a ChatBot named Clara (web-based) and a Weather app (command-line interface), among others.",
+        "In 2022, I acquired proficiency in Django and deployed my website on HEROKU. Additionally, I developed a package called PYFLIT for FLASK users and created projects such as a Weather App (web-based) and a Number Game, among others.",
+        "As of 2023, I have begun studying Machine Learning (ML) and Artificial Intelligence (AI), with a particular focus on TensorFlow and Keras, which are currently my primary areas of interest."
     ]
     context = {
         'title': 'About Me',
