@@ -160,7 +160,7 @@ def home(request):
                 'link': False,
             }
         ],
-        'firebase': os.environ.get('fcm_api_key'),
+        'firebase': os.environ.get('firebase'),
     }
     return render(request, 'base/index.html', context)
 
