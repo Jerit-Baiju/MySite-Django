@@ -1,16 +1,14 @@
+from firebase_admin import messaging
 import os
 import random
 from datetime import date, datetime
-
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.cache import cache
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-
 from api.views import github_api
-
 from .basic import log, push
 from .models import Device, User
 
