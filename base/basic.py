@@ -1,14 +1,22 @@
-import os
 from datetime import datetime
 
 import pytz
-from .models import AdminLog, Device, User
+from django.http import HttpResponse
+from firebase_admin import messaging
 
-
+from base.models import AdminLog
 
 
 def push(text):
-    pass
+    message = messaging.Message(
+        notification=messaging.Notification(
+            title='Jerit Baiju',
+            body=text
+        ),
+        topic='new_message'
+    )
+    messaging.send(message)
+    return HttpResponse('Push notification sent.')
 
 
 def log(request, data):
