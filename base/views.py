@@ -14,7 +14,8 @@ from api.views import github_api
 from .basic import log, push
 from .models import Device, User
 
-INTRO = '''Hello, my name is Jerit. I enjoy building things and have a keen interest in Artificial Intelligence and Machine Learning. If you believe that I could be of assistance to you or would like to connect with me, please don't hesitate to '''
+INTRO = "Hello, my name is Jerit. I enjoy building things and have a keen interest in Artificial Intelligence and "\
+"Machine Learning. If you believe that I could be of assistance to you or would like to connect with me, please don't hesitate to "
 
 
 def register_page(request):
@@ -101,6 +102,7 @@ def register_device(request):
             user=user, device_token=device_token)
         device.save()
         return HttpResponse("REGISTERED DEVICE")
+    return HttpResponse("FAILED TO REGISTER")
 
 
 def home(request):
