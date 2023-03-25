@@ -7,8 +7,5 @@
     "supabase",
     "Swal"
   ],
-  "python.linting.pylintEnabled": true,
-  "python.linting.pycodestyleEnabled": false,
-  "python.linting.enabled": true,
-  "python.linting.pylintPath": "/workspaces/MySite-Django/env/bin/pylint",
+  "cSpell.ignoreWords": ["JKYDZ"],
 }

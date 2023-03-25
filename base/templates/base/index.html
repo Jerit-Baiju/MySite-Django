@@ -1,103 +1,109 @@
-{% extends 'main.html' %} {% block content %} {% load static %} {% load cache %}
-{% cache 86400 index %}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Comforter&display=swap" rel="stylesheet">
-<div class="container">
-
-  <section id="homeSection">
-    <div class="row align-items-center">
-      <div class="col-md-6">
-        <p class="text-center" style="font-size: 20em; font-family: 'Comforter', cursive;">JB</p>
-      </div>
-
-      <div class="col-md-6">
-        <h1 class="fw-light" style="padding-top: 1rem">Jerit Baiju</h1>
-        <h5 class="fw-light" style="padding-left: 25px">
-          {% for bio in bio %}
-          > {{bio}} <br />
-          {% endfor %}
-        </h5>
-        <div>
-          <div class="row m-2 pt-3 pb-3 text-center">
-            <div class="col-md-4 col-4">
-              <a href="{% url 'gallery' %}" class="btn btn-outline-dark rounded-pill w-100">Gallery</a>
-            </div>
-            <div class="col-md-4 col-4">
-              <a href="{% url 'projects' %}" class="btn btn-outline-dark rounded-pill w-100">Projects</a>
-            </div>
-            <div class="col-md-4 col-4">
-              <a href="{% url 'stats' %}" class="btn btn-outline-dark rounded-pill w-100">Statics</a>
-            </div>
-          </div>
+{% extends 'main.html' %}
+{% block content %}
+  {% load static %}
+  {% load cache %}
+  {% cache 86400 index %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comforter&display=swap"
+        rel="stylesheet">
+  <div class="container">
+    <section id="homeSection">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <p class="text-center"
+             style="font-size: 20em;
+                    font-family: 'Comforter', cursive">JB</p>
         </div>
-
-        <div class="quoteDiv align-items-center">
-          <div class="quote">
-            <h5 class="text-end p-1">
-              "{{quote.quote}}"
-            </h5>
-            {% if quote.author  != '' %}
-            <div class="row">
-              <div class="col-6 col-md-6"></div>
-              <div class="col-6 col-md-6" style="padding-top: 1rem">
-                <h6>
-                  <figcaption class="blockquote-footer text-end p-1">
-                    {{quote.author}}
-                  </figcaption>
-                </h6>
+        <div class="col-md-6">
+          <h1 class="fw-light" style="padding-top: 1rem">Jerit Baiju</h1>
+          <h5 class="fw-light" style="padding-left: 25px">
+            {% for bio in bio %}
+              > {{ bio }}
+              <br />
+            {% endfor %}
+          </h5>
+          <div>
+            <div class="row m-2 pt-3 pb-3 text-center">
+              <div class="col-md-4 col-4">
+                <a href="{% url 'gallery' %}"
+                   class="btn btn-outline-dark rounded-pill w-100">Gallery</a>
+              </div>
+              <div class="col-md-4 col-4">
+                <a href="{% url 'projects' %}"
+                   class="btn btn-outline-dark rounded-pill w-100">Projects</a>
+              </div>
+              <div class="col-md-4 col-4">
+                <a href="{% url 'stats' %}"
+                   class="btn btn-outline-dark rounded-pill w-100">Statics</a>
               </div>
             </div>
-            {% endif %}
+          </div>
+          <div class="quoteDiv align-items-center">
+            <div class="quote">
+              <h5 class="text-end p-1">"{{ quote.quote }}"</h5>
+              {% if quote.author != '' %}
+                <div class="row">
+                  <div class="col-6 col-md-6"></div>
+                  <div class="col-6 col-md-6" style="padding-top: 1rem">
+                    <h6>
+                      <figcaption class="blockquote-footer text-end p-1">
+                        {{ quote.author }}
+                      </figcaption>
+                    </h6>
+                  </div>
+                </div>
+              {% endif %}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <hr />
-  </section>
-  
-  <section id="aboutMe" class="p-1">
-    <div class="p-3">
-      <h2 class="fw-light text-center text-uppercase">About Me</h2>
-      <h5 class="fw-light">{% include 'src/intro.html' %} or you can read more <a class="link-dark"
-          href="{% url 'about' %}">about me</a>.</h5>
-    </div>
-    <hr />
-  </section>
-
-  <section id="serviceSection" class="p-1">
-    <div class="p-3">
-      <h2 class="text-center fw-light text-uppercase">Skills</h2>
-      <div class="services">
-        <h5 class="text-capitalize fw-light">
-          {% for skill in skills %}
-          > {{skill}} <br />
+      <hr />
+    </section>
+    <section id="aboutMe" class="p-1">
+      <div class="p-3">
+        <h2 class="fw-light text-center text-uppercase">About Me</h2>
+        <h5 class="fw-light">
+          {% include 'src/intro.html' %}
+          or you can read more <a class="link-dark" href="{% url 'about' %}">about me</a>.
+        </h5>
+      </div>
+      <hr />
+    </section>
+    <section id="serviceSection" class="p-1">
+      <div class="p-3">
+        <h2 class="text-center fw-light text-uppercase">Skills</h2>
+        <div class="services">
+          <h5 class="text-capitalize fw-light">
+            {% for skill in skills %}
+              > {{ skill }}
+              <br />
+            {% endfor %}
+          </h5>
+        </div>
+      </div>
+      <hr />
+    </section>
+    <section id="educationSection" class="p-1">
+      <div class="p-3">
+        <h2 class="text-center fw-light text-uppercase">Education</h2>
+        <div class="education">
+          {% for edu in education %}
+            <h5 class="fw-light">
+              >
+              {% if edu.link %}
+                <a class="link-dark" href="{{ edu.url }}">{{ edu.name }}</a>
+              {% else %}
+                {{ edu.name }}
+              {% endif %}
+            </h5>
           {% endfor %}
-        </h5>
+        </div>
       </div>
-    </div>
-    <hr />
-  </section>
-
-  <section id="educationSection" class="p-1">
-    <div class="p-3">
-      <h2 class="text-center fw-light text-uppercase">Education</h2>
-      <div class="education">
-        {% for edu in education %}
-        <h5 class="fw-light">>
-          {% if edu.link %}
-          <a class="link-dark" href="{{edu.url}}">{{edu.name}}</a>
-          {% else %}
-          {{edu.name}}
-          {% endif %}
-        </h5>
-        {% endfor %}
-      </div>
-    </div>
-    <hr />
-  </section>
-</div>
-{% include 'footer.html' %}
+      <hr />
+    </section>
+  </div>
+  {% include 'footer.html' %}
 {% endcache %}
 <script src="{% static 'js/pwa-handler.js' %}"></script>
 {% endblock content %}
