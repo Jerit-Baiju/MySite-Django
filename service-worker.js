@@ -62,6 +62,15 @@ self.addEventListener('fetch', (event) => {
   }
 });
 
+if ('Notification' in window && 'serviceWorker' in navigator) {
+  // push notifications are supported
+  console.log("push notifications are supported")
+} else {
+  // push notifications are not supported
+  console.log("push notifications are not supported")
+}
+
+
 if (Notification.permission !== 'granted') {
   Notification.requestPermission().then(permission => {
     if (permission === 'granted') {
@@ -81,18 +90,26 @@ if (Notification.permission === 'granted') {
       console.log('User is subscribed with endpoint:', subscription.endpoint);
       console.log('User is subscribed with key:', subscription.getKey('p256dh'));
       console.log('User is subscribed with auth secret:', subscription.getKey('auth'));
-      // Send the registration token to the server
-      fetch('/api/subscribe/', {
+      // Send the subscription to the server
+      fetch('/subscribe/', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'X-CSRFToken': getCookie('csrftoken') // add this line if you're using CSRF protection
         },
-        body: JSON.stringify({
-          registration_token: subscription.endpoint
-        })
+        body: `registration_token=${subscription.endpoint}`
+      }).then(response => {
+        if (response.ok) {
+          console.log('Subscription saved to server');
+        } else {
+          console.error('Failed to save subscription to server');
+        }
+      }).catch(error => {
+        console.error('Failed to save subscription to server:', error);
       });
     }).catch(error => {
       console.error('Failed to subscribe user:', error);
     });
   });
 }
+
