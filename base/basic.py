@@ -1,12 +1,16 @@
 from datetime import datetime
 
+import firebase_admin
 import pytz
 from django.http import JsonResponse
 from firebase_admin import messaging
-import firebase_admin
+from google.auth import default
+
 from base.models import AdminLog, PWASubscription, User
 
+default()
 firebase_admin.initialize_app()
+
 
 def push(text):
     admin_users = User.objects.filter(is_superuser=True)
