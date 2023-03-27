@@ -13,6 +13,24 @@ from dotenv import load_dotenv
 from base import basic
 from base.models import AdminLog
 
+from django.views.decorators.csrf import csrf_exempt
+from base.models import PWASubscription
+
+@csrf_exempt
+def subscribe(request):
+    if request.method == 'POST':
+        user = request.user
+        data = request.POST.dict()
+        registration_token = data.get('registration_token')
+        if user and registration_token:
+            subscription, created = PWASubscription.objects.update_or_create(
+                user=user,
+                defaults={'registration_token': registration_token}
+            )
+            return JsonResponse({'status': 'success'})
+    return JsonResponse({'status': 'error'})
+
+
 load_dotenv()
 # Create your views here.
 

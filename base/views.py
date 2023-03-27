@@ -12,7 +12,7 @@ from django.shortcuts import redirect, render
 from api.views import github_api
 
 from .basic import log, push
-from .models import Device, User
+from .models import User
 
 INTRO = "Hello, my name is Jerit. I enjoy building things and have a keen interest in Artificial Intelligence and "\
     "Machine Learning. If you believe that I could be of assistance to you or would like to connect with me, please don't hesitate to "
@@ -91,18 +91,6 @@ def logout_page(request):
     logout(request)
     cache.clear()
     return redirect('home')
-
-
-@login_required
-def register_device(request):
-    if request.user.is_superuser:
-        device_token = request.GET.get('device_token')
-        user = request.user
-        device = Device.objects.get_or_create(
-            user=user, device_token=device_token)
-        device.save()
-        return HttpResponse("REGISTERED DEVICE")
-    return HttpResponse("FAILED TO REGISTER")
 
 
 def home(request):

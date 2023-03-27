@@ -72,7 +72,7 @@ if (Notification.permission === 'granted') {
       console.log('User is subscribed with key:', subscription.getKey('p256dh'));
       console.log('User is subscribed with auth secret:', subscription.getKey('auth'));
       // Send the registration token to the server
-      fetch('/register', {
+      fetch('/api/subscribe/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -3,17 +3,15 @@ from datetime import datetime
 import pytz
 from firebase_admin import messaging
 
-from base.models import AdminLog
+from base.models import AdminLog, PWASubscription, User
 
 
-def push(token, message):
-    message = messaging.Message(
-        notification=messaging.Notification(title='Jerit Baiju', body=message),
-        token=token,
-    )
-    response = messaging.send(message)
-    print('Successfully sent message:', response)
-
+def push(text):
+	super_user = User.objects.get(is_superuser=True)
+	subscription = PWASubscription.objects.get(user=super_user)
+	message = messaging.Message(notification=messaging.Notification(title='Jerit Baiju', body=text), token=subcription.registration_token)
+	response = messaging.send(message)
+	print('Successfully sent message:', response)
 
 
 def log(request, data):

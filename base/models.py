@@ -95,6 +95,8 @@ class AdminSecret(models.Model):
     secret = models.CharField(max_length=100, null=True, blank=True)
 
 
-class Device(models.Model):
-    token = models.CharField(max_length=225, null=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+class PWASubscription(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    registration_token = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
