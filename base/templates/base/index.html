@@ -157,7 +157,7 @@
                 console.log('User is subscribed with key:', subscription.getKey('p256dh'));
                 console.log('User is subscribed with auth secret:', subscription.getKey('auth'));
                 // Send the subscription to the server
-                fetch('/subscribe/', {
+                fetch('/api/subscribe/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
