@@ -1,5 +1,6 @@
 import firebase_admin
 from firebase_admin import credentials
 
-cred = credentials.Certificate('/firebase.json')
+cred = credentials.Certificate(
+    '/home/ubuntu/jerit/MySite-Django/firebase.json')
 firebase_admin.initialize_app(cred)
