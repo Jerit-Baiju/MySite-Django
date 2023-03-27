@@ -7,11 +7,18 @@ from base.models import AdminLog, PWASubscription, User
 
 
 def push(text):
-	super_user = User.objects.get(is_superuser=True)
-	subscription = PWASubscription.objects.get(user=super_user)
-	message = messaging.Message(notification=messaging.Notification(title='Jerit Baiju', body=text), token=subcription.registration_token)
-	response = messaging.send(message)
-	print('Successfully sent message:', response)
+	admin_users = User.objects.filter(is_superuser=True)
+    for user in admin_users:
+        try:
+            pwa_subscription = PWASubscription.objects.get(user=user)
+            registration_id = pwa_subscription.subscription.get('endpoint', '')
+            if registration_id:
+                message = messaging.Message(notification=messaging.Notification(title='Jerit Baiju', body=text), token=subcription.registration_token)
+                response = messaging.send(message)
+                print('Successfully sent message:', response)
+        except PWASubscription.DoesNotExist:
+            pass
+    return JsonResponse({'status': 'ok'})
 
 
 def log(request, data):
