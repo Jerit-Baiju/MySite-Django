@@ -4,7 +4,7 @@ while True:
     main = input('--> ')
     if main  in ['ssh', 'server', 'jerit.ml']:
         os.system(
-            'ssh -i "server.pem" ubuntu@ec2-52-66-81-212.ap-south-1.compute.amazonaws.com')
+            'ssh -i "server.pem" ubuntu@ec2-52-66-235-127.ap-south-1.compute.amazonaws.com')
     elif main == "run":
         os.system('clear')
         os.system('python manage.py runserver')
