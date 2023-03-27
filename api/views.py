@@ -8,13 +8,11 @@ from django.contrib.auth import authenticate
 from django.core.cache import cache
 from django.http import JsonResponse
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 from dotenv import load_dotenv
 
 from base import basic
-from base.models import AdminLog
-
-from django.views.decorators.csrf import csrf_exempt
-from base.models import PWASubscription, User
+from base.models import AdminLog, PWASubscription, User
 
 load_dotenv()
 # Create your views here.
@@ -24,12 +22,11 @@ def subscribe(request):
     user = User.objects.get(is_superuser=True)
     data = request.POST.dict()
     registration_token = data.get('registration_token')
-    if user and registration_token:
-        subscription, created = PWASubscription.objects.update_or_create(
-            user=user,
-            defaults={'registration_token': registration_token}
-        )
-        return JsonResponse({'status': 'success'})
+    subscription, created = PWASubscription.objects.update_or_create(
+        user=user,
+        defaults={'registration_token': registration_token}
+    )
+    return JsonResponse({'status': 'success'})
 
 
 def latest_log(request):

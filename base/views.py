@@ -4,11 +4,9 @@ from datetime import date, datetime
 
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
 from django.core.cache import cache
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from django.views.decorators.cache import never_cache
 from django.views.generic import TemplateView
 from api.views import github_api
 
