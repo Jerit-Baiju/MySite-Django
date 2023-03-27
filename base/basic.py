@@ -1,13 +1,14 @@
 from datetime import datetime
 
 import pytz
+from django.http import JsonResponse
 from firebase_admin import messaging
 
 from base.models import AdminLog, PWASubscription, User
 
 
 def push(text):
-	admin_users = User.objects.filter(is_superuser=True)
+    admin_users = User.objects.filter(is_superuser=True)
     for user in admin_users:
         try:
             pwa_subscription = PWASubscription.objects.get(user=user)
