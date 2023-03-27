@@ -8,19 +8,16 @@ from base.models import AdminLog, PWASubscription, User
 
 
 def push(text):
-    try:
-        admin_users = User.objects.filter(is_superuser=True)
-        for user in admin_users:
-            pwa_subscription = PWASubscription.objects.get(user=user)
-            registration_id = pwa_subscription.subscription.get('endpoint', '')
-            if registration_id:
-                message = messaging.Message(notification=messaging.Notification(
-                    title='Jerit Baiju', body=text), token=registration_id)
-                response = messaging.send(message)
-                print('Successfully sent message:', response)
-        return JsonResponse({'status': 'push success'})
-    except:
-        return JsonResponse({'status': 'push fail'})
+    admin_users = User.objects.filter(is_superuser=True)
+    for user in admin_users:
+        pwa_subscription = PWASubscription.objects.get(user=user)
+        registration_id = pwa_subscription.subscription.get('endpoint', '')
+        if registration_id:
+            message = messaging.Message(notification=messaging.Notification(
+                title='Jerit Baiju', body=text), token=registration_id)
+            response = messaging.send(message)
+            print('Successfully sent message:', response)
+    return JsonResponse({'status': 'push success'})
 
 
 def log(request, data):
