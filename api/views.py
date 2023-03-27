@@ -16,6 +16,9 @@ from base.models import AdminLog
 from django.views.decorators.csrf import csrf_exempt
 from base.models import PWASubscription
 
+load_dotenv()
+# Create your views here.
+
 @csrf_exempt
 def subscribe(request):
     if request.method == 'POST':
@@ -29,10 +32,6 @@ def subscribe(request):
             )
             return JsonResponse({'status': 'success'})
     return JsonResponse({'status': 'error'})
-
-
-load_dotenv()
-# Create your views here.
 
 
 def latest_log(request):
