@@ -61,3 +61,28 @@ self.addEventListener('fetch', (event) => {
     })());
   }
 });
+
+if (Notification.permission === 'granted') {
+  navigator.serviceWorker.ready.then(registration => {
+    registration.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: urlBase64ToUint8Array(applicationServerKey)
+    }).then(subscription => {
+      console.log('User is subscribed with endpoint:', subscription.endpoint);
+      console.log('User is subscribed with key:', subscription.getKey('p256dh'));
+      console.log('User is subscribed with auth secret:', subscription.getKey('auth'));
+      // Send the registration token to the server
+      fetch('/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          registration_token: subscription.endpoint
+        })
+      });
+    }).catch(error => {
+      console.error('Failed to subscribe user:', error);
+    });
+  });
+}

@@ -1,22 +1,19 @@
 from datetime import datetime
 
 import pytz
-from django.http import HttpResponse
 from firebase_admin import messaging
 
 from base.models import AdminLog
 
 
-def push(text):
+def push(token, message):
     message = messaging.Message(
-        notification=messaging.Notification(
-            title='Jerit Baiju',
-            body=text
-        ),
-        topic='new_message'
+        notification=messaging.Notification(title='Jerit Baiju', body=message),
+        token=token,
     )
-    messaging.send(message)
-    return HttpResponse('Push notification sent.')
+    response = messaging.send(message)
+    print('Successfully sent message:', response)
+
 
 
 def log(request, data):
