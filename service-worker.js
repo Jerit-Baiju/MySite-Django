@@ -75,7 +75,7 @@ function urlBase64ToUint8Array(base64String) {
   return outputArray;
 }
 
-const applicationServerKey = 'your-application-server-key';
+const applicationServerKey = 'BC2fdyMeF44rKN5jlNybS4Z-9EhurCkUNTqbWs80OlTwwDuDuNYiXMbOv4t2-NK2ZXl57a-z17UqtcqCskskYbo';
 const convertedKey = urlBase64ToUint8Array(applicationServerKey);
 
 
@@ -102,7 +102,7 @@ if (Notification.permission === 'granted') {
   navigator.serviceWorker.ready.then(registration => {
     registration.pushManager.subscribe({
       userVisibleOnly: true,
-      applicationServerKey: urlBase64ToUint8Array("BC2fdyMeF44rKN5jlNybS4Z-9EhurCkUNTqbWs80OlTwwDuDuNYiXMbOv4t2-NK2ZXl57a-z17UqtcqCskskYbo")
+      applicationServerKey: urlBase64ToUint8Array(applicationServerKey)
     }).then(subscription => {
       console.log('User is subscribed with endpoint:', subscription.endpoint);
       console.log('User is subscribed with key:', subscription.getKey('p256dh'));
