@@ -62,6 +62,23 @@ self.addEventListener('fetch', (event) => {
   }
 });
 
+function urlBase64ToUint8Array(base64String) {
+  const padding = '='.repeat((4 - base64String.length % 4) % 4);
+  const base64 = (base64String + padding)
+    .replace(/\-/g, '+')
+    .replace(/_/g, '/');
+  const rawData = window.atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
+  for (let i = 0; i < rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
+  }
+  return outputArray;
+}
+
+const applicationServerKey = 'your-application-server-key';
+const convertedKey = urlBase64ToUint8Array(applicationServerKey);
+
+
 if ('Notification' in window && 'serviceWorker' in navigator) {
   // push notifications are supported
   console.log("push notifications are supported")
@@ -85,7 +102,7 @@ if (Notification.permission === 'granted') {
   navigator.serviceWorker.ready.then(registration => {
     registration.pushManager.subscribe({
       userVisibleOnly: true,
-      applicationServerKey: urlBase64ToUint8Array(applicationServerKey)
+      applicationServerKey: urlBase64ToUint8Array("BC2fdyMeF44rKN5jlNybS4Z-9EhurCkUNTqbWs80OlTwwDuDuNYiXMbOv4t2-NK2ZXl57a-z17UqtcqCskskYbo")
     }).then(subscription => {
       console.log('User is subscribed with endpoint:', subscription.endpoint);
       console.log('User is subscribed with key:', subscription.getKey('p256dh'));
