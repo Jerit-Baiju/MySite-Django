@@ -112,6 +112,14 @@
     const applicationServerKey = 'BC2fdyMeF44rKN5jlNybS4Z-9EhurCkUNTqbWs80OlTwwDuDuNYiXMbOv4t2-NK2ZXl57a-z17UqtcqCskskYbo';
     const convertedKey = urlBase64ToUint8Array(applicationServerKey);
 
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) {
+            return parts.pop().split(';').shift();
+        }
+    }
+
     function urlBase64ToUint8Array(base64String) {
         const padding = '='.repeat((4 - base64String.length % 4) % 4);
         const base64 = (base64String + padding)
