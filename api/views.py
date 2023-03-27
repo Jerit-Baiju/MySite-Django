@@ -26,6 +26,7 @@ def subscribe(request):
         user=user,
         defaults={'registration_token': registration_token}
     )
+    print('success')
     return JsonResponse({'status': 'success'})
 
 
