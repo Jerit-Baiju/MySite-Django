@@ -9,6 +9,7 @@ from django.core.cache import cache
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.views.decorators.cache import never_cache
+from django.views.generic import TemplateView
 from api.views import github_api
 
 from .basic import log, push
@@ -283,9 +284,10 @@ def robots(request):
 def manifest(request):
     return HttpResponse(open('manifest.json').read(), content_type='text/json')
 
-@never_cache
-def serviceworker(request):
-    return HttpResponse(open('service-worker.js').read(), content_type='text/javascript')
+
+class ServiceWorkerView(TemplateView):
+    content_type = 'application/javascript'
+    template_name = 'js/service-worker.js'
 
 
 def offline_page(request):
