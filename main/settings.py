@@ -33,9 +33,9 @@ else:
 
 AUTH_USER_MODEL = 'base.User'
 
-ALLOWED_HOSTS = ['jerit.ml', '192.168.43.21', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['jerit.ml', '192.168.43.21', 'localhost', '127.0.0.1', 'test.jerit.ml']
 
-CSRF_TRUSTED_ORIGINS = ['https://jerit.ml', 'http://192.168.43.21']
+CSRF_TRUSTED_ORIGINS = ['https://jerit.ml', 'http://192.168.43.21', 'https://test.jerit.ml']
 
 # Application definition
 
