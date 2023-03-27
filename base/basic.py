@@ -18,9 +18,9 @@ def push(text):
                     title='Jerit Baiju', body=text), token=registration_id)
                 response = messaging.send(message)
                 print('Successfully sent message:', response)
-        return JsonResponse({'status': 'ok'})
+        return JsonResponse({'status': 'push success'})
     except:
-        return JsonResponse({'status': 'fail'})
+        return JsonResponse({'status': 'push fail'})
 
 
 def log(request, data):
