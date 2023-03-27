@@ -62,6 +62,16 @@ self.addEventListener('fetch', (event) => {
   }
 });
 
+if (Notification.permission !== 'granted') {
+  Notification.requestPermission().then(permission => {
+    if (permission === 'granted') {
+      console.log('Notification permission granted');
+      // TODO: subscribe the user to push notifications
+    }
+  });
+}
+
+
 if (Notification.permission === 'granted') {
   navigator.serviceWorker.ready.then(registration => {
     registration.pushManager.subscribe({
