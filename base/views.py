@@ -280,12 +280,18 @@ def robots(request):
 
 
 def manifest(request):
+    log(request, 'Manifest.json')
     return HttpResponse(open('manifest.json').read(), content_type='text/json')
 
 
 class ServiceWorkerView(TemplateView):
     content_type = 'application/javascript'
     template_name = 'js/service-worker.js'
+
+
+class FirebaseSW(TemplateView):
+    content_type = 'application/javascript'
+    template_name = 'js/firebase-sw.js'
 
 
 def offline_page(request):

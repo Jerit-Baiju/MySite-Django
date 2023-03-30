@@ -21,5 +21,6 @@ urlpatterns = [
     path('robots.txt', views.robots, name='robots'),
     path('manifest.json', views.manifest, name='manifest'),
     path('service-worker.js', views.ServiceWorkerView.as_view(), name='service_worker'),
+    path('firebase-messaging-sw.js'),
     path('offline.html', views.offline_page, name='offline-page'),
 ]
