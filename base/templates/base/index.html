@@ -109,12 +109,10 @@
 {% block scripts %}
   <script src="{% static 'js/pwa-handler.js' %}"></script>
   {% if request.user.is_superuser %}
-    <!-- Firebase App SDK -->
-    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-messaging.js"></script>
     <script>
+    import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-messaging.js"
       // Get a Firebase Messaging instance
-      const messaging = firebase.messaging();
+      const messaging = getMessaging(app);
       alert("firebase set")
       // Request permission to receive notifications
       messaging.requestPermission().then(() => {
