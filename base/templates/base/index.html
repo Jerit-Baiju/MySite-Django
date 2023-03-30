@@ -110,7 +110,10 @@
   <script src="{% static 'js/pwa-handler.js' %}"></script>
   {% if request.user.is_superuser %}
     <script>
-    import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-messaging.js"
+      import {
+          getMessaging,
+          getToken
+      } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-messaging.js"
       // Get a Firebase Messaging instance
       const messaging = getMessaging(app);
       alert("firebase set")
@@ -127,6 +130,21 @@
           });
       }).catch((error) => {
           console.log('Unable to get permission to notify.', error);
+      });
+      getToken(messaging, {
+          vapidKey: 'BC2fdyMeF44rKN5jlNybS4Z-9EhurCkUNTqbWs80OlTwwDuDuNYiXMbOv4t2-NK2ZXl57a-z17UqtcqCskskYbo'
+      }).then((currentToken) => {
+          if (currentToken) {
+              // Send the token to your server and update the UI if necessary
+              // ...
+          } else {
+              // Show permission request UI
+              console.log('No registration token available. Request permission to generate one.');
+              // ...
+          }
+      }).catch((err) => {
+          console.log('An error occurred while retrieving token. ', err);
+          // ...
       });
     </script>
   {% endif %}
