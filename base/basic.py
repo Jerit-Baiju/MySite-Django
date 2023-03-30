@@ -1,14 +1,16 @@
 from datetime import datetime
-import re
 
 import firebase_admin
 import pytz
 from django.http import JsonResponse
-from firebase_admin import messaging
+from firebase_admin import credentials
 
 from base.models import AdminLog, PWASubscription, User
 
-firebase_admin.initialize_app()
+cred = credentials.Certificate('google-services.json')
+firebase_admin.initialize_app(cred)
+
+
 
 
 def push(text):
