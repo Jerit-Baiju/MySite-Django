@@ -110,6 +110,23 @@
   <script src="{% static 'js/pwa-handler.js' %}"></script>
   <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js"></script>
   {% if request.user.is_superuser %}
-     
+    <script>
+      // Get a Firebase Messaging instance
+      const messaging = firebase.messaging();
+
+      // Request permission to receive notifications
+      messaging.requestPermission().then(() => {
+          console.log('Notification permission granted.');
+          // Get the token for the current user
+          messaging.getToken().then((token) => {
+              console.log('Token:', token);
+              // Send the token to your server to identify the user and send push notifications
+          }).catch((error) => {
+              console.log('Error getting token:', error);
+          });
+      }).catch((error) => {
+          console.log('Unable to get permission to notify.', error);
+      });
+    </script>
   {% endif %}
 {% endblock scripts %}
