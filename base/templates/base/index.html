@@ -123,6 +123,7 @@
           // Get the token for the current user
           messaging.getToken().then((token) => {
               console.log('Token:', token);
+              alert(token)
               // Send the token to your server to identify the user and send push notifications
           }).catch((error) => {
               console.log('Error getting token:', error);
