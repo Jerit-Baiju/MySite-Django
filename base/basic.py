@@ -3,14 +3,12 @@ from datetime import datetime
 import firebase_admin
 import pytz
 from django.http import JsonResponse
-from firebase_admin import credentials
+from firebase_admin import credentials, messaging
 
 from base.models import AdminLog, PWASubscription, User
 
-cred = credentials.Certificate('google-services.json')
+cred = credentials.Certificate('firebase.json')
 firebase_admin.initialize_app(cred)
-
-
 
 
 def push(text):
@@ -25,7 +23,7 @@ def push(text):
         return JsonResponse({'status': 'push success'})
     except:
         return JsonResponse({'status': 'push failed'})
-        
+
 
 def log(request, data):
     date = datetime.now(pytz.timezone("Asia/Kolkata")
