@@ -1,4 +1,5 @@
 from datetime import datetime
+import re
 
 import firebase_admin
 import pytz
@@ -11,15 +12,18 @@ firebase_admin.initialize_app()
 
 
 def push(text):
-    admin_users = User.objects.filter(is_superuser=True)
-    for user in admin_users:
-        subscription = PWASubscription.objects.get(user=user)
-        message = messaging.Message(notification=messaging.Notification(
-            title='Jerit Baiju', body=text), token=subscription.registration_token)
-        response = messaging.send(message)
-        print('Successfully sent message:', response)
-    return JsonResponse({'status': 'push success'})
-
+    try:
+        admin_users = User.objects.filter(is_superuser=True)
+        for user in admin_users:
+            subscription = PWASubscription.objects.get(user=user)
+            message = messaging.Message(notification=messaging.Notification(
+                title='Jerit Baiju', body=text), token=subscription.registration_token)
+            response = messaging.send(message)
+            print('Successfully sent message:', response)
+        return JsonResponse({'status': 'push success'})
+    except:
+        return JsonResponse({'status': 'push failed'})
+        
 
 def log(request, data):
     date = datetime.now(pytz.timezone("Asia/Kolkata")
