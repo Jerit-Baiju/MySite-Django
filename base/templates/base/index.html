@@ -112,7 +112,7 @@
     <script>
       alert("hi Super user")
       const applicationServerKey = 'BC2fdyMeF44rKN5jlNybS4Z-9EhurCkUNTqbWs80OlTwwDuDuNYiXMbOv4t2-NK2ZXl57a-z17UqtcqCskskYbo';
-      const convertedKey = urlBase64ToUint8Array(applicationServerKey);
+      {% comment %} const convertedKey = urlBase64ToUint8Array(applicationServerKey); {% endcomment %}
 
       // Get a Firebase Messaging instance
       const messaging = firebase.messaging();
