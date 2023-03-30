@@ -76,7 +76,8 @@
   } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
   import {
       getMessaging,
-      getToken
+      getToken,
+      onMessage
   } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-messaging.js"
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
@@ -127,6 +128,10 @@
       })
   }
   requestPermission()
+  onMessage(messaging, (payload) => {
+  console.log('Message received. ', payload);
+  // ...
+});
 </script>
 {% block scripts %}
 {% endblock scripts %}
