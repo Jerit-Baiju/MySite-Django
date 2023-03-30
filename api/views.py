@@ -22,7 +22,7 @@ def subscribe(request):
     user = User.objects.get(is_superuser=True)
     data = request.POST.dict()
     registration_token = data.get('registration_token')
-    subscription, created = PWASubscription.objects.update_or_create(
+    PWASubscription.objects.get_or_create(
         user=user,
         defaults={'registration_token': registration_token}
     )

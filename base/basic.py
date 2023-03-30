@@ -4,11 +4,9 @@ import firebase_admin
 import pytz
 from django.http import JsonResponse
 from firebase_admin import messaging
-from google.auth import default
 
 from base.models import AdminLog, PWASubscription, User
 
-default()
 firebase_admin.initialize_app()
 
 
