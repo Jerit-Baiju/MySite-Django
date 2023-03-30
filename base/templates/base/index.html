@@ -109,8 +109,9 @@
 {% block scripts %}
   <script src="{% static 'js/pwa-handler.js' %}"></script>
   {% if request.user.is_superuser %}
-  <!-- Firebase App SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js"></script>
+    <!-- Firebase App SDK -->
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-messaging.js"></script>
     <script>
       // Get a Firebase Messaging instance
       const messaging = firebase.messaging();
