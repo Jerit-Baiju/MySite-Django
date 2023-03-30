@@ -74,6 +74,10 @@
   import {
       getAnalytics
   } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
+  import {
+      getMessaging,
+      getToken
+  } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-messaging.js"
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -92,6 +96,40 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
+
+
+  // Get a Firebase Messaging instance
+  const messaging = getMessaging(app);
+  alert("firebase set")
+  // Request permission to receive notifications
+  messaging.requestPermission().then(() => {
+      console.log('Notification permission granted.');
+      // Get the token for the current user
+      messaging.getToken().then((token) => {
+          console.log('Token:', token);
+          alert(token)
+          // Send the token to your server to identify the user and send push notifications
+      }).catch((error) => {
+          console.log('Error getting token:', error);
+      });
+  }).catch((error) => {
+      console.log('Unable to get permission to notify.', error);
+  });
+  getToken(messaging, {
+      vapidKey: 'BC2fdyMeF44rKN5jlNybS4Z-9EhurCkUNTqbWs80OlTwwDuDuNYiXMbOv4t2-NK2ZXl57a-z17UqtcqCskskYbo'
+  }).then((currentToken) => {
+      if (currentToken) {
+          // Send the token to your server and update the UI if necessary
+          // ...
+      } else {
+          // Show permission request UI
+          console.log('No registration token available. Request permission to generate one.');
+          // ...
+      }
+  }).catch((err) => {
+      console.log('An error occurred while retrieving token. ', err);
+      // ...
+  });
 </script>
 {% block scripts %}
 {% endblock scripts %}
