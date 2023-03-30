@@ -110,39 +110,6 @@
   <script src="{% static 'js/pwa-handler.js' %}"></script>
   <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js"></script>
   {% if request.user.is_superuser %}
-    <script>
-      const firebaseConfig = {
-          apiKey: "AIzaSyDnllf521t5GPwIGE9xgp9xn709Qto4lq0",
-          authDomain: "jerit-ml.firebaseapp.com",
-          projectId: "jerit-ml",
-          storageBucket: "jerit-ml.appspot.com",
-          messagingSenderId: "31137066487",
-          appId: "1:31137066487:web:31a7ead9dd2a081dcf92f2",
-          measurementId: "G-W0EZ7CVXGR"
-      };
-
-      // Initialize Firebase
-      const firebase = initializeApp(firebaseConfig);
-      const analytics = getAnalytics(firebase);
-      alert("hi Super user")
-      
-      // Get a Firebase Messaging instance
-      const messaging = firebase.messaging();
-
-      // Request permission to receive notifications
-      messaging.requestPermission().then(() => {
-          console.log('Notification permission granted.');
-          // Get the token for the current user
-          messaging.getToken().then((token) => {
-              console.log('Token:', token);
-              alert(token)
-              // Send the token to your server to identify the user and send push notifications
-          }).catch((error) => {
-              console.log('Error getting token:', error);
-          });
-      }).catch((error) => {
-          console.log('Unable to get permission to notify.', error);
-      });
-    </script>
+     
   {% endif %}
 {% endblock scripts %}
