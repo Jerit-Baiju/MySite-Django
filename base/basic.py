@@ -5,7 +5,7 @@ import pytz
 from django.http import JsonResponse
 from firebase_admin import credentials, messaging
 
-from base.models import AdminLog, PWASubscription, User
+from base.models import AdminLog, User
 
 cred = credentials.Certificate('firebase.json')
 firebase_admin.initialize_app(cred)

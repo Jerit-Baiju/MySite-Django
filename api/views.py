@@ -1,3 +1,4 @@
+from math import e
 import os
 from datetime import datetime
 
@@ -12,22 +13,29 @@ from django.views.decorators.csrf import csrf_exempt
 from dotenv import load_dotenv
 
 from base import basic
-from base.models import AdminLog, PWASubscription, User
+from base.models import AdminLog, AdminSecret, User
 
 load_dotenv()
 # Create your views here.
 
 @csrf_exempt
 def subscribe(request):
-    user = User.objects.get(is_superuser=True)
-    data = request.POST.dict()
-    registration_token = data.get('registration_token')
-    PWASubscription.objects.get_or_create(
-        user=user,
-        defaults={'registration_token': registration_token}
-    )
-    print('success')
-    return JsonResponse({'status': 'success'})
+    if request.user.is_superuser:
+        if request.method == "POST":
+            try:
+                token = request.POST.get('token')
+                token_object = AdminSecret.objects.get(name='token')
+                token_object.secret = token
+                token_object.save()
+            except:
+                try:
+                    token = request.POST.get('token')
+                    token_object = AdminSecret.objects.create(name='token', secret=token)
+                    token_object.save()
+                except:
+                    return JsonResponse({"status": "FAILED"})
+        return render(request, 'api/subscribe.html', {'dark': True})
+        
 
 
 def latest_log(request):

@@ -93,10 +93,3 @@ class AdminLog(models.Model):
 class AdminSecret(models.Model):
     name = models.CharField(max_length=20, null=True)
     secret = models.CharField(max_length=100, null=True, blank=True)
-
-
-class PWASubscription(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    registration_token = models.CharField(max_length=255)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
