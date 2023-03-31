@@ -67,7 +67,7 @@ function requestPermission() {
     })
 }
 
-requestPermission()
+document.addEventListener('click', requestPermission())
 
 onMessage(messaging, (payload) => {
     console.log('Message received. ', payload);
