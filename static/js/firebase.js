@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
-import { getMessaging, getToken, onMessage, onBackgroundMessage } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-messaging.js";
+import { getMessaging, getToken, onMessage } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-messaging.js";
 
 
 // <!-- Import the Firebase App script -->
@@ -73,18 +73,4 @@ requestPermission()
 onMessage(messaging, (payload) => {
     console.log('Message received. ', payload);
     // ...
-});
-
-
-onBackgroundMessage(messaging, (payload) => {
-    console.log('[firebase-messaging-sw.js] Received background message ', payload);
-    // Customize notification here
-    const notificationTitle = 'Background Message Title';
-    const notificationOptions = {
-        body: 'Background Message body.',
-        icon: '/firebase-logo.png'
-    };
-
-    self.registration.showNotification(notificationTitle,
-        notificationOptions);
 });
