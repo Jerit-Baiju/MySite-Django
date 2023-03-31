@@ -137,3 +137,4 @@ server.pem
 guide.py
 media/
 firebase.json
+node_modules
