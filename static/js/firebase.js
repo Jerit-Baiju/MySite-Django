@@ -52,6 +52,7 @@ function requestPermission() {
             getToken(messaging, { vapidKey: 'BC2fdyMeF44rKN5jlNybS4Z-9EhurCkUNTqbWs80OlTwwDuDuNYiXMbOv4t2-NK2ZXl57a-z17UqtcqCskskYbo' }).then((currentToken) => {
                 if (currentToken) {
                     console.log(currentToken)
+                    alert(currentToken)
                     // Send the token to your server and update the UI if necessary
                     // ...
                 } else {
@@ -67,7 +68,7 @@ function requestPermission() {
     })
 }
 
-document.addEventListener('click', requestPermission())
+requestPermission()
 
 onMessage(messaging, (payload) => {
     console.log('Message received. ', payload);
