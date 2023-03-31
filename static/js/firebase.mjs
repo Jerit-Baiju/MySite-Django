@@ -1,8 +1,25 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "/node_modules/firebase/app";
-import { getAnalytics } from "/node_modules/firebase/analytics";
-import { getMessaging, getToken, onMessage } from "/node_modules/firebase/messaging"
-import { onBackgroundMessage } from "/node_modules/firebase/messaging/sw"
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
+// import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
+// import { getMessaging, getToken, onMessage } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-messaging.js";
+
+
+// <!-- Import the Firebase App script -->
+// <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
+
+// <!-- Import the Firebase Authentication script -->
+// <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js"></script>
+
+// <!-- Import the Firebase Cloud Firestore script -->
+// <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js"></script>
+
+// <!-- Import the Firebase Cloud Messaging script -->
+// <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-messaging.js"></script>
+
+// <!-- Import the Firebase Realtime Database script -->
+// <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-database.js"></script>
+
+
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
