@@ -42,28 +42,32 @@ const analytics = getAnalytics(app);
 const messaging = getMessaging(app)
 
 console.log('Requesting permission...');
-Notification.requestPermission().then((permission) => {
-    if (permission === 'granted') {
-        console.log('Notification permission granted.');
-        // Get registration token. Initially this makes a network call, once retrieved
-        // subsequent calls to getToken will return from cache.
-        const messaging = getMessaging();
-        getToken(messaging, { vapidKey: 'BC2fdyMeF44rKN5jlNybS4Z-9EhurCkUNTqbWs80OlTwwDuDuNYiXMbOv4t2-NK2ZXl57a-z17UqtcqCskskYbo' }).then((currentToken) => {
-            if (currentToken) {
-                console.log(currentToken)
-                // Send the token to your server and update the UI if necessary
+function requestPermission() {
+    Notification.requestPermission().then((permission) => {
+        if (permission === 'granted') {
+            console.log('Notification permission granted.');
+            // Get registration token. Initially this makes a network call, once retrieved
+            // subsequent calls to getToken will return from cache.
+            const messaging = getMessaging();
+            getToken(messaging, { vapidKey: 'BC2fdyMeF44rKN5jlNybS4Z-9EhurCkUNTqbWs80OlTwwDuDuNYiXMbOv4t2-NK2ZXl57a-z17UqtcqCskskYbo' }).then((currentToken) => {
+                if (currentToken) {
+                    console.log(currentToken)
+                    // Send the token to your server and update the UI if necessary
+                    // ...
+                } else {
+                    // Show permission request UI
+                    console.log('No registration token available. Request permission to generate one.');
+                    // ...
+                }
+            }).catch((err) => {
+                console.log('An error occurred while retrieving token. ', err);
                 // ...
-            } else {
-                // Show permission request UI
-                console.log('No registration token available. Request permission to generate one.');
-                // ...
-            }
-        }).catch((err) => {
-            console.log('An error occurred while retrieving token. ', err);
-            // ...
-        });
-    }
-})
+            });
+        }
+    })
+}
+
+requestPermission()
 
 onMessage(messaging, (payload) => {
     console.log('Message received. ', payload);
