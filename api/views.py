@@ -35,6 +35,7 @@ def subscribe(request):
                 except:
                     return JsonResponse({"status": "FAILED"})
         return render(request, 'api/subscribe.html', {'dark': True})
+    return JsonResponse({"status": "Access Denied"})
         
 
 
