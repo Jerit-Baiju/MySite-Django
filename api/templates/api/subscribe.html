@@ -14,7 +14,7 @@
         projectId: "jerit-ml",
         storageBucket: "jerit-ml.appspot.com",
         messagingSenderId: "31137066487",
-        appId: "1:31137066487:web:31a7ead9dd2a081dcf92f2",
+        appId: "1:31137066487:web:31a7ead9dd2a081dcf92f2",  
         measurementId: "G-W0EZ7CVXGR"
     };
 
@@ -25,11 +25,23 @@
 
     $(document).ready(function(){
         $("#subscribe").click(function(){
-            alert("btn clicked")
+    console.log('Requesting permission...');
+            $.ajax({
+                type: "POST",
+                url: "{% url 'subcribe' %}",
+                data: {
+                    key1: ,
+                },
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus, errorThrown);
+                }
+            });
         })
     })
 
-    console.log('Requesting permission...');
     function requestPermission() {
         Notification.requestPermission().then((permission) => {
             if (permission === 'granted') {
