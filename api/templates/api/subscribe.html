@@ -1,9 +1,9 @@
 {% extends 'api/main.html' %}{% block content %}
 <div class="text-center pt-5 pb-5">
-    <button onClick="requestPermission()" id="btn" class="btn btn-info">SUBCRIBE</button>
+    <button id="subscribe" class="btn btn-info">SUBCRIBE</button>
 </div>
-<script>
-    // Import the functions you need from the SDKs you need
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+<script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
     import { getMessaging, getToken, onMessage } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-messaging.js";
@@ -22,6 +22,12 @@
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
     const messaging = getMessaging(app)
+
+    $(document).ready(function(){
+        $("#subscribe").click(function(){
+            alert("btn clicked")
+        })
+    })
 
     console.log('Requesting permission...');
     function requestPermission() {

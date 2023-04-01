@@ -13,8 +13,7 @@ from django.views.decorators.csrf import csrf_exempt
 from dotenv import load_dotenv
 
 from base import basic
-from base.models import AdminLog, AdminSecret, User
-
+from base.models import AdminLog, AdminSecret
 load_dotenv()
 # Create your views here.
 
@@ -27,11 +26,13 @@ def subscribe(request):
                 token_object = AdminSecret.objects.get(name='token')
                 token_object.secret = token
                 token_object.save()
+                return JsonResponse({"status": f"UPDATED {token}"})
             except:
                 try:
                     token = request.POST.get('token')
                     token_object = AdminSecret.objects.create(name='token', secret=token)
                     token_object.save()
+                    return JsonResponse({"status": f"CREATED {token}"})
                 except:
                     return JsonResponse({"status": "FAILED"})
         return render(request, 'api/subscribe.html', {'dark': True})
