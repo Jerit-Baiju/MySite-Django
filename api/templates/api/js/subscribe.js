@@ -54,8 +54,3 @@ $(document).ready(function () {
         
     })
 })
-
-onMessage(messaging, (payload) => {
-    console.log('Message received. ', payload);
-    // ...
-});
