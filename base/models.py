@@ -92,4 +92,4 @@ class AdminLog(models.Model):
 
 class AdminSecret(models.Model):
     name = models.CharField(max_length=20, null=True)
-    secret = models.CharField(max_length=100, null=True, blank=True)
+    secret = models.CharField(max_length=500, null=True, blank=True)
