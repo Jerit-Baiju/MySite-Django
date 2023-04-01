@@ -30,7 +30,7 @@ $(document).ready(function () {
                                 token: currentToken
                             },
                             success: function (response) {
-                                alert(response)
+                                alert(response['status'])
                             }
                         });
 
