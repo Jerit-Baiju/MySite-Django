@@ -26,13 +26,13 @@ def subscribe(request):
                 token_object = AdminSecret.objects.get(name='token')
                 token_object.secret = token
                 token_object.save()
-                return JsonResponse({"status": f"UPDATED {token}"})
+                return JsonResponse({"status": f"UPDATED SUCCESSFULLY"})
             except:
                 try:
                     token = request.POST.get('token')
                     token_object = AdminSecret.objects.create(name='token', secret=token)
                     token_object.save()
-                    return JsonResponse({"status": f"CREATED {token}"})
+                    return JsonResponse({"status": f"CREATED SUCCESSFULLY"})
                 except:
                     return JsonResponse({"status": "FAILED"})
         return render(request, 'api/subscribe.html', {'dark': True})
