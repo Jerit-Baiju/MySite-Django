@@ -29,7 +29,17 @@ $(document).ready(function () {
                 getToken(messaging, { vapidKey: 'BC2fdyMeF44rKN5jlNybS4Z-9EhurCkUNTqbWs80OlTwwDuDuNYiXMbOv4t2-NK2ZXl57a-z17UqtcqCskskYbo' }).then((currentToken) => {
                     if (currentToken) {
                         console.log(currentToken)
-                        alert(currentToken)
+                        $.ajax({
+                            type: "POST",
+                            url: "{% url 'subscribe' %}",
+                            data: {
+                                token: currentToken
+                            },
+                            success: function (response) {
+                                console.log(response);
+                            }
+                        });
+
                     } else {
                         // Show permission request UI
                         console.log('No registration token available. Request permission to generate one.');
