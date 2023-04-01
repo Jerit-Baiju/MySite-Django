@@ -5,7 +5,7 @@ import pytz
 from django.http import JsonResponse
 from firebase_admin import credentials, messaging
 
-from base.models import AdminLog, User
+from base.models import AdminLog, AdminSecret
 
 cred = credentials.Certificate('firebase.json')
 firebase_admin.initialize_app(cred)
@@ -13,14 +13,11 @@ firebase_admin.initialize_app(cred)
 
 def push(text):
     try:
-        admin_users = User.objects.filter(is_superuser=True)
-        for user in admin_users:
-            subscription = PWASubscription.objects.get(user=user)
-            message = messaging.Message(notification=messaging.Notification(
-                title='Jerit Baiju', body=text), token=subscription.registration_token)
-            response = messaging.send(message)
-            print('Successfully sent message:', response)
-        return JsonResponse({'status': 'push success'})
+        token = AdminSecret.objects.get(name="token").secret
+        message = messaging.Message(notification=messaging.Notification(
+            title='Jerit Baiju', body=text), token=token)
+        response = messaging.send(message)
+        return JsonResponse({'status': response})
     except:
         return JsonResponse({'status': 'push failed'})
 
