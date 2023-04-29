@@ -37,6 +37,7 @@
           crossorigin="anonymous"/>
   {% endcache %}
   <link rel="manifest" href="{% url 'manifest' %}" />
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 <body class="{% if dark == True %} bg-dark text-white{% else %} bg-light {% endif %}">
   {% include "navbar.html" %}

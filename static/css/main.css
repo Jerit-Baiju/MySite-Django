@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'source_code';
+    src: url('/static/fonts/source_code.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'comforter';
+    src: url('/static/fonts/comforter.ttf') format('truetype');
+}
+
+* {
+    font-family: 'source_code';
+}
