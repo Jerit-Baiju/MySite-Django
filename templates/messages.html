@@ -1,11 +1,9 @@
 {% if messages %}
-<section class='container'>
-  <div class="alert alert-warning" role='alert'>
-    <ul>
-      {% for msg in messages %}
-      <li>{{msg}}</li>
-      {% endfor %}
-    </ul>
-  </div>
-</section>
+  <section class='container'>
+    <div class="alert alert-warning" role='alert'>
+      <ul>
+        {% for msg in messages %}<li>{{ msg }}</li>{% endfor %}
+      </ul>
+    </div>
+  </section>
 {% endif %}

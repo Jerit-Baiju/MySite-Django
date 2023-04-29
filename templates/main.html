@@ -41,8 +41,7 @@
 </head>
 <body class="{% if dark == True %} bg-dark text-white{% else %} bg-light {% endif %}">
   {% include "navbar.html" %}
-  <div style="height: 4em"></div>
-  <div>
+  <div class="mt-5 pt-3">
     {% if messages %}
       {% include 'messages.html' %}
     {% endif %}
