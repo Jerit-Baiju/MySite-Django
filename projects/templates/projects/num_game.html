@@ -1,45 +1,56 @@
-{% extends 'main.html' %} {% block content %} {% load static %} 
-<link rel="stylesheet" href="{% static 'css/projects/num_game.css' %}" />
-
-<section class="container text-center">
-  <div style="padding-top: 5em" class="heading">
-    <h1 class="text-white head">Guess The Number</h1>
-    <h1 class="text-white head">Score : {{score}}</h1>
-  </div>
-
-  <div class="win">
-    <img src="{% static 'images/projects/num_game/win.png' %}" height="200" id="img" alt="YOU WIN" srcset="" />
-  </div>
-  <div class="p-4">
-    <a id="new" style="text-decoration: none" onclick="newGame()" class="btn-lg btn-dark my-but"
-      href="{% url 'num-game-add' %}">
+{% extends 'main.html' %}
+{% block content %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/projects/num_game.css' %}" />
+  <section class="container text-center">
+    <div class="heading mt-5">
+      <h1 class="text-white head">Guess The Number</h1>
+      <h1 class="text-white head">Score : {{ score }}</h1>
+    </div>
+    <div class="win">
+      <img src="{% static 'images/projects/num_game/win.png' %}"
+           height="200"
+           id="img"
+           alt="YOU WIN"
+           srcset=""/>
+    </div>
+    <div class="p-4">
+      <a id="new"
+         style="text-decoration: none"
+         onclick="newGame()"
+         class="btn-lg btn-dark my-but"
+         href="{% url 'num-game-add' %}">
       New Game </a>
-  </div>
-
-  <div class="p-5"></div>
-  <div id="inp">
-    <div class="row">
-      <div class="col-md-6">
-        <div class="main">
-          <div class="p-3">
-            <h4 id="textarea">The number is between 0 and 100</h4>
+    </div>
+    <div class="p-5"></div>
+    <div id="inp">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="main">
+            <div class="p-3">
+              <h4 id="textarea">The number is between 0 and 100</h4>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-6 text-center pt-3">
-        <div>
-          <div class="input">
-            <input class="my-inp input-group" onchange="check()" type="number" id="guess" name="guess"
-              placeholder="Enter the Number" autocomplete="off" autofocus />
-            <div class="submit pt-4 pb-4">
-              <input type="button" class="btn-lg btn-dark my-but" value="Check" />
+        <div class="col-md-6 text-center pt-3">
+          <div>
+            <div class="input">
+              <input class="my-inp input-group"
+                     onchange="check()"
+                     type="number"
+                     id="guess"
+                     name="guess"
+                     placeholder="Enter the Number"
+                     autocomplete="off"
+                     autofocus/>
+              <div class="submit pt-4 pb-4">
+                <input type="button" class="btn-lg btn-dark my-but" value="Check" />
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<script src="{% static 'js/num_game.js' %}"></script>
+  </section>
+  <script src="{% static 'js/num_game.js' %}"></script>
 {% endblock content %}

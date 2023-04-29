@@ -1,9 +1,14 @@
-{% extends 'api/main.html' %}{% block content %}
-<div class="text-center pt-5 pb-5">
-    <button id="subscribe" class="btn btn-info">SUBCRIBE</button>
-</div>
-<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
-<script type="module">
-    {% include "api/js/subscribe.js" %}
-</script>
+{% extends 'api/main.html' %}
+{% block content %}
+  <div class="text-center pt-5 pb-5">
+    <button id="subscribe" class="btn btn-info">SUBSCRIBE</button>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.1.js"
+          integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+          crossorigin="anonymous"></script>
+  <script type="module">
+    {
+        % include "api/js/subscribe.js" %
+    }
+  </script>
 {% endblock content %}

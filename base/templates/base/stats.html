@@ -1,71 +1,62 @@
-{% extends 'main.html' %} {% block content %} {% load static %} {% load cache %} {% cache 86400 stats request.user %}
-
-<link rel="stylesheet" href="{% static 'css/base/stats.css' %}" />
-<section id="stats" class="container">
+{% extends 'main.html' %}
+{% block content %}
+  {% load static %}
+  {% load cache %}
+  {% cache 86400 stats request.user %}
+  <link rel="stylesheet" href="{% static 'css/base/stats.css' %}" />
+  <section id="stats" class="container">
     <h1 class="text-center text-uppercase">Stats</h1>
     <hr />
     <div class="row">
       {% for stat in stats %}
         {% if stat.contents != 'None' %}
-          <div class="my-bg">
-            <h3 class="text-uppercase my-heading">{{stat.name}}</h3>
+          <div class="my-bg mb-3">
+            <h3 class="text-uppercase my-heading">{{ stat.name }}</h3>
             <div class="padding">
-                {% for content in stat.contents %}
+              {% for content in stat.contents %}
                 <div class="{{ content.class }}">
                   <div class="row">
-                    <div class="col-6 col-md-6 col-lg-6">
-                      {{content.key}}
-                    </div>
-                    <div id="{{content.key}}" class="col-6 col-md-6 col-lg-6 text-break">
-                      {{content.value}}
-                    </div>
+                    <div class="col-6 col-md-6 col-lg-6">{{ content.key }}</div>
+                    <div id="{{ content.key }}" class="col-6 col-md-6 col-lg-6 text-break">{{ content.value }}</div>
                   </div>
                 </div>
-                {% endfor %}
+              {% endfor %}
             </div>
           </div>
-          <div class="space" style="min-height: 1em"></div>
+          {% comment %} <div class="space" style="min-height: 1em"></div> {% endcomment %}
         {% endif %}
       {% endfor %}
-
       <div class="my-bg">
         <h3 class="text-uppercase my-heading">My GitHub</h3>
         <div class="padding">
-        {% for content in GitHub %}
-          <div class="{{ content.class}} ">
-            <div class="row">
-              <div class="col-6 col-md-6 col-lg-6">
-                {{content.key}}
-              </div>
-              <div class="col-6 col-md-6 col-lg-6 text-break">
-                {{content.value}}
+          {% for content in GitHub %}
+            <div class="{{ content.class }} ">
+              <div class="row">
+                <div class="col-6 col-md-6 col-lg-6">{{ content.key }}</div>
+                <div class="col-6 col-md-6 col-lg-6 text-break">{{ content.value }}</div>
               </div>
             </div>
-          </div>
           {% endfor %}
-        
-        
-          <div class="grey">
-              Contributions
-          </div>
-{% endcache %}
-          <div class="white">
-            <img  src="https://ghchart.rshah.org/000000/jerit-baiju" style="pointer-events: none;" class="w-100" alt="">
-          </div>
-
+          <div class="grey">Contributions</div>
+        {% endcache %}
+        <div class="white">
+          <img src="https://ghchart.rshah.org/000000/jerit-baiju"
+               style="pointer-events: none"
+               class="w-100"
+               alt="">
         </div>
       </div>
-
     </div>
+  </div>
 </section>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 <script>
   const birth_date = moment(new Date("Feb 10 2006 23:20:00")); //02/10/2006
   setInterval(() => {
-    const now = moment(new Date());
-    const diff = now.diff(birth_date);
-    const years = diff / (365.25 * 24 * 60 * 60 * 1000);
-    document.getElementById("age").innerHTML = years.toFixed(8)
-}, 100);
+      const now = moment(new Date());
+      const diff = now.diff(birth_date);
+      const years = diff / (365.25 * 24 * 60 * 60 * 1000);
+      document.getElementById("age").innerHTML = years.toFixed(8)
+  }, 100);
 </script>
 {% endblock content %}

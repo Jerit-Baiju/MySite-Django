@@ -1,23 +1,30 @@
-{% extends 'main.html' %} {% block content %} {% load cache %}
-{% cache 86400 about %}
-<section class="container">
+{% extends 'main.html' %}
+{% block content %}
+  {% load cache %}
+  {% cache 86400 about %}
+  <section class="container">
     <div class="heading">
-        <h1 class="text-center">About Me</h1>
-       <hr> 
+      <h1 class="text-center">About Me</h1>
+      <hr>
     </div>
     <div class="intro">
-        <h2>Intro</h2>
-        <h5>{% include 'src/intro.html' %}.</h5>        
+      <h2>Intro</h2>
+      <h5>
+        {% include 'src/intro.html' %}
+        .
+      </h5>
     </div>
     <hr>
     <div class="Some History">
-        <h2>Some History</h2>
-        <ul>
-            {% for item in history %}
-                <li><h5>{{ item }}</h5></li>
-            {% endfor %}
-        </ul>      
+      <h2>Some History</h2>
+      <ul>
+        {% for item in history %}
+          <li>
+            <h5>{{ item }}</h5>
+          </li>
+        {% endfor %}
+      </ul>
     </div>
-</section>
+  </section>
 {% endcache %}
 {% endblock content %}

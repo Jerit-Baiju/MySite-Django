@@ -1,25 +1,27 @@
-{% extends 'main.html' %} {% block content %} {% load static %} {% load cache %}
-{% cache 86400 projects %}
-<link rel="stylesheet" href="{% static 'css/projects/projects.css' %}" />
-<section>
-  <div class="container">
-    <h1 class="text-center">Projects</h1>
-    <hr />
-    <div class="row">
-      {% for project in projects %}
-      <div class="col-14 col-md-4" style="padding-top: 1em">
-        <div class="card my-card">
-          <div class="card-body">
-            <h5 class="card-title">{{project.name}}</h5>
-            <p class="card-text">{{project.info}}</p>
-            <a href="{{ project.src }}" class="link my-button">
-              {{project.btn}}
-            </a>
+{% extends 'main.html' %}
+{% block content %}
+  {% load static %}
+  {% load cache %}
+  {% cache 86400 projects %}
+  <link rel="stylesheet" href="{% static 'css/projects/projects.css' %}" />
+  <section>
+    <div class="container">
+      <h1 class="text-center">Projects</h1>
+      <hr />
+      <div class="row">
+        {% for project in projects %}
+          <div class="col-14 col-md-4 mt-3">
+            <div class="card my-card">
+              <div class="card-body">
+                <h5 class="card-title">{{ project.name }}</h5>
+                <p class="card-text">{{ project.info }}</p>
+                <a href="{{ project.src }}" class="link my-button">{{ project.btn }}</a>
+              </div>
+            </div>
           </div>
-        </div>
+        {% endfor %}
       </div>
-      {% endfor %}
     </div>
-  </div>
-</section>
-{% endcache %} {% endblock content %}
+  </section>
+{% endcache %}
+{% endblock content %}

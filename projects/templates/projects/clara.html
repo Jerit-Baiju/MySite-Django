@@ -1,38 +1,50 @@
-{% extends 'main.html' %} {% block content %} {% load static %}
-<link rel="stylesheet" href="{% static 'css/projects/clara.css' %}" />
-<script>
-  const user = "{{name}}";
-</script>
-<div class="container d-flex justify-content-center">
-  <div class="card px-1">
-    <div class="card-body">
-      <h1 class="card-title mb-3" style="text-align: center">Clara</h1>
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="form-group">
-            <textarea readonly name="textarea" id="textid" class="form-control" rows="10" style="min-height: 400px">
-            </textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="form-group">
-            <div class="input-group">
-              <input class="form-control" type="text" id="input" name="question"
-                placeholder="Type Here !" autocomplete="off" autofocus />
+{% extends 'main.html' %}
+{% block content %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/projects/clara.css' %}" />
+  <script>
+    const user = "{{name}}";
+  </script>
+  <div class="container d-flex justify-content-center">
+    <div class="card px-1">
+      <div class="card-body">
+        <h1 class="card-title mb-3 text-center">Clara</h1>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <textarea readonly name="textarea" id="textid" class="form-control" rows="10" style="min-height: 400px">
+</textarea>
             </div>
           </div>
         </div>
-      </div>
-      <br />
-      <div style="display: flex; justify-content: center; align-items: center">
-        <input id="send_btn" type="button" class="btn btn-primary btn-block confirm-button" value="Send" style="width: 8rem" />
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <div class="input-group">
+                <input class="form-control"
+                       type="text"
+                       id="input"
+                       name="question"
+                       placeholder="Type Here !"
+                       autocomplete="off"
+                       autofocus/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div style="display: flex; justify-content: center; align-items: center">
+          <input id="send_btn"
+                 type="button"
+                 class="btn btn-primary btn-block confirm-button"
+                 value="Send"
+                 style="width: 8rem"/>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
-<script src="{% static 'js/clara.js' %}"></script>
+  <script src="https://code.jquery.com/jquery-3.6.1.js"
+          integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+          crossorigin="anonymous"></script>
+  <script src="{% static 'js/clara.js' %}"></script>
 {% endblock content %}

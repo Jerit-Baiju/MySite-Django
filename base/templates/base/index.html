@@ -7,13 +7,11 @@
     <section id="homeSection">
       <div class="row align-items-center">
         <div class="col-md-6">
-          <p class="text-center"
-             style="font-size: 20em;
-                    font-family: 'comforter">JB</p>
+          <p class="text-center" style="font-size: 20em; font-family: 'comforter">JB</p>
         </div>
         <div class="col-md-6">
-          <h1 style="padding-top: 1rem">Jerit Baiju</h1>
-          <h5 style="padding-left: 25px">
+          <h1 class="pt-5">Jerit Baiju</h1>
+          <h5 class="ps-3 ps-md-4">
             {% for bio in bio %}
               > {{ bio }}
               <br />
@@ -41,7 +39,7 @@
               {% if quote.author != '' %}
                 <div class="row">
                   <div class="col-6 col-md-6"></div>
-                  <div class="col-6 col-md-6" style="padding-top: 1rem">
+                  <div class="col-6 col-md-6 mt-1">
                     <h6>
                       <figcaption class="blockquote-footer text-end p-1">
                         {{ quote.author }}

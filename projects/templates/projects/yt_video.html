@@ -5,7 +5,7 @@
     text-align: center;
     padding-top: 10rem;">
     <img src="{% static 'images/projects/yt.png' %}" height="150" alt="YouTube" />
-    <form action="" method="POST">
+    <form action="" method="post">
       {% csrf_token %}
       <input class="input-group border-dark border-2 rounded-2 p-2 mt-2 mb-3" name="yt_link" id="yt_link" type="url" placeholder="Enter the url" required>
       <input class="btn btn-dark p-2 m-2 w-25" type="submit" value="GET" id="yt_get">

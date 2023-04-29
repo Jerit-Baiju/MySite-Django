@@ -1,38 +1,60 @@
-{% extends 'main.html' %} {% block content %} {% load static %}
-<link rel="stylesheet" href="{% static 'css/base/login.css' %}" />
-<div class="main-div">
-  <div class="container-div">
-    <form action="" method="post">
-      {% csrf_token %}
-      <div class="form" id="login">
-        <h1 class="form__title">Register Here</h1>
-        <div class="padding"></div>
-        <div class="form__input-group">
-          <input type="text" name="name" required class="form__input" autofocus placeholder="Name" />
-        </div>
-        <div class="form__input-group">
-          <input type="email" name="mail" required class="form__input" autofocus placeholder="user@gmail.com" />
-        </div>
-        <div class="form__input-group">
-          <input type="password" name="password1" required class="form__input" autofocus placeholder="Password" />
-        </div>
-        <div class="form__input-group">
-          <input type="password" required name="password2" class="form__input" autofocus placeholder="Confirm Password"
-            id="passwordInput" />
-          <input type="hidden" name="next" value="{{request.GET.next}}">
+{% extends 'main.html' %}
+{% block content %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/base/login.css' %}" />
+  <div class="main-div">
+    <div class="container-div">
+      <form action="" method="post">
+        {% csrf_token %}
+        <div class="form" id="login">
+          <h1 class="form__title">Register Here</h1>
           <div class="padding"></div>
-          <a href="#">
-            <button type="submit" class="form__button" id="loginButton">
-              Sign Up
-            </button>
-          </a>
+          <div class="form__input-group">
+            <input type="text"
+                   name="name"
+                   required
+                   class="form__input"
+                   autofocus
+                   placeholder="Name"/>
+          </div>
+          <div class="form__input-group">
+            <input type="email"
+                   name="mail"
+                   required
+                   class="form__input"
+                   autofocus
+                   placeholder="user@gmail.com"/>
+          </div>
+          <div class="form__input-group">
+            <input type="password"
+                   name="password1"
+                   required
+                   class="form__input"
+                   autofocus
+                   placeholder="Password"/>
+          </div>
+          <div class="form__input-group">
+            <input type="password"
+                   required
+                   name="password2"
+                   class="form__input"
+                   autofocus
+                   placeholder="Confirm Password"
+                   id="passwordInput"/>
+            <input type="hidden" name="next" value="{{ request.GET.next }}">
+            <div class="padding"></div>
+            <a href="#">
+              <button type="submit" class="form__button" id="loginButton">Sign Up</button>
+            </a>
+          </div>
         </div>
+      </form>
+      <div>
+        <p>Already Signed Up ?</p>
+        <a href="{% url 'login-page' %}">
+          <button class="form__button" id="loginButton">Log In</button>
+        </a>
       </div>
-    </form>
-    <div>
-      <p>Already Signed Up ?</p>
-      <a href="{% url 'login-page' %}"><button class="form__button" id="loginButton">Log In</button></a>
     </div>
   </div>
-</div>
 {% endblock content %}
