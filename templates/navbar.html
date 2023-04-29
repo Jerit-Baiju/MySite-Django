@@ -1,13 +1,12 @@
-<nav
-  class="navbar fixed-top navbar-expand-lg {% if dark == True %}navbar-dark bg-dark {% else %} navbar-light bg-light{% endif %}">
+<nav class="navbar sticky-top navbar-expand-lg pt-md-4 {% if dark == True %}navbar-dark bg-dark {% else %} navbar-light bg-light{% endif %}">
   <div class="container">
-    <a class="navbar-brand" href="/">Home</a>
+    <a class="navbar-brand" href="{% url 'home' %}">Home</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         {% if request.user.is_superuser %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'log' %}">Logs</a>
