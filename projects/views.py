@@ -18,21 +18,21 @@ def projects(request):
     log(request, 'Projects')
     projects_data = [
         {'name': 'Weather App', 'info': 'A project to get weather from all places, working by scrapping data from GOOGLE WEATHER.',
-            'src': '/projects/weather', 'btn': 'Go'},
+            'src': '/projects/weather'},
         {'name': 'PyFlit', 'info': 'Tool for adding components and pages in FLASK. Can be used to send PYTHON variables to JAVASCRIPT.',
-            'src': 'https://pypi.org/project/pyflit/', 'btn': 'PYPI'},
+            'src': 'https://pypi.org/project/pyflit/'},
         {'name': 'Clara', 'info': 'CHAT-BOT made with CHAT-BOT-API. Simple STATIC Project.',
-            'src': '/projects/clara', 'btn': 'Chat'},
+            'src': '/projects/clara'},
         {'name': 'MySite', 'info': 'DYNAMIC WEBSITE made with DJANGO framework, FEATURES - Admin Panel, User Management, User-Score Handling, LOGS, etc.. ',
-            'src': 'https://github.com/jerit-baiju/mysite-django', 'btn': 'GitHub'},
+            'src': 'https://github.com/jerit-baiju/mysite-django'},
         {'name': 'Number Game', 'info': 'You should assume the number that is picked from 0-100 randomly by computer with TEN chances.',
-            'src': '/projects/num_game', 'btn': 'Play'},
+            'src': '/projects/num_game'},
         {'name': 'Chat Bot API', 'info': 'This API provides you free commands, wikipedia support, user detection.',
-            'src': 'https://github.com/jerit-baiju/chat_bot_api', 'btn': 'GitHub'},
+            'src': 'https://github.com/jerit-baiju/chat_bot_api'},
         {'name': 'GitHub Activity Generator', 'info': 'Python script for creating commits, can specify number of commits, code consistency, and many more.',
-            'src': 'https://github.com/jerit-baiju/activity_generator', 'btn': 'GitHub'},
+            'src': 'https://github.com/jerit-baiju/activity_generator'},
         {'name': 'YT video Downloader', 'info': 'You can download any youtube video with high resolution.',
-            'src': reverse('yt_video'), 'btn': 'Download'}
+            'src': reverse('yt_video')}
 
     ]
     random.shuffle(projects_data)

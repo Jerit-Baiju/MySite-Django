@@ -11,13 +11,14 @@
       <div class="row">
         {% for project in projects %}
           <div class="col-14 col-md-4 mt-3">
-            <div class="card my-card">
-              <div class="card-body">
-                <h5 class="card-title">{{ project.name }}</h5>
-                <p class="card-text">{{ project.info }}</p>
-                <a href="{{ project.src }}" class="link my-button">{{ project.btn }}</a>
+            <a class="link-dark text-decoration-none" href="{{ project.src }}">
+              <div class="card my-card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">{{ project.name }}</h5>
+                  <p class="card-text">{{ project.info }}</p>
+                </div>
               </div>
-            </div>
+            </a>
           </div>
         {% endfor %}
       </div>
