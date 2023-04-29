@@ -3,16 +3,16 @@
 <link rel="stylesheet" href="{% static 'css/projects/projects.css' %}" />
 <section>
   <div class="container">
-    <h1 class="text-center fw-light">Projects</h1>
+    <h1 class="text-center">Projects</h1>
     <hr />
     <div class="row">
       {% for project in projects %}
       <div class="col-14 col-md-4" style="padding-top: 1em">
         <div class="card my-card">
           <div class="card-body">
-            <h5 class="card-title fw-light">{{project.name}}</h5>
-            <p class="card-text fw-light">{{project.info}}</p>
-            <a href="{{project.src}}" class="fw-light link my-button">
+            <h5 class="card-title">{{project.name}}</h5>
+            <p class="card-text">{{project.info}}</p>
+            <a href="{{ project.src }}" class="link my-button">
               {{project.btn}}
             </a>
           </div>

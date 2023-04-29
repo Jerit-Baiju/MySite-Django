@@ -12,8 +12,8 @@
                     font-family: 'comforter">JB</p>
         </div>
         <div class="col-md-6">
-          <h1 class="fw-light" style="padding-top: 1rem">Jerit Baiju</h1>
-          <h5 class="fw-light" style="padding-left: 25px">
+          <h1 style="padding-top: 1rem">Jerit Baiju</h1>
+          <h5 style="padding-left: 25px">
             {% for bio in bio %}
               > {{ bio }}
               <br />
@@ -58,8 +58,8 @@
     </section>
     <section id="aboutMe" class="p-1">
       <div class="p-3">
-        <h2 class="fw-light text-center text-uppercase">About Me</h2>
-        <h5 class="fw-light">
+        <h2 class="text-center text-uppercase">About Me</h2>
+        <h5>
           {% include 'src/intro.html' %}
           or you can read more <a class="link-dark" href="{% url 'about' %}">about me</a>.
         </h5>
@@ -68,9 +68,9 @@
     </section>
     <section id="serviceSection" class="p-1">
       <div class="p-3">
-        <h2 class="text-center fw-light text-uppercase">Skills</h2>
+        <h2 class="text-center text-uppercase">Skills</h2>
         <div class="services">
-          <h5 class="text-capitalize fw-light">
+          <h5 class="text-capitalize">
             {% for skill in skills %}
               > {{ skill }}
               <br />
@@ -82,10 +82,10 @@
     </section>
     <section id="educationSection" class="p-1">
       <div class="p-3">
-        <h2 class="text-center fw-light text-uppercase">Education</h2>
+        <h2 class="text-center  text-uppercase">Education</h2>
         <div class="education">
           {% for edu in education %}
-            <h5 class="fw-light">
+            <h5>
               >
               {% if edu.link %}
                 <a class="link-dark" href="{{ edu.url }}">{{ edu.name }}</a>
