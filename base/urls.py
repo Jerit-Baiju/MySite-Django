@@ -16,6 +16,7 @@ urlpatterns = [
     path('instagram/', views.instagram, name='instagram'),
     path('whatsapp/', views.whatsapp, name='whatsapp'),
     path('vijayamatha/', views.vijayamatha, name='vijayamatha'),
+    path('bethany/', views.bethany, name='bethany'),
 
     path('sitemap.xml', views.sitemap, name='sitemap'),
     path('robots.txt', views.robots, name='robots'),

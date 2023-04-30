@@ -7,7 +7,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.cache import cache
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
+from django.urls import reverse
 from django.views.generic import TemplateView
+
 from api.views import github_api
 
 from .basic import log, push
@@ -133,20 +135,17 @@ def home(request):
         'education': [
             {
                 'name': 'Vijayamatha Public School',
-                'link': True,
-                'url': '/vijayamatha'
+                'url': reverse('vijayamatha')
             },
             {
                 'name': 'MAM Bethany Public School',
-                'link': False,
-            },  
+                'url': reverse('bethany'),
+            },
             {
                 'name': 'CPM GHSS Peermade',
-                'link': False,
             },
             {
                 'name': 'GHSS Amaravathy, Kumily',
-                'link': False,
             }
         ],
         'firebase': os.environ.get('firebase'),
@@ -264,6 +263,10 @@ def vijayamatha(request):
     log(request, 'Vijayamatha')
     return redirect('https://vijayamathaschool.in')
 
+
+def bethany(request):
+    log(request, 'MAM Bethany')
+    return redirect('https://mambethany.com')
 
 def custom_404(request, *args, **kwargs):
     return render(request, '404.html', context={'hr': False}, status=404)
