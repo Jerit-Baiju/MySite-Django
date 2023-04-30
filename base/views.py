@@ -128,7 +128,7 @@ def home(request):
         'quote': random.choice(quotes),
         'intro': INTRO,
         'skills': [
-            'Git', 'Python', 'Heroku', 'Django', 'Project Management', 'Google Search Console',
+            'HTML/CSS/JS', 'Bootstrap', 'jQuery', 'Git', 'Python', 'Flask', 'Selenium', 'Django', 'SQLite3', 'Heroku', 'SEO', 'GSC', 'AWS', 'PyLint', 'Django REST framework'
         ],
         'education': [
             {
@@ -139,7 +139,7 @@ def home(request):
             {
                 'name': 'MAM Bethany Public School',
                 'link': False,
-            },
+            },  
             {
                 'name': 'CPM GHSS Peermade',
                 'link': False,
