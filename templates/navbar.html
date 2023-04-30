@@ -1,6 +1,6 @@
 <nav class="navbar sticky-top navbar-expand-lg pt-md-4 {% if dark == True %}navbar-dark bg-dark {% else %} navbar-light bg-light{% endif %}">
   <div class="container">
-    <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+    <a class="navbar-brand" href="{% url 'home' %}">JERIT BAIJU</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -9,25 +9,25 @@
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         {% if request.user.is_superuser %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'log' %}">Logs</a>
+          <a class="nav-link" href="{% url 'log' %}">LOGS</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/admin/">Admin</a>
+          <a class="nav-link" href="/admin/">ADMIN</a>
         </li>
         {% else %}
         <li class="nav-item">
-          <a class="nav-link {% if page == 'stats' %}active{% endif %}" href="{% url 'stats' %}">Statics</a>
+          <a class="nav-link {% if page == 'stats' %}active{% endif %}" href="{% url 'stats' %}">STATICS</a>
         </li>
         {% endif %}
         <li class="nav-item">
-          <a class="nav-link {% if page == 'gallery' %}active{% endif %}" href="{% url 'gallery' %}">Gallery</a>
+          <a class="nav-link {% if page == 'gallery' %}active{% endif %}" href="{% url 'gallery' %}">GALLERY</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if page == 'projects' %}active{% endif %}" href="{% url 'projects' %}">Projects</a>
+          <a class="nav-link {% if page == 'projects' %}active{% endif %}" href="{% url 'projects' %}">PROJECTS</a>
         </li>
         {% if request.user.is_authenticated %} {% else %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'login-page' %}">Login</a>
+          <a class="nav-link" href="{% url 'login-page' %}">LOGIN</a>
         </li>
         {% endif %}
       </ul>
