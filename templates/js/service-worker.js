@@ -9,6 +9,9 @@ const assets = [
   // icons
   "/static/images/icons/404.png",
   "/static/images/icons/offline.png",
+  // fonts
+  "/static/fonts/comforter.ttf",
+  "/static/fonts/source_code.ttf",
   // footer
   "/static/images/footer/call.png",
   "/static/images/footer/email.png",
