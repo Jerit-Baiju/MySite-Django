@@ -1,15 +1,10 @@
-import datetime
 import random
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import FileResponse
 from django.shortcuts import redirect, render
-from django.urls import reverse
-from pytube import YouTube
 
 from base.basic import log
-from base.models import MediaFile, Video
 
 # Create your views here.
 
@@ -29,8 +24,6 @@ def projects(request):
             'src': '/projects/num_game'},
         {'name': 'Chat Bot API', 'info': 'This API provides you free commands, wikipedia support, user detection.',
             'src': 'https://github.com/jerit-baiju/chat_bot_api'},
-        {'name': 'YT video Downloader', 'info': 'You can download any youtube video with high resolution.',
-            'src': reverse('yt_video')}
 
     ]
     random.shuffle(projects_data)
@@ -99,29 +92,3 @@ def weather(request):
     }
     return render(request, 'projects/weather.html', context)
 
-
-@login_required(login_url='login-page')
-def yt_video(request):
-    if request.method == 'POST':
-        url = request.POST['yt_link']
-        youtube = YouTube(url)
-        video = youtube.streams.get_highest_resolution()
-        if video.filesize_gb <= 3:
-            path = video.download(
-                'media/', filename=f'{request.user.email}.mp4')
-            time_to_delete = datetime.datetime.now() + datetime.timedelta(minutes=30)
-            media_file = MediaFile.objects.create(
-                file_path=path, time_to_delete=time_to_delete)
-            media_file.save()
-            vid = Video.objects.create(
-                url=url, title=video.title, user=request.user)
-            vid.save()
-            log(request, f'YT_Video - {video.title} - {video.filesize_mb} GB')
-            return FileResponse(open(f'media/{request.user.email}.mp4', 'rb'), as_attachment=True, filename=f'{video.title}.mp4')
-        else:
-            messages.info(
-                request, f'So sorry {request.user.first_name}, your requested file is bigger than 3 GB of file size.')
-            return render(request, 'projects/yt_video.html')
-
-    else:
-        return render(request, 'projects/yt_video.html')
