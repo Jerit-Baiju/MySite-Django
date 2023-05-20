@@ -1,62 +1,33 @@
+{% load static %}
 <section class="p-1" id="footer">
-  <div style="
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding-bottom: 0rem;
-    ">
-    <div style="
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 5rem;
-      ">
+  <div class="footer">
+    <div class="footer-element">
       <a href="{% url 'github' %}">
-        <img src="/static/images/footer/github.png" alt="github" height="50" width="50" />
+        <img src="{% static '/images/footer/github.png' %}" alt="github" height="50" width="50" />
       </a>
     </div>
 
-    <div style="
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 5rem;
-      ">
+    <div class="footer-element">
       <a href="{% url 'instagram' %}">
-        <img src="/static/images/footer/instagram.png" alt="instagram" height="50" width="50" />
+        <img src="{% static '/images/footer/instagram.png' %}" alt="instagram" height="50" width="50" />
       </a>
     </div>
 
-    <div style="
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 5rem;
-      ">
+    <div class="footer-element">
       <a href="tel:+918592060520">
-        <img src="/static/images/footer/call.png" alt="call" height="50" width="50" />
+        <img src="{% static '/images/footer/call.png' %}" alt="call" height="50" width="50" />
       </a>
     </div>
 
-    <div style="
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 5rem;
-      ">
+    <div class="footer-element">
       <a href="{% url 'whatsapp' %}">
-        <img src="/static/images/footer/whatsapp.png" alt="whatsapp" height="50" width="50" />
+        <img src="{% static '/images/footer/whatsapp.png' %}" alt="whatsapp" height="50" width="50" />
       </a>
     </div>
 
-    <div style="
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 5rem;
-      ">
+    <div class="footer-element">
       <a href="mailto:jeritalumkal@gmail.com">
-        <img src="/static/images/footer/email.png" alt="mail" height="50" width="50" />
+        <img src="{% static '/images/footer/email.png' %}" alt="mail" height="50" width="50" />
       </a>
     </div>
   </div>

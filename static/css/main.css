@@ -11,3 +11,17 @@
 * {
     font-family: 'source_code';
 }
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 0rem;
+}
+
+.footer-element {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5rem;
+}
