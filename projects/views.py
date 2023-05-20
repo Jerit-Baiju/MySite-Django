@@ -83,11 +83,3 @@ def num_game_add(request):
         return redirect('num-game')
     messages.error(request, 'An unknown error occurred.')
     return redirect('num-game')
-
-
-def weather(request):
-    context = {
-        'title': 'Weather App',
-        'dark': True
-    }
-    return render(request, 'projects/weather.html', context)
