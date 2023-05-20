@@ -288,7 +288,7 @@ def manifest(request):
 
 
 class ServiceWorkerView(TemplateView):
-    content_type = 'utf-8'
+    content_type = 'application/javascript'
     template_name = 'js/service-worker.js'
 
 
