@@ -6,7 +6,6 @@ const assets = [
   // pages
   "/",
   "/stats",
-  "/offline.html",
   // icons
   "/static/images/icons/404.png",
   "/static/images/icons/offline.png",
@@ -17,9 +16,12 @@ const assets = [
   "/static/images/footer/whatsapp.png",
   "/static/images/footer/instagram.png",
   // cdns
-  "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css",
-  "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js",
-]
+  "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css",
+  "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js",
+  "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
+];
+
+const offlinePage = '/offline.html';
 
 self.addEventListener("message", (event) => {
   if (event.data && event.data.type === "SKIP_WAITING") {
@@ -53,9 +55,8 @@ self.addEventListener('fetch', (event) => {
         const networkResp = await fetch(event.request);
         return networkResp;
       } catch (error) {
-
         const cache = await caches.open(CACHE);
-        const cachedResp = await cache.match(assets);
+        const cachedResp = await cache.match(offlinePage);
         return cachedResp;
       }
     })());
