@@ -284,7 +284,7 @@ def robots(request):
 
 def manifest(request):
     log(request, 'Manifest.json')
-    return HttpResponse(open('manifest.json').read(), content_type='text/json')
+    return HttpResponse(open('manifest.json').read(), content_type='application/json')
 
 
 class ServiceWorkerView(TemplateView):
