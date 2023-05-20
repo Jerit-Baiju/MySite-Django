@@ -288,12 +288,12 @@ def manifest(request):
 
 
 class ServiceWorkerView(TemplateView):
-    content_type = 'application/javascript'
+    content_type = 'utf-8'
     template_name = 'js/service-worker.js'
 
 
 class FirebaseSW(TemplateView):
-    content_type = 'application/javascript'
+    content_type = 'utf-8'
     template_name = 'js/firebase-sw.js'
 
 
