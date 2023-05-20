@@ -91,4 +91,3 @@ def weather(request):
         'dark': True
     }
     return render(request, 'projects/weather.html', context)
-
