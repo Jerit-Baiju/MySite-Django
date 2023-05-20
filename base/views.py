@@ -293,7 +293,7 @@ class ServiceWorkerView(TemplateView):
 
 
 class FirebaseSW(TemplateView):
-    content_type = 'utf-8'
+    content_type = 'application/javascript'
     template_name = 'js/firebase-sw.js'
 
 
