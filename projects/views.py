@@ -12,12 +12,10 @@ from base.basic import log
 def projects(request):
     log(request, 'Projects')
     projects_data = [
-        {'name': 'Weather App', 'info': 'A project to get weather from all places, working by scrapping data from GOOGLE WEATHER.',
-            'src': '/projects/weather'},
         {'name': 'PyFlit', 'info': 'Tool for adding components and pages in FLASK. Can be used to send PYTHON variables to JAVASCRIPT.',
             'src': 'https://pypi.org/project/pyflit/'},
-        {'name': 'Clara', 'info': 'CHAT-BOT made with CHAT-BOT-API. Simple STATIC Project.',
-            'src': '/projects/clara'},
+        # {'name': 'Clara', 'info': 'CHAT-BOT made with CHAT-BOT-API. Simple STATIC Project.',
+        #     'src': '/projects/clara'},
         {'name': 'MySite', 'info': 'DYNAMIC WEBSITE made with DJANGO framework, FEATURES - Admin Panel, User Management, User-Score Handling, LOGS, etc.. ',
             'src': 'https://github.com/jerit-baiju/mysite-django'},
         {'name': 'Number Game', 'info': 'You should assume the number that is picked from 0-100 randomly by computer with TEN chances.',
