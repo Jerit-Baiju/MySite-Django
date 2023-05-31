@@ -10,6 +10,7 @@ const assets = [
   "/",
   "/stats",
   // icons
+  "/static/favicon.png",
   "/static/images/icons/404.png",
   "/static/images/icons/offline.png",
   // fonts
