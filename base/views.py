@@ -195,7 +195,6 @@ def stats(request):
             'value': 'AI-ML | TensorFlow'},
     ]
     about_web = [
-        {'key': 'languages', 'value': 'python, JS, HTML, CSS'},
         {'key': 'Backend', 'value': 'Django | Python'},
         {'key': 'DataBase', 'value': 'SQLITE3'},
         {'key': 'Hosted on', 'value': 'AWS'},
