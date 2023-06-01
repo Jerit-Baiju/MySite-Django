@@ -188,23 +188,21 @@ def stats(request):
         ((today.month, today.day) < (birthday.month, birthday.day))
     birthday = birthday.strftime(r"%B %d, %Y")
     about_me = [
-        {'key': 'age', 'value': age, 'class': 'grey'},
-        {'key': 'location', 'value': 'kerala, India', 'class': 'white'},
-        {'key': 'D.O.B', 'value': birthday, 'class': 'grey'},
+        {'key': 'age', 'value': age},
+        {'key': 'location', 'value': 'kerala, India'},
+        {'key': 'D.O.B', 'value': birthday},
         {'key': 'currently learning',
-            'value': 'web development - python', 'class': 'white'},
+            'value': 'AI-ML | TensorFlow'},
     ]
     about_web = [
-        {'key': 'languages', 'value': 'python, JS, HTML, CSS', 'class': 'grey'},
-        {'key': 'Backend', 'value': 'Django | Python', 'class': 'white'},
-        {'key': 'packages',
-            'value': 'Jinja, BS4, Random, PushBullet', 'class': 'grey'},
-        {'key': 'DataBase', 'value': 'SQLITE3', 'class': 'white'},
-        {'key': 'Hosted on', 'value': 'AWS', 'class': 'grey'},
+        {'key': 'languages', 'value': 'python, JS, HTML, CSS'},
+        {'key': 'Backend', 'value': 'Django | Python'},
+        {'key': 'DataBase', 'value': 'SQLITE3'},
+        {'key': 'Hosted on', 'value': 'AWS'},
         {'key': 'last updated at',
-            'value': github_data['updated_at'], 'class': 'white'},
-        {'key': 'Stars this repository has on github',
-            'value': github_data['stars_this'], 'class': 'grey'}
+            'value': github_data['updated_at']},
+        {'key': 'GitHub Stars Count',
+            'value': github_data['stars_this']}
     ]
     if user.is_authenticated:
         if user.score is None:

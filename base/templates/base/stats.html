@@ -14,7 +14,7 @@
             <h3 class="text-uppercase my-heading">{{ stat.name }}</h3>
             <div class="padding">
               {% for content in stat.contents %}
-                <div class="{{ content.class }}">
+                <div class="{% cycle 'grey' 'white' %}">
                   <div class="row">
                     <div class="col-6 col-md-6 col-lg-6">{{ content.key }}</div>
                     <div id="{{ content.key }}" class="col-6 col-md-6 col-lg-6 text-break">{{ content.value }}</div>
@@ -30,7 +30,7 @@
         <h3 class="text-uppercase my-heading">My GitHub</h3>
         <div class="padding">
           {% for content in GitHub %}
-            <div class="{{ content.class }} ">
+            <div class="{% cycle 'grey' 'white' %}">
               <div class="row">
                 <div class="col-6 col-md-6 col-lg-6">{{ content.key }}</div>
                 <div class="col-6 col-md-6 col-lg-6 text-break">{{ content.value }}</div>
