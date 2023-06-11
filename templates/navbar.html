@@ -14,14 +14,17 @@
         <li class="nav-item">
           <a class="nav-link" href="/admin/">ADMIN</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'subscribe' %}">SUBSCRIBE</a>
+        </li>
         {% else %}
         <li class="nav-item">
           <a class="nav-link {% if page == 'stats' %}active{% endif %}" href="{% url 'stats' %}">STATICS</a>
         </li>
-        {% endif %}
         <li class="nav-item">
           <a class="nav-link {% if page == 'gallery' %}active{% endif %}" href="{% url 'gallery' %}">GALLERY</a>
         </li>
+        {% endif %}
         <li class="nav-item">
           <a class="nav-link {% if page == 'projects' %}active{% endif %}" href="{% url 'projects' %}">PROJECTS</a>
         </li>
