@@ -138,3 +138,4 @@ guide.py
 media/
 firebase.json
 node_modules
+.DS_Store
