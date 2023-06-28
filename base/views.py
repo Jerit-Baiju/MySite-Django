@@ -13,7 +13,7 @@ from django.views.generic import TemplateView
 from api.views import github_api
 
 from .basic import log, push
-from .models import User
+from .models import User, URL
 
 INTRO = "Hello, my name is Jerit. I enjoy building things and have a keen interest in Artificial Intelligence and "\
     "Machine Learning. If you believe that I could be of assistance to you or would like to connect with me, please don't hesitate to "
@@ -241,6 +241,13 @@ def stats(request):
     return render(request, 'base/stats.html', context)
 
 
+def redirector(request, short_code):
+    log(request, f'redirect - {short_code}')
+    url = URL.objects.get(short_code=short_code)
+    url.clicks += 1
+    url.save()
+    return redirect(url.original_url)
+
 def github(request):
     log(request, 'GitHub')
     return redirect('https://github.com/Jerit-Baiju')
@@ -280,7 +287,6 @@ def robots(request):
 
 
 def manifest(request):
-    log(request, 'Manifest.json')
     return HttpResponse(open('manifest.json').read(), content_type='application/json')
 
 

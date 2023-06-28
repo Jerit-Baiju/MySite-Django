@@ -57,33 +57,6 @@ class User(AbstractUser):
         return f"{self.first_name} {self.last_name}"
 
 
-class Video(models.Model):
-    url = models.URLField()
-    title = models.CharField(max_length=255)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"{self.user} - {self.title}"
-
-
-class MediaFile(models.Model):
-    file_path = models.CharField(max_length=255)
-    time_to_delete = models.DateTimeField()
-
-
-@receiver(post_save, sender=MediaFile)
-def schedule_media_file_deletion(sender, instance, created, **kwargs):
-    if created:
-        file_path = instance.file_path
-        time_to_delete = instance.time_to_delete
-        current_time = datetime.datetime.now()
-
-        if current_time > time_to_delete:
-            os.remove(file_path)
-        else:
-            pass
-
-
 class AdminLog(models.Model):
     name = models.CharField(max_length=40, null=True)
     latest_log = models.CharField(max_length=250, null=True, blank=True)
@@ -93,3 +66,13 @@ class AdminLog(models.Model):
 class AdminSecret(models.Model):
     name = models.CharField(max_length=20, null=True)
     secret = models.CharField(max_length=500, null=True, blank=True)
+
+
+class URL(models.Model):
+    original_url = models.URLField()
+    short_code = models.CharField(max_length=15, unique=True)
+    clicks = models.IntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.short_code

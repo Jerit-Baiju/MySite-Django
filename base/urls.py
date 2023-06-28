@@ -18,6 +18,8 @@ urlpatterns = [
     path('vijayamatha/', views.vijayamatha, name='vijayamatha'),
     path('bethany/', views.bethany, name='bethany'),
 
+    path('url/<str:short_code>/', views.redirector, name='redirector'),
+
     path('sitemap.xml', views.sitemap, name='sitemap'),
     path('robots.txt', views.robots, name='robots'),
     path('manifest.json', views.manifest, name='manifest'),
