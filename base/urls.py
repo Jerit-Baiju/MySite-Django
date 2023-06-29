@@ -13,6 +13,7 @@ urlpatterns = [
     path('about/', views.about, name='about'),
 
     path('github/', views.github, name='github'),
+    path('linkedin/', views.linkedin, name='linkedin'),
     path('instagram/', views.instagram, name='instagram'),
     path('whatsapp/', views.whatsapp, name='whatsapp'),
     path('vijayamatha/', views.vijayamatha, name='vijayamatha'),

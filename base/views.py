@@ -253,6 +253,11 @@ def github(request):
     return redirect('https://github.com/Jerit-Baiju')
 
 
+def linkedin(request):
+    log(request, 'LinkedIn')
+    return redirect('www.linkedin.com/in/jeritbaiju')
+
+
 def instagram(request):
     log(request, 'Instagram')
     return redirect('https://www.instagram.com/jerit_baiju')
