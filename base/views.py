@@ -258,11 +258,6 @@ def linkedin(request):
     return redirect('www.linkedin.com/in/jeritbaiju')
 
 
-def instagram(request):
-    log(request, 'Instagram')
-    return redirect('https://www.instagram.com/jerit_baiju')
-
-
 def whatsapp(request):
     log(request, 'WhatsApp')
     return redirect(r'http://wa.me/+918592060520?text=*Hi Jerit*')
