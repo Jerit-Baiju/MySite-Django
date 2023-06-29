@@ -14,7 +14,6 @@ urlpatterns = [
 
     path('github/', views.github, name='github'),
     path('linkedin/', views.linkedin, name='linkedin'),
-    path('instagram/', views.instagram, name='instagram'),
     path('whatsapp/', views.whatsapp, name='whatsapp'),
     path('vijayamatha/', views.vijayamatha, name='vijayamatha'),
     path('bethany/', views.bethany, name='bethany'),
