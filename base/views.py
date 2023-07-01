@@ -196,8 +196,7 @@ def stats(request):
     ]
     about_web = [
         {'key': 'Backend', 'value': 'Django | Python'},
-        {'key': 'DataBase', 'value': 'SQLITE3'},
-        {'key': 'Hosted on', 'value': 'AWS'},
+        {'key': 'Hosted on', 'value': 'Amazon Web Services'},
         {'key': 'last updated at',
             'value': github_data['updated_at']},
         {'key': 'GitHub Stars Count',
@@ -209,11 +208,11 @@ def stats(request):
         else:
             score = user.score
         about_user = [
-            {'key': 'name', 'value': user, 'class': 'grey'},
-            {'key': 'e-mail', 'value': user.email, 'class': 'white'},
-            {'key': 'score', 'value': score, 'class': 'grey'},
-            {'key': 'last login', 'value': user.last_login.date, 'class': 'white'},
-            {'key': 'date joined', 'value': user.date_joined.date, 'class': 'grey'},
+            {'key': 'name', 'value': user},
+            {'key': 'e-mail', 'value': user.email},
+            {'key': 'score', 'value': score},
+            {'key': 'last login', 'value': user.last_login.date},
+            {'key': 'date joined', 'value': user.date_joined.date},
         ]
     else:
         about_user = 'None'
@@ -223,14 +222,14 @@ def stats(request):
         {'name': 'about you', 'contents': about_user}
     ]
     github_data = [
-        {'key': 'repositories',
-            'value': github_data['repositories'], 'class': 'grey'},
         {'key': 'followers',
-            'value': github_data['followers'], 'class': 'white'},
+            'value': github_data['followers']},
         {'key': 'following',
-            'value': github_data['following'], 'class': 'grey'},
+            'value': github_data['following']},
+        {'key': 'public repositories',
+            'value': github_data['repositories']},
         {'key': 'total stars earned',
-            'value': github_data['stars'], 'class': 'white'},
+            'value': github_data['stars']},
     ]
     context = {
         'title': 'Stats | Jerit Baiju',
