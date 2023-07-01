@@ -255,7 +255,7 @@ def github(request):
 
 def linkedin(request):
     log(request, 'LinkedIn')
-    return redirect('www.linkedin.com/in/jeritbaiju')
+    return redirect('https://www.linkedin.com/in/jeritbaiju')
 
 
 def whatsapp(request):
