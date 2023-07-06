@@ -181,8 +181,8 @@ def about(request):
 def stats(request):
     log(request, 'Stats')
     user = request.user
-    github_data = github_api(request)
     today = date.today()
+    github_data = github_api(request)
     birthday = datetime.strptime("February 10, 2006", r"%B %d, %Y")
     age = today.year - birthday.year - \
         ((today.month, today.day) < (birthday.month, birthday.day))
@@ -247,6 +247,7 @@ def redirector(request, short_code):
     url.save()
     return redirect(url.original_url)
 
+
 def github(request):
     log(request, 'GitHub')
     return redirect('https://github.com/Jerit-Baiju')
@@ -270,6 +271,7 @@ def vijayamatha(request):
 def bethany(request):
     log(request, 'MAM Bethany')
     return redirect('https://mambethany.com')
+
 
 def custom_404(request, *args, **kwargs):
     return render(request, '404.html', context={'hr': False}, status=404)
