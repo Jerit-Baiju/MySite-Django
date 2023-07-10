@@ -40,7 +40,7 @@
   {% endcache %}
   <link rel="manifest" href="{% url 'manifest' %}" />
 </head>
-<body class="{% if dark == True %} bg-dark text-white{% else %} bg-light {% endif %}">
+<body class="d-none{% if dark == True %} bg-dark text-white{% else %} bg-light {% endif %}">
   {% include "navbar.html" %}
   <div>
     {% if messages %}
@@ -74,6 +74,12 @@
   if (!navigator.onLine) {
       window.location.href = '/offline/';
   }
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    document.body.classList.remove("d-none");
+});
+
 </script>
 {% block scripts %}
 {% endblock scripts %}
