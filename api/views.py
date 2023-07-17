@@ -1,4 +1,3 @@
-from math import e
 import os
 from datetime import datetime
 
@@ -17,6 +16,7 @@ from base.models import AdminLog, AdminSecret
 load_dotenv()
 # Create your views here.
 
+
 @csrf_exempt
 def subscribe(request):
     if request.user.is_superuser:
@@ -26,18 +26,18 @@ def subscribe(request):
                 token_object = AdminSecret.objects.get(name='token')
                 token_object.secret = token
                 token_object.save()
-                return JsonResponse({"status": f"UPDATED SUCCESSFULLY"})
+                return JsonResponse({"status": "UPDATED SUCCESSFULLY"})
             except:
                 try:
                     token = request.POST.get('token')
-                    token_object = AdminSecret.objects.create(name='token', secret=token)
+                    token_object = AdminSecret.objects.create(
+                        name='token', secret=token)
                     token_object.save()
-                    return JsonResponse({"status": f"CREATED SUCCESSFULLY"})
+                    return JsonResponse({"status": "CREATED SUCCESSFULLY"})
                 except:
                     return JsonResponse({"status": "FAILED"})
         return render(request, 'api/subscribe.html', {'dark': True})
     return JsonResponse({"status": "Access Denied"})
-        
 
 
 def latest_log(request):
