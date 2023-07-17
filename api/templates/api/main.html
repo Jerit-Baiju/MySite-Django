@@ -29,6 +29,7 @@
           content="no-cache, no-store, must-revalidate">
   </head>
   <body class="{% if dark == True %} bg-dark text-white{% else %} bg-light {% endif %}">
+    {% include 'navbar.html' %}
     <div class="container pt-2 ">
       {% if type == 'list' %}
         {% for item in content %}
