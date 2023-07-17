@@ -6,6 +6,7 @@ import requests
 from bs4 import BeautifulSoup
 from django.contrib.auth import authenticate
 from django.core.cache import cache
+from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
@@ -13,6 +14,7 @@ from dotenv import load_dotenv
 
 from base import basic
 from base.models import AdminLog, AdminSecret
+
 load_dotenv()
 # Create your views here.
 
@@ -63,13 +65,22 @@ def latest_log(request):
         return render(request, 'api/main.html', context)
 
 
-def logs(request):
+def logs(request, page):
     if request.user.is_superuser:
+        page = max(page, 1)
+        all_logs = str(AdminLog.objects.get(name='api_log').log).split('\n')
+        # Split logs into pages with 20 logs per page
+        paginator = Paginator(all_logs, 20)
+        # Get the logs for the requested page
+        page_obj = paginator.get_page(page)
         context = {
             'title': 'Jerit Baiju | Logs',
             'dark': True,
-            'content': str(AdminLog.objects.get(name='api_log').log).split('\n'),
-            'type': 'list'
+            'content': page_obj,  # Pass the logs for the requested page to the template
+            'type': 'list',
+            'page': page,
+            'next': page + 1,
+            'previous': max(page - 1, 1)
         }
         return render(request, 'api/main.html', context)
     context = {
