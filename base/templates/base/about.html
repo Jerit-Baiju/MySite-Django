@@ -7,16 +7,16 @@
       <h1 class="text-center">ABOUT ME</h1>
       <hr>
     </div>
-    <div class="intro">
-      <h2>Intro</h2>
+    <div class="py-3">
+      <h2 class="text-uppercase">Intro</h2>
       <h5>
         {% include 'src/intro.html' %}
         .
       </h5>
     </div>
-    <hr>
-    <div class="Some History">
-      <h2>Some History</h2>
+    {% comment %} <hr> {% endcomment %}
+    <div class="pb-3">
+      <h2 class="text-uppercase">Some History</h2>
       <ul>
         {% for item in history %}
           <li>
