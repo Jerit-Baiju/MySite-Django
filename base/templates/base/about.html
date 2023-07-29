@@ -4,23 +4,23 @@
   {% cache 86400 about %}
   <section class="container">
     <div class="heading">
-      <h1 class="text-center">ABOUT ME</h1>
+      <h3 class="text-center">ABOUT ME</h3>
       <hr>
     </div>
     <div class="py-3">
-      <h2 class="text-uppercase">Intro</h2>
-      <h5>
+      <h5 class="text-uppercase">Intro</h5>
+      <p>
         {% include 'src/intro.html' %}
         .
-      </h5>
+      </p>
     </div>
     {% comment %} <hr> {% endcomment %}
     <div class="pb-3">
-      <h2 class="text-uppercase">Some History</h2>
+      <h5 class="text-uppercase">Some History</h5>
       <ul>
         {% for item in history %}
           <li>
-            <h5>{{ item }}</h5>
+            <p>{{ item }}</p>
           </li>
         {% endfor %}
       </ul>
