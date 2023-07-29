@@ -171,7 +171,7 @@ def about(request):
         "As of 2023, I have begun studying Machine Learning (ML) and Artificial Intelligence (AI), with a particular focus on TensorFlow and Keras, which are currently my primary areas of interest."
     ]
     context = {
-        'title': 'About Me',
+        'title': 'About Me | Jerit Baiju',
         'history': history,
         'intro': INTRO
     }
