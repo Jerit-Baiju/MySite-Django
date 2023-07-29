@@ -5,19 +5,19 @@
   {% cache 86400 stats request.user %}
   <link rel="stylesheet" href="{% static 'css/base/stats.css' %}" />
   <section id="stats" class="container">
-    <h1 class="text-center text-uppercase">Statics</h1>
+    <h3 class="text-center text-uppercase">Statics</h3>
     <hr />
     <div class="row">
       {% for stat in stats %}
         {% if stat.contents != 'None' %}
           <div class="my-bg mb-3">
-            <h3 class="text-uppercase my-heading">{{ stat.name }}</h3>
+            <h5 class="text-uppercase my-heading">{{ stat.name }}</h5>
             <div class="padding">
               {% for content in stat.contents %}
                 <div class="{% cycle 'grey' 'white' %}">
                   <div class="row">
-                    <div class="col-6 col-md-6 col-lg-6">{{ content.key }}</div>
-                    <div id="{{ content.key }}" class="col-6 col-md-6 col-lg-6 text-break">{{ content.value }}</div>
+                    <div class="col-6 col-md-6 col-lg-6"><p class="m-0 fw-bold">{{ content.key }}</p></div>
+                    <div class="col-6 col-md-6 col-lg-6 text-break"><p id="{{ content.key }}" class="m-0 fw-bold">{{ content.value }}</p></div>
                   </div>
                 </div>
               {% endfor %}
@@ -27,13 +27,13 @@
         {% endif %}
       {% endfor %}
       <div class="my-bg">
-        <h3 class="text-uppercase my-heading">My GitHub</h3>
+        <h5 class="text-uppercase my-heading">My GitHub</h5>
         <div class="padding">
           {% for content in GitHub %}
             <div class="{% cycle 'grey' 'white' %}">
               <div class="row">
-                <div class="col-6 col-md-6 col-lg-6">{{ content.key }}</div>
-                <div class="col-6 col-md-6 col-lg-6 text-break">{{ content.value }}</div>
+                <div class="col-6 col-md-6 col-lg-6"><p class="m-0 fw-bold">{{ content.key }}</p></div>
+                <div class="col-6 col-md-6 col-lg-6 text-break"><p class="m-0 fw-bold">{{ content.value }}</p></div>
               </div>
             </div>
           {% endfor %}
