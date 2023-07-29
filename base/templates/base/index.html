@@ -12,12 +12,12 @@
         </div>
         <div class="col-12 col-md-6">
           <h1>JERIT BAIJU</h1>
-          <h5 class="ps-3 ps-md-4">
+          <p class="ps-3 ps-md-4 fw-bold">
             {% for bio in bio %}
               > {{ bio }}
               <br />
             {% endfor %}
-          </h5>
+          </p>
           <div>
             <div class="row m-2 pt-3 pb-3 text-center">
               <div class="col-4">
@@ -36,16 +36,12 @@
           </div>
           <div class="quoteDiv align-items-center">
             <div class="quote">
-              <h5 class="text-end p-1">"{{ quote.quote }}"</h5>
+              <p class="text-end p-1 fw-bold">"{{ quote.quote }}"</p>
               {% if quote.author != '' %}
                 <div class="row">
                   <div class="col-6 col-md-6"></div>
                   <div class="col-6 col-md-6 mt-1">
-                    <h6>
-                      <figcaption class="blockquote-footer text-end p-1">
-                        {{ quote.author }}
-                      </figcaption>
-                    </h6>
+                    <figcaption class="blockquote-footer text-end p-1 fw-bold">{{ quote.author }}</figcaption>
                   </div>
                 </div>
               {% endif %}
@@ -57,46 +53,47 @@
     </section>
     <section id="aboutMe" class="p-1">
       <div class="p-3">
-        <h2 class="text-center text-uppercase">About Me</h2>
-        <h5>
+        <h4 class="text-center text-uppercase">About Me</h4>
+        <p class="fw-bold">
           {% include 'src/intro.html' %}
           or you can read more <a class="link-dark" href="{% url 'about' %}">about me</a>.
-        </h5>
+        </p>
       </div>
       <hr />
     </section>
     <section id="serviceSection" class="p-1">
       <div class="p-3">
-        <h2 class="text-center text-uppercase">Skills</h2>
+        <h4 class="text-center text-uppercase">Skills</h4>
         <div class="services">
-          <h5 class="text-capitalize">
-            <div class="row">
-            {% for skill in skills %}
-              <div class="col-md-4">
-                > {{ skill }}
-              <br />
-              </div>
-            {% endfor %}
-            </div>
-          </h5>
+          <div class="row">
+            <p>
+              {% for skill in skills %}
+                <div class="col-md-4 fw-bold">
+                  &gt {{ skill }}
+                  <br />
+                </div>
+              {% endfor %}
+            </p>
+          </div>
         </div>
       </div>
       <hr />
     </section>
     <section id="educationSection" class="p-1">
       <div class="p-3">
-        <h2 class="text-center  text-uppercase">Education</h2>
+        <h4 class="text-center  text-uppercase">Education</h4>
         <div class="education">
-          {% for edu in education %}
-            <h5>
-              >
+          <p class="fw-bold">
+            {% for edu in education %}
+              &gt
               {% if edu.url %}
                 <a class="link-dark" href="{{ edu.url }}">{{ edu.name }}</a>
               {% else %}
                 {{ edu.name }}
               {% endif %}
-            </h5>
-          {% endfor %}
+              <br>
+            {% endfor %}
+          </p>
         </div>
       </div>
       <hr />
