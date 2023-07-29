@@ -9,7 +9,7 @@
     </div>
     <div class="py-3">
       <h5 class="text-uppercase">Intro</h5>
-      <p>
+      <p class="fw-bold">
         {% include 'src/intro.html' %}
         .
       </p>
@@ -20,7 +20,7 @@
       <ul>
         {% for item in history %}
           <li>
-            <p>{{ item }}</p>
+            <p class="fw-bold">{{ item }}</p>
           </li>
         {% endfor %}
       </ul>
