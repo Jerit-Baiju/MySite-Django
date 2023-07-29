@@ -55,8 +55,8 @@
   setInterval(() => {
       const now = moment(new Date());
       const diff = now.diff(birth_date);
-      const years = diff / (365.25 * 24 * 60 * 60 * 1000);
-      document.getElementById("age").innerHTML = years.toFixed(8)
+      const age = diff / (365.25 * 24 * 60 * 60 * 1000);
+      document.getElementById("age").innerHTML = age.toFixed(10)
   }, 100);
 </script>
 {% endblock content %}
