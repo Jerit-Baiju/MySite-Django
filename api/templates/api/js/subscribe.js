@@ -25,7 +25,6 @@ $(document).ready(function () {
                 const messaging = getMessaging();
                 getToken(messaging, { vapidKey: '{{ firebase_key }}' }).then((currentToken) => {
                     if (currentToken) {
-                        console.log(currentToken)
                         $.ajax({
                             type: "POST",
                             url: "{% url 'subscribe' %}",
