@@ -4,7 +4,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-messaging.js";
 import {
     initializeApp
-} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+} from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAF0ZxYZN1XEztSNPqpV77kAUGObLNc6SQ",
@@ -36,7 +36,6 @@ $(document).ready(function () {
                                 alert(response['status'])
                             }
                         });
-
                     } else {
                         console.log('No registration token available. Request permission to generate one.');
                     }
@@ -45,6 +44,5 @@ $(document).ready(function () {
                 });
             }
         })
-
     })
 })
