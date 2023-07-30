@@ -37,7 +37,7 @@ def subscribe(request):
                     return JsonResponse({"status": "CREATED SUCCESSFULLY"})
                 except:
                     return JsonResponse({"status": "FAILED"})
-        return render(request, 'api/subscribe.html', {'dark': True})
+        return render(request, 'api/subscribe.html', {'dark': True, 'firebase_key': os.environ['firebase']})
     return JsonResponse({"status": "Access Denied"})
 
 
