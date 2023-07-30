@@ -9,14 +9,14 @@
     <title>{{ title }}</title>
     <meta name="title" content="Jerit Baiju" />
     <meta name="description"
-          content="Jerit's Personal Website - Django Application."/>
+          content="Jerit's Personal Website - Django Application." />
     <meta name="keywords"
-          content="Jerit, Jerit Baiju, jerit.ml, Web developer, vandiperiyar, jerit baiju vandiperiyar,"/>
+          content="Jerit, Jerit Baiju, jerit.ml, Web developer, vandiperiyar, jerit baiju vandiperiyar," />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://jerit.ml" />
     <meta property="og:title" content="Jerit Baiju" />
     <meta property="og:description"
-          content="Jerit's Personal Website - Django Application."/>
+          content="Jerit's Personal Website - Django Application." />
     <meta property="og:image" content="https://jerit.ml/static/social.png" />
     <meta name="robots" content="index, follow" />
     <meta name="language" content="English" />
@@ -58,22 +58,37 @@
           integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
           crossorigin="anonymous"></script>
 {% endcache %}
+<script type="module">
+    import {
+        initializeApp
+    } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+    const firebaseConfig = {
+        apiKey: "AIzaSyAF0ZxYZN1XEztSNPqpV77kAUGObLNc6SQ",
+        authDomain: "jerit-in.firebaseapp.com",
+        projectId: "jerit-in",
+        storageBucket: "jerit-in.appspot.com",
+        messagingSenderId: "791070201278",
+        appId: "1:791070201278:web:b3a13ecadda6a3533a55ef"
+    };
+
+    const app = initializeApp(firebaseConfig);
+</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7JKYDZ7NT5"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
+    window.dataLayer = window.dataLayer || [];
 
-  function gtag() {
-      dataLayer.push(arguments);
-  }
-  gtag('js', new Date());
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
 
-  gtag('config', 'G-7JKYDZ7NT5');
+    gtag('config', 'G-7JKYDZ7NT5');
 </script>
 <script>
-  if (!navigator.onLine) {
-      window.location.href = '/offline/';
-  }
+    if (!navigator.onLine) {
+        window.location.href = '/offline/';
+    }
 </script>
 {% block scripts %}
 {% endblock scripts %}
