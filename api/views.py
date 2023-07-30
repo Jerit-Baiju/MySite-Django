@@ -3,7 +3,6 @@ from datetime import datetime
 
 import pytz
 import requests
-from bs4 import BeautifulSoup
 from django.contrib.auth import authenticate
 from django.core.cache import cache
 from django.core.paginator import Paginator
@@ -115,31 +114,6 @@ def clr_admin_log(request):
         'content': 'Access Denied'
     }
     return render(request, 'api/main.html', context)
-
-
-def weather(request, city):
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36"
-    }
-    try:
-        url = f"https://www.google.com/search?q=weather+in+{city}"
-        page = requests.get(url, headers=headers, timeout=10)
-        soup = BeautifulSoup(page.content, 'html.parser')
-        temperature = soup.find('span', attrs={'id': 'wob_ttm'}).text
-        status = soup.find('span', attrs={'id': 'wob_dc'}).text
-        # location = soup.find('div', attrs={'id': 'wob_loc'}).text
-        location = city
-        temperature_op = f"{temperature} °F \n"
-        status_op = f"Status - {status} \n"
-        image_url = soup.find('img', attrs={'id': 'wob_tci'}).get('src')
-        time = soup.find('div', attrs={'id': 'wob_dts'}).text
-        context = {'success': True, 'temp': temperature_op, 'location': location,
-                   'status': status_op, 'time': time, 'image_url': image_url}
-    except:
-        context = {'success': False,
-                   'op': 'No Location Found, Try entering your nearest place or city'}
-    basic.log(request, f'Weather - {city}')
-    return JsonResponse(context)
 
 
 def github_api(request):
