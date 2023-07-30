@@ -1,3 +1,22 @@
+import {
+    getMessaging,
+    getToken
+} from "https://www.gstatic.com/firebasejs/9.18.0/firebase-messaging.js";
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyAF0ZxYZN1XEztSNPqpV77kAUGObLNc6SQ",
+    authDomain: "jerit-in.firebaseapp.com",
+    projectId: "jerit-in",
+    storageBucket: "jerit-in.appspot.com",
+    messagingSenderId: "791070201278",
+    appId: "1:791070201278:web:b3a13ecadda6a3533a55ef"
+};
+
+const app = initializeApp(firebaseConfig);
+
 $(document).ready(function () {
     $("#subscribe").click(function () {
         console.log('Requesting permission...');
@@ -26,6 +45,6 @@ $(document).ready(function () {
                 });
             }
         })
-        
+
     })
 })
