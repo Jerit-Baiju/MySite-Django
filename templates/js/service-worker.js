@@ -92,13 +92,3 @@ messaging.onBackgroundMessage((payload) => {
     notificationOptions);
 });
 
-messaging.onMessage((payload) => {
-  const notificationTitle = payload.notification.title;
-  const notificationOptions = {
-    body: payload.notification.body,
-    icon: '/static/favicon.png',
-    image: payload.notification.image
-  };
-  self.registration.showNotification(notificationTitle,
-    notificationOptions);
-});
