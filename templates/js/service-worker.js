@@ -1,6 +1,17 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js')
-importScripts('https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js')
-importScripts('https://www.gstatic.com/firebasejs/9.18.0/firebase-messaging.js')
+importScripts('https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/8.10.1/firebase-messaging.js');
+
+firebase.initializeApp({
+  apiKey: "AIzaSyAF0ZxYZN1XEztSNPqpV77kAUGObLNc6SQ",
+  authDomain: "jerit-in.firebaseapp.com",
+  projectId: "jerit-in",
+  storageBucket: "jerit-in.appspot.com",
+  messagingSenderId: "791070201278",
+  appId: "1:791070201278:web:b3a13ecadda6a3533a55ef"
+});
+
+const messaging = firebase.messaging();
 
 const CACHE = "jerit-baiju";
 
@@ -70,8 +81,18 @@ self.addEventListener('fetch', (event) => {
 });
 
 
-const messaging = firebase.messaging();
 messaging.onBackgroundMessage((payload) => {
+  const notificationTitle = payload.notification.title;
+  const notificationOptions = {
+    body: payload.notification.body,
+    icon: '/static/favicon.png',
+    image: payload.notification.image
+  };
+  self.registration.showNotification(notificationTitle,
+    notificationOptions);
+});
+
+messaging.onMessage((payload) => {
   const notificationTitle = payload.notification.title;
   const notificationOptions = {
     body: payload.notification.body,
