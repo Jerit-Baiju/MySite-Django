@@ -1,7 +1,7 @@
 
 # MySite-Django
 
-A simple personal website with projects, and have features like `user management`, `score`, `pushing notifications`, `admin logs`, `API` and many other things. You can `hide your secrets` like pushbullet ID in the admin panel. The project is live in [LINK](https://jerit.ml)
+A simple personal website with projects, and have features like `user management`, `score`, `pushing notifications`, `admin logs`, `API` and many other things. You can `hide your secrets` like pushbullet ID in the admin panel. The project is live in [LINK](https://jerit.in)
 
 
 ## Authors
