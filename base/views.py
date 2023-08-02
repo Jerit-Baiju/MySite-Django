@@ -66,7 +66,7 @@ def login_page(request):
         try:
             user = User.objects.get(email=email)
         except:
-            messages.error(request, 'User does not exist')
+            messages.error(request, 'It seems you want to Sign UP. User does not exist')
             return render(request, 'base/login.html', {'title': 'Login | Jerit Baiju'})
         user = authenticate(request, email=email, password=password)
         if user is not None:
@@ -81,7 +81,7 @@ def login_page(request):
                 cache.clear()
                 return redirect('home')
         else:
-            messages.error(request, 'E-mail OR password does not exit')
+            messages.error(request, 'Invalid Password')
             return render(request, 'base/login.html', {'title': 'Login | Jerit Baiju'})
     return render(request, 'base/login.html', {'title': 'Login | Jerit Baiju'})
 
