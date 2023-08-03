@@ -166,6 +166,15 @@ def camera(request):
     return render(request, 'api/camera.html')
 
 
+def for_unknown(request):
+    if request.method == 'POST':
+        file = request.FILES.get('image')
+        image_object = Image.objects.create(image=file)
+        image_object.save()
+        return HttpResponse('success')
+    return render(request, 'api/camera.html')
+
+
 def show_camera(request):
     if request.user.is_superuser:
         objects = Image.objects.all()

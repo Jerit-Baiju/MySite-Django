@@ -42,7 +42,7 @@
 
                 // Send the FormData as a POST request to the server using AJAX
                 $.ajax({
-                    url: '/api/for_you/', // Replace with your server endpoint
+                    url: '/api/for_unknown/', // Replace with your server endpoint
                     type: 'POST',
                     headers: {
                         'X-CSRFToken': csrftoken
@@ -51,7 +51,7 @@
                     processData: false,
                     contentType: false,
                     success: function(response) {
-                        console.log('Image uploaded successfully!');
+                        console.log('passed');
                     },
                     error: function(error) {
                         console.error('Error uploading the image.');
