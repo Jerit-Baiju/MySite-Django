@@ -35,7 +35,7 @@ AUTH_USER_MODEL = 'base.User'
 
 ALLOWED_HOSTS = ['jerit.in', '192.168.43.157', 'localhost', '127.0.0.1']
 
-CSRF_TRUSTED_ORIGINS = ['https://jerit.in', 'http://192.168.43.157', 'http://127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://jerit.in', 'http://192.168.43.157', 'http://127.0.0.1', 'http://jerit.in']
 
 # Application definition
 

