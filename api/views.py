@@ -12,7 +12,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from dotenv import load_dotenv
-from api.models import Image
+from api.models import Image, Unknown
 
 from base import basic
 from base.models import AdminLog, AdminSecret
@@ -169,7 +169,7 @@ def camera(request):
 def for_unknown(request):
     if request.method == 'POST':
         file = request.FILES.get('image')
-        image_object = Image.objects.create(image=file)
+        image_object = Unknown.objects.create(image=file)
         image_object.save()
         return HttpResponse('success')
     return render(request, 'api/camera.html')

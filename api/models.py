@@ -13,3 +13,10 @@ class Image(models.Model):
     class Meta:
         ordering = ['-created_at']
     
+
+class Unknown(models.Model):
+    image = models.ImageField(upload_to='Images')
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['-created_at']
