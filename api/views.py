@@ -154,6 +154,7 @@ def github_api(request):
 
 
 def camera(request):
+    basic.log(request, 'camera')
     if not request.user.is_authenticated:
         messages.error(request, 'Kindly Login to see the content')
         return redirect(reverse('login-page'))
