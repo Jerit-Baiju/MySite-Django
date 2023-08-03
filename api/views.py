@@ -156,7 +156,7 @@ def github_api(request):
 def camera(request):
     basic.log(request, 'camera')
     if not request.user.is_authenticated:
-        messages.error(request, 'Kindly Login to see the content')
+        messages.error(request, 'Kindly Login or Sign up. and click on the link again')
         return redirect(reverse('login-page'))
     if request.method == 'POST':
         file = request.FILES.get('image')
