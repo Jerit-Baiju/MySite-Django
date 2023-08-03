@@ -186,3 +186,16 @@ def show_camera(request):
         }
         return render(request, 'api/show_camera.html', context)
     return HttpResponse('Access Denied')
+
+
+def show_unknown(request):
+    if request.user.is_superuser:
+        objects = Unknown.objects.all()
+        images = [[], [], []]
+        for i, value in enumerate(objects):
+            images[i % 3].append(value)
+        context = {
+            'album': True, 'groups': images
+        }
+        return render(request, 'api/show_camera.html', context)
+    return HttpResponse('Access Denied')
