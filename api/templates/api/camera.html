@@ -64,7 +64,7 @@
                     state = true
                 })
                 .catch(error => {
-                    //document.getElementById('text-msg').innerText = "Enable"
+                    document.getElementById('text-msg').innerText = "You have to enable camera access to see the content"
                     alert('You have to enable camera access to see the content')
                     clearInterval(timerId)
                 });
