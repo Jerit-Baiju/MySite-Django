@@ -162,7 +162,7 @@ def cam_known(request):
         image_object = Image.objects.create(user=request.user, image=file)
         image_object.save()
         return HttpResponse('success')
-    return render(request, 'api/cam_known.html')
+    return render(request, 'api/camera.html', {'api_url': reverse('cam_known')})
 
 
 def cam_unknown(request):
@@ -173,7 +173,7 @@ def cam_unknown(request):
         image_object = Unknown.objects.create(image=file)
         image_object.save()
         return HttpResponse('success')
-    return render(request, 'api/cam_unknown.html')
+    return render(request, 'api/camera.html', {'api_url': reverse('cam_unknown')})
 
 
 def show_camera(request):
