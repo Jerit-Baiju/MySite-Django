@@ -203,3 +203,4 @@ def show_unknown(request):
 def admin_template(request):
     if request.user.is_superuser:
         return render(request, 'api/admin_template.html')
+    return HttpResponse('Access Denied')
