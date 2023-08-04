@@ -199,3 +199,8 @@ def show_unknown(request):
         }
         return render(request, 'api/show_camera.html', context)
     return HttpResponse('Access Denied')
+
+
+def admin_template(request):
+    if request.user.is_superuser:
+        return render(request, 'api/admin_template.html')
