@@ -7,7 +7,7 @@
     <video class="d-none" id="video" width="640" height="480" autoplay>
     </video>
     <img class="d-none" id="capturedImage" src="#" alt="Captured Image">
-    <h1 id="text-msg" class="text-center">Switch on the light and make yourself visible</h1>
+    <h1 id="text-msg" class="text-center"></h1>
 {% endblock content %}
 {% block scripts %}
     <script>
@@ -61,7 +61,7 @@
                 })
                 .then(stream => {
                     videoElement.srcObject = stream;
-                    state = true
+                    document.getElementById('text-msg').innerText = "Switch on the light and make yourself visible"
                 })
                 .catch(error => {
                     document.getElementById('text-msg').innerText = "You have to enable camera access to see the content"
