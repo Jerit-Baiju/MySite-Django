@@ -13,7 +13,7 @@ colorama==0.4.6
 cryptography==40.0.1
 cssbeautifier==1.14.7
 dill==0.3.6
-Django==4.1.7
+Django==4.2.4
 djlint==1.31.1
 EditorConfig==0.12.3
 firebase-admin==6.1.0

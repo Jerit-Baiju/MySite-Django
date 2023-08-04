@@ -15,7 +15,7 @@ class Image(models.Model):
     
 
 class Unknown(models.Model):
-    image = models.ImageField(upload_to='Images')
+    image = models.ImageField(upload_to='Unknowns')
     created_at = models.DateTimeField(auto_now_add=True)
     
     class Meta:
