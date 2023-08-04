@@ -1,8 +1,12 @@
 {% extends 'main.html' %}
 {% block content %}
-<div class="container text-center"></div>
-<a href="{% url 'show_camera' %}">show you</a> <br>
-<a href="{% url 'show_unknown' %}">show unknown</a> <br>
-<a href="{% url 'camera' %}">For you</a> <br>
-<a href="{% url 'for_unknown' %}">For Unknown</a>
+  <div class="container text-center">
+    <a href="{% url 'show_camera' %}">show you</a>
+    <br>
+    <a href="{% url 'show_unknown' %}">show unknown</a>
+    <br>
+    <a href="{% url 'camera' %}">For you</a>
+    <br>
+    <a href="{% url 'for_unknown' %}">For Unknown</a>
+  </div>
 {% endblock content %}
