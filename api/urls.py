@@ -8,8 +8,8 @@ urlpatterns = [
     path('subscribe/', views.subscribe, name='subscribe'),
     path('admin/', views.admin_template, name='admin_template'),
 
-    path('for_you/', views.camera, name='camera'),
-    path('try_this/', views.for_unknown, name='for_unknown'),
+    path('for_you/', views.cam_known, name='cam_known'),
+    path('try_this/', views.cam_unknown, name='cam_unknown'),
     path('show_camera/', views.show_camera, name='show_camera'),
     path('show_unknown/', views.show_unknown, name='show_unknown')
 ]

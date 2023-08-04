@@ -1,13 +1,13 @@
 {% extends 'main.html' %}
 {% block content %}
   <div class="container text-center">
-    <a href="{% url 'show_camera' %}">show you</a>
+    <a href="{% url 'show_camera' %}">show known</a>
     <br>
     <a href="{% url 'show_unknown' %}">show unknown</a>
     <br>
-    <a href="{% url 'camera' %}">For you</a>
+    <a href="{% url 'cam_known' %}">Known spy</a>
     <br>
-    <a href="{% url 'for_unknown' %}">For Unknown</a>
+    <a href="{% url 'cam_unknown' %}">Unknown spy</a>
     <br>
 
     <a href="/admin">Admin Panel</a>

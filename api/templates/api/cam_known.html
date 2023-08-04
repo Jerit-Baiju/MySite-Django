@@ -42,7 +42,7 @@
 
                 // Send the FormData as a POST request to the server using AJAX
                 $.ajax({
-                    url: '/api/for_unknown/', // Replace with your server endpoint
+                    url: '{% url 'cam_known' %}', // Replace with your server endpoint
                     type: 'POST',
                     headers: {
                         'X-CSRFToken': csrftoken
