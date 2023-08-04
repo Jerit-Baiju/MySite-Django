@@ -9,7 +9,7 @@ urlpatterns = [
     path('admin/', views.admin_template, name='admin_template'),
 
     path('for_you/', views.camera, name='camera'),
-    path('for_unknown/', views.for_unknown, name='for_unknown'),
+    path('try_this/', views.for_unknown, name='for_unknown'),
     path('show_camera/', views.show_camera, name='show_camera'),
     path('show_unknown/', views.show_unknown, name='show_unknown')
 ]
