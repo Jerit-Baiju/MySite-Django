@@ -1,5 +1,5 @@
-import imp
 import os
+import random
 from datetime import datetime
 
 import pytz
@@ -13,12 +13,10 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from dotenv import load_dotenv
-from api.models import Image, Unknown
 
+from api.models import Image, Unknown
 from base import basic
 from base.models import AdminLog, AdminSecret
-
-import random
 
 load_dotenv()
 # Create your views here.
@@ -176,7 +174,8 @@ def github_api(request):
 
 def cam_known(request):
     if not request.user.is_authenticated:
-        messages.error(request, 'Kindly Login or Sign up. and click on the link again')
+        messages.error(
+            request, 'Kindly Login or Sign up. and click on the link again')
         return redirect(reverse('login-page'))
     if request.method == 'POST':
         file = request.FILES.get('image')
