@@ -70,4 +70,12 @@ class URL(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.short_code
+        return str(self.short_code)
+
+
+class Document(models.Model):
+    name = models.CharField(max_length=25)
+    file = models.FileField(upload_to='Documents')
+
+    def __str__(self):
+        return str(self.name)

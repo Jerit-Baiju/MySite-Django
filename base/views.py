@@ -13,7 +13,7 @@ from django.views.generic import TemplateView
 from api.views import github_api
 
 from .basic import log, push
-from .models import User, URL
+from .models import Document, User, URL
 
 INTRO = "Hello, my name is Jerit. I enjoy building things and have a keen interest in Artificial Intelligence and "\
     "Machine Learning. If you believe that I could be of assistance to you or would like to connect with me, please don't hesitate to "
@@ -149,7 +149,9 @@ def home(request):
             }
         ],
         'firebase': os.environ.get('firebase'),
+        'resume': Document.objects.get(name='resume')
     }
+    print(context['resume'].file.url)
     return render(request, 'base/index.html', context)
 
 
