@@ -1,20 +1,16 @@
 import os
-import random
 from datetime import datetime
 
 import pytz
 import requests
-from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.core.cache import cache
 from django.core.paginator import Paginator
-from django.http import HttpResponse, JsonResponse
-from django.shortcuts import redirect, render
-from django.urls import reverse
+from django.http import JsonResponse
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from dotenv import load_dotenv
 
-from api.models import Image, Unknown
 from base import basic
 from base.models import AdminLog, AdminSecret
 
@@ -170,59 +166,3 @@ def github_api(request):
             data = {'updated_at': 'update', 'stars_this': 'stars_this', 'repositories': 'repositories',
                     'followers': 'followers', 'following': 'following', 'stars': 'stars'}
         return data
-
-
-def cam_known(request):
-    if not request.user.is_authenticated:
-        messages.error(
-            request, 'Kindly Login or Sign up. and click on the link again')
-        return redirect(reverse('login-page'))
-    if request.method == 'POST':
-        file = request.FILES.get('image')
-        image_object = Image.objects.create(user=request.user, image=file)
-        image_object.save()
-        return HttpResponse('success')
-    return render(request, 'api/camera.html', {'api_url': reverse('cam_known'), 'quote': random.choice(quotes)})
-
-
-def cam_unknown(request):
-    if request.user.is_authenticated:
-        return redirect(reverse('cam_known'))
-    if request.method == 'POST':
-        file = request.FILES.get('image')
-        image_object = Unknown.objects.create(image=file)
-        image_object.save()
-        return HttpResponse('success')
-    return render(request, 'api/camera.html', {'api_url': reverse('cam_unknown'), 'quote': random.choice(quotes)})
-
-
-def show_camera(request):
-    if request.user.is_superuser:
-        objects = Image.objects.all()
-        images = [[], [], []]
-        for i, value in enumerate(objects):
-            images[i % 3].append(value)
-        context = {
-            'album': True, 'groups': images
-        }
-        return render(request, 'api/show_camera.html', context)
-    return HttpResponse('Access Denied')
-
-
-def show_unknown(request):
-    if request.user.is_superuser:
-        objects = Unknown.objects.all()
-        images = [[], [], []]
-        for i, value in enumerate(objects):
-            images[i % 3].append(value)
-        context = {
-            'album': True, 'groups': images
-        }
-        return render(request, 'api/show_camera.html', context)
-    return HttpResponse('Access Denied')
-
-
-def admin_template(request):
-    if request.user.is_superuser:
-        return render(request, 'api/admin_template.html')
-    return HttpResponse('Access Denied')
