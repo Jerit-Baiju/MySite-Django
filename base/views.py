@@ -145,7 +145,7 @@ def home(request):
                 'name': 'CPM GHSS Peermade',
             },
             {
-                'name': 'GHSS Amaravathy, Kumily',
+                'name': 'GHSS Amaravathy Kumily',
             }
         ],
         'firebase': os.environ.get('firebase'),
