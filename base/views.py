@@ -147,7 +147,7 @@ def home(request):
             {
                 'name': 'GHSS Amaravathy Kumily',
             }
-        ],
+        ][::-1],
         'firebase': os.environ.get('firebase'),
         'resume': Document.objects.get(name='resume')
     }
