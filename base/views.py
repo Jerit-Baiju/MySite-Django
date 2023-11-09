@@ -151,7 +151,6 @@ def home(request):
         'firebase': os.environ.get('firebase'),
         'resume': Document.objects.get(name='resume')
     }
-    print(context['resume'].file.url)
     return render(request, 'base/index.html', context)
 
 
