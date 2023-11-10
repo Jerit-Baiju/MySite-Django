@@ -25,7 +25,7 @@
     box-sizing: border-box;
     border-radius: 4px;
     border: 2px solid #0000001a;
-    outline: none;
+    outline-color: transparent;
     background: #7575752c;
 }
 .form__input:focus{
@@ -39,7 +39,7 @@
     color: #ffffff;
     border: none;
     border-radius: 4px;
-    outline: none;
+    outline-color: transparent;
     cursor: pointer;
     background: #2d3436;
 }
