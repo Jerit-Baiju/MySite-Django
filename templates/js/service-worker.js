@@ -2,8 +2,6 @@ importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox
 
 const CACHE = "jerit-baiju";
 const assets = [
-  // pages
-  "/",
   "/stats",
   // icons
   "/static/favicon.png",
