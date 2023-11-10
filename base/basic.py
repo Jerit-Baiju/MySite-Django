@@ -15,7 +15,7 @@ def push(text):
     try:
         token = AdminSecret.objects.get(name="token").secret
         message = messaging.Message(notification=messaging.Notification(
-            title='Jerit Baiju', body=text), token=token)
+            title='Jerit Baiju', body=text), token=token, data={'icon': 'https://jerit.in/static/favicon.png'})
         response = messaging.send(message)
         return JsonResponse({'status': response})
     except:
