@@ -169,7 +169,8 @@ def about(request):
         "In 2020, I created my own chatbot using Visual Basic and independently upgraded my computer from Windows 7 to Windows 10. I began learning Python and developed simple command-line applications, as well as GUI applications for Windows using Tkinter.",
         "In 2021, I transitioned to Linux and expanded my skills by learning Flask, CSS, and JavaScript. I published my website on PythonAnywhere, which unfortunately is currently unavailable. Additionally, I delved deeper into GIT, REACT, and some Data Science topics. I completed numerous projects including a ChatBot named Clara (web-based) and a Weather app (command-line interface), among others.",
         "In 2022, I acquired proficiency in Django and deployed my website on HEROKU. Additionally, I developed a package called PYFLIT for FLASK users and created projects such as a Weather App (web-based) and a Number Game, among others.",
-        "As of 2023, I have begun studying Machine Learning (ML) and Artificial Intelligence (AI), with a particular focus on TensorFlow and Keras, which are currently my primary areas of interest."
+        "In 2023, I broadened my skills, delving into jQuery and Ajax, fueled by my first freelancing earnings, which allowed me to invest in my initial Apple product — a MacBook Air M1. This marked a notable transition from an old laptop with 2GB RAM to a more powerful and efficient device. Motivated to explore Artificial Intelligence, I began learning TensorFlow and Keras through online tutorials. Simultaneously, I deployed my website on AWS, enhancing its performance and accessibility, showcasing the fruits of my first earning.",
+        "In the coming year, I aim to master TensorFlow for AI, creating my own models and incorporating them into innovative applications."
     ]
     context = {
         'title': 'About Me | Jerit Baiju',
