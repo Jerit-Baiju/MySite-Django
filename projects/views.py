@@ -3,6 +3,7 @@ import random
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
+from django.urls import reverse
 
 from base.basic import log
 
@@ -12,7 +13,7 @@ from base.basic import log
 def projects(request):
     log(request, 'Projects')
     projects_data = [
-        {'name': 'PyFlit', 'info': 'Tool for adding components and pages in FLASK. Can be used to send PYTHON variables to JAVASCRIPT.',
+        {'name': 'PyFlit', 'info': 'This dynamic tool has significantly streamlined my development process, allowing me to effortlessly add components, render HTML, incorporate CSS and JS, and seamlessly send Python variables to JavaScript.',
             'src': 'https://pypi.org/project/pyflit/'},
         # {'name': 'Clara', 'info': 'CHAT-BOT made with CHAT-BOT-API. Simple STATIC Project.',
         #     'src': '/projects/clara'},
@@ -20,8 +21,8 @@ def projects(request):
             'src': 'https://github.com/jerit-baiju/mysite-django'},
         {'name': 'Number Game', 'info': 'You should assume the number that is picked from 0-100 randomly by computer with TEN chances.',
             'src': '/projects/num_game'},
-        {'name': 'Chat Bot API', 'info': 'This API provides you free commands, wikipedia support, user detection.',
-            'src': 'https://github.com/jerit-baiju/chat_bot_api'},
+        {'name': 'MAM Bethany Public School', 'info': 'Developed for administrators, it enables easy management of co-curricular activities, image customization, teacher operations, document handling, school parliament details, management, and result tracking. ',
+            'src': reverse('bethany')},
 
     ]
     random.shuffle(projects_data)
