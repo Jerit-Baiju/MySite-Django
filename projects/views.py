@@ -13,15 +13,22 @@ from base.basic import log
 def projects(request):
     log(request, 'Projects')
     projects_data = [
-        {'name': 'PyFlit', 'info': 'This dynamic tool has significantly streamlined my development process, allowing me to effortlessly add components, render HTML, incorporate CSS and JS, and seamlessly send Python variables to JavaScript.',
+        {'name': 'PyFlit', 'info': 'This dynamic tool has significantly streamlined my development process, allowing '
+                                   'me to effortlessly add components, render HTML, incorporate CSS and JS, '
+                                   'and seamlessly send Python variables to JavaScript.',
             'src': 'https://pypi.org/project/pyflit/'},
         # {'name': 'Clara', 'info': 'CHAT-BOT made with CHAT-BOT-API. Simple STATIC Project.',
         #     'src': '/projects/clara'},
-        {'name': 'MySite', 'info': 'DYNAMIC WEBSITE made with DJANGO framework, FEATURES - Admin Panel, User Management, User-Score Handling, LOGS, etc.. ',
+        {'name': 'MySite', 'info': 'DYNAMIC WEBSITE made with DJANGO framework, FEATURES - Admin Panel, '
+                                   'User Management, User-Score Handling, LOGS, etc.. ',
             'src': 'https://github.com/jerit-baiju/mysite-django'},
-        {'name': 'Number Game', 'info': 'You should assume the number that is picked from 0-100 randomly by computer with TEN chances.',
+        {'name': 'Number Game', 'info': 'You should assume the number that is picked from 0-100 randomly by computer '
+                                        'with TEN chances.',
             'src': '/projects/num_game'},
-        {'name': 'MAM Bethany Public School', 'info': 'Developed for administrators, it enables easy management of co-curricular activities, image customization, teacher operations, document handling, school parliament details, management, and result tracking. ',
+        {'name': 'MAM Bethany Public School', 'info': 'Developed for administrators, it enables easy management of '
+                                                      'co-curricular activities, image customization, '
+                                                      'teacher operations, document handling, school parliament '
+                                                      'details, management, and result tracking. ',
             'src': reverse('bethany')},
 
     ]
