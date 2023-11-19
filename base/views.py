@@ -15,8 +15,9 @@ from api.views import github_api
 from .basic import log, push
 from .models import Document, User, URL
 
-INTRO = "Hello, my name is Jerit. I enjoy building things and have a keen interest in Artificial Intelligence and "\
-    "Machine Learning. If you believe that I could be of assistance to you or would like to connect with me, please don't hesitate to "
+INTRO = ("Hello, my name is Jerit. I enjoy building things and have a keen interest in Artificial Intelligence and "
+         "Machine Learning. If you believe that I could be of assistance to you or would like to connect with me, "
+         "please don't hesitate to")
 
 
 def register_page(request):
@@ -37,7 +38,7 @@ def register_page(request):
             if User.objects.filter(email=email).exists():
                 messages.error(request, 'Email already exists.')
                 return render(request, 'base/register.html', {'title': 'Register | Jerit Baiju'})
-            user = User.objects.create_user( # type: ignore
+            user = User.objects.create_user(
                 email=email, password=password, first_name=first_name, last_name=last_name)
             user.save()
             login(request, user)
@@ -103,18 +104,20 @@ def home(request):
     log(request, 'Home')
     quotes = [
         {'quote': 'Just turn your Passion into your Profession.',
-            'author': 'Jerit Baiju'},
+         'author': 'Jerit Baiju'},
         {'quote': 'The computer was born to solve problems that did not exist before.',
-            'author': 'Bill Gates'},
+         'author': 'Bill Gates'},
         {'quote': "People don't care about what you say, they care about what you build.",
-            'author': 'Mark Zuckerberg'},
+         'author': 'Mark Zuckerberg'},
         {'quote': "First, solve the problem. Then, write the code.",
-            'author': 'John Johnson'},
-        {'quote': 'A computer is like a mischievous genie. It will give you exactly what you ask for, but not always what you want.',
+         'author': 'John Johnson'},
+        {
+            'quote': 'A computer is like a mischievous genie. It will give you exactly what you ask for, '
+                     'but not always what you want.',
             'author': 'Joe Sondow'},
         {'quote': 'A good programmer looks both ways before crossing a one-way street.', 'author': ''},
         {'quote': 'A person who never made a mistake never tried anything new.',
-            'author': 'Albert Einstein'},
+         'author': 'Albert Einstein'},
         {'quote': 'First be Rich, then be a Philosopher', 'author': ''},
         {'quote': 'You will not get a second chance to make the first impression.', 'author': ''},
         {'quote': 'When you look good, you will feel good. When you feel good, you will do good.', 'author': ''},
@@ -130,24 +133,25 @@ def home(request):
         'quote': random.choice(quotes),
         'intro': INTRO,
         'skills': [
-            'HTML/CSS/JS', 'Bootstrap', 'jQuery', 'Git', 'Python', 'Flask', 'Selenium', 'Django', 'SQLite3', 'Heroku', 'SEO', 'GSC', 'AWS', 'PyLint', 'Django REST framework'
+            'HTML/CSS/JS', 'Bootstrap', 'jQuery', 'Git', 'Python', 'Flask', 'Selenium', 'Django', 'SQLite3', 'Heroku',
+            'SEO', 'GSC', 'AWS', 'PyLint', 'Django REST framework'
         ],
         'education': [
-            {
-                'name': 'Vijayamatha Public School',
-                'url': reverse('vijayamatha')
-            },
-            {
-                'name': 'MAM Bethany Public School',
-                'url': reverse('bethany'),
-            },
-            {
-                'name': 'CPM GHSS Peermade',
-            },
-            {
-                'name': 'GHSS Amaravathy Kumily',
-            }
-        ][::-1],
+                         {
+                             'name': 'Vijayamatha Public School',
+                             'url': reverse('vijayamatha')
+                         },
+                         {
+                             'name': 'MAM Bethany Public School',
+                             'url': reverse('bethany'),
+                         },
+                         {
+                             'name': 'CPM GHSS Peermade',
+                         },
+                         {
+                             'name': 'GHSS Amaravathy Kumily',
+                         }
+                     ][::-1],
         'firebase': os.environ.get('firebase'),
         'resume': Document.objects.get(name='resume')
     }
@@ -162,15 +166,33 @@ def gallery(request):
 def about(request):
     log(request, 'About')
     history = [
-        "In 2016, when I was in 4th grade and 10 years old, my parents bought me a laptop. I was ecstatic about it! I quickly learned how to control the cursor and type with ease using MS-Paint and Notepad.",
-        "In 2017, I began playing Microsoft's mini-games like Chess, Minesweeper, and others, and learned MS-Logo. I created numerous objects and enjoyed experimenting with them.",
-        "In 2018, at the age of 12, I joined an activity on Photoshop and Animation using Adobe Flash-Macromedia. As I explored the computer in my school, I stumbled upon an HTML file and became intrigued. Curious about its purpose, I approached my teacher, Reshmi Miss, and asked about it. She kindly taught me some basics of HTML, sparking my interest in programming.",
-        "In 2019, I built my own website using HTML exclusively and subsequently discovered other programming languages such as C++, Python, and JavaScript.",
-        "In 2020, I created my own chatbot using Visual Basic and independently upgraded my computer from Windows 7 to Windows 10. I began learning Python and developed simple command-line applications, as well as GUI applications for Windows using Tkinter.",
-        "In 2021, I transitioned to Linux and expanded my skills by learning Flask, CSS, and JavaScript. I published my website on PythonAnywhere, which unfortunately is currently unavailable. Additionally, I delved deeper into GIT, REACT, and some Data Science topics. I completed numerous projects including a ChatBot named Clara (web-based) and a Weather app (command-line interface), among others.",
-        "In 2022, I acquired proficiency in Django and deployed my website on HEROKU. Additionally, I developed a package called PYFLIT for FLASK users and created projects such as a Weather App (web-based) and a Number Game, among others.",
-        "In 2023, I broadened my skills, delving into jQuery and Ajax, fueled by my first freelancing earnings, which allowed me to invest in my initial Apple product — a MacBook Air M1. This marked a notable transition from an old laptop with 2GB RAM to a more powerful and efficient device. Motivated to explore Artificial Intelligence, I began learning TensorFlow and Keras through online tutorials. Simultaneously, I deployed my website on AWS, enhancing its performance and accessibility, showcasing the fruits of my first earning.",
-        "In the coming year, I aim to master TensorFlow for AI, creating my own models and incorporating them into innovative applications."
+        "In 2016, when I was in 4th grade and 10 years old, my parents bought me a laptop. I was ecstatic about it! I "
+        "quickly learned how to control the cursor and type with ease using MS-Paint and Notepad.",
+        "In 2017, I began playing Microsoft's mini-games like Chess, Minesweeper, and others, and learned MS-Logo. I "
+        "created numerous objects and enjoyed experimenting with them.",
+        "In 2018, at the age of 12, I joined an activity on Photoshop and Animation using Adobe Flash-Macromedia. As "
+        "I explored the computer in my school, I stumbled upon an HTML file and became intrigued. Curious about its "
+        "purpose, I approached my teacher, Reshmi Miss, and asked about it. She kindly taught me some basics of HTML, "
+        "sparking my interest in programming.",
+        "In 2019, I built my own website using HTML exclusively and subsequently discovered other programming "
+        "languages such as C++, Python, and JavaScript.",
+        "In 2020, I created my own chatbot using Visual Basic and independently upgraded my computer from Windows 7 "
+        "to Windows 10. I began learning Python and developed simple command-line applications, as well as GUI "
+        "applications for Windows using Tkinter.",
+        "In 2021, I transitioned to Linux and expanded my skills by learning Flask, CSS, and JavaScript. I published "
+        "my website on PythonAnywhere, which unfortunately is currently unavailable. Additionally, I delved deeper "
+        "into GIT, REACT, and some Data Science topics. I completed numerous projects including a ChatBot named Clara "
+        "(web-based) and a Weather app (command-line interface), among others.",
+        "In 2022, I acquired proficiency in Django and deployed my website on HEROKU. Additionally, I developed a "
+        "package called PYFLIT for FLASK users and created projects such as a Weather App (web-based) and a Number "
+        "Game, among others.",
+        "In 2023, I broadened my skills, delving into jQuery and Ajax, fueled by my first freelancing earnings, "
+        "which allowed me to invest in my initial Apple product — a MacBook Air M1. This marked a notable transition "
+        "from an old laptop with 2GB RAM to a more powerful and efficient device. Motivated to explore Artificial "
+        "Intelligence, I began learning TensorFlow and Keras through online tutorials. Simultaneously, I deployed my "
+        "website on AWS, enhancing its performance and accessibility, showcasing the fruits of my first earning.",
+        "In the coming year, I aim to master TensorFlow for AI, creating my own models and incorporating them into "
+        "innovative applications."
     ]
     context = {
         'title': 'About Me | Jerit Baiju',
@@ -187,22 +209,22 @@ def stats(request):
     github_data = github_api(request)
     birthday = datetime.strptime("February 10, 2006", r"%B %d, %Y")
     age = today.year - birthday.year - \
-        ((today.month, today.day) < (birthday.month, birthday.day))
+          ((today.month, today.day) < (birthday.month, birthday.day))
     birthday = birthday.strftime(r"%B %d, %Y")
     about_me = [
         {'key': 'age', 'value': age},
         {'key': 'location', 'value': 'kerala, India'},
         {'key': 'D.O.B', 'value': birthday},
         {'key': 'currently learning',
-            'value': 'AI-ML | TensorFlow'},
+         'value': 'AI-ML | TensorFlow'},
     ]
     about_web = [
         {'key': 'Backend', 'value': 'Python | Django'},
         {'key': 'Hosted on', 'value': 'Amazon Web Services'},
         {'key': 'last updated at',
-            'value': github_data['updated_at']},
+         'value': github_data['updated_at']},
         {'key': 'GitHub Stars Count',
-            'value': github_data['stars_this']}
+         'value': github_data['stars_this']}
     ]
     if user.is_authenticated:
         if user.score is None:
@@ -225,13 +247,13 @@ def stats(request):
     ]
     github_data = [
         {'key': 'followers',
-            'value': github_data['followers']},
+         'value': github_data['followers']},
         {'key': 'following',
-            'value': github_data['following']},
+         'value': github_data['following']},
         {'key': 'public repositories',
-            'value': github_data['repositories']},
+         'value': github_data['repositories']},
         {'key': 'total stars earned',
-            'value': github_data['stars']},
+         'value': github_data['stars']},
     ]
     context = {
         'title': 'Stats | Jerit Baiju',
