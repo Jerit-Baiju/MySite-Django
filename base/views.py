@@ -205,7 +205,6 @@ def about(request):
 def stats(request):
     log(request, 'Stats')
     user = request.user
-    today = date.today()
     github_data = github_api(request)
     birthday = datetime.strptime("February 10, 2006", r"%B %d, %Y")
     fmt_birthday = birthday.strftime(r"%B %d, %Y")
