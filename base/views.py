@@ -65,7 +65,7 @@ def login_page(request):
         email = request.POST.get('email').lower()
         password = request.POST.get('password')
         try:
-            user = User.objects.get(email=email)
+            User.objects.get(email=email)
         except:
             messages.error(request, 'It seems you want to Sign UP. User does not exist')
             return render(request, 'base/login.html', {'title': 'Login | Jerit Baiju'})
@@ -208,13 +208,11 @@ def stats(request):
     today = date.today()
     github_data = github_api(request)
     birthday = datetime.strptime("February 10, 2006", r"%B %d, %Y")
-    age = today.year - birthday.year - \
-          ((today.month, today.day) < (birthday.month, birthday.day))
-    birthday = birthday.strftime(r"%B %d, %Y")
+    fmt_birthday = birthday.strftime(r"%B %d, %Y")
     about_me = [
-        {'key': 'age', 'value': age},
+        {'key': 'age', 'value': ''},
         {'key': 'location', 'value': 'kerala, India'},
-        {'key': 'D.O.B', 'value': birthday},
+        {'key': 'D.O.B', 'value': fmt_birthday},
         {'key': 'currently learning',
          'value': 'AI-ML | TensorFlow'},
     ]
