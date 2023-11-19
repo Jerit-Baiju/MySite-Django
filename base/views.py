@@ -1,6 +1,6 @@
 import os
 import random
-from datetime import date, datetime
+from datetime import datetime
 
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -11,9 +11,8 @@ from django.urls import reverse
 from django.views.generic import TemplateView
 
 from api.views import github_api
-
 from .basic import log, push
-from .models import Document, User, URL
+from .models import Document, URL, User
 
 INTRO = ("Hello, my name is Jerit. I enjoy building things and have a keen interest in Artificial Intelligence and "
          "Machine Learning. If you believe that I could be of assistance to you or would like to connect with me, "
