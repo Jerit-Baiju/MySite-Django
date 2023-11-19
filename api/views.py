@@ -88,8 +88,6 @@ def logs(request, page):
         'content': 'Access Denied'
     }
     return render(request, 'api/main.html', context)
-
-
 def clr_admin_log(request):
     email = request.GET.get('email')
     password = request.GET.get('pass')
