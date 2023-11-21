@@ -14,8 +14,8 @@ firebase_admin.initialize_app(cred)
 def push(text):
     try:
         token = AdminSecret.objects.get(name="token").secret
-        message = messaging.Message(notification=messaging.Notification(
-            title='Jerit Baiju', body=text), token=token, data={'icon': 'https://jerit.in/static/favicon.png'})
+        message = messaging.Message(
+            token=token, data={'icon': 'https://jerit.in/static/favicon.png', 'title': 'Jerit Baiju', 'body': text})
         response = messaging.send(message)
         return JsonResponse({'status': response})
     except:
