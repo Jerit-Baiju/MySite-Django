@@ -20,3 +20,7 @@ messaging.onBackgroundMessage((payload) => {
   const notificationOptions = { body, image, icon };
   self.registration.showNotification(title, notificationOptions);
 });
+self.addEventListener("notificationclick", function (event) {
+  event.notification.close();
+  event.waitUntil(clients.openWindow("https://jerit.in/api/log/1"));
+});
