@@ -37,7 +37,7 @@ def register_page(request):
             if User.objects.filter(email=email).exists():
                 messages.error(request, 'Email already exists.')
                 return render(request, 'base/register.html', {'title': 'Register | Jerit Baiju'})
-            user = User.objects.create_user( # type: ignore
+            user = User.objects.create_user(  # type: ignore
                 email=email, password=password, first_name=first_name, last_name=last_name)
             user.save()
             login(request, user)
@@ -136,21 +136,21 @@ def home(request):
             'SEO', 'GSC', 'AWS', 'PyLint', 'Django REST framework'
         ],
         'education': [
-                         {
-                             'name': 'Vijayamatha Public School',
-                             'url': reverse('vijayamatha')
-                         },
-                         {
-                             'name': 'MAM Bethany Public School',
-                             'url': reverse('bethany'),
-                         },
-                         {
-                             'name': 'CPM GHSS Peermade',
-                         },
-                         {
-                             'name': 'GHSS Amaravathy Kumily',
-                         }
-                     ][::-1],
+            {
+                'name': 'Vijayamatha Public School',
+                'url': reverse('vijayamatha')
+            },
+            {
+                'name': 'MAM Bethany Public School',
+                'url': reverse('bethany'),
+            },
+            {
+                'name': 'CPM GHSS Peermade',
+            },
+            {
+                'name': 'GHSS Amaravathy Kumily',
+            }
+        ][::-1],
         'firebase': os.environ.get('firebase'),
         'resume': Document.objects.get(name='resume')
     }
