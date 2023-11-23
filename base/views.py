@@ -133,7 +133,7 @@ def home(request):
         'intro': INTRO,
         'skills': [
             'HTML/CSS/JS', 'Bootstrap', 'jQuery', 'Git', 'Python', 'Flask', 'Selenium', 'Django', 'SQLite3', 'Heroku',
-            'SEO', 'GSC', 'AWS', 'PyLint', 'Django REST framework'
+            'SEO', 'GSC', 'AWS', 'PyLint', 'Django REST framework', 'React JS'
         ],
         'education': [
             {
