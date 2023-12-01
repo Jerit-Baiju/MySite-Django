@@ -132,8 +132,8 @@ def home(request):
         'quote': random.choice(quotes),
         'intro': INTRO,
         'skills': [
-            'HTML/CSS/JS', 'Bootstrap', 'jQuery', 'Git', 'Python', 'Flask', 'Selenium', 'Django', 'SQLite3', 'Heroku',
-            'SEO', 'GSC', 'AWS', 'PyLint', 'Django REST framework', 'React JS'
+            'HTML/CSS/JS', 'Bootstrap', 'jQuery', 'Git', 'Python', 'Flask', 'Selenium', 'Django', 'Heroku',
+            'SEO', 'GSC', 'AWS', 'PyLint', 'Django REST framework', 'React JS', 'Next JS'
         ],
         'education': [
             {
