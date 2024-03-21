@@ -159,7 +159,7 @@ def monkey_type_api():
         if not wpm:
             raise  ValueError("Invalid WPM received from Monkey")
         cache.set('wpm', wpm, 60*5)
-        return wpm
+        return f"{wpm} WPM"
     except:
         wpm = cache.get('wpm')
         return wpm if wpm else 'WPM'
