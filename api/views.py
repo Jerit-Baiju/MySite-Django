@@ -1,4 +1,3 @@
-import json
 import os
 from datetime import datetime
 
@@ -145,14 +144,22 @@ def github_api(request):
         return data
     except:
         data = cache.get('github_data')
-        if data is None:
+        if not data:
             data = {'updated_at': 'update', 'stars_this': 'stars_this', 'repositories': 'repositories',
                     'followers': 'followers', 'following': 'following', 'stars': 'stars'}
         return data
 
 def monkey_type_api():
-    url = "https://api.monkeytype.com/users/personalBests/"
-    querystring = {"mode":"words","mode2":"10"}
-    headers = {"Authorization": "ApeKey "+os.environ['monkey_type']}
-    response = requests.get(url, headers=headers, params=querystring, timeout=10).json()
-    return response['data'][0]['wpm']
+    try:
+        url = "https://api.monkeytype.com/users/personalBests/"
+        querystring = {"mode":"words","mode2":"10"}
+        headers = {"Authorization": f"ApeKey {os.environ['monkey_type']}",  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/46.0.2490.80'}
+        response = requests.get(url, headers=headers, params=querystring, timeout=10).json()
+        wpm = round(float(response['data'][0]['wpm']))
+        if not wpm:
+            raise  ValueError("Invalid WPM received from Monkey")
+        cache.set('wpm', wpm, 60*5)
+        return wpm
+    except:
+        wpm = cache.get('wpm')
+        return wpm if wpm else 'WPM'
