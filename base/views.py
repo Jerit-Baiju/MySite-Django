@@ -10,7 +10,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.generic import TemplateView
 
-from api.views import github_api
+from api.views import github_api, monkey_type_api
 
 from .basic import log, push
 from .models import URL, Document, User
@@ -194,6 +194,7 @@ def stats(request):
         {'key': 'age', 'value': ''},
         {'key': 'location', 'value': 'kerala, India'},
         {'key': 'D.O.B', 'value': fmt_birthday},
+        {'key':'highest typing Speed', 'value': monkey_type_api()},
         {'key': 'currently learning',
          'value': 'AI-ML | TensorFlow'},
     ]

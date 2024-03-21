@@ -148,3 +148,10 @@ def github_api(request):
             data = {'updated_at': 'update', 'stars_this': 'stars_this', 'repositories': 'repositories',
                     'followers': 'followers', 'following': 'following', 'stars': 'stars'}
         return data
+
+def monkey_type_api():
+    url = "https://api.monkeytype.com/users/personalBests/"
+    querystring = {"mode":"words","mode2":"10"}
+    headers = {"Authorization": f"ApeKey {os.environ['monkeytype']}"}
+    response = requests.get(url, headers=headers, params=querystring, timeout=10).json()
+    return f"{response['data'][0]['wpm']} WPM"
