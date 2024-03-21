@@ -153,6 +153,7 @@ def monkey_type_api():
     url = "https://api.monkeytype.com/users/personalBests/"
     querystring = {"mode":"words","mode2":"10"}
     headers = {"Authorization": f"ApeKey {os.environ['monkeytype']}"}
-    response = requests.get(url, headers=headers, params=querystring, timeout=10).json()
-    print(response)
-    return f"{response['data'][0]['wpm']} WPM"
+    response = requests.get(url, headers=headers, params=querystring, timeout=10)
+    if response.status_code == 200:
+        print(response)
+        return f"{response.json()['data'][0]['wpm']} WPM"
