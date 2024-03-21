@@ -154,6 +154,6 @@ def monkey_type_api():
     querystring = {"mode":"words","mode2":"10"}
     headers = {"Authorization": f"ApeKey {os.environ['monkeytype']}"}
     response = requests.get(url, headers=headers, params=querystring, timeout=10)
+    print(response.json())
     if response.status_code == 200:
-        print(response)
         return f"{response.json()['data'][0]['wpm']} WPM"
