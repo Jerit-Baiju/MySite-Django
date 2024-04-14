@@ -11,6 +11,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from dotenv import load_dotenv
 
+from api.models import ImageUpload
 from base import basic
 from base.models import AdminLog, AdminSecret
 
@@ -163,3 +164,14 @@ def monkey_type_api():
     except:
         wpm = cache.get('wpm')
         return wpm if wpm else 'WPM'
+
+
+@csrf_exempt  # Use this decorator if you're not using CSRF tokens for simplicity.
+def upload_image(request):
+    if request.method == "POST" and request.FILES.get("image"):
+        image = request.FILES["image"]
+        image_file = ImageUpload.objects.create(image=image)
+        image_file.save()
+        return JsonResponse({"message": "Image uploaded successfully"}, status=201)
+    else:
+        return JsonResponse({"error": "Invalid request"}, status=400)
