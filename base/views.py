@@ -146,11 +146,12 @@ def home(request):
                 'url': reverse('bethany'),
             },
             {
-                'name': 'CPM GHSS Peermade',
+                'name': 'GHSS Amaravathy Kumily',
             },
             {
-                'name': 'GHSS Amaravathy Kumily',
-            }
+                'name': 'Marian College Kuttikkanam',
+                'url': reverse('marian'),
+            },
         ][::-1],
         'firebase': os.environ.get('firebase'),
         'resume': Document.objects.get(name='resume')
@@ -270,6 +271,11 @@ def whatsapp(request):
 def vijayamatha(request):
     log(request, 'Vijayamatha')
     return redirect('https://vijayamathaschool.in')
+
+
+def marian(request):
+    log(request, 'Marian College')
+    return redirect("https://mariancollege.org/")
 
 
 def bethany(request):
