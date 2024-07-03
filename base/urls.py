@@ -18,6 +18,7 @@ urlpatterns = [
     path('whatsapp/', views.whatsapp, name='whatsapp'),
     path('vijayamatha/', views.vijayamatha, name='vijayamatha'),
     path('bethany/', views.bethany, name='bethany'),
+    path('marian/', views.marian, name='marian'),
 
     path('url/<str:short_code>/', views.redirector, name='redirector'),
 

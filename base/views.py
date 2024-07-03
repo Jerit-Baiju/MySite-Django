@@ -195,7 +195,7 @@ def home(request):
                 "name": "GHSS Amaravathy Kumily",
             },
             {
-                "name": "Marian College Kuttikkanam",
+                "name": "Marian College Kuttikkanam (BCA)",
                 "url": reverse("marian"),
             },
         ][::-1],
