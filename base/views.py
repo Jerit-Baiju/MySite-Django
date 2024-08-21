@@ -11,15 +11,10 @@ from django.urls import reverse
 from django.views.generic import TemplateView
 
 from api.views import github_api, monkey_type_api
+from base.content import BIO, HISTORY, INTRO, QUOTES, SKILLS
 
 from .basic import log, push
 from .models import URL, Document, User
-
-INTRO = (
-    "Hello, my name is Jerit. I enjoy building things and have a keen interest in Artificial Intelligence and "
-    "Machine Learning. If you believe that I could be of assistance to you or would like to connect with me, "
-    "please don't hesitate to"
-)
 
 
 def register_page(request):
@@ -33,17 +28,13 @@ def register_page(request):
         name_split = name.split(" ")
         if len(name_split) <= 1:
             messages.error(request, "Please enter your full name.")
-            return render(
-                request, "base/register.html", {"title": "Register | Jerit Baiju"}
-            )
+            return render(request, "base/register.html", {"title": "Register | Jerit Baiju"})
         first_name = name.split()[0].capitalize()
         last_name = name.split()[1].capitalize()
         if password == confirm:
             if User.objects.filter(email=email).exists():
                 messages.error(request, "Email already exists.")
-                return render(
-                    request, "base/register.html", {"title": "Register | Jerit Baiju"}
-                )
+                return render(request, "base/register.html", {"title": "Register | Jerit Baiju"})
             user = User.objects.create_user(  # type: ignore
                 email=email,
                 password=password,
@@ -63,13 +54,9 @@ def register_page(request):
                 return redirect("home")
         else:
             messages.error(request, "Passwords does not match.")
-            return render(
-                request, "base/register.html", {"title": "Register | Jerit Baiju"}
-            )
+            return render(request, "base/register.html", {"title": "Register | Jerit Baiju"})
     else:
-        return render(
-            request, "base/register.html", {"title": "Register | Jerit Baiju"}
-        )
+        return render(request, "base/register.html", {"title": "Register | Jerit Baiju"})
 
 
 def login_page(request):
@@ -116,75 +103,12 @@ def home(request):
     else:
         push("Visited - Unknown User")
     log(request, "Home")
-    quotes = [
-        {
-            "quote": "Just turn your Passion into your Profession.",
-            "author": "Jerit Baiju",
-        },
-        {
-            "quote": "The computer was born to solve problems that did not exist before.",
-            "author": "Bill Gates",
-        },
-        {
-            "quote": "People don't care about what you say, they care about what you build.",
-            "author": "Mark Zuckerberg",
-        },
-        {
-            "quote": "First, solve the problem. Then, write the code.",
-            "author": "John Johnson",
-        },
-        {
-            "quote": "A computer is like a mischievous genie. It will give you exactly what you ask for, "
-            "but not always what you want.",
-            "author": "Joe Sondow",
-        },
-        {
-            "quote": "A good programmer looks both ways before crossing a one-way street.",
-            "author": "",
-        },
-        {
-            "quote": "A person who never made a mistake never tried anything new.",
-            "author": "Albert Einstein",
-        },
-        {"quote": "First be Rich, then be a Philosopher", "author": ""},
-        {
-            "quote": "You will not get a second chance to make the first impression.",
-            "author": "",
-        },
-        {
-            "quote": "When you look good, you will feel good. When you feel good, you will do good.",
-            "author": "",
-        },
-    ]
     context = {
         "title": "Jerit Baiju",
-        "bio": [
-            "Self-Taught.",
-            "Improving Work Ethic.",
-            "Passion is my genesis.",
-            "Developing new skills everyday.",
-            "Yet programming.",
-        ],
-        "quote": random.choice(quotes),
+        "bio": BIO,
+        "quote": random.choice(QUOTES),
         "intro": INTRO,
-        "skills": [
-            "HTML/CSS/JS",
-            "Bootstrap/Tailwind",
-            "jQuery",
-            "Git",
-            "Python",
-            "Flask",
-            "Selenium",
-            "Django",
-            "Heroku",
-            "SEO",
-            "GSC",
-            "AWS",
-            "DRF",
-            "React JS",
-            "Next JS",
-            "TypeScript",
-        ],
+        "skills": SKILLS,
         "education": [
             {"name": "Vijayamatha Public School", "url": reverse("vijayamatha")},
             {
@@ -212,18 +136,7 @@ def gallery(request):
 
 def about(request):
     log(request, "About")
-    history = [
-        "In 2016, when I was in 4th grade and 10 years old, my parents bought me a laptop. I was ecstatic about it! I quickly learned how to control the cursor and type with ease using MS-Paint and Notepad.",
-        "At 11, I began playing Microsoft's mini-games like Chess, Minesweeper, and others, and learned MS-Logo. I created numerous objects and enjoyed experimenting with them.",
-        "At 12, I joined an activity on Photoshop and Animation using Adobe Flash-Macromedia. As I explored the computer in my school, I stumbled upon an HTML file and became intrigued. Curious about its purpose, I approached my teacher, Reshmi Miss, and asked about it. She kindly taught me some basics of HTML, sparking my interest in programming.",
-        "At 13, I built my own website using HTML exclusively and subsequently discovered other programming languages such as C++, Python, and JavaScript.",
-        "At 14, I created my own chatbot using Visual Basic and independently upgraded my computer from Windows 7 to Windows 10. I began learning Python and developed simple command-line applications, as well as GUI applications for Windows using Tkinter.",
-        "At 15, I transitioned to Linux and expanded my skills by learning CSS, JavaScript, GIT, and Flask. I published my website on PythonAnywhere, which unfortunately is currently unavailable. I completed numerous projects including a ChatBot named Clara and a Weather app, among others.",
-        "At 16, I acquired proficiency in Django and deployed my website on HEROKU. Additionally, I developed a package called PYFLIT for FLASK users and learned some other languages like Go, R, CPP and Java. ",
-        "At 17, I upgraded my setup with a MacBook Air M1, funded by my first freelancing project. This marked my entry into the Apple ecosystem, replacing an old Ubuntu laptop. I optimized my website by deploying it on AWS, and expanded my skills with React.js, Next.js, Tailwind, and TypeScript, adding versatility to my web development expertise.",
-        "At 18 (present), I'm navigating towards new horizons in my journey. Aiming to secure a job, I'm strategically honing my skills and exploring opportunities. Embracing growth, I continue to leverage my expertise while maintaining a forward-looking approach. The focus this year revolves around professional development, aligning with my goal of advancing in the ever-evolving tech landscape.",
-    ]
-    context = {"title": "About Me | Jerit Baiju", "history": history, "intro": INTRO}
+    context = {"title": "About Me | Jerit Baiju", "history": HISTORY, "intro": INTRO}
     return render(request, "base/about.html", context)
 
 
