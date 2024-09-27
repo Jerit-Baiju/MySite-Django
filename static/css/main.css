@@ -1,6 +1,7 @@
 @font-face {
-    font-family: 'source_code';
-    src: url('/static/fonts/source_code.ttf') format('truetype');
+    font-family: 'fira_mono';
+    src: url('/static/fonts/fira_mono.ttf') format('truetype');
+    font-weight: bold;
 }
 
 @font-face {
@@ -9,7 +10,7 @@
 }
 
 * {
-    font-family: 'source_code';
+    font-family: 'fira_mono';
 }
 
 .footer {
