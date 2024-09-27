@@ -1,90 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-  {% load static %}
-  {% load cache %}
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ title }}</title>
-    <meta name="title" content="Jerit Baiju" />
-    <meta name="description" content="Jerit's Personal Website - Django Developer." />
-    <meta name="keywords" content="Jerit, Jerit Baiju, jerit.ml, Web developer, vandiperiyar, jerit baiju vandiperiyar," />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://jerit.in" />
-    <meta property="og:title" content="Jerit Baiju" />
-    <meta property="og:description" content="Jerit's Personal Website - Django Developer." />
-    <meta property="og:image" content="https://jerit.in/static/favicon.png" />
-    <meta name="robots" content="index, follow" />
-    <meta name="language" content="English" />
-    <meta name="revisit-after" content="1 days" />
-    <meta name="author" content="Jerit Baiju" />
-    {% if dark != True %}
-      <meta name="theme-color" content="#f8f9fa" />
-    {% else %}
-      <meta name="theme-color" content="#212429" />
-    {% endif %}
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <link rel="icon" href="{% static 'favicon.png' %}" type="image/x-icon" />
-    {% cache 86400 css_loads %}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
-          crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+{% load static %}
+{% load cache %}
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ title }}</title>
+  <meta name="title" content="Jerit Baiju" />
+  <meta name="description" content="Jerit's Personal Website - Django Developer." />
+  <meta name="keywords"
+    content="Jerit, Jerit Baiju, jerit.ml, Web developer, vandiperiyar, jerit baiju vandiperiyar," />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jerit.in" />
+  <meta property="og:title" content="Jerit Baiju" />
+  <meta property="og:description" content="Jerit's Personal Website - Django Developer." />
+  <meta property="og:image" content="https://jerit.in/static/favicon.png" />
+  <meta name="robots" content="index, follow" />
+  <meta name="language" content="English" />
+  <meta name="revisit-after" content="1 days" />
+  <meta name="author" content="Jerit Baiju" />
+  {% if dark != True %}
+  <meta name="theme-color" content="#f8f9fa" />
+  {% else %}
+  <meta name="theme-color" content="#212429" />
+  {% endif %}
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <link rel="icon" href="{% static 'favicon.png' %}" type="image/x-icon" />
+  {% cache 86400 css_loads %}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
   {% endcache %}
   <link rel="manifest" href="{% url 'manifest' %}" />
   <meta name="google-adsense-account" content="ca-pub-8007113895720249">
   <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
     })(window, document, "clarity", "script", "jj8x92sm56");
   </script>
 </head>
+
 <body class="{% if dark == True %} bg-dark text-white{% else %} bg-light {% endif %}">
   {% include "navbar.html" %}
   <div>
     {% if messages %}
-      {% include 'messages.html' %}
+    {% include 'messages.html' %}
     {% endif %}
     {% block content %}
     {% endblock content %}
-    {% if hr != False %}<hr />{% endif %}
+    {% if hr != False %}
+    <hr />{% endif %}
   </div>
   {% cache 86400 bootjs %}
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
-          integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
-          crossorigin="anonymous"></script>
+    integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
+    crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
-          integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
-          crossorigin="anonymous"></script>
-{% endcache %}
-<script type="module">
+    integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
+    crossorigin="anonymous"></script>
+  {% endcache %}
+  <script type="module">
     import {
-        initializeApp
+      initializeApp
     } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
     const firebaseConfig = {
-        apiKey: "AIzaSyAF0ZxYZN1XEztSNPqpV77kAUGObLNc6SQ",
-        authDomain: "jerit-in.firebaseapp.com",
-        projectId: "jerit-in",
-        storageBucket: "jerit-in.appspot.com",
-        messagingSenderId: "791070201278",
-        appId: "1:791070201278:web:b3a13ecadda6a3533a55ef"
+      apiKey: "AIzaSyAF0ZxYZN1XEztSNPqpV77kAUGObLNc6SQ",
+      authDomain: "jerit-in.firebaseapp.com",
+      projectId: "jerit-in",
+      storageBucket: "jerit-in.appspot.com",
+      messagingSenderId: "791070201278",
+      appId: "1:791070201278:web:b3a13ecadda6a3533a55ef"
     };
     const app = initializeApp(firebaseConfig);
-</script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G6HEY14MRT"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-G6HEY14MRT');
-</script>
-{% block scripts %}
-{% endblock scripts %}
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G6HEY14MRT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-G6HEY14MRT');
+  </script>
+  {% block scripts %}
+  {% endblock scripts %}
 </body>
+
 </html>
