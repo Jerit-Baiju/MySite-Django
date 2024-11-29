@@ -148,7 +148,7 @@ def stats(request):
     fmt_birthday = birthday.strftime(r"%B %d, %Y")
     about_me = [
         {"key": "age", "value": ""},
-        {"key": "location", "value": "kerala, India"},
+        {"key": "Living in", "value": "kerala, India"},
         {"key": "D.O.B", "value": fmt_birthday},
         {"key": "highest typing Speed", "value": monkey_type_api()},
         {"key": "currently learning", "value": "AI-ML | TensorFlow"},
