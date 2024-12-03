@@ -46,7 +46,7 @@ def projects(request):
         {
             "name": "Caelium",
             "info": "Caelium is an all-in-one platform for organizing personal, family, couple, and work activities, currently under development. It includes features like a shared calendar, interactive map, chat with video calls, shared to-do lists, blogs, and more, ensuring equal privacy and functionality for all users",
-            "src": "https://caelium.jerit.in",
+            "src": "https://caelium.co",
         },
     ]
     random.shuffle(projects_data)
