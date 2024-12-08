@@ -1,49 +1,62 @@
 {% extends 'main.html' %}
 {% block content %}
-  {% load static %}
-  {% load cache %}
-  {% cache 86400 stats request.user %}
-  <link rel="stylesheet" href="{% static 'css/base/stats.css' %}" />
-  <section id="stats" class="container">
-    <h3 class="text-center text-uppercase">Statics</h3>
-    <hr />
-    <div class="row">
-      {% for stat in stats %}
-        {% if stat.contents != 'None' %}
-          <div class="my-bg mb-3">
-            <h5 class="text-uppercase my-heading">{{ stat.name }}</h5>
-            <div class="padding">
-              {% for content in stat.contents %}
-                <div class="{% cycle 'grey' 'white' %}">
-                  <div class="row">
-                    <div class="col-6 col-md-6 col-lg-6"><p class="m-0 fw-bold">{{ content.key }}</p></div>
-                    <div class="col-6 col-md-6 col-lg-6 text-break"><p id="{{ content.key }}" class="m-0 fw-bold">{{ content.value }}</p></div>
-                  </div>
-                </div>
-              {% endfor %}
+{% load static %}
+{% load cache %}
+{% cache 86400 stats request.user %}
+<link rel="stylesheet" href="{% static 'css/base/stats.css' %}" />
+<section id="stats" class="container">
+  <h3 class="text-center text-uppercase">Statics</h3>
+  <hr />
+  <div class="row">
+    {% for stat in stats %}
+    {% if stat.contents != 'None' %}
+    <div class="my-bg mb-3">
+      <h5 class="text-uppercase my-heading">{{ stat.name }}</h5>
+      <div class="padding">
+        {% for content in stat.contents %}
+        <div class="{% cycle 'grey' 'white' %}">
+          <div class="row">
+            <div class="col-6 col-md-6 col-lg-6">
+              <p class="m-0 fw-bold">{{ content.key }}</p>
+            </div>
+            <div class="col-6 col-md-6 col-lg-6 text-break">{% if content.link %}
+              <a href="{{ content.link }}" class="m-0 fw-bold text-black">{{ content.value }}</a>
+              {% else %}
+              <p id="{{ content.key }}" class="m-0 fw-bold">{{ content.value }}</p>
+              {% endif %}
             </div>
           </div>
-          {% comment %} <div class="space" style="min-height: 1em"></div> {% endcomment %}
-        {% endif %}
-      {% endfor %}
-      <div class="my-bg">
-        <h5 class="text-uppercase my-heading">My GitHub</h5>
-        <div class="padding">
-          {% for content in GitHub %}
-            <div class="{% cycle 'grey' 'white' %}">
-              <div class="row">
-                <div class="col-6 col-md-6 col-lg-6"><p class="m-0 fw-bold">{{ content.key }}</p></div>
-                <div class="col-6 col-md-6 col-lg-6 text-break"><p class="m-0 fw-bold">{{ content.value }}</p></div>
-              </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% comment %} <div class="space" style="min-height: 1em"></div> {% endcomment %}
+    {% endif %}
+    {% endfor %}
+    <div class="my-bg">
+      <h5 class="text-uppercase my-heading">My GitHub</h5>
+      <div class="padding">
+        {% for content in GitHub %}
+        <div class="{% cycle 'grey' 'white' %}">
+          <div class="row">
+            <div class="col-6 col-md-6 col-lg-6">
+              <p class="m-0 fw-bold">{{ content.key }}</p>
             </div>
-          {% endfor %}
-          <div class="grey"><p class="m-0 fw-bold">Contributions</p></div>
+            <div class="col-6 col-md-6 col-lg-6 text-break">
+              <p class="m-0 fw-bold">{{ content.value }}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        <div class="grey">
+          <p class="m-0 fw-bold">Contributions</p>
+        </div>
         {% endcache %}
         <div class="white">
           <img src="https://ghchart.rshah.org/000000/jerit-baiju"
-               style="pointer-events: none"
-               class="w-100 px-md-5 pt-2"
-               alt="Jerit Baiju Contributions">
+            style="pointer-events: none"
+            class="w-100 px-md-5 pt-2"
+            alt="Jerit Baiju Contributions">
         </div>
       </div>
     </div>
@@ -53,10 +66,10 @@
 <script>
   const birth_date = moment(new Date("Feb 10 2006 23:20:00")); //02/10/2006
   setInterval(() => {
-      const now = moment(new Date());
-      const diff = now.diff(birth_date);
-      const age = diff / (365.25 * 24 * 60 * 60 * 1000);
-      document.getElementById("age").innerHTML = age.toFixed(10)
+    const now = moment(new Date());
+    const diff = now.diff(birth_date);
+    const age = diff / (365.25 * 24 * 60 * 60 * 1000);
+    document.getElementById("age").innerHTML = age.toFixed(10)
   }, 100);
 </script>
 {% endblock content %}

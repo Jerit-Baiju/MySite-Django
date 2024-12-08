@@ -150,7 +150,7 @@ def stats(request):
         {"key": "age", "value": ""},
         {"key": "Living in", "value": "kerala, India"},
         {"key": "D.O.B", "value": fmt_birthday},
-        {"key": "highest typing Speed", "value": monkey_type_api()},
+        {"key": "highest typing Speed", "value": monkey_type_api(), "link": "https://monkeytype.com/profile/Jerit-Baiju"},
         {"key": "currently learning", "value": "AI-ML | TensorFlow"},
     ]
     about_web = [
