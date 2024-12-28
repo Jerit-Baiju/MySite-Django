@@ -76,7 +76,7 @@ YEARS = [
         "year": 2024,
         "content": {
             "title": "2024: A Year of Growth, Challenges, and Milestones",
-            "overview": """ The year 2024 has been a transformative chapter in my life, marking my transition from school to college and the beginning of my journey at <a class="text-black" href="/marian">Marian College</a>. From setting
+            "overview": """ The year 2024 has been a transformative chapter in my life, marking my transition from school to college and the beginning of my journey at <a class="text-black" target="_blank" href="/marian">Marian College</a>. From setting
             ambitious goals to seizing opportunities, I've made
             significant strides both personally and professionally. Here's a reflection on a year filled with growth,
             challenges, and achievements.""",
@@ -86,7 +86,7 @@ YEARS = [
                     "body": """
             This year, I officially stepped into adulthood as I began my four-year BCA program at Marian College. Introducing
             myself as a freelance web developer set the tone for my college journey. During the summer break after school, I
-            secured <a class="text-black"
+            secured <a target="_blank" class="text-black"
             href="https://www.linkedin.com/posts/jeritbaiju_newrole-internship-fullstackdeveloper-activity-7219859963601465344-X7ul">my
             first internship with a monthly stipend of ₹12K</a>.
             <span class="italic text-gray-800">“The first paycheck felt like a dream—a tangible reward for all the effort and
@@ -100,7 +100,7 @@ YEARS = [
                     "body": """
 
             Marian College offered me numerous opportunities to step into leadership roles. I was elected as the <a
-            class="text-black"
+            class="text-black" target="_blank"
             href="https://www.linkedin.com/posts/jeritbaiju_macs-mariancollege-leadership-activity-7225416064610746368-bkGT">Joint
             Secretary of the Marian Association of Computer Students (MACS)</a> and chosen as the class representative. 
             These positions allowed me to make meaningful contributions, such as leading <a class="text-black"
@@ -115,7 +115,7 @@ YEARS = [
                 {
                     "title": "Expanding My Skillset",
                     "body": """
-            Technical growth was a key focus for me this year. I worked on diverse projects, including <a class="text-black"
+            Technical growth was a key focus for me this year. I worked on diverse projects, including <a target="_blank" class="text-black"
             href="https://www.linkedin.com/posts/jeritbaiju_mentorship-techeducation-bca-activity-7263113044178722817-BrUW">seven
             mini-projects for
             third-year BCA student groups</a>, earning a mention in their project documentation. I tackled challenges like
@@ -124,7 +124,7 @@ YEARS = [
             gains.
             <span class="italic text-gray-800">“Every error is a lesson in disguise; every frustration is a step closer to
             success.”</span>
-            In parallel, I developed an <a class="text-black" href="https://github.com/Jerit-Baiju/a11y-widget">accessibility
+            In parallel, I developed an <a target="_blank" class="text-black" href="https://github.com/Jerit-Baiju/a11y-widget">accessibility
             widget as a CDN-based solution</a> for websites, exploring innovative ideas
             that could potentially generate income. Additionally, I continued building my flagship project, Caelium, and
             furthered its development with unique features and solid documentation practices.
@@ -157,15 +157,15 @@ YEARS = [
                     "title": "Reflecting on the Journey",
                     "body": """
             Looking back, 2024 was a year of exploration, hard work, and valuable lessons. It was tough at times, especially
-            when working with <a class="text-black"
+            when working with <a target="_blank" class="text-black"
             href="https://www.linkedin.com/posts/jeritbaiju_learningphp-developerlife-continuouslearning-activity-7230563175031566336-wiC3">unfamiliar
             technologies like PHP</a>, but perseverance and motivation, particularly financial rewards,
             kept me moving forward.
             <span class="italic text-gray-800">“Growth often happens outside our comfort zones, in the space where challenges
             meet determination.”</span>
-            The year also shaped me through influences from YouTube channels like <a
+            The year also shaped me through influences from YouTube channels like <a target="_blank"
             href="https://www.youtube.com/@Hallden_" class="text-black hover:text-indigo-800 underline">Hallden</a> and
-            <a href="https://www.youtube.com/@NetworkChuck"
+            <a target="_blank" href="https://www.youtube.com/@NetworkChuck"
             class="text-black hover:text-indigo-800 underline">NetworkChuck</a>, which inspired new ideas and techniques.
         """,
                 },
