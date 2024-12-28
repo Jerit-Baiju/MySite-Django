@@ -11,7 +11,7 @@ from django.urls import reverse
 from django.views.generic import TemplateView
 
 from api.views import github_api, monkey_type_api
-from base.content import BIO, HISTORY, INTRO, QUOTES, SKILLS
+from base.content import BIO, HISTORY, INTRO, QUOTES, SKILLS, YEARS
 
 from .basic import log, push
 from .models import URL, Document, User
@@ -138,6 +138,16 @@ def about(request):
     log(request, "About")
     context = {"title": "About Me | Jerit Baiju", "history": HISTORY, "intro": INTRO}
     return render(request, "base/about.html", context)
+
+
+def about_year(request, year):
+    log(request, f"About - {year}")
+    data = None
+    for year_data in YEARS:
+        if year_data["year"] == year:
+            data = year_data["content"]
+    context = {"title": f"About {year} | Jerit Baiju", "year": data}
+    return render(request, "base/year.html", context)
 
 
 def stats(request):
