@@ -103,7 +103,7 @@ YEARS = [
             class="text-black" target="_blank"
             href="https://www.linkedin.com/posts/jeritbaiju_macs-mariancollege-leadership-activity-7225416064610746368-bkGT">Joint
             Secretary of the Marian Association of Computer Students (MACS)</a> and chosen as the class representative. 
-            These positions allowed me to make meaningful contributions, such as leading <a class="text-black"
+            These positions allowed me to make meaningful contributions, such as leading <a class="text-black" target="_blank"
             href="https://www.linkedin.com/posts/jeritbaiju_linkedin-github-publicspeaking-activity-7236925118097018880-M7fs">sessions
             on LinkedIn and GitHub for first-year students</a>
             and sharing my internship experiences with second-year students to guide them in securing opportunities.
