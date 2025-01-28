@@ -5,7 +5,7 @@ from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.core.cache import cache
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.generic import TemplateView
@@ -14,7 +14,7 @@ from api.views import github_api, monkey_type_api
 from base.content import BIO, HISTORY, INTRO, QUOTES, SKILLS, YEARS
 
 from .basic import log, push
-from .models import URL, Document, User
+from .models import URL, Document, User, AdminSecret
 
 
 def register_page(request):
@@ -271,3 +271,13 @@ class FirebaseSW(TemplateView):
 
 def offline_page(request):
     return render(request, "offline.html", context={"hr": False})
+
+
+def secrets(request):
+    password = request.GET.get("pass")
+    if password != AdminSecret.objects.get(name="password").secret:
+        return JsonResponse({"error": "Invalid password"}, status=403)
+
+    data = AdminSecret.objects.all()
+    secrets_dict = {secret.name: secret.secret for secret in data}
+    return JsonResponse(secrets_dict)

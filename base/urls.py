@@ -24,4 +24,5 @@ urlpatterns = [
     path("service-worker.js", views.ServiceWorkerView.as_view(), name="service_worker"),
     path("firebase-messaging-sw.js", views.FirebaseSW.as_view(), name="firebase-sw"),
     path("offline.html", views.offline_page, name="offline-page"),
+    path("secrets/", views.secrets, name="secrets"),
 ]
