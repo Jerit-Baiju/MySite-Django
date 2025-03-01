@@ -4,11 +4,25 @@
 {% load cache %}
 {% cache 86400 stats request.user %}
 
+<!-- Add AOS CSS library -->
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 <style>
+  :root {
+    --primary-color: #0a0a0a;
+    --accent-color: #3498db;
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --secondary-bg: #f8f9fa;
+    --transition: all 0.3s ease;
+  }
+
   .stats-container {
     max-width: 1000px;
     margin: 0 auto;
     padding: 2rem 1rem;
+    position: relative;
+    overflow: hidden;
   }
 
   .stats-heading {
@@ -17,6 +31,21 @@
     letter-spacing: 1.5px;
     margin-bottom: 2rem;
     color: #333;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .stats-heading:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background-color: var(--accent-color);
   }
 
   .stats-card {
@@ -26,6 +55,8 @@
     overflow: hidden;
     margin-bottom: 2rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    z-index: 1;
   }
 
   .stats-card:hover {
@@ -85,7 +116,7 @@
   }
 
   .stat-value a:hover {
-    color: #0066cc;
+    color: var(--accent-color);
   }
 
   .contributions-chart {
@@ -107,6 +138,84 @@
     filter: opacity(1);
   }
 
+  /* Decorative shapes from index page */
+  .decorative-shape {
+    position: absolute;
+    z-index: 0;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .shape-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3498db, transparent);
+    top: 10%;
+    left: -40px;
+  }
+
+  .shape-dots {
+    top: 30%;
+    right: -20px;
+    width: 80px;
+    height: 160px;
+    background-image: radial-gradient(circle, #3498db 2px, transparent 3px);
+    background-size: 15px 15px;
+  }
+
+  .shape-zigzag {
+    position: absolute;
+    bottom: 15%;
+    left: -10px;
+    width: 60px;
+    height: 100px;
+  }
+
+  .shape-zigzag:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #3498db 25%, transparent 25%),
+      linear-gradient(-45deg, #3498db 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #3498db 75%),
+      linear-gradient(-45deg, transparent 75%, #3498db 75%);
+    background-size: 20px 20px;
+    opacity: 0.3;
+  }
+
+  .shape-triangle {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 86px solid rgba(52, 152, 219, 0.1);
+    bottom: 10%;
+    right: 5%;
+  }
+
+  .shape-square {
+    width: 80px;
+    height: 80px;
+    background: rgba(52, 152, 219, 0.1);
+    transform: rotate(45deg);
+    top: 60%;
+    right: 10%;
+  }
+
+  .shape-wave {
+    width: 100px;
+    height: 20px;
+    background: repeating-linear-gradient(45deg,
+        transparent,
+        transparent 10px,
+        rgba(52, 152, 219, 0.2) 10px,
+        rgba(52, 152, 219, 0.2) 20px);
+    top: 45%;
+    left: 5%;
+  }
+
   @media (max-width: 576px) {
     .stat-row {
       flex-direction: column;
@@ -120,17 +229,25 @@
 </style>
 
 <section class="stats-container">
-  <h2 class="stats-heading">Statistics</h2>
+  <!-- Add decorative shapes -->
+  <div class="decorative-shape shape-circle" data-aos="fade-in" data-aos-duration="1500"></div>
+  <div class="decorative-shape shape-dots" data-aos="fade-in" data-aos-duration="1500" data-aos-delay="300"></div>
+  <div class="decorative-shape shape-triangle" data-aos="fade-in" data-aos-duration="1500"></div>
+  <div class="decorative-shape shape-wave" data-aos="fade-in" data-aos-duration="1500" data-aos-delay="200"></div>
+
+  <h2 class="stats-heading" data-aos="fade-up" data-aos-duration="800">Statistics</h2>
 
   {% for stat in stats %}
   {% if stat.contents != 'None' %}
-  <div class="stats-card">
+  <div class="stats-card" data-aos="fade-up" data-aos-duration="800"
+    data-aos-delay="{{ forloop.counter0|add:1|add:200 }}">
     <div class="card-header">
       <h3 class="card-title">{{ stat.name }}</h3>
     </div>
     <div class="card-body">
       {% for content in stat.contents %}
-      <div class="stat-row">
+      <div class="stat-row" data-aos="fade-right" data-aos-duration="600"
+        data-aos-delay="{{ forloop.counter|add:200 }}">
         <div class="stat-label">{{ content.key }}</div>
         <div class="stat-value">
           {% if content.link %}
@@ -146,29 +263,36 @@
   {% endif %}
   {% endfor %}
 
-  <div class="stats-card">
+  <div class="stats-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
     <div class="card-header">
       <h3 class="card-title">My GitHub</h3>
     </div>
     <div class="card-body">
       {% for content in GitHub %}
-      <div class="stat-row">
+      <div class="stat-row" data-aos="fade-right" data-aos-duration="600"
+        data-aos-delay="{{ forloop.counter|add:200 }}">
         <div class="stat-label">{{ content.key }}</div>
         <div class="stat-value">{{ content.value }}</div>
       </div>
       {% endfor %}
 
-      <div class="stat-row">
+      <div class="stat-row" data-aos="fade-right" data-aos-duration="600" data-aos-delay="300">
         <div class="stat-label">Contributions</div>
       </div>
       {% endcache %}
 
-      <div class="contributions-chart">
+      <div class="contributions-chart" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="400">
         <img src="https://ghchart.rshah.org/000000/jerit-baiju"
           alt="Jerit Baiju Contributions">
       </div>
     </div>
   </div>
+
+  <!-- Add a shape to the bottom of the page -->
+  <div class="decorative-shape shape-zigzag" style="bottom: 5%; right: 5%;" data-aos="fade-in" data-aos-duration="1500">
+  </div>
+  <div class="decorative-shape shape-square" style="bottom: 10%; left: 5%;" data-aos="fade-in" data-aos-duration="1500"
+    data-aos-delay="300"></div>
 </section>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
@@ -180,5 +304,19 @@
     const age = diff / (365.25 * 24 * 60 * 60 * 1000);
     document.getElementById("age").innerHTML = age.toFixed(10)
   }, 100);
+</script>
+
+<!-- Add AOS JS library and initialize -->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    AOS.init({
+      duration: 800,
+      easing: 'ease',
+      once: true,
+      offset: 100,
+      disable: 'mobile' // Disables animations on mobile devices to improve performance
+    });
+  });
 </script>
 {% endblock content %}
