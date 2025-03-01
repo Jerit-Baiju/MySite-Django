@@ -111,6 +111,7 @@
     padding: 5rem 0;
     overflow: hidden;
     /* Ensures animations don't cause horizontal scrolling */
+    position: relative;
   }
 
   .section-title {
@@ -206,11 +207,93 @@
       /* Further adjustment for very small screens */
     }
   }
+
+  /* Decorative shapes */
+  .decorative-shape {
+    position: absolute;
+    z-index: 0;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .shape-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3498db, transparent);
+    top: 10%;
+    left: -40px;
+  }
+
+  .shape-dots {
+    top: 30%;
+    right: -20px;
+    width: 80px;
+    height: 160px;
+    background-image: radial-gradient(circle, #3498db 2px, transparent 3px);
+    background-size: 15px 15px;
+  }
+
+  .shape-zigzag {
+    position: absolute;
+    bottom: 15%;
+    left: -10px;
+    width: 60px;
+    height: 100px;
+  }
+
+  .shape-zigzag:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #3498db 25%, transparent 25%),
+      linear-gradient(-45deg, #3498db 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #3498db 75%),
+      linear-gradient(-45deg, transparent 75%, #3498db 75%);
+    background-size: 20px 20px;
+    opacity: 0.3;
+  }
+
+  .shape-triangle {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 86px solid rgba(52, 152, 219, 0.1);
+    bottom: 10%;
+    right: 5%;
+  }
+
+  .shape-square {
+    width: 80px;
+    height: 80px;
+    background: rgba(52, 152, 219, 0.1);
+    transform: rotate(45deg);
+    top: 60%;
+    right: 10%;
+  }
+
+  .shape-wave {
+    width: 100px;
+    height: 20px;
+    background: repeating-linear-gradient(45deg,
+        transparent,
+        transparent 10px,
+        rgba(52, 152, 219, 0.2) 10px,
+        rgba(52, 152, 219, 0.2) 20px);
+    top: 45%;
+    left: 5%;
+  }
 </style>
 
 <div class="container">
   <!-- Hero Section -->
-  <section class="hero-container">
+  <section class="hero-container" style="position: relative;">
+    <!-- Add decorative shapes to hero section -->
+    <div class="decorative-shape shape-circle" data-aos="fade-in" data-aos-duration="1500"></div>
+    <div class="decorative-shape shape-dots" data-aos="fade-in" data-aos-duration="1500" data-aos-delay="300"></div>
+
     <div class="row align-items-center">
       <div class="col-12 col-md-5">
         <div class="hero-logo" id="jb" data-aos="fade-right" data-aos-duration="1000">JB</div>
@@ -241,6 +324,10 @@
 
   <!-- About Section -->
   <section class="section" id="aboutMe">
+    <!-- Add decorative shapes to about section -->
+    <div class="decorative-shape shape-triangle" data-aos="fade-in" data-aos-duration="1500"></div>
+    <div class="decorative-shape shape-wave" data-aos="fade-in" data-aos-duration="1500" data-aos-delay="200"></div>
+
     <div class="container">
       <h2 class="section-title" data-aos="fade-right" data-aos-offset="200">ABOUT ME</h2>
       <div class="row">
@@ -259,6 +346,10 @@
 
   <!-- Skills Section -->
   <section class="section" id="skillsSection">
+    <!-- Add decorative shapes to skills section -->
+    <div class="decorative-shape shape-zigzag" data-aos="fade-in" data-aos-duration="1500"></div>
+    <div class="decorative-shape shape-square" data-aos="fade-in" data-aos-duration="1500" data-aos-delay="300"></div>
+
     <div class="container">
       <h2 class="section-title" data-aos="fade-right" data-aos-offset="200">SKILLS</h2>
       <div class="row">
@@ -276,6 +367,9 @@
 
   <!-- Education Section -->
   <section class="section" id="educationSection">
+    <!-- Add decorative shapes to education section -->
+    <div class="decorative-shape shape-dots" style="left: -40px; top: 50%; left: auto;" data-aos="fade-in" data-aos-duration="1500">
+    </div>
     <div class="container">
       <h2 class="section-title" data-aos="fade-right" data-aos-offset="200">EDUCATION</h2>
       <div class="row">
