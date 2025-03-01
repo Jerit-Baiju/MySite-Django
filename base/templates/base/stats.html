@@ -3,68 +3,177 @@
 {% load static %}
 {% load cache %}
 {% cache 86400 stats request.user %}
-<link rel="stylesheet" href="{% static 'css/base/stats.css' %}" />
-<section id="stats" class="container">
-  <h3 class="text-center text-uppercase">Statics</h3>
-  <hr />
-  <div class="row">
-    {% for stat in stats %}
-    {% if stat.contents != 'None' %}
-    <div class="my-bg mb-3">
-      <h5 class="text-uppercase my-heading">{{ stat.name }}</h5>
-      <div class="padding">
-        {% for content in stat.contents %}
-        <div class="{% cycle 'grey' 'white' %}">
-          <div class="row">
-            <div class="col-6 col-md-6 col-lg-6">
-              <p class="m-0 fw-bold">{{ content.key }}</p>
-            </div>
-            <div class="col-6 col-md-6 col-lg-6 text-break">{% if content.link %}
-              <a href="{{ content.link }}" class="m-0 fw-bold text-black">{{ content.value }}</a>
-              {% else %}
-              <p id="{{ content.key }}" class="m-0 fw-bold">{{ content.value }}</p>
-              {% endif %}
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
+
+<style>
+  .stats-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .stats-heading {
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    margin-bottom: 2rem;
+    color: #333;
+  }
+
+  .stats-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .stats-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  }
+
+  .card-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .card-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #333;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .stat-row {
+    display: flex;
+    padding: 1rem;
+    border-radius: 6px;
+  }
+
+  .stat-row:nth-child(odd) {
+    background-color: #f9f9f9;
+  }
+
+  .stat-row:nth-child(even) {
+    background-color: #ffffff;
+  }
+
+  .stat-label {
+    flex: 1;
+    font-weight: 500;
+    color: #555;
+    text-transform: capitalize;
+  }
+
+  .stat-value {
+    flex: 1;
+    font-weight: 600;
+    color: #333;
+    word-break: break-word;
+  }
+
+  .stat-value a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .stat-value a:hover {
+    color: #0066cc;
+  }
+
+  .contributions-chart {
+    width: 100%;
+    padding: 1rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .contributions-chart img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: opacity(0.9);
+    transition: filter 0.3s ease;
+  }
+
+  .contributions-chart img:hover {
+    filter: opacity(1);
+  }
+
+  @media (max-width: 576px) {
+    .stat-row {
+      flex-direction: column;
+    }
+
+    .stat-label,
+    .stat-value {
+      padding: 0.25rem 0;
+    }
+  }
+</style>
+
+<section class="stats-container">
+  <h2 class="stats-heading">Statistics</h2>
+
+  {% for stat in stats %}
+  {% if stat.contents != 'None' %}
+  <div class="stats-card">
+    <div class="card-header">
+      <h3 class="card-title">{{ stat.name }}</h3>
     </div>
-    {% comment %} <div class="space" style="min-height: 1em"></div> {% endcomment %}
-    {% endif %}
-    {% endfor %}
-    <div class="my-bg">
-      <h5 class="text-uppercase my-heading">My GitHub</h5>
-      <div class="padding">
-        {% for content in GitHub %}
-        <div class="{% cycle 'grey' 'white' %}">
-          <div class="row">
-            <div class="col-6 col-md-6 col-lg-6">
-              <p class="m-0 fw-bold">{{ content.key }}</p>
-            </div>
-            <div class="col-6 col-md-6 col-lg-6 text-break">
-              <p class="m-0 fw-bold">{{ content.value }}</p>
-            </div>
-          </div>
+    <div class="card-body">
+      {% for content in stat.contents %}
+      <div class="stat-row">
+        <div class="stat-label">{{ content.key }}</div>
+        <div class="stat-value">
+          {% if content.link %}
+          <a href="{{ content.link }}">{{ content.value }}</a>
+          {% else %}
+          <span id="{{ content.key }}">{{ content.value }}</span>
+          {% endif %}
         </div>
-        {% endfor %}
-        <div class="grey">
-          <p class="m-0 fw-bold">Contributions</p>
-        </div>
-        {% endcache %}
-        <div class="white">
-          <img src="https://ghchart.rshah.org/000000/jerit-baiju"
-            style="pointer-events: none"
-            class="w-100 px-md-5 pt-2"
-            alt="Jerit Baiju Contributions">
-        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+  {% endfor %}
+
+  <div class="stats-card">
+    <div class="card-header">
+      <h3 class="card-title">My GitHub</h3>
+    </div>
+    <div class="card-body">
+      {% for content in GitHub %}
+      <div class="stat-row">
+        <div class="stat-label">{{ content.key }}</div>
+        <div class="stat-value">{{ content.value }}</div>
+      </div>
+      {% endfor %}
+
+      <div class="stat-row">
+        <div class="stat-label">Contributions</div>
+      </div>
+      {% endcache %}
+
+      <div class="contributions-chart">
+        <img src="https://ghchart.rshah.org/000000/jerit-baiju"
+          alt="Jerit Baiju Contributions">
       </div>
     </div>
   </div>
 </section>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 <script>
-  const birth_date = moment(new Date("Feb 10 2006 23:20:00")); //02/10/2006
+  const birth_date = moment(new Date("Feb 10 2006 23:20:00"));
   setInterval(() => {
     const now = moment(new Date());
     const diff = now.diff(birth_date);
