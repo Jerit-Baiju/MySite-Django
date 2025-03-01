@@ -1,27 +1,67 @@
 {% extends 'main.html' %}
 {% block content %}
-  {% load static %}
-  {% load cache %}
-  {% cache 86400 projects %}
-  <section class="projects-section vh-100">
-    <div class="container">
-      <h3 class="text-center">PROJECTS</h3>
-      <hr />
-      <div class="row">
-        {% for project in projects %}
-          <div class="col-14 col-md-4 mt-3">
-            <a class="link-dark text-decoration-none" href="{{ project.src }}">
-              <div class="card my-card h-100">
-                <div class="card-body">
-                  <h5 class="card-title">{{ project.name }}</h5>
-                  <p class="card-text fw-bold">{{ project.info }}</p>
-                </div>
-              </div>
-            </a>
+{% load static %}
+{% load cache %}
+{% cache 86400 projects %}
+<style>
+  .projects-section {
+    padding: 4rem 0;
+    background-color: #fafafa;
+  }
+
+  .project-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    background-color: white;
+  }
+
+  .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .project-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #2d3436;
+    margin-bottom: 1rem;
+  }
+
+  .project-text {
+    color: #636e72;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    font-weight: normal;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2d3436;
+    margin-bottom: 2.5rem;
+  }
+</style>
+
+<section class="projects-section min-vh-100">
+  <div class="container">
+    <h2 class="section-title text-center">Projects</h2>
+    <div class="row g-4">
+      {% for project in projects %}
+      <div class="col-12 col-md-6 col-lg-4">
+        <a class="text-decoration-none" href="{{ project.src }}">
+          <div class="project-card card h-100 p-4">
+            <div class="card-body">
+              <h3 class="project-title">{{ project.name }}</h3>
+              <p class="project-text mb-0">{{ project.info }}</p>
+            </div>
           </div>
-        {% endfor %}
+        </a>
       </div>
+      {% endfor %}
     </div>
-  </section>
+  </div>
+</section>
 {% endcache %}
 {% endblock content %}

@@ -7,7 +7,6 @@ from django.urls import reverse
 
 from base.basic import log
 
-
 # Create your views here.
 
 
@@ -15,37 +14,45 @@ def projects(request):
     log(request, "Projects")
     projects_data = [
         {
+            "name": "a11y-widget",
+            "info": "An open-source accessibility tool designed to enhance website inclusivity. Offers "
+            "features like text resizing, contrast adjustments, and screen reader support, "
+            "helping developers meet WCAG standards with minimal setup.",
+            "src": "https://github.com/Jerit-Baiju/a11y-widget",
+        },
+        {
             "name": "PyFlit",
-            "info": "This dynamic tool has significantly streamlined my development process, allowing "
-            "me to effortlessly add components, render HTML, incorporate CSS and JS, "
-            "and seamlessly send Python variables to JavaScript.",
+            "info": "A powerful Python web development tool that streamlines component creation, "
+            "HTML rendering, and asset management. Simplifies Python-to-JavaScript "
+            "variable communication for enhanced development workflow.",
             "src": "https://pypi.org/project/pyflit/",
         },
-        # {'name': 'Clara', 'info': 'CHAT-BOT made with CHAT-BOT-API. Simple STATIC Project.',
-        #     'src': '/projects/clara'},
         {
             "name": "MySite",
-            "info": "DYNAMIC WEBSITE made with DJANGO framework, FEATURES - Admin Panel, "
-            "User Management, User-Score Handling, LOGS, etc.. ",
+            "info": "A feature-rich Django-based website showcasing modern web development practices. "
+            "Includes comprehensive user management, score tracking, logging systems, and "
+            "an intuitive admin interface.",
             "src": "https://github.com/jerit-baiju/mysite-django",
         },
         {
             "name": "Number Game",
-            "info": "You should assume the number that is picked from 0-100 randomly by computer "
-            "with TEN chances.",
+            "info": "An engaging web-based number guessing game where players have ten attempts to "
+            "guess a randomly selected number between 0 and 100. Features score tracking "
+            "and user progress monitoring.",
             "src": "/projects/num_game",
         },
         {
             "name": "MAM Bethany Public School",
-            "info": "Developed for administrators, it enables easy management of "
-            "co-curricular activities, image customization, "
-            "teacher operations, document handling, school parliament "
-            "details, management, and result tracking. ",
+            "info": "A comprehensive school management system for administrators. Manages "
+            "co-curricular activities, teacher operations, documents, school parliament, "
+            "and student results with customizable features.",
             "src": reverse("bethany"),
         },
         {
             "name": "Caelium",
-            "info": "Caelium is an all-in-one platform for organizing personal, family, couple, and work activities, currently under development. It includes features like a shared calendar, interactive map, chat with video calls, shared to-do lists, blogs, and more, ensuring equal privacy and functionality for all users",
+            "info": "A versatile platform for personal and group organization. Integrates shared "
+            "calendars, interactive maps, video chat, collaborative to-do lists, and blogs "
+            "with balanced privacy controls.",
             "src": "https://caelium.co",
         },
     ]
