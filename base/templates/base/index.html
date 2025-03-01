@@ -1,107 +1,312 @@
 {% extends 'main.html' %}
 {% block content %}
-  {% load static %}
-  {% load cache %}
-  {% cache 86400 index %}
-  <link rel="stylesheet" href="{% static 'css/base/index.css' %}">
-  <div class="container">
-    <section id="homeSection">
-      <div class="row align-items-center">
-        <div class="col-12 col-md-6">
-          <p id="jb" class="text-center">JB</p>
+{% load static %}
+{% load cache %}
+{% cache 86400 index %}
+<!-- Add AOS CSS library in head -->
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+<style>
+  :root {
+    --primary-color: #0a0a0a;
+    --accent-color: #3498db;
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --secondary-bg: #f8f9fa;
+    --transition: all 0.3s ease;
+  }
+
+  .hero-container {
+    min-height: 100vh;
+    padding: 2rem 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-logo {
+    position: relative;
+    font-size: 20rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    text-align: center;
+    transition: var(--transition);
+    font-family: 'comforter';
+  }
+
+  .hero-logo:after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgba(52, 152, 219, 0.2);
+    top: -15px;
+    right: -15px;
+    z-index: -1;
+  }
+
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .bio-text {
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  .nav-buttons {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .nav-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    background-color: var(--secondary-bg);
+    color: var(--primary-color);
+    font-weight: 600;
+    border-radius: 50px;
+    transition: var(--transition);
+    text-decoration: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .nav-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .quote-card {
+    background-color: var(--secondary-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    position: relative;
+  }
+
+  .quote-card:before {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    font-size: 4rem;
+    color: rgba(52, 152, 219, 0.2);
+    font-family: Georgia, serif;
+  }
+
+  .section {
+    padding: 5rem 0;
+    overflow: hidden;
+    /* Ensures animations don't cause horizontal scrolling */
+  }
+
+  .section-title {
+    position: relative;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    display: inline-block;
+  }
+
+  .section-title:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: var(--accent-color);
+  }
+
+  .skill-tag {
+    display: inline-block;
+    background-color: var(--secondary-bg);
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    margin: 0.5rem;
+    font-weight: 500;
+    transition: var(--transition);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+
+  .skill-tag:hover {
+    background-color: var(--accent-color);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .education-item {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .education-item:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+  }
+
+  .education-link {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: var(--transition);
+  }
+
+  .education-link:hover {
+    color: var(--accent-color);
+  }
+
+  /* Remove animations that will conflict with AOS */
+  .hero-logo,
+  .hero-title,
+  .bio-text,
+  .nav-buttons,
+  .quote-card,
+  .section {
+    animation: none;
+  }
+
+  @media (max-width: 768px) {
+    .hero-logo {
+      font-size: 5rem;
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+    }
+
+    .nav-buttons {
+      flex-wrap: wrap;
+    }
+  }
+</style>
+
+<div class="container">
+  <!-- Hero Section -->
+  <section class="hero-container">
+    <div class="row align-items-center">
+      <div class="col-12 col-md-5">
+        <div class="hero-logo" id="jb" data-aos="fade-right" data-aos-duration="1000">JB</div>
+      </div>
+      <div class="col-12 col-md-7">
+        <h1 class="hero-title" data-aos="fade-up" data-aos-duration="800">JERIT BAIJU</h1>
+        <div class="bio-text" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+          {% for bio in bio %}
+          &gt; {{ bio }}<br>
+          {% endfor %}
         </div>
-        <div class="col-12 col-md-6">
-          <h1>JERIT BAIJU</h1>
-          <p class="ps-3 ps-md-4 fw-bold">
-            {% for bio in bio %}
-              &gt {{ bio }}
-              <br />
-            {% endfor %}
-          </p>
-          <div>
-            <div class="row m-2 pt-3 pb-3 text-center">
-              <div class="col-4">
-                <a href="{% url 'stats' %}"
-                   class="btn btn-outline-dark rounded-pill w-100 fw-bold">Statics</a>
-              </div>
-              <div class="col-4">
-                <a href="{% url 'projects' %}"
-                   class="btn btn-outline-dark rounded-pill w-100 fw-bold">Projects</a>
-              </div>
-              <div class="col-4">
-                <a href="{% url 'gallery' %}"
-                   class="btn btn-outline-dark rounded-pill w-100 fw-bold">Gallery</a>
-              </div>
-            </div>
-          </div>
-          <div class="quoteDiv align-items-center">
-            <div class="quote">
-              <p class="text-end p-1 fw-bold">"{{ quote.quote }}"</p>
-              {% if quote.author %}
-                <div class="row">
-                  <div class="col-6 col-md-6"></div>
-                  <div class="col-6 col-md-6 mt-1">
-                    <figcaption class="blockquote-footer text-end p-1 fw-bold">{{ quote.author }}</figcaption>
-                  </div>
-                </div>
-              {% endif %}
-            </div>
-          </div>
+
+        <div class="nav-buttons" data-aos="fade-up" data-aos-delay="400" data-aos-duration="800">
+          <a href="{% url 'stats' %}" class="nav-btn">Statistics</a>
+          <a href="{% url 'projects' %}" class="nav-btn">Projects</a>
+          <a href="{% url 'gallery' %}" class="nav-btn">Gallery</a>
+        </div>
+
+        <div class="quote-card" data-aos="zoom-in" data-aos-delay="600" data-aos-duration="800">
+          <p class="fw-bold mb-1">{{ quote.quote }}</p>
+          {% if quote.author %}
+          <footer class="text-end fw-bold text-muted">— {{ quote.author }}</footer>
+          {% endif %}
         </div>
       </div>
-      <hr />
-    </section>
-    <section id="aboutMe" class="p-1">
-      <div class="p-3">
-        <h4 class="text-center text-uppercase">About Me</h4>
-        <p class="fw-bold">
-          {% include 'src/intro.html' %}
-          You can read more <a class="link-dark" href="{% url 'about' %}">about me</a> or check out my <a class="link-dark" href="{{ resume.file.url }}" download>resume</a>.
-        </p>
-      </div>
-      <hr />
-    </section>
-    <section id="serviceSection" class="p-1">
-      <div class="p-3">
-        <h4 class="text-center text-uppercase">Skills</h4>
-        <div class="services">
-          <div class="row">
-            <p>
-              {% for skill in skills %}
-                <div class="col-md-3 fw-bold">
-                  &gt {{ skill }}
-                  <br />
-                </div>
-              {% endfor %}
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section" id="aboutMe">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-right" data-aos-offset="200">ABOUT ME</h2>
+      <div class="row">
+        <div class="col-12">
+          <div class="fw-bold" data-aos="fade-up" data-aos-offset="200" data-aos-delay="200">
+            {% include 'src/intro.html' %}
+            <p class="mt-4">
+              You can read more <a class="education-link" href="{% url 'about' %}">about me</a> or check out my
+              <a class="education-link" href="{{ resume.file.url }}" download>resume</a>.
             </p>
           </div>
         </div>
       </div>
-      <hr />
-    </section>
-    <section id="educationSection" class="p-1">
-      <div class="p-3">
-        <h4 class="text-center  text-uppercase">Education</h4>
-        <div class="education">
-          <p class="fw-bold">
-            {% for edu in education %}
-              &gt
-              {% if edu.url %}
-                <a class="link-dark" href="{{ edu.url }}">{{ edu.name }}</a>
-              {% else %}
-                {{ edu.name }}
-              {% endif %}
-              <br>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="section" id="skillsSection">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-right" data-aos-offset="200">SKILLS</h2>
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex flex-wrap" data-aos="fade-up" data-aos-offset="200" data-aos-delay="200">
+            {% for skill in skills %}
+            <div class="skill-tag" data-aos="zoom-in" data-aos-delay="{{ forloop.counter|add:200 }}"
+              data-aos-duration="600">{{ skill }}</div>
             {% endfor %}
-          </p>
+          </div>
         </div>
       </div>
-      <hr />
-    </section>
-  </div>
-  {% include "footer.html" %}
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section class="section" id="educationSection">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-right" data-aos-offset="200">EDUCATION</h2>
+      <div class="row">
+        <div class="col-12 col-md-8">
+          {% for edu in education %}
+          <div class="education-item" data-aos="fade-left" data-aos-delay="{{ forloop.counter|add:100 }}"
+            data-aos-duration="700">
+            {% if edu.url %}
+            <a class="education-link" href="{{ edu.url }}">{{ edu.name }}</a>
+            {% else %}
+            {{ edu.name }}
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% include "footer.html" %}
 {% endcache %}
 {% endblock content %}
 {% block scripts %}
-  <script src="{% static 'js/pwa-handler.js' %}"></script>
+<script src="{% static 'js/pwa-handler.js' %}"></script>
+<!-- Add AOS JS library and initialize -->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    AOS.init({
+      duration: 800,
+      easing: 'ease',
+      once: true,
+      offset: 100,
+      disable: 'mobile' // Disables animations on mobile devices to improve performance
+    });
+  });
+</script>
 {% endblock scripts %}
