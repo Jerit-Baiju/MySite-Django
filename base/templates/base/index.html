@@ -189,9 +189,6 @@
   }
 
   @media (max-width: 768px) {
-    .hero-logo {
-      font-size: 5rem;
-    }
 
     .hero-title {
       font-size: 2.5rem;
@@ -199,6 +196,14 @@
 
     .nav-buttons {
       flex-wrap: wrap;
+    }
+  }
+
+  /* Add additional breakpoint for very small screens */
+  @media (max-width: 480px) {
+    .hero-logo {
+      font-size: 8rem;
+      /* Further adjustment for very small screens */
     }
   }
 </style>
