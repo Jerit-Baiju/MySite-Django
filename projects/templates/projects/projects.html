@@ -3,23 +3,56 @@
 {% load static %}
 {% load cache %}
 {% cache 86400 projects %}
+
+<!-- AOS CSS -->
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 <style>
   .projects-section {
-    padding: 4rem 0;
-    background-color: #fafafa;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+    color: #333;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .projects-heading {
+    margin-bottom: 3rem;
+    position: relative;
+  }
+
+  .projects-heading h2 {
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+  }
+
+  .projects-heading hr {
+    width: 80px;
+    margin: 0 auto;
+    border: none;
+    height: 4px;
+    background: linear-gradient(90deg, #3182ce, #805ad5);
+    border-radius: 2px;
   }
 
   .project-card {
+    background-color: #ffffff;
     border: none;
     border-radius: 12px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-    background-color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
   }
 
   .project-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
   }
 
   .project-title {
@@ -27,31 +60,119 @@
     font-weight: 600;
     color: #2d3436;
     margin-bottom: 1rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+  }
+
+  .project-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: #3182ce;
+    border-radius: 2px;
   }
 
   .project-text {
     color: #636e72;
     font-size: 0.95rem;
-    line-height: 1.6;
+    line-height: 1.7;
     font-weight: normal;
   }
 
-  .section-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #2d3436;
-    margin-bottom: 2.5rem;
+  /* Decorative elements */
+  .decorative-shape {
+    position: absolute;
+    z-index: 1;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .shape-square {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #3182ce, transparent);
+    top: 15%;
+    left: -30px;
+    transform: rotate(25deg);
+  }
+
+  .shape-gradient {
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, #805ad5 0%, transparent 70%);
+    top: 40%;
+    right: -50px;
+  }
+
+  .shape-hexagon {
+    width: 80px;
+    height: 70px;
+    background: rgba(49, 130, 206, 0.15);
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
+
+  .shape-wave {
+    position: absolute;
+    bottom: 5%;
+    right: 0;
+    width: 120px;
+    height: 80px;
+    opacity: 0.3;
+  }
+
+  .shape-wave:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      45deg,
+      #3182ce,
+      #3182ce 10px,
+      transparent 10px,
+      transparent 20px
+    );
+  }
+
+  @media (max-width: 768px) {
+    .projects-heading h2 {
+      font-size: 1.8rem;
+    }
+
+    .project-card {
+      padding: 1.5rem;
+    }
+
+    .decorative-shape {
+      transform: scale(0.7);
+    }
   }
 </style>
 
 <section class="projects-section min-vh-100">
+  <!-- Decorative shapes -->
+  <div class="decorative-shape shape-square"></div>
+  <div class="decorative-shape shape-gradient"></div>
+  <div class="decorative-shape shape-hexagon"></div>
+  <div class="decorative-shape shape-wave"></div>
+
   <div class="container">
-    <h2 class="section-title text-center">Projects</h2>
+    <div class="projects-heading" data-aos="fade-down" data-aos-delay="100">
+      <h2>Projects</h2>
+      <hr>
+    </div>
+
     <div class="row g-4">
       {% for project in projects %}
-      <div class="col-12 col-md-6 col-lg-4">
+      <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:200 }}">
         <a class="text-decoration-none" href="{{ project.src }}">
-          <div class="project-card card h-100 p-4">
+          <div class="project-card card p-4">
             <div class="card-body">
               <h3 class="project-title">{{ project.name }}</h3>
               <p class="project-text mb-0">{{ project.info }}</p>
@@ -63,5 +184,19 @@
     </div>
   </div>
 </section>
+
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      offset: 100
+    });
+  });
+</script>
+
 {% endcache %}
 {% endblock content %}
