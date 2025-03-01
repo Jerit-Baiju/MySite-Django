@@ -1,16 +1,215 @@
 {% extends 'main.html' %}
 {% block content %}
-<div class="container mx-auto px-4 py-8 fw-bold">
-  <h5 class="text-3xl font-bold text-gray-800 mt-4">{{year.title}}</h5>
-  <p class="text-gray-600 mb-4">
-    {{year.overview|safe}}
-  </p>
-  {% for content in year.contents %}
-  <h5 class="text-2xl font-semibold text-gray-800 mt-6 mb-2">{{content.title}}</h5>
-  <p class="text-gray-600 mb-4">
-    {{content.body|safe}}
-  </p>
-  {% endfor %}
 
-</div>
+<!-- AOS CSS -->
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+<style>
+  .year-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+    color: #333;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .year-heading {
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+
+  .year-heading h2 {
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+  }
+
+  .year-heading hr {
+    width: 80px;
+    margin: 0 auto;
+    border: none;
+    height: 4px;
+    background: linear-gradient(90deg, #6b46c1, #3182ce);
+    border-radius: 2px;
+  }
+
+  .year-overview {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    z-index: 2;
+    line-height: 1.7;
+    color: #2d3748;
+    font-size: 1.05rem;
+  }
+
+  .year-overview:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  }
+
+  .content-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    z-index: 2;
+  }
+
+  .content-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  }
+
+  .content-title {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #4a5568;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+  }
+
+  .content-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: #6b46c1;
+    border-radius: 2px;
+  }
+
+  .content-body {
+    line-height: 1.6;
+    color: #2d3748;
+    font-size: 1rem;
+  }
+
+  /* Decorative elements */
+  .decorative-shape {
+    position: absolute;
+    z-index: 1;
+    opacity: 0.5;
+  }
+
+  .shape-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6b46c1, transparent);
+    top: 10%;
+    left: -40px;
+  }
+
+  .shape-dots {
+    top: 30%;
+    right: -20px;
+    width: 80px;
+    height: 160px;
+    background-image: radial-gradient(circle, #3182ce 2px, transparent 3px);
+    background-size: 15px 15px;
+  }
+
+  .shape-triangle {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 86px solid rgba(49, 130, 206, 0.1);
+    bottom: 10%;
+    right: 5%;
+  }
+
+  .shape-zigzag {
+    position: absolute;
+    bottom: 15%;
+    left: -10px;
+    width: 60px;
+    height: 100px;
+  }
+
+  .shape-zigzag:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #6b46c1 25%, transparent 25%),
+      linear-gradient(-45deg, #6b46c1 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #6b46c1 75%),
+      linear-gradient(-45deg, transparent 75%, #6b46c1 75%);
+    background-size: 20px 20px;
+    opacity: 0.3;
+  }
+
+  @media (max-width: 768px) {
+    .year-heading h2 {
+      font-size: 1.8rem;
+    }
+
+    .content-card,
+    .year-overview {
+      padding: 1.5rem;
+    }
+
+    .decorative-shape {
+      transform: scale(0.7);
+    }
+  }
+</style>
+
+<section class="year-section">
+  <!-- Decorative shapes -->
+  <div class="decorative-shape shape-circle"></div>
+  <div class="decorative-shape shape-dots"></div>
+  <div class="decorative-shape shape-triangle"></div>
+  <div class="decorative-shape shape-zigzag"></div>
+
+  <div class="year-heading" data-aos="fade-down" data-aos-delay="100">
+    <h2>{{year.title}}</h2>
+    <hr>
+  </div>
+
+  <div class="year-overview" data-aos="fade-up" data-aos-delay="200">
+    {{year.overview|safe}}
+  </div>
+
+  {% for content in year.contents %}
+  <div class="content-card" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:200 }}">
+    <h3 class="content-title">{{content.title}}</h3>
+    <div class="content-body">
+      {{content.body|safe}}
+    </div>
+  </div>
+  {% endfor %}
+</section>
+
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      offset: 100
+    });
+  });
+</script>
+
 {% endblock %}
