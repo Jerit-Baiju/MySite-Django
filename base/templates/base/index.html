@@ -26,7 +26,7 @@
   .hero-logo {
     position: relative;
     font-size: 20rem;
-    font-weight: 700;
+    font-weight: 400;
     color: var(--primary-color);
     margin-bottom: 1rem;
     text-align: center;
@@ -171,12 +171,17 @@
 
   .education-link {
     color: var(--text-color);
-    text-decoration: none;
-    transition: var(--transition);
+    text-decoration: underline;
+    /* Add underline */
+    transition: none;
+    /* Remove hover transition */
   }
 
   .education-link:hover {
-    color: var(--accent-color);
+    color: var(--text-color);
+    /* Keep the same color on hover */
+    text-decoration: underline;
+    /* Keep underline on hover */
   }
 
   /* Remove animations that will conflict with AOS */
@@ -368,7 +373,8 @@
   <!-- Education Section -->
   <section class="section" id="educationSection">
     <!-- Add decorative shapes to education section -->
-    <div class="decorative-shape shape-dots" style="left: -40px; top: 50%; left: auto;" data-aos="fade-in" data-aos-duration="1500">
+    <div class="decorative-shape shape-dots" style="left: -40px; top: 50%; left: auto;" data-aos="fade-in"
+      data-aos-duration="1500">
     </div>
     <div class="container">
       <h2 class="section-title" data-aos="fade-right" data-aos-offset="200">EDUCATION</h2>

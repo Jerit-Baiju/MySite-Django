@@ -1,4 +1,3 @@
-from django.urls import reverse_lazy
 from django.utils.safestring import mark_safe
 
 INTRO = (
