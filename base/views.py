@@ -12,9 +12,10 @@ from django.views.generic import TemplateView
 
 from api.views import github_api, monkey_type_api
 from base.content import BIO, HISTORY, INTRO, QUOTES, SKILLS, YEARS
+from projects.utils import fetch_stars
 
 from .basic import log, push
-from .models import URL, Document, User, AdminSecret
+from .models import URL, AdminSecret, Document, User
 
 
 def register_page(request):
@@ -167,7 +168,7 @@ def stats(request):
         {"key": "Backend", "value": "Python | Django"},
         {"key": "Hosted on", "value": "Amazon Web Services"},
         {"key": "last updated at", "value": github_data["updated_at"]},
-        {"key": "GitHub Stars Count", "value": github_data["stars_this"]},
+        {"key": "GitHub Stars Count", "value": fetch_stars("Jerit-Baiju/MySite-Django")},
     ]
     if user.is_authenticated:
         if user.score is None:

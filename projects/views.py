@@ -6,6 +6,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 
 from base.basic import log
+from projects.utils import fetch_forks, fetch_stars
 
 # Create your views here.
 
@@ -19,6 +20,8 @@ def projects(request):
             "features like text resizing, contrast adjustments, and screen reader support, "
             "helping developers meet WCAG standards with minimal setup.",
             "src": "https://github.com/Jerit-Baiju/a11y-widget",
+            "stars": fetch_stars("jerit-baiju/a11y-widget"),
+            "forks": fetch_forks("jerit-baiju/a11y-widget"),
         },
         {
             "name": "PyFlit",
@@ -33,6 +36,8 @@ def projects(request):
             "Includes comprehensive user management, score tracking, logging systems, and "
             "an intuitive admin interface.",
             "src": "https://github.com/jerit-baiju/mysite-django",
+            "stars": fetch_stars("jerit-baiju/mysite-django"),
+            "forks": fetch_forks("jerit-baiju/mysite-django"),
         },
         {
             "name": "Number Game",
