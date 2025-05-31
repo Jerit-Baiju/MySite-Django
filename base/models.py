@@ -44,7 +44,7 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=20)
     log = models.TextField(null=True, blank=True)
     score = models.IntegerField(null=True, blank=True)
-    objects = UserManager()
+    objects = UserManager() # type: ignore
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["first_name", "last_name"]
 
