@@ -1,0 +1,833 @@
+{% extends 'main.html' %} {% block content %} {% load static %}
+
+<!-- Chart.js for visualizations -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+  .dashboard-section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    color: #333;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  .dashboard-heading {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .dashboard-heading h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+  }
+
+  .dashboard-heading p {
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    color: #666;
+    margin-bottom: 2rem;
+  }
+
+  .dashboard-heading hr {
+    width: 100px;
+    margin: 0 auto;
+    border: none;
+    height: 4px;
+    background: linear-gradient(90deg, #3182ce, #805ad5);
+    border-radius: 2px;
+  }
+
+  .loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+  }
+
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3182ce;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .stats-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #f0f0f0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .stats-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .stats-number {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: #3182ce;
+    margin-bottom: 0.5rem;
+  }
+
+  .stats-label {
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    color: #666;
+    font-weight: 500;
+  }
+
+  .chart-container {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+    border: 1px solid #f0f0f0;
+    height: 100%;
+  }
+
+  .chart-title {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .chart-wrapper {
+    position: relative;
+    height: 300px;
+    width: 100%;
+  }
+
+  .website-list {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #f0f0f0;
+  }
+
+  .website-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+
+  .website-table th,
+  .website-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .website-table th {
+    font-weight: 600;
+    background: #f8f9fa;
+    color: #333;
+    border-bottom: 2px solid #e0e0e0;
+  }
+
+  .website-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .website-table tr:hover {
+    background-color: #f8f9fa;
+  }
+
+  .sortable-header {
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    transition: background-color 0.2s ease;
+  }
+
+  .sortable-header:hover {
+    background-color: #e9ecef !important;
+  }
+
+  .sort-indicator {
+    margin-left: 0.5rem;
+    font-size: 0.75rem;
+    color: #666;
+    transition: color 0.2s ease;
+  }
+
+  .sort-indicator.active {
+    color: #3182ce;
+  }
+
+  .website-url {
+    font-weight: 500;
+    color: #1a1a1a;
+    word-break: break-all;
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    width: 50%;
+  }
+
+  .website-url a {
+    color: #3182ce;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .website-url a:hover {
+    color: #2c5aa0;
+    text-decoration: underline;
+  }
+
+  .copy-button {
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 0.4rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  .copy-button:hover {
+    background: #e9ecef;
+    border-color: #ced4da;
+  }
+
+  .copy-button svg {
+    width: 16px;
+    height: 16px;
+    fill: #666;
+  }
+
+  .website-count {
+    font-weight: 600;
+    color: #3182ce;
+    text-align: center;
+    white-space: nowrap;
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    width: 15%;
+  }
+
+  .website-date {
+    font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+    color: #666;
+    text-align: center;
+    white-space: nowrap;
+    width: 25%;
+  }
+
+  .copy-header {
+    font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+    color: #666;
+    text-align: center;
+    white-space: nowrap;
+    width: 10%;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .badge-warning {
+    background-color: #fff3e0;
+    color: #f57c00;
+  }
+
+  .error-message {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #f0f0f0;
+  }
+
+  /* Mobile Optimizations */
+  @media (max-width: 768px) {
+    .dashboard-section {
+      padding: 1rem 0.5rem;
+    }
+
+    .stats-card {
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .chart-container {
+      padding: 1rem;
+    }
+
+    .chart-wrapper {
+      height: 250px;
+    }
+
+    .website-table th,
+    .website-table td {
+      padding: 0.5rem;
+      font-size: 0.875rem;
+    }
+
+    .website-url {
+      width: 60%;
+    }
+
+    .website-count {
+      width: 15%;
+    }
+
+    .website-date {
+      width: 20%;
+    }
+
+    .copy-header {
+      width: 5%;
+    }
+
+    .website-list {
+      padding: 1rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .chart-wrapper {
+      height: 200px;
+    }
+
+    .stats-card {
+      padding: 0.75rem;
+    }
+
+    .chart-container {
+      padding: 0.75rem;
+    }
+  }
+</style>
+
+<div class="dashboard-section">
+  <div class="dashboard-heading">
+    <h2>A11y Widget Analytics Dashboard</h2>
+    <p>Real-time usage statistics for the accessibility widget</p>
+    <hr />
+  </div>
+
+  <!-- Loading State -->
+  <div id="loading" class="loading-spinner">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Error State -->
+  <div id="error" class="error-message" style="display: none">
+    <h3>Unable to load data</h3>
+    <p>Please check your internet connection and try again.</p>
+    <button class="btn btn-primary" onclick="loadDashboardData()">Retry</button>
+  </div>
+
+  <!-- Dashboard Content -->
+  <div id="dashboard-content" style="display: none">
+    <!-- Stats Cards -->
+    <div class="row mb-4 mb-lg-5">
+      <div class="col-6 col-md-3 mb-3 mb-md-4">
+        <div class="stats-card">
+          <div class="stats-number" id="total-websites">0</div>
+          <div class="stats-label">Total Websites</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 mb-3 mb-md-4">
+        <div class="stats-card">
+          <div class="stats-number" id="total-loads">0</div>
+          <div class="stats-label">Total Widget Loads</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 mb-3 mb-md-4">
+        <div class="stats-card">
+          <div class="stats-number" id="avg-loads">0</div>
+          <div class="stats-label">Avg Loads per Site</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 mb-3 mb-md-4">
+        <div class="stats-card">
+          <div class="stats-number" id="max-loads">0</div>
+          <div class="stats-label">Highest Usage</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="row mb-4 mb-lg-5">
+      <div class="col-12 col-lg-8 mb-4">
+        <div class="chart-container">
+          <h3 class="chart-title">Top 10 Websites by Usage</h3>
+          <div class="chart-wrapper">
+            <canvas id="topWebsitesChart"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4 mb-4">
+        <div class="chart-container">
+          <h3 class="chart-title">Usage Distribution</h3>
+          <div class="chart-wrapper">
+            <canvas id="usageDistributionChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Website List -->
+    <div class="website-list">
+      <h3 class="chart-title">Statistics</h3>
+      <table class="website-table">
+        <thead>
+          <tr>
+            <th class="website-url">Website</th>
+            <th class="website-count sortable-header" onclick="sortTable('count')">
+              Loads <span id="count-sort" class="sort-indicator">↕</span>
+            </th>
+            <th class="website-date sortable-header" onclick="sortTable('date')">
+              Last Updated <span id="date-sort" class="sort-indicator">↕</span>
+            </th>
+            <th class="copy-header">Copy</th>
+          </tr>
+        </thead>
+        <tbody id="website-list-content">
+          <!-- Content will be populated by JavaScript -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+  let topWebsitesChart, usageDistributionChart;
+  let currentSortColumn = 'count';
+  let currentSortDirection = 'desc';
+  let websiteData = [];
+
+  // Function to format numbers
+  function formatNumber(num) {
+    if (num >= 1000000) {
+      return (num / 1000000).toFixed(1) + 'M';
+    }
+    if (num >= 1000) {
+      return (num / 1000).toFixed(1) + 'K';
+    }
+    return num.toString();
+  }
+
+  // Function to format date as "time since"
+  function formatTimeSince(dateString) {
+    if (!dateString) return 'No date';
+
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffInSeconds = Math.floor((now - date) / 1000);
+
+    if (diffInSeconds < 60) {
+      return 'Just now';
+    }
+
+    const diffInMinutes = Math.floor(diffInSeconds / 60);
+    if (diffInMinutes < 60) {
+      return `${diffInMinutes} min${diffInMinutes !== 1 ? 's' : ''} ago`;
+    }
+
+    const diffInHours = Math.floor(diffInMinutes / 60);
+    if (diffInHours < 24) {
+      return `${diffInHours} hour${diffInHours !== 1 ? 's' : ''} ago`;
+    }
+
+    const diffInDays = Math.floor(diffInHours / 24);
+    if (diffInDays < 30) {
+      return `${diffInDays} day${diffInDays !== 1 ? 's' : ''} ago`;
+    }
+
+    const diffInMonths = Math.floor(diffInDays / 30);
+    if (diffInMonths < 12) {
+      return `${diffInMonths} month${diffInMonths !== 1 ? 's' : ''} ago`;
+    }
+
+    const diffInYears = Math.floor(diffInMonths / 12);
+    return `${diffInYears} year${diffInYears !== 1 ? 's' : ''} ago`;
+  }
+
+  // Function to format date
+  function formatDate(dateString) {
+    if (!dateString) return 'No date';
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    });
+  }
+
+  // Function to truncate URL
+  function truncateUrl(url, maxLength = 40) {
+    if (url.length <= maxLength) return url;
+    return url.substring(0, maxLength) + '...';
+  }
+
+  // Load dashboard data
+  async function loadDashboardData() {
+    try {
+      document.getElementById('loading').style.display = 'flex';
+      document.getElementById('error').style.display = 'none';
+      document.getElementById('dashboard-content').style.display = 'none';
+
+      const response = await fetch('https://682c6d69a4ddb0fd138a.nyc.appwrite.run/stats');
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+
+      const data = await response.json();
+
+      // Update stats cards
+      document.getElementById('total-websites').textContent = formatNumber(data.total || 0);
+      document.getElementById('total-loads').textContent = formatNumber(data.total_loads || 0);
+
+      const websites = data.websites || [];
+      const avgLoads =
+        websites.length > 0 ? (websites.reduce((sum, site) => sum + (site.count || 0), 0) / websites.length).toFixed(1) : 0;
+      const maxLoads = websites.length > 0 ? Math.max(...websites.map((site) => site.count || 0)) : 0;
+
+      document.getElementById('avg-loads').textContent = formatNumber(avgLoads);
+      document.getElementById('max-loads').textContent = formatNumber(maxLoads);
+
+      // Sort websites by count (default)
+      const sortedWebsites = websites.sort((a, b) => (b.count || 0) - (a.count || 0));
+      websiteData = sortedWebsites; // Store for sorting
+      const top10Websites = sortedWebsites.slice(0, 10);
+
+      // Create charts
+      createTopWebsitesChart(top10Websites);
+      createUsageDistributionChart(sortedWebsites.slice(0, 5), data.total_loads || 0);
+
+      // Populate website list with ALL websites
+      populateWebsiteList(sortedWebsites);
+      updateSortIndicators();
+
+      // Show dashboard content
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('dashboard-content').style.display = 'block';
+    } catch (error) {
+      console.error('Error loading dashboard data:', error);
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('error').style.display = 'block';
+    }
+  }
+
+  // Create top websites chart
+  function createTopWebsitesChart(websites) {
+    const ctx = document.getElementById('topWebsitesChart').getContext('2d');
+
+    // Destroy existing chart if it exists
+    if (topWebsitesChart) {
+      topWebsitesChart.destroy();
+    }
+
+    const labels = websites.map((site) => {
+      const url = site.page === 'null' ? 'Unknown' : site.page;
+      return truncateUrl(url, 25);
+    });
+
+    topWebsitesChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Widget Loads',
+            data: websites.map((site) => site.count || 0),
+            backgroundColor: 'rgba(49, 130, 206, 0.6)',
+            borderColor: 'rgba(49, 130, 206, 1)',
+            borderWidth: 1,
+            borderRadius: 4,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            grid: {
+              color: 'rgba(0, 0, 0, 0.1)',
+            },
+            ticks: {
+              callback: function (value) {
+                return formatNumber(value);
+              },
+            },
+          },
+          x: {
+            grid: {
+              display: false,
+            },
+            ticks: {
+              maxRotation: 45,
+              minRotation: 0,
+              font: {
+                size: window.innerWidth < 768 ? 10 : 12,
+              },
+            },
+          },
+        },
+      },
+    });
+  }
+
+  // Create usage distribution chart
+  function createUsageDistributionChart(topSites, totalLoads) {
+    const ctx = document.getElementById('usageDistributionChart').getContext('2d');
+
+    // Destroy existing chart if it exists
+    if (usageDistributionChart) {
+      usageDistributionChart.destroy();
+    }
+
+    const topSitesUsage = topSites.reduce((sum, site) => sum + (site.count || 0), 0);
+    const otherUsage = Math.max(0, totalLoads - topSitesUsage);
+
+    const labels = [
+      ...topSites.map((site) => {
+        const url = site.page === 'null' ? 'Unknown' : site.page;
+        return truncateUrl(url, 20);
+      }),
+      'Others',
+    ];
+
+    const data = [...topSites.map((site) => site.count || 0), otherUsage];
+
+    usageDistributionChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            data: data,
+            backgroundColor: [
+              'rgba(49, 130, 206, 0.8)',
+              'rgba(128, 90, 213, 0.8)',
+              'rgba(76, 175, 80, 0.8)',
+              'rgba(255, 193, 7, 0.8)',
+              'rgba(255, 87, 34, 0.8)',
+              'rgba(156, 39, 176, 0.8)',
+            ],
+            borderWidth: 2,
+            borderColor: '#fff',
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: {
+              padding: 15,
+              usePointStyle: true,
+              font: {
+                size: window.innerWidth < 768 ? 10 : 12,
+              },
+            },
+          },
+        },
+      },
+    });
+  }
+
+  // Populate website list
+  function populateWebsiteList(websites) {
+    const container = document.getElementById('website-list-content');
+
+    // Filter websites with at least 5 loads
+    const filteredWebsites = websites.filter((site) => (site.count || 0) >= 5);
+    const otherWebsites = websites.filter((site) => (site.count || 0) < 5);
+    const otherTotalLoads = otherWebsites.reduce((sum, site) => sum + (site.count || 0), 0);
+
+    if (filteredWebsites.length === 0 && otherTotalLoads === 0) {
+      container.innerHTML =
+        '<tr><td colspan="4" style="text-align: center; color: #666; padding: 2rem;">No data available at the moment.</td></tr>';
+      return;
+    }
+
+    let listHTML = filteredWebsites
+      .map((site) => {
+        const url = site.page === 'null' ? 'Unknown Source' : site.page;
+        const isValidUrl = site.page !== 'null' && site.page && !site.page.includes('Unknown');
+
+        const urlDisplay = isValidUrl
+          ? `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`
+          : `<span class="badge badge-warning">Unknown Source</span>`;
+
+        return `
+      <tr>
+        <td class="website-url">${urlDisplay}</td>
+        <td class="website-count">${site.count || 0}</td>
+        <td class="website-date">${formatTimeSince(site.last_updated)}</td>
+        <td class="copy-header">
+          <div class="copy-button" onclick="copyToClipboard('${isValidUrl ? url : 'Unknown Source'}')" title="Copy URL">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </div>
+        </td>
+      </tr>
+    `;
+      })
+      .join('');
+
+    // Add "Others" row if there are websites with less than 5 loads
+    if (otherTotalLoads > 0) {
+      listHTML += `
+        <tr>
+          <td class="website-url"><span class="badge badge-warning">Others (${otherWebsites.length} websites)</span></td>
+          <td class="website-count">${otherTotalLoads}</td>
+          <td class="website-date">-</td>
+          <td class="copy-header">
+            <div class="copy-button" style="opacity: 0.5; cursor: not-allowed;" title="Cannot copy multiple URLs">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            </div>
+          </td>
+        </tr>
+      `;
+    }
+
+    container.innerHTML = listHTML;
+  }
+
+  // Copy to clipboard function
+  function copyToClipboard(text) {
+    if (text === 'Unknown Source') {
+      return;
+    }
+
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        // Show temporary success feedback
+        const button = event.currentTarget;
+        const originalHTML = button.innerHTML;
+        button.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20,6 9,17 4,12"></polyline>
+        </svg>
+      `;
+        button.style.background = '#d4edda';
+        button.style.borderColor = '#c3e6cb';
+
+        setTimeout(() => {
+          button.innerHTML = originalHTML;
+          button.style.background = '';
+          button.style.borderColor = '';
+        }, 2000);
+      })
+      .catch((err) => {
+        console.error('Failed to copy: ', err);
+      });
+  }
+
+  // Handle window resize
+  window.addEventListener('resize', () => {
+    if (topWebsitesChart) {
+      topWebsitesChart.options.scales.x.ticks.font.size = window.innerWidth < 768 ? 10 : 12;
+      topWebsitesChart.update();
+    }
+    if (usageDistributionChart) {
+      usageDistributionChart.options.plugins.legend.labels.font.size = window.innerWidth < 768 ? 10 : 12;
+      usageDistributionChart.update();
+    }
+  });
+
+  // Load data when page loads
+  document.addEventListener('DOMContentLoaded', loadDashboardData);
+
+  // Sort table function
+  function sortTable(column) {
+    if (currentSortColumn === column) {
+      // Toggle direction if same column
+      currentSortDirection = currentSortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+      // New column, default to desc for count, asc for date
+      currentSortColumn = column;
+      currentSortDirection = column === 'count' ? 'desc' : 'asc';
+    }
+
+    const sortedData = [...websiteData].sort((a, b) => {
+      let valueA, valueB;
+
+      if (column === 'count') {
+        valueA = a.count || 0;
+        valueB = b.count || 0;
+      } else if (column === 'date') {
+        valueA = new Date(a.last_updated || 0);
+        valueB = new Date(b.last_updated || 0);
+      }
+
+      if (currentSortDirection === 'asc') {
+        return valueA > valueB ? 1 : valueA < valueB ? -1 : 0;
+      } else {
+        return valueA < valueB ? 1 : valueA > valueB ? -1 : 0;
+      }
+    });
+
+    populateWebsiteList(sortedData);
+    updateSortIndicators();
+  }
+
+  // Update sort indicators
+  function updateSortIndicators() {
+    // Reset all indicators
+    document.getElementById('count-sort').textContent = '↕';
+    document.getElementById('date-sort').textContent = '↕';
+    document.getElementById('count-sort').classList.remove('active');
+    document.getElementById('date-sort').classList.remove('active');
+
+    // Set active indicator
+    const activeIndicator = document.getElementById(currentSortColumn + '-sort');
+    if (activeIndicator) {
+      activeIndicator.classList.add('active');
+      activeIndicator.textContent = currentSortDirection === 'asc' ? '↑' : '↓';
+    }
+  }
+</script>
+
+{% endblock %}

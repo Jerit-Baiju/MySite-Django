@@ -113,3 +113,14 @@ def num_game_add(request):
         return redirect("num-game")
     messages.error(request, "An unknown error occurred.")
     return redirect("num-game")
+
+
+def a11y_widget_dashboard(request):
+    log(request, "A11y Widget Dashboard")
+
+    context = {
+        "title": "A11y Widget Dashboard | Jerit Baiju",
+        "page": "a11y-dashboard",
+    }
+
+    return render(request, "projects/a11y_dashboard.html", context)
