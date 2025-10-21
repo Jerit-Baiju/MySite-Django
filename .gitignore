@@ -131,9 +131,6 @@ staticfiles/
 assets/
 test.py
 .vercel
-jkeypair.pem
-jerit.ml.pem
-server.pem
 guide.py
 media/
 firebase.json

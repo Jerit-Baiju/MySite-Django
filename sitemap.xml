@@ -5,40 +5,33 @@
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
-  <loc>https://jerit.ml/</loc>
-  <lastmod>2022-04-12T10:04:31+00:00</lastmod>
+  <loc>https://jerit.in/</loc>
+  <lastmod>2025-10-21T07:03:09+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>https://jerit.ml/projects/</loc>
-  <lastmod>2022-04-12T10:04:31+00:00</lastmod>
-  <priority>0.90</priority>
-</url>
-<url>
-  <loc>https://jerit.ml/gallery/</loc>
-  <lastmod>2022-04-12T10:04:31+00:00</lastmod>
-  <priority>0.90</priority>
-</url>
-<url>
-  <loc>https://jerit.ml/stats/</loc>
-  <lastmod>2022-04-12T10:04:31+00:00</lastmod>
-  <priority>0.80</priority>
-<url>
-  <loc>https://jerit.ml/about/</loc>
-  <lastmod>2022-04-12T10:04:31+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-</url>
-<url>
-  <loc>https://jerit.ml/login/</loc>
-  <lastmod>2022-04-12T10:04:31+00:00</lastmod>
+  <loc>https://jerit.in/about/</loc>
+  <lastmod>2025-10-21T07:03:09+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://jerit.ml/register/</loc>
-  <lastmod>2022-04-12T10:04:31+00:00</lastmod>
+  <loc>https://jerit.in/stats/</loc>
+  <lastmod>2025-10-21T07:03:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://jerit.in/projects/</loc>
+  <lastmod>2025-10-21T07:03:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://jerit.in/media/Documents/Jerit-Baiju.pdf</loc>
+  <lastmod>2025-10-18T04:59:15+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://jerit.in/about/2024/</loc>
+  <lastmod>2025-10-21T07:03:09+00:00</lastmod>
   <priority>0.64</priority>
 </url>
-
-
 </urlset>
