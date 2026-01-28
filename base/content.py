@@ -60,12 +60,18 @@ HISTORY = [
     "At 16, I acquired proficiency in Django and deployed my website on HEROKU. Additionally, I developed a package called PYFLIT for FLASK users and learned some other languages like Go, R, CPP and Java. ",
     "At 17, I upgraded my setup with a MacBook Air M1, funded by my first freelancing project. This marked my entry into the Apple ecosystem, replacing an old Ubuntu laptop. I optimized my website by deploying it on AWS, and expanded my skills with React.js, Next.js, Tailwind, and TypeScript, adding versatility to my web development expertise.",
     mark_safe(
-        "At 18, This year marked a significant chapter in my journey, transitioning from school to college "
+        "At 18, this year marked a significant chapter in my journey, transitioning from school to college "
         "while embracing new opportunities and challenges. From landing my first internship to taking on "
         "leadership roles, I've grown both professionally and personally. I launched exciting projects, "
         "contributed to mini-projects for my peers, and made strides in building my personal brand and network. "
         "My work on Caelium and a range of freelance projects helped me gain practical experience while earning "
         'my first income in tech. <a href="2024/" target="_blank" class="text-black">'
+        "Read more about my journey and what I've accomplished this year</a>"
+    ),
+    mark_safe(
+        "At 19, 2025 became the year my work started to travel without me—crossing borders, languages, and "
+        "screens. I sharpened my craft, shipped real products, spoke to packed halls, and watched accessibility "
+        "move from a passion into a mission with measurable impact. <a href=\"2025/\" target=\"_blank\" class=\"text-black\">"
         "Read more about my journey and what I've accomplished this year</a>"
     ),
 ]
@@ -181,4 +187,118 @@ YEARS = [
             ],
         },
     }
+    ,
+    {
+        "year": 2025,
+        "content": {
+            "title": "2025: The Year My Work Started to Travel",
+            "overview": """2025 was the year my work stopped living only on my laptop and started living on other people’s websites.
+            I shipped projects that strangers adopted, improved systems that mattered, and stepped into rooms that demanded clarity,
+            confidence, and responsibility. From accessibility to AI, from open-source momentum to building a company—this year felt
+            like a bridge between who I was becoming and the impact I wanted to make.
+
+            If you want the highlights in one line: <span class=\"font-semibold\">I built for inclusion—and the internet responded.</span>""",
+            "contents": [
+                {
+                    "title": "Typing, Discipline, and Small Wins",
+                    "body": """
+            I hit <span class=\"font-semibold\">142 WPM</span> on Monkeytype—a personal milestone that didn’t happen overnight.
+            It was the outcome of routine, focus, and a quiet belief that consistency compounds.
+            <span class=\"italic text-gray-800\">“Speed is a side-effect; discipline is the real skill.”</span>
+        """,
+                },
+                {
+                    "title": "WebEase: An Open-Source Widget That Went Worldwide",
+                    "body": """
+            I developed <a target=\"_blank\" class=\"text-black\" href=\"https://github.com/jerit-baiju/a11y-widget\">WebEase</a>—
+            an accessibility widget that started as a college/community effort with RCC Mozilla and
+            <a class=\"text-black\" target=\"_blank\" href=\"https://mariancollege.org\">Marian College</a>, but quickly grew beyond
+            my expectations.
+
+            In the same year, it crossed <span class=\"font-semibold\">1M+ loads</span>. Developers from different countries
+            discovered it on GitHub, added it to their websites, customized it, translated it, and styled it to match their brands.
+            It became my first project to earn meaningful traction from other developers—stars, pull requests, and international
+            forks. Watching it evolve through the hands of strangers was both humbling and electrifying.
+            <span class=\"italic text-gray-800\">“Open source is where your idea stops being yours—in the best possible way.”</span>
+        """,
+                },
+                {
+                    "title": "From Open Source to Premium: EazyfyMe",
+                    "body": """
+            I also released a premium, commercial version of the widget with AI-powered features at
+            <a target=\"_blank\" class=\"text-black\" href=\"https://eazyfyme.com\">eazyfyme.com</a>.
+            It pushed me to think beyond code: product decisions, pricing, onboarding, customer trust, and long-term maintenance.
+            <span class=\"italic text-gray-800\">“Shipping is one thing. Sustaining is the real game.”</span>
+        """,
+                },
+                {
+                    "title": "A Proud Moment: My College Adopted the Commercial Widget",
+                    "body": """
+            One of the proudest moments of the year was seeing my own college website adopt the commercial widget.
+            There’s something powerful about building a tool for your community—and then seeing your community choose it.
+            <span class=\"italic text-gray-800\">“Your work feels different when it comes home.”</span>
+        """,
+                },
+                {
+                    "title": "A Patent from the Government of India",
+                    "body": """
+            I received a patent from the Government of India for
+            <span class=\"font-semibold\">“AI-powered Web Accessibility Widget for People with Disabilities.”</span>
+            It was a reminder that accessibility isn’t a feature—it’s a responsibility.
+            <span class=\"italic text-gray-800\">“Recognition is nice. Real inclusion is the goal.”</span>
+        """,
+                },
+                {
+                    "title": "Acomino LLP: Building a Company at 19",
+                    "body": """
+            I started a company with two partners: <a target=\"_blank\" class=\"text-black\" href=\"https://acomino.com\">Acomino LLP</a>.
+            Becoming a director at 19 was both exciting and sobering—it raised the stakes.
+            Leadership isn’t a badge; it’s decision-making, accountability, and learning fast.
+            <span class=\"italic text-gray-800\">“Dreams are loud. Operations are quiet. Both matter.”</span>
+        """,
+                },
+                {
+                    "title": "Showing Up: Community, Workshops, and Events",
+                    "body": """
+            I made a point to show up in the rooms where builders meet builders.
+            I attended the <a target=\"_blank\" class=\"text-black\" href=\"https://www.linkedin.com/posts/jeritbaiju_hackathon-kerala-productbuilding-activity-7377395470991667200-I_md\">KPH Hackathon</a>,
+            <a target=\"_blank\" class=\"text-black\" href=\"https://www.linkedin.com/posts/jeritbaiju_googlecloud-communityday-kochi-activity-7372974430865694720-6sYq\">Google Community Day (Kochi)</a>,
+            and participated in the <a target=\"_blank\" class=\"text-black\" href=\"https://www.linkedin.com/posts/jeritbaiju_responsibleai-accessibility-aiineducation-activity-7400440382091751424-CqDb\">Responsible AI in Higher Education Workshop</a>
+            hosted by Mozilla Foundation (with IIIT Kottayam, TinkerHub, and CodoSapiens Foundation) as an official pre-summit event
+            ahead of the India AI Impact Summit 2026.
+
+            These weren’t just events—they were perspective upgrades.
+            <span class=\"italic text-gray-800\">“Network isn’t a number. It’s the doors you’re willing to walk through.”</span>
+        """,
+                },
+                {
+                    "title": "Speaking to Hundreds of Students",
+                    "body": """
+            I had the privilege of speaking in front of hundreds of new students at Marian College—BCA, BBA, B.Com, BSW, and more.
+            I was one of a small group of student speakers, and it reminded me that communication is also a craft.
+            <a target=\"_blank\" class=\"text-black\" href=\"https://www.linkedin.com/posts/jeritbaiju_mariancollege-freshers2025-webease-activity-7348898013848719362-tRTJ\">(Link)</a>
+            <span class=\"italic text-gray-800\">“Your story becomes useful when it helps someone start.”</span>
+        """,
+                },
+                {
+                    "title": "Media Recognition",
+                    "body": """
+            I was featured in three Malayalam newspapers—Mathrubhumi, Malayala Manorama, and Deepika—for building WebEase.
+            <a target=\"_blank\" class=\"text-black\" href=\"https://www.linkedin.com/posts/jeritbaiju_accessibility-digitalinclusion-keralatech-activity-7337498789965910016-VDw1\">(Link)</a>
+            It was surreal to see my work discussed outside the usual tech circles.
+            <span class=\"italic text-gray-800\">“When your work reaches new audiences, your responsibility grows with it.”</span>
+        """,
+                },
+                {
+                    "title": "Looking Ahead",
+                    "body": """
+            2025 didn’t just give me achievements—it gave me momentum.
+            I’m stepping into 2026 with sharper priorities: build sustainable products, protect focus, and keep accessibility at the
+            center of everything I ship.
+            <span class=\"italic text-gray-800\">“Impact isn’t a moment. It’s a practice.”</span>
+        """,
+                },
+            ],
+        },
+    },
 ]
