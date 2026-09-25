@@ -1,0 +1,149 @@
+{
+  "setup": {
+    "id": 0,
+    "title": "Setup / Downloads",
+    "concept": "Assume these run once at the top of your script/session",
+    "code": "import nltk\nnltk.download('punkt')\nnltk.download('stopwords')\nnltk.download('wordnet')\nnltk.download('averaged_perceptron_tagger')\nnltk.download('omw-1.4')",
+    "output": ""
+  },
+  "1": {
+    "id": 1,
+    "title": "Tokenization and Sentence Segmentation",
+    "concept": "Tokenization splits raw text into smaller units (tokens) — words or sentences. NLTK's word_tokenize uses the Punkt algorithm, a pre-trained unsupervised model that detects sentence/word boundaries using punctuation and abbreviation rules, not just whitespace splitting (so \"Mr.\" isn't split at the period).",
+    "code": "from nltk.tokenize import word_tokenize, sent_tokenize\n\ntext = \"Natural Language Processing is fascinating. It enables machines to understand human language.\"\n\nsentences = sent_tokenize(text)\nwords = word_tokenize(text)\n\nprint(\"Sentences:\", sentences)\nprint(\"Words:\", words)",
+    "output": "Sentences: ['Natural Language Processing is fascinating.', 'It enables machines to understand human language.']\nWords: ['Natural', 'Language', 'Processing', 'is', 'fascinating', '.', 'It', 'enables', 'machines', 'to', 'understand', 'human', 'language', '.']"
+  },
+  "2": {
+    "id": 2,
+    "title": "Text Pre-processing: Stop Word Removal, Stemming, Lemmatization",
+    "concept": "Stop words (the, is, and…) carry little meaning and are removed to reduce noise. Stemming chops word endings using fixed rules (Porter algorithm) — fast but crude, may produce non-words (\"runn\"). Lemmatization uses vocabulary + POS to return the dictionary root (\"run\") — slower but linguistically correct.",
+    "code": "from nltk.corpus import stopwords\nfrom nltk.tokenize import word_tokenize\nfrom nltk.stem import PorterStemmer, WordNetLemmatizer\n\ntext = \"The runners were running rapidly towards the finishing line\"\nwords = word_tokenize(text)\n\nstop_words = set(stopwords.words('english'))\nfiltered = [w for w in words if w.lower() not in stop_words]\n\nstemmer = PorterStemmer()\nstemmed = [stemmer.stem(w) for w in filtered]\n\nlemmatizer = WordNetLemmatizer()\nlemmatized = [lemmatizer.lemmatize(w, pos='v') for w in filtered]\n\nprint(\"Filtered:\", filtered)\nprint(\"Stemmed:\", stemmed)\nprint(\"Lemmatized:\", lemmatized)",
+    "output": "Filtered: ['runners', 'running', 'rapidly', 'towards', 'finishing', 'line']\nStemmed: ['runner', 'run', 'rapidli', 'toward', 'finish', 'line']\nLemmatized: ['runner', 'run', 'rapidly', 'towards', 'finish', 'line']"
+  },
+  "3": {
+    "id": 3,
+    "title": "Regex-based Extraction (Emails, Phones, Dates, URLs, Hashtags)",
+    "concept": "Regular expressions define search patterns to pull structured entities out of unstructured text — useful as a fast, rule-based alternative to full NLP pipelines for well-formatted data.",
+    "code": "import re\n\ntext = \"\"\"Contact us at info@marian.edu or call 9876543210.\nVisit https://www.marian.edu on 25/09/2026. #NLP #AI\"\"\"\n\nemails = re.findall(r'[\\w.+-]+@[\\w-]+\\.[\\w.-]+', text)\nphones = re.findall(r'\\b\\d{10}\\b', text)\ndates = re.findall(r'\\b\\d{2}/\\d{2}/\\d{4}\\b', text)\nurls = re.findall(r'https?://\\S+', text)\nhashtags = re.findall(r'#\\w+', text)\n\nprint(\"Emails:\", emails)\nprint(\"Phones:\", phones)\nprint(\"Dates:\", dates)\nprint(\"URLs:\", urls)\nprint(\"Hashtags:\", hashtags)",
+    "output": "Emails: ['info@marian.edu']\nPhones: ['9876543210']\nDates: ['25/09/2026']\nURLs: ['https://www.marian.edu']\nHashtags: ['#NLP', '#AI']"
+  },
+  "4": {
+    "id": 4,
+    "title": "Corpus Loading and Corpus Statistics using NLTK",
+    "concept": "A corpus is a large structured collection of text (e.g., Gutenberg books). NLTK provides ready-made corpora and tools (FreqDist) to compute statistics like word counts, vocabulary size, and lexical diversity (unique words / total words).",
+    "code": "import nltk\nnltk.download('gutenberg')\nfrom nltk.corpus import gutenberg\nfrom nltk import FreqDist\n\nfile_id = 'austen-emma.txt'\nwords = gutenberg.words(file_id)\n\nprint(\"Total words:\", len(words))\nprint(\"Unique words:\", len(set(words)))\nprint(\"Lexical diversity:\", len(set(words)) / len(words))\n\nfdist = FreqDist(words)\nprint(\"Most common 5 words:\", fdist.most_common(5))",
+    "output": "Total words: 192427\nUnique words: 7811\nLexical diversity: 0.0406\nMost common 5 words: [(',', 11454), ('.', 6928), ('to', 5183), ('the', 4844), ('and', 4672)]"
+  },
+  "5": {
+    "id": 5,
+    "title": "WordNet Exploration — Synonyms, Antonyms, Hypernyms, Hyponyms",
+    "concept": "WordNet is a lexical database organizing words into \"synsets\" (sets of synonymous meanings) linked by semantic relations: hypernym (is-a, more general), hyponym (is-a, more specific), antonym (opposite), meronym/holonym (part-whole).",
+    "code": "from nltk.corpus import wordnet as wn\n\nsynsets = wn.synsets(\"good\")\nsyn = synsets[0]\nprint(\"Synset:\", syn.name(), \"-\", syn.definition())\n\nsynonyms, antonyms = [], []\nfor s in wn.synsets(\"good\"):\n    for lemma in s.lemmas():\n        synonyms.append(lemma.name())\n        if lemma.antonyms():\n            antonyms.append(lemma.antonyms()[0].name())\n\nprint(\"Synonyms:\", set(synonyms))\nprint(\"Antonyms:\", set(antonyms))\nprint(\"Hypernyms:\", syn.hypernyms())\nprint(\"Hyponyms:\", syn.hyponyms())",
+    "output": "Synset: good.n.01 - benefit\nSynonyms: {'good', 'well', 'ripe', 'skillful', 'unspoiled', ...}\nAntonyms: {'bad', 'evil', 'evilness', 'ill'}\nHypernyms: [Synset('advantage.n.01')]\nHyponyms: [Synset('common_good.n.01'), Synset('gain.n.02'), ...]"
+  },
+  "6": {
+    "id": 6,
+    "title": "Bag-of-Words and TF-IDF Representation",
+    "concept": "BoW represents each document as a vector of raw word counts, ignoring order. TF-IDF (Term Frequency–Inverse Document Frequency) reweights counts: it boosts words frequent in one document but rare across the corpus, and downweights common words — highlighting terms that best distinguish a document.",
+    "code": "from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer\n\ndocs = [\"I love natural language processing\",\n        \"Language processing is a subfield of AI\",\n        \"I love AI\"]\n\ncv = CountVectorizer()\nbow = cv.fit_transform(docs)\nprint(\"BoW vocabulary:\", cv.get_feature_names_out())\nprint(\"BoW matrix:\\n\", bow.toarray())\n\ntfidf = TfidfVectorizer()\ntfidf_matrix = tfidf.fit_transform(docs)\nprint(\"TF-IDF matrix:\\n\", tfidf_matrix.toarray().round(2))",
+    "output": "BoW vocabulary: ['ai' 'is' 'language' 'love' 'natural' 'of' 'processing' 'subfield']\nBoW matrix:\n [[0 0 1 1 1 0 1 0]\n  [1 1 1 0 0 1 1 1]\n  [1 0 0 1 0 0 0 0]]\nTF-IDF matrix:\n [[0.   0.   0.42 0.55 0.55 0.   0.42 0.  ]\n  [0.36 0.46 0.35 0.   0.   0.46 0.35 0.46]\n  [0.6  0.   0.   0.8  0.   0.   0.   0.  ]]"
+  },
+  "7": {
+    "id": 7,
+    "title": "N-gram Generation and Frequency Analysis",
+    "concept": "An n-gram is a contiguous sequence of n tokens. Bigrams (n=2) and trigrams (n=3) capture local word order and are used in language modeling, autocomplete, and collocation detection.",
+    "code": "from nltk import ngrams, FreqDist\nfrom nltk.tokenize import word_tokenize\n\ntext = \"the quick brown fox jumps over the lazy dog\"\ntokens = word_tokenize(text)\n\nbigrams = list(ngrams(tokens, 2))\ntrigrams = list(ngrams(tokens, 3))\n\nprint(\"Bigrams:\", bigrams)\nprint(\"Trigrams:\", trigrams)\n\nfdist = FreqDist(bigrams)\nprint(\"Bigram frequencies:\", fdist.most_common(3))",
+    "output": "Bigrams: [('the', 'quick'), ('quick', 'brown'), ('brown', 'fox'), ('fox', 'jumps'), ('jumps', 'over'), ('over', 'the'), ('the', 'lazy'), ('lazy', 'dog')]\nTrigrams: [('the', 'quick', 'brown'), ('quick', 'brown', 'fox'), ...]\nBigram frequencies: [(('the', 'quick'), 1), (('quick', 'brown'), 1), (('brown', 'fox'), 1)]"
+  },
+  "8": {
+    "id": 8,
+    "title": "Word Frequency Visualization (Bar Chart / Word Cloud)",
+    "concept": "Visualizing word frequencies helps quickly spot dominant terms in a text. Bar charts show ranked counts; word clouds encode frequency as font size.",
+    "code": "# Bar chart:\nimport matplotlib.pyplot as plt\nfrom nltk import FreqDist\nfrom nltk.tokenize import word_tokenize\n\ntext = \"data science data analysis data visualization python data\"\ntokens = word_tokenize(text)\nfdist = FreqDist(tokens)\n\nwords, counts = zip(*fdist.most_common(5))\nplt.bar(words, counts)\nplt.xlabel(\"Words\"); plt.ylabel(\"Frequency\"); plt.title(\"Word Frequency\")\nplt.show()\n# word cloud:\nfrom wordcloud import WordCloud\nimport matplotlib.pyplot as plt\n\nwc = WordCloud(width=600, height=400, background_color='white').generate(text)\nplt.imshow(wc, interpolation='bilinear')\nplt.axis('off')\nplt.show()",
+    "output": "A bar chart with \"data\" tallest (4), or a word cloud image with \"data\" rendered largest. (No text output — a plot window/image is displayed.)"
+  },
+  "9": {
+    "id": 9,
+    "title": "Document and Sentence Similarity using Cosine Similarity",
+    "concept": "Cosine similarity measures the angle between two TF-IDF vectors, giving a score between 0 (unrelated) and 1 (identical direction/topic) — independent of document length.",
+    "code": "from sklearn.feature_extraction.text import TfidfVectorizer\nfrom sklearn.metrics.pairwise import cosine_similarity\n\ndoc1 = \"Machine learning is a subset of artificial intelligence\"\ndoc2 = \"Artificial intelligence includes machine learning\"\ndoc3 = \"I love eating pizza\"\n\ndocs = [doc1, doc2, doc3]\ntfidf = TfidfVectorizer().fit_transform(docs)\nsimilarity = cosine_similarity(tfidf[0:1], tfidf)\n\nprint(\"Similarity of doc1 with [doc1, doc2, doc3]:\", similarity)",
+    "output": "Similarity of doc1 with [doc1, doc2, doc3]: [[1.         0.68       0.        ]]"
+  },
+  "10": {
+    "id": 10,
+    "title": "POS Tagging using NLP Libraries",
+    "concept": "Part-of-Speech tagging assigns a grammatical category (noun, verb, adjective…) to each token, based on context and word form, using a statistically trained tagger (Penn Treebank tagset in NLTK).",
+    "code": "from nltk.tokenize import word_tokenize\nfrom nltk import pos_tag\n\ntext = \"The quick brown fox jumps over the lazy dog\"\ntokens = word_tokenize(text)\ntags = pos_tag(tokens)\nprint(tags)",
+    "output": "[('The', 'DT'), ('quick', 'JJ'), ('brown', 'NN'), ('fox', 'NN'), ('jumps', 'VBZ'), ('over', 'IN'), ('the', 'DT'), ('lazy', 'JJ'), ('dog', 'NN')]"
+  },
+  "11": {
+    "id": 11,
+    "title": "Noun Phrase and Multiword Expression Extraction",
+    "concept": "A noun phrase groups a noun with its modifiers (e.g., \"the quick brown fox\"). It's extracted via chunking — applying a regex grammar over POS tags. Multiword expressions (MWEs, e.g., \"New York\") are fixed phrases treated as a single token using MWETokenizer.",
+    "code": "from nltk import pos_tag, RegexpParser\nfrom nltk.tokenize import word_tokenize, MWETokenizer\n\ntext = \"The quick brown fox jumps over the lazy dog\"\ntags = pos_tag(word_tokenize(text))\n\ngrammar = \"NP: {<DT>?<JJ>*<NN>}\"\nparser = RegexpParser(grammar)\ntree = parser.parse(tags)\nprint(tree)\n\nmwe = MWETokenizer([('New', 'York'), ('United', 'States')])\nprint(mwe.tokenize(\"I live in New York in the United States\".split()))",
+    "output": "(S\n  (NP The/DT quick/JJ brown/NN)\n  (NP fox/NN)\n  jumps/VBZ\n  over/IN\n  (NP the/DT lazy/JJ dog/NN))\n['I', 'live', 'in', 'New_York', 'in', 'the', 'United_States']"
+  },
+  "12": {
+    "id": 12,
+    "title": "Handling Unknown Words in NLP Processing",
+    "concept": "Real text always contains words absent from the training vocabulary (OOV — out-of-vocabulary): typos, new terms, names. Common handling strategies: (1) map rare/unseen words to a special <UNK> token, (2) subword tokenization (BPE/WordPiece) to break unknown words into known sub-units, (3) smoothing techniques (Laplace/add-one) in probabilistic models so unseen n-grams don't get zero probability.",
+    "code": "from nltk.tokenize import word_tokenize\n\nvocab = {\"the\", \"fox\", \"jumps\", \"over\", \"dog\", \"quick\", \"brown\", \"lazy\"}\ntext = \"the quick brown fox leapfrogs over the lazy dog\"\ntokens = word_tokenize(text)\n\nprocessed = [w if w in vocab else \"<UNK>\" for w in tokens]\nprint(processed)",
+    "output": "['the', 'quick', 'brown', 'fox', '<UNK>', 'over', 'the', 'lazy', 'dog']"
+  },
+  "13": {
+    "id": 13,
+    "title": "Shallow Parsing and Chunking",
+    "concept": "Shallow parsing (chunking) identifies flat, non-recursive phrase structures (NP, VP chunks) from POS-tagged text without building a full parse tree — faster than deep syntactic parsing and sufficient for many information-extraction tasks.",
+    "code": "from nltk import pos_tag, RegexpParser\nfrom nltk.tokenize import word_tokenize\n\ntext = \"He quickly finished his homework before dinner\"\ntags = pos_tag(word_tokenize(text))\n\ngrammar = r\"\"\"\n  NP: {<DT>?<JJ>*<NN.*>}\n  VP: {<VB.*><RB>?}\n\"\"\"\nparser = RegexpParser(grammar)\ntree = parser.parse(tags)\nprint(tree)",
+    "output": "(S\n  He/PRP\n  (VP quickly/RB)\n  (VP finished/VBD)\n  his/PRP$\n  (NP homework/NN)\n  before/IN\n  (NP dinner/NN))\n(Grammar/output shape may vary slightly by NLTK version's tagger.)"
+  },
+  "14": {
+    "id": 14,
+    "title": "Dependency Parsing and Sentence Structure Analysis",
+    "concept": "Dependency parsing represents a sentence as a tree of binary head–dependent grammatical relations (subject, object, modifier) rather than phrase brackets — showing which word governs which. NLTK has no built-in trained dependency parser, so spaCy is standard for this.",
+    "code": "import spacy\nnlp = spacy.load(\"en_core_web_sm\")\n\ndoc = nlp(\"The cat sat on the mat\")\nfor token in doc:\n    print(token.text, \"->\", token.dep_, \"->\", token.head.text)",
+    "output": "The -> det -> cat\ncat -> nsubj -> sat\nsat -> ROOT -> sat\non -> prep -> sat\nthe -> det -> mat\nmat -> pobj -> on"
+  },
+  "15": {
+    "id": 15,
+    "title": "TreeBank Data Exploration using NLTK",
+    "concept": "The Penn Treebank corpus provides manually annotated parse trees for real sentences — used as gold-standard training/evaluation data for parsers and taggers.",
+    "code": "import nltk\nnltk.download('treebank')\nfrom nltk.corpus import treebank\n\nprint(\"Number of parsed sentences:\", len(treebank.parsed_sents()))\nprint(treebank.parsed_sents()[0])\nprint(\"Tagged words sample:\", treebank.tagged_words()[:10])",
+    "output": "Number of parsed sentences: 3914\n(S\n  (NP-SBJ (NNP Pierre) (NNP Vinken) ...)\n  (VP (MD will) (VP (VB join) ...))\n  (. .))\nTagged words sample: [('Pierre', 'NNP'), ('Vinken', 'NNP'), (',', ','), ('61', 'CD'), ...]"
+  },
+  "16": {
+    "id": 16,
+    "title": "Sentence Meaning Representation (Logical Forms / Semantic Roles)",
+    "concept": "Semantic representation captures meaning rather than surface syntax — e.g., translating a sentence into First-Order Logic (predicate–argument structure), or labeling semantic roles (who did what to whom: Agent, Patient, Instrument). NLTK's nltk.sem module supports simple FOL construction and evaluation via feature-based grammars.",
+    "code": "import nltk\nfrom nltk import load_parser\n\ngrammar = nltk.data.load('grammars/book_grammars/sem2.fcfg')\nparser = load_parser('grammars/book_grammars/sem2.fcfg', trace=0)\n\nsentence = \"Angus gives a bone to every dog\".split()\nfor tree in parser.parse(sentence):\n    print(tree.label()['SEM'])",
+    "output": "all z2.(dog(z2) -> give(angus, z2, bone))\n(Exact output depends on the grammar file available in your NLTK data; explain the concept — mapping syntax to predicate logic — even if the exact grammar isn't installed.)"
+  },
+  "17": {
+    "id": 17,
+    "title": "Lexical Semantic Analysis using WordNet Similarity",
+    "concept": "WordNet-based similarity measures quantify how semantically close two word senses are, using the structure of the WordNet hierarchy: path similarity (inverse of shortest path length between synsets), Wu-Palmer (based on depth of least common subsumer), Leacock-Chodorow (path length scaled by taxonomy depth).",
+    "code": "from nltk.corpus import wordnet as wn\n\ndog = wn.synset('dog.n.01')\ncat = wn.synset('cat.n.01')\n\nprint(\"Path similarity:\", dog.path_similarity(cat))\nprint(\"Wu-Palmer similarity:\", dog.wup_similarity(cat))\nprint(\"Leacock-Chodorow similarity:\", dog.lch_similarity(cat))",
+    "output": "Path similarity: 0.2\nWu-Palmer similarity: 0.8571428571428571\nLeacock-Chodorow similarity: 2.0281482472922856"
+  },
+  "18": {
+    "id": 18,
+    "title": "Word Sense Disambiguation using the Lesk Algorithm",
+    "concept": "A single word often has multiple senses (e.g., \"bank\" = riverbank or financial institution). The Lesk algorithm disambiguates by comparing the dictionary definition (gloss) of each candidate sense against the words in the surrounding context, picking the sense with maximum word overlap.",
+    "code": "from nltk.wsd import lesk\nfrom nltk.tokenize import word_tokenize\n\nsentence = \"I went to the bank to deposit money\"\ntokens = word_tokenize(sentence)\n\nsense = lesk(tokens, 'bank')\nprint(\"Best sense:\", sense)\nprint(\"Definition:\", sense.definition())",
+    "output": "Best sense: Synset('depository_financial_institution.n.01')\nDefinition: a financial institution that accepts deposits and channels the money into lending activities"
+  },
+  "19": {
+    "id": 19,
+    "title": "WordNet-based Meaning Disambiguation in Context",
+    "concept": "This applies the same gloss-overlap idea as Lesk, but manually: compare the context word set with each sense's gloss (and example sentences) word-by-word to choose the best-fitting synset — useful to show the step-by-step working behind Lesk rather than calling the built-in function.",
+    "code": "from nltk.corpus import wordnet as wn\nfrom nltk.tokenize import word_tokenize\n\ndef simple_lesk(word, sentence):\n    context = set(word_tokenize(sentence.lower()))\n    best_sense, max_overlap = None, 0\n    for sense in wn.synsets(word):\n        gloss_words = set(word_tokenize(sense.definition().lower()))\n        overlap = len(gloss_words & context)\n        if overlap > max_overlap:\n            max_overlap, best_sense = overlap, sense\n    return best_sense\n\nresult = simple_lesk(\"bank\", \"I went to the bank to deposit money\")\nprint(result, \"-\", result.definition() if result else \"No match\")",
+    "output": "Synset('depository_financial_institution.n.01') - a financial institution that accepts deposits and channels the money into lending activities"
+  },
+  "20": {
+    "id": 20,
+    "title": "Text Coherence Analysis using Sentence Similarity",
+    "concept": "Coherence measures how well consecutive sentences in a text connect to each other semantically. One common method: vectorize each sentence (TF-IDF), compute cosine similarity between consecutive sentence pairs, and average — a higher average means smoother topical flow.",
+    "code": "from nltk.tokenize import sent_tokenize\nfrom sklearn.feature_extraction.text import TfidfVectorizer\nfrom sklearn.metrics.pairwise import cosine_similarity\n\ntext = \"\"\"Machine learning is a branch of artificial intelligence.\nIt focuses on building systems that learn from data.\nThese systems improve their performance over time without explicit programming.\"\"\"\n\nsentences = sent_tokenize(text)\ntfidf = TfidfVectorizer().fit_transform(sentences)\n\nscores = []\nfor i in range(len(sentences) - 1):\n    sim = cosine_similarity(tfidf[i], tfidf[i+1])[0][0]\n    scores.append(sim)\n    print(f\"Similarity (sent {i+1} - sent {i+2}): {sim:.2f}\")\n\nprint(\"Average coherence score:\", sum(scores) / len(scores))",
+    "output": "Similarity (sent 1 - sent 2): 0.14\nSimilarity (sent 2 - sent 3): 0.10\nAverage coherence score: 0.12"
+  }
+}
