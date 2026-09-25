@@ -213,3 +213,15 @@ def nlp_list(request):
             "url": f"/api/nlp/{k}",
         })
     return JsonResponse({"problems": problems})
+
+
+NLP_PY_FILE = os.path.join(os.path.dirname(__file__), "nlp.py")
+
+
+def nlp_py(request):
+    if os.path.exists(NLP_PY_FILE):
+        with open(NLP_PY_FILE, "r", encoding="utf-8") as f:
+            code = f.read()
+        return HttpResponse(code, content_type="text/plain; charset=utf-8")
+    return HttpResponse("File not found\n", status=404, content_type="text/plain; charset=utf-8")
+
