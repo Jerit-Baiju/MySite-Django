@@ -1,3 +1,4 @@
+import json
 import os
 from datetime import datetime
 
@@ -6,7 +7,7 @@ import requests
 from django.contrib.auth import authenticate
 from django.core.cache import cache
 from django.core.paginator import Paginator
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from dotenv import load_dotenv
@@ -164,3 +165,51 @@ def upload_image(request):
         return JsonResponse({"message": "Image uploaded successfully"}, status=201)
     else:
         return JsonResponse({"error": "Invalid request"}, status=400)
+
+
+NLP_DATA_FILE = os.path.join(os.path.dirname(__file__), "nlp_data.json")
+
+
+def load_nlp_data():
+    if os.path.exists(NLP_DATA_FILE):
+        with open(NLP_DATA_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {}
+
+
+def nlp_code(request, pid):
+    data = load_nlp_data()
+    pid_str = str(pid).strip()
+    if pid_str.isdigit():
+        pid_key = str(int(pid_str))
+    else:
+        pid_key = pid_str.lower()
+
+    problem = data.get(pid_key)
+    if not problem:
+        return HttpResponse("Problem not found\n", status=404, content_type="text/plain; charset=utf-8")
+
+    if isinstance(problem, dict):
+        code = problem.get("code", "")
+    else:
+        code = str(problem)
+
+    if not code.endswith("\n"):
+        code += "\n"
+
+    return HttpResponse(code, content_type="text/plain; charset=utf-8")
+
+
+def nlp_list(request):
+    data = load_nlp_data()
+    problems = []
+    for k in sorted(data.keys(), key=lambda x: int(x) if x.isdigit() else 999):
+        if k == "setup":
+            continue
+        item = data[k]
+        problems.append({
+            "id": item.get("id"),
+            "title": item.get("title"),
+            "url": f"/api/nlp/{k}",
+        })
+    return JsonResponse({"problems": problems})
